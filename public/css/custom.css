@@ -1,0 +1,39 @@
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+.p-c {
+    color: rgb(22, 102, 173) !important;
+}
+
+.bg-shadow {
+    width: 100%;
+    height: 570px;
+    background-color: rgba(3, 58, 107, 0.531);
+}
+
+.header {
+    background-image: url('../img/bench-chair-comfort-1166406.jpg');
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    /* background-position: center; */
+}
+
+.who {
+    font-weight: 300;
+}
+
+.who-we-are .fa {
+    font-size: 5em !important;
+}
+
+.home-jum {
+    background-color: rgb(22, 102, 173) !important;
+}
+.home-jum h3{
+    font-weight: 300;
+}
+footer{
+    background-color: rgb(10, 65, 112) !important;
+}
