@@ -55,14 +55,16 @@
                                     <li class="nav-item mx-3">
                                         <a class="nav-link text-light" href="/contact">Contact</a>
                                     </li>
+                                    <li class="nav-item mx-3">
+                                        <a class="nav-link text-light" href="/project">Projects</a>
+                                    </li>
+                                    <li class="nav-item mx-3">
+                                        <a class="nav-link text-light" href="/register">Register</a>
+                                    </li>
                                     {{-- <li class="nav-item">
                                         <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                    </li>
-                                    @if (Route::has('register'))
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                        </li>
-                                    @endif --}}
+                                    </li>--}}
+
                                 @else
                                     <li class="nav-item dropdown">
                                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -93,7 +95,7 @@
                             <h1 class="text-uppercase mt-5 pt-md-5 text-light display-4 font-weight-bold">We make life better</h1>
                             <p class="text-light mb-5">Pay Little Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, nam.</p>
 
-                            <a href="/benefactor" class="btn btn-danger btn-lg mx-4 px-5 my-2">Become a Sponsor</a>
+                            <a href="/sponsor" class="btn btn-success btn-lg mx-4 px-5 my-2">Become a Sponsor</a>
                             <a href="/client" class="btn btn-primary btn-lg mx-4 px-5 my-2">Become a Pay Littler</a>
                         </div>
                     </div>

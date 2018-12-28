@@ -10,22 +10,14 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', 'NavigationController@index')->name('/');
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/about', function(){
-    return 'about';
-});
-Route::get('/contact', function(){
-    return 'you';
-});
-Route::get('/benefactor', function(){
-    return 'you';
-});
-Route::get('/client', function(){
-    return 'you';
-});
+Route::get('/about', 'NavigationController@about');
+Route::get('/contact', 'NavigationController@contact');
+Route::get('/sponsor', 'NavigationController@sponsor')->name('sponsor');
+Route::post('/sponsor', 'SponsorController@createSponsor');
+Route::get('/client', 'NavigationController@paylittler');
+
 
 
 Auth::routes();

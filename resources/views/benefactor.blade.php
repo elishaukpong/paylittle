@@ -1,75 +1,88 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
 @section('content')
-
-    <section class="my-5 py-4 who-we-are">
+<section class="bene-header">
+    <div class="bene-header-shadow">
         <div class="container">
-            <div class="row my-5">
-                <div class="col-12 text-center">
-                    <h1 class="text-uppercase p-c who mb-3">Who we are</h1>
-                    <p class="mx-5 px-md-5 p-c">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae id inventore ullam numquam architecto molestiae quis rem deserunt quo atque.</p>
-                </div>
-            </div>
-
-            <div class="row text-center">
-                <div class="col-md-4 col-12 px-4">
-                    <i class="fa fa-lightbulb-o p-c my-4" aria-hidden="true"></i>
-                    <h2 class="p-c text-uppercase">We Make your dreams come true</h2>
-                    <p class="p-c my-3">Getting that perfect dream can be financially draining and physically stressful. We are here to alleviate this burden
-                        from your shoulders</p>
-                </div>
-
-                <div class="col-md-4 col-12 px-4">
-                    <i class="fa fa-cogs p-c my-4" aria-hidden="true"></i>
-                    <h2 class="p-c text-uppercase">We help you do more with your finances</h2>
-                    <p class="p-c my-3">Very little and more can be done wth your income. Let's help you optimize your income to create tthe life you desire </p>
-                </div>
-
-                <div class="col-md-4 col-12 px-4">
-                    <i class="fa fa-university p-c my-4" aria-hidden="true"></i>
-                    <h2 class="p-c text-uppercase">We help you secure your home</h2>
-                    <p class="p-c my-3">Acquire homes through the PayLittle Housing scheme at very flexible payment deals. Start Living in your own apartment now</p>
-                </div>
-
-            </div>
-
-        </div>
-    </section>
-
-    <section class="home-jum">
-        <div class="container my-5 py-5">
-            <div class="row">
-                <div class="col-12">
-                    <h5 class="text-center text-light">With Pay Little, you could either get help with optimizing your income to afford a range of commodities, or you could be a benefactor and help others live a comfortable life, this comes with its perks  </h5>
+            <div class="row  pt-5">
+                <div class="col-12 text-center mt-5 pt-5">
+                    <h1 class="text-white text-uppercase display-3">Be a Sponsor</h1>
                 </div>
             </div>
         </div>
-    </section>
-    <section class="partners my-5 py-3">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 text-center">
-                    <h3 class="p-c">Our Partners</h3>
+    </div>
 
-                </div>
-                <div class="col-12">
-                    <div class="col-12 mx-auto text-center mb-4">
-                        <ul class="list-inline">
-                            <li data-aos="zoom-in" data-aos-duration="3000" class="list-inline-item mx-5">
-                            <img src="{{asset('img/intuit.png')}}" alt="">
-                            </li>
-                            <li data-aos="zoom-in" data-aos-duration="3000" class="list-inline-item mx-5">
-                            <img src="{{asset('img/intuit.png')}}" alt="">
-                            </li>
-                            <li data-aos="zoom-in" data-aos-duration="3000" class="list-inline-item mx-5">
-                            <img src="{{asset('img/intuit.png')}}" alt="">
-                            </li>
-                        </ul>
+</section>
+ <section class="my-5 py-2">
+     <div class="container">
+         <div class="row">
+             <div class="col-12 mx-auto text-center">
+                 <p class="p-c">
+                     You can help us alleviate the stress people incur on their finances when making major steps and changes in their lifes by being a sponsor on the Pay Little platform.
+                     Pay Little Sponsorship falls into three categories which comes with different ROI percentages based on initial investment.
+                     We believe in you to help us make people's dreams come through while ensuring your dreams come true too.
+                 </p>
+             </div>
+         </div>
+         <div class="row my-5">
+             <div class="col-6">
+                <img src="{{asset('img/sp.jpg')}}" class="img-fluid" alt="">
+             </div>
+             <div class="col-6 px-5 my-5">
+                 <h4 class="p-c my-4">Become a Sponsor today</h4>
+                <form class="mr-5" method="POST" action="/sponsor">
+                    @csrf
+                    <div class="form-group">
+                        <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" placeholder="Enter Name"
+                            required autofocus> 
+                        @if ($errors->has('name'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('name') }}</strong>
+                            </span>
+                            @endif
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
+                    <div class="form-group">
+                        <input id="email" type="text" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}"
+                            placeholder="Enter Email" required> 
+                        @if ($errors->has('email'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('email') }}</strong>
+                            </span> 
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        <input id="phone" type="text" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" value="{{ old('phone') }}"
+                            placeholder="Enter Phone Number" required> 
+                        @if ($errors->has('phone'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('phone') }}</strong>
+                            </span> 
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        <input id="amount" type="number" class="form-control{{ $errors->has('amount') ? ' is-invalid' : '' }}" name="amount" value="{{ old('amount') }}"
+                            placeholder="Enter Amount" required autofocus> 
+                        @if ($errors->has('amount'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('amount') }}</strong>
+                            </span> 
+                        @endif
+                    </div>
+                    <div class="form-group pb-4">
+                        <select class="form-control" id="exampleFormControlSelect1" name="duration">
+                            <option value="Null">Select Duration of Sponsorship</option>
+                            <option value="3">3 Years</option>
+                            <option value="2">Below 3 and Above 2 Years</option>
+                            <option value="1">6 Months - 1 Year</option>
+                        </select>
+                    </div>
+                 
+                    <button type="submit" class="btn btn-success form-control">Submit</button>
+                </form>
+             </div>
+         </div>
+     </div>
+ </section>
     <footer class="text-white">
             <div class="container py-5 border-bottom">
                 <div class="row">

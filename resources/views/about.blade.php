@@ -1,75 +1,51 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
 @section('content')
-
-    <section class="my-5 py-4 who-we-are">
+<section class="about-header">
+    <div class="about-header-shadow">
         <div class="container">
-            <div class="row my-5">
-                <div class="col-12 text-center">
-                    <h1 class="text-uppercase p-c who mb-3">Who we are</h1>
-                    <p class="mx-5 px-md-5 p-c">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae id inventore ullam numquam architecto molestiae quis rem deserunt quo atque.</p>
-                </div>
-            </div>
-
-            <div class="row text-center">
-                <div class="col-md-4 col-12 px-4">
-                    <i class="fa fa-lightbulb-o p-c my-4" aria-hidden="true"></i>
-                    <h2 class="p-c text-uppercase">We Make your dreams come true</h2>
-                    <p class="p-c my-3">Getting that perfect dream can be financially draining and physically stressful. We are here to alleviate this burden
-                        from your shoulders</p>
-                </div>
-
-                <div class="col-md-4 col-12 px-4">
-                    <i class="fa fa-cogs p-c my-4" aria-hidden="true"></i>
-                    <h2 class="p-c text-uppercase">We help you do more with your finances</h2>
-                    <p class="p-c my-3">Very little and more can be done wth your income. Let's help you optimize your income to create tthe life you desire </p>
-                </div>
-
-                <div class="col-md-4 col-12 px-4">
-                    <i class="fa fa-university p-c my-4" aria-hidden="true"></i>
-                    <h2 class="p-c text-uppercase">We help you secure your home</h2>
-                    <p class="p-c my-3">Acquire homes through the PayLittle Housing scheme at very flexible payment deals. Start Living in your own apartment now</p>
-                </div>
-
-            </div>
-
-        </div>
-    </section>
-
-    <section class="home-jum">
-        <div class="container my-5 py-5">
-            <div class="row">
-                <div class="col-12">
-                    <h5 class="text-center text-light">With Pay Little, you could either get help with optimizing your income to afford a range of commodities, or you could be a benefactor and help others live a comfortable life, this comes with its perks  </h5>
+            <div class="row  pt-5">
+                <div class="col-12 text-center mt-5 pt-5">
+                    <h1 class="text-white text-uppercase display-3">About Us</h1>
                 </div>
             </div>
         </div>
-    </section>
-    <section class="partners my-5 py-3">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 text-center">
-                    <h3 class="p-c">Our Partners</h3>
+    </div>
 
-                </div>
-                <div class="col-12">
-                    <div class="col-12 mx-auto text-center mb-4">
-                        <ul class="list-inline">
-                            <li data-aos="zoom-in" data-aos-duration="3000" class="list-inline-item mx-5">
-                            <img src="{{asset('img/intuit.png')}}" alt="">
-                            </li>
-                            <li data-aos="zoom-in" data-aos-duration="3000" class="list-inline-item mx-5">
-                            <img src="{{asset('img/intuit.png')}}" alt="">
-                            </li>
-                            <li data-aos="zoom-in" data-aos-duration="3000" class="list-inline-item mx-5">
-                            <img src="{{asset('img/intuit.png')}}" alt="">
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+</section>
+ <section class="my-5 py-5">
+     <div class="container">
+         <div class="row my-3">
+             <div class="col-3 offset-2 text-center">
+                <img src="{{asset('img/sp2.jpg')}}" alt="" class="img-fluid">
+             </div>
+             <div class="col-6 my-5">
+                 <p class="p-c">
+                    PayLittle is a platform that renders support to individuals with the aid of sponsors.
+                    These sponsors can get returns on their sponsorship/investments as high as 20% depending on the investment duration. The paylittler is then offered this sponsorship as at when needed and pays back with a flexible payment deal when he/she can afford it.
+                    This platform enables individuals to cater for their needs while paying little over a period of time.
+                </p>
+             </div>
+         </div>
+         <div class="row my-5 py-5">
+            <div class="col-md-6 col-12 mb-5 mb-md-0 text-center">
+                <h2 class="p-c font-weight-bold text-uppercase pb-4">Our Mission</h2>
+                <p class="px-5 p-c">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu pretium magna. Mauris non quam id nisi vestibulum ultrices.
+                    In varius mauris et sapien auctor,
+                </p>
+            </div>
+            <div class="col-md-6 col-12 text-center">
+                <h2 class="p-c font-weight-bold text-uppercase pb-4">Our Vision</h2>
+                <p class="px-5 p-c">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu pretium magna. Mauris non quam id nisi vestibulum ultrices.
+                    In varius mauris et sapien auctor,
+                </p>
             </div>
         </div>
-    </section>
+        
+     </div>
+ </section>
     <footer class="text-white">
             <div class="container py-5 border-bottom">
                 <div class="row">

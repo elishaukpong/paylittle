@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+// use Ramsey\Uuid\Exception\UnsatisfiedDependencyException;
+// use Ramsey\Uuid\Uuid;
+// use Ramsey\Uuid\UuidInterface;
+// return Uuid::uuid1();
 class HomeController extends Controller
 {
     /**

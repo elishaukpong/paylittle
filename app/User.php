@@ -5,9 +5,13 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Hash;
+
 
 class User extends Authenticatable
 {
+    public $incrementing = false;
+
     use Notifiable;
 
     /**
@@ -16,9 +20,9 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+       'id', 'name', 'email','phone', 'verification_string','password',
     ];
-
+   
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -27,4 +31,22 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    
+    public function sponsor()
+    {
+        return $this->hasOne('App\Models\Sponsor');
+    }
+
+    public function paylittler()
+    {
+        return $this->hasOne('App\Models\Paylittler');
+    }
+    public function admin()
+    {
+        return $this->hasOne('App\Models\Admin');
+    }
+    public function setPasswordAttribute($value){
+        $this->attributes['password'] = Hash::make($value);
+    }
+
 }
