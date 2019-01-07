@@ -22,4 +22,4 @@ Route::get('/client', 'NavigationController@paylittler');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/clientarea', 'HomeController@index')->name('clientarea');

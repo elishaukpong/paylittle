@@ -13,7 +13,12 @@ use Ramsey\Uuid\UuidInterface;
 
 class SponsorController extends Controller
 {
-  
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @throws \Exception
+     */
     public function createSponsor(Request $request)
     {
         $request['id'] = Uuid::uuid1();

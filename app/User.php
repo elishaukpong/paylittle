@@ -20,7 +20,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-       'id', 'name', 'email','phone', 'verification_string','password',
+       'id', 'first_name','last_name', 'email','phone', 'verification_string','password',
     ];
    
     /**
@@ -48,5 +48,13 @@ class User extends Authenticatable
     public function setPasswordAttribute($value){
         $this->attributes['password'] = Hash::make($value);
     }
+    // public function getNameAttribute($value){
+    //     $nameArray = explode(" ", $value);
+
+    //     return $this->attributes['name'] = [
+    //                                         "first_name" => $nameArray[0], 
+    //                                         "last_name" => $nameArray[1]
+    //                                     ];
+    // }
 
 }

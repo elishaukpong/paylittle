@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-// use Ramsey\Uuid\Exception\UnsatisfiedDependencyException;
-// use Ramsey\Uuid\Uuid;
-// use Ramsey\Uuid\UuidInterface;
-// return Uuid::uuid1();
+use App\User;
+use Auth;
+
 class HomeController extends Controller
 {
     /**
@@ -26,6 +25,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $data['user'] = User::findOrFail(Auth::user()->id);
+        // return $data;
+        return view('home', $data);
     }
 }

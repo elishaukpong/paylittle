@@ -94,3 +94,27 @@ footer{
 .home-link:active{
     border:none !important;
 }
+.notification i{
+    font-size: 1.9em;
+    color:#328af1;
+}
+.horizontal{
+    transform: rotate(90deg);
+}
+.dashboard i{
+    font-size: 1.4em;
+}
+.dashboard .badge{
+    position: absolute;
+    top:15px;
+    left:20px;
+    margin: -1em 0 !important;
+    font-size: 75%;
+}
+.note{
+    position: relative;
+}
+.dashboard-border{
+    border-bottom:3px solid #328af1;
+    width:50%;
+}

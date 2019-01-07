@@ -31,7 +31,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/clientarea';
 
     /**
      * Create a new controller instance.
@@ -69,9 +69,15 @@ class RegisterController extends Controller
         // echo "<pre>";
         // var_dump($data);
         // echo "</pre>";
+        // Break the name into first and last name
+        $nameArray = explode(" ",$data['name']);
+        $firstName = $nameArray[0];
+        $lastName = $nameArray[1];
+        
         return User::create([
             'id' => Uuid::uuid1(),
-            'name' => $data['name'],
+            'first_name' => $firstName,
+            'last_name' => $lastName,
             'email' => $data['email'],
             'phone' => $data['phone'],
             'password' => $data['password']

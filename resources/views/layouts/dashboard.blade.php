@@ -28,7 +28,7 @@
         <nav class="navbar navbar-expand-md bg-primary ">
             <div class="container">
                 <a class="navbar-brand text-light" href="{{ url('/') }}">
-                Pay Little
+                Pay Little | Client Area
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -41,7 +41,7 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto my-2">
+                    <ul class="navbar-nav ml-auto my-2 dashboard">
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item mx-3">
@@ -62,12 +62,18 @@
                                 </li>
                             @endif --}}
                         @else
-                            <li class="nav-item mx-3">
-                                <a class="nav-link text-light" href="/">Home</a>
+                            {{-- <li class="nav-item mx-1">
+                                <a class="nav-link text-light" href="/"><i class="fa fa-home" aria-hidden="true"></i></a>
+                            </li> --}}
+                            <li class="nav-item mx-1 note">
+                                <a class="nav-link text-light" href="#">
+                                    <i class="fa fa-bell-o" aria-hidden="true"> </i> 
+                                </a>
+                                <i class="badge bg-danger text-light">3</i>
                             </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link text-light dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                <i class="fa fa-user" aria-hidden="true"></i> <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -89,11 +95,20 @@
         </nav>
 
         <main class="">
-            <div class="container-fluid my-5">
+            <div class="container my-4">
+                {{-- Flash Notifications --}}
                 <div class="row">
-                    <div class="col-md-3 col-12">
+                    <div class="col-12">
+                        @yield('notifications')
+                    </div>
+                </div>
+
+                {{-- App Layout --}}
+                <div class="row">
+                    <div class="col-md-3 col-12 border-right">
                         @yield('left-bar')
                     </div>
+
                     <div class="col-md-9 col-12">
                         @yield('content')
                     </div>
