@@ -118,3 +118,14 @@ footer{
     border-bottom:3px solid #328af1;
     width:50%;
 }
+.profile-img{
+    border-radius:50%;
+    border: .2em solid #328af1;
+}
+
+.swal-title{
+    font-weight: normal;
+    font-family: 'Poppins', sans-serif !important;
+    font-size:25px;
+    color:#328af1;
+}

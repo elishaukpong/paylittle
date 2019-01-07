@@ -17,15 +17,7 @@
         </div>
     @endsection
 
-    @section('left-bar')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-12 text-center">
-                <h3>Side Bar</h3>
-            </div>
-        </div>
-    </div>
-    @endsection
+   
     
     @section('content')
     <div class="container">

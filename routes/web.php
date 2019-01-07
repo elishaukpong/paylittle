@@ -17,9 +17,15 @@ Route::get('/contact', 'NavigationController@contact');
 Route::get('/sponsor', 'NavigationController@sponsor')->name('sponsor');
 Route::post('/sponsor', 'SponsorController@createSponsor');
 Route::get('/client', 'NavigationController@paylittler');
+//Route::get('/verify/{$verificationString}', 'SponsorController@verify')->name('verify');
+Route::get('/verify', 'SponsorController@verify')->name('verify');
+Route::get('/account/{id}', 'UserController@index')->name('user.edit');
+Route::put('/account', 'UserController@update')->name('user.update');
 
 
 
-Auth::routes();
+Auth::routes(['verify' => true]);
+
+
 
 Route::get('/clientarea', 'HomeController@index')->name('clientarea');

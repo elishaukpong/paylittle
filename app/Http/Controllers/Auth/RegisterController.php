@@ -4,12 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Ramsey\Uuid\Exception\UnsatisfiedDependencyException;
 use Ramsey\Uuid\Uuid;
-use Ramsey\Uuid\UuidInterface;
 
 class RegisterController extends Controller
 {
@@ -58,6 +55,7 @@ class RegisterController extends Controller
         ]);
     }
 
+
     /**
      * Create a new user instance after a valid registration.
      *
@@ -73,14 +71,23 @@ class RegisterController extends Controller
         $nameArray = explode(" ",$data['name']);
         $firstName = $nameArray[0];
         $lastName = $nameArray[1];
-        
-        return User::create([
+
+        $string = "qwertyuiopasdfghjklzxcvbnm1234567890";
+        $data['verification_string'] = str_shuffle($string);
+
+        $user =  User::create([
             'id' => Uuid::uuid1(),
             'first_name' => $firstName,
             'last_name' => $lastName,
             'email' => $data['email'],
             'phone' => $data['phone'],
+            'verification_string' => $data['verification_string'],
             'password' => $data['password']
         ]);
+
+        return $user;
+
     }
+
+
 }

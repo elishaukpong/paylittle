@@ -6,9 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Sponsor;
 use App\User;
 use Illuminate\Support\Facades\Validator;
-use Ramsey\Uuid\Exception\UnsatisfiedDependencyException;
 use Ramsey\Uuid\Uuid;
-use Ramsey\Uuid\UuidInterface;
 
 
 class SponsorController extends Controller
@@ -42,6 +40,11 @@ class SponsorController extends Controller
         }
         User::create($validRequest);
         return redirect()->back();
+    }
+    public function verify(){
+//        $user = User::findOrFail(Auth::user()->id);
+//        return view('home');
+        return 33;
     }
 
 }

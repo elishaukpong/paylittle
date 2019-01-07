@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Hash;
 
 
-class User extends Authenticatable
+class User extends Authenticatable   
 {
     public $incrementing = false;
 
@@ -20,7 +20,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-       'id', 'first_name','last_name', 'email','phone', 'verification_string','password',
+       'id', 'first_name', 'last_name', 'email', 'phone', 'verification_string', 'password', 'gender', 'address',
     ];
    
     /**
