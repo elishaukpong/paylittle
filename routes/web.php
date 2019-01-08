@@ -19,8 +19,13 @@ Route::post('/sponsor', 'SponsorController@createSponsor');
 Route::get('/client', 'NavigationController@paylittler');
 //Route::get('/verify/{$verificationString}', 'SponsorController@verify')->name('verify');
 Route::get('/verify', 'SponsorController@verify')->name('verify');
+
+
 Route::get('/account/{id}', 'UserController@index')->name('user.edit');
 Route::put('/account', 'UserController@update')->name('user.update');
+Route::get('/newproject', 'ProjectController@create')->name('project.create');
+Route::post('/newproject', 'ProjectController@store')->name('project.store');
+
 
 
 

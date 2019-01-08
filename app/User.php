@@ -31,30 +31,27 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-    
-    public function sponsor()
-    {
-        return $this->hasOne('App\Models\Sponsor');
-    }
 
-    public function paylittler()
+    public function project()
     {
-        return $this->hasOne('App\Models\Paylittler');
+        return $this->hasMany('App\Models\Project');
     }
-    public function admin()
-    {
-        return $this->hasOne('App\Models\Admin');
-    }
+    
+//    public function sponsor()
+//    {
+//        return $this->hasOne('App\Models\Sponsor');
+//    }
+//
+//    public function paylittler()
+//    {
+//        return $this->hasOne('App\Models\Paylittler');
+//    }
+//    public function admin()
+//    {
+//        return $this->hasOne('App\Models\Admin');
+//    }
     public function setPasswordAttribute($value){
         $this->attributes['password'] = Hash::make($value);
     }
-    // public function getNameAttribute($value){
-    //     $nameArray = explode(" ", $value);
-
-    //     return $this->attributes['name'] = [
-    //                                         "first_name" => $nameArray[0], 
-    //                                         "last_name" => $nameArray[1]
-    //                                     ];
-    // }
-
+    
 }
