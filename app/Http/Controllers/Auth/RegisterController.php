@@ -64,9 +64,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        // echo "<pre>";
-        // var_dump($data);
-        // echo "</pre>";
         // Break the name into first and last name
         $nameArray = explode(" ",$data['name']);
         $firstName = $nameArray[0];

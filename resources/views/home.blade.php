@@ -43,10 +43,10 @@
                 <div class="col-md-4 col-12 mt-3">
                     <div class="card border border-primary">
                         <div class="card-body">
-                            <h5 class="card-title display-1 font-weight-bold p-c">10</h5>
-                            <p class="card-text h5 p-c">Sponsored Projects</p>
+                            <h5 class="card-title display-1 font-weight-bold p-c">{{$user->projects->count()}}</h5>
+                            <p class="card-text h5 p-c">Created Projects</p>
                             <hr class="dahsboard-border">
-                            <a class="btn btn-primary text-white form-control">View Details</a>
+                            <a href="{{route('userProjects.view', $user->id)}}" class="btn btn-primary text-white form-control">View Details</a>
                         </div>
                     </div>
                 </div>
@@ -55,8 +55,18 @@
                    <div class="card border border-primary">
                         <div class="card-body">
                             <h5 class="card-title display-1 font-weight-bold  p-c">23</h5>
-                            <p class="card-text h5 p-c">Projects History</p>
+                            <p class="card-text h5 p-c">Sponsored Projects</p>
                             <hr class="dahsboard-border">                            
+                            <a class="btn btn-primary text-white form-control">View Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-12 mt-3">
+                   <div class="card border border-primary">
+                        <div class="card-body">
+                            <h5 class="card-title display-1 font-weight-bold  p-c">23</h5>
+                            <p class="card-text h5 p-c">Projects History</p>
+                            <hr class="dahsboard-border">
                             <a class="btn btn-primary text-white form-control">View Details</a>
                         </div>
                     </div>

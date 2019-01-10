@@ -32,24 +32,11 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function project()
+    public function projects()
     {
         return $this->hasMany('App\Models\Project');
     }
-    
-//    public function sponsor()
-//    {
-//        return $this->hasOne('App\Models\Sponsor');
-//    }
-//
-//    public function paylittler()
-//    {
-//        return $this->hasOne('App\Models\Paylittler');
-//    }
-//    public function admin()
-//    {
-//        return $this->hasOne('App\Models\Admin');
-//    }
+
     public function setPasswordAttribute($value){
         $this->attributes['password'] = Hash::make($value);
     }

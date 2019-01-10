@@ -1,32 +1,4 @@
 @extends('layouts.dashboard')
-@section('notifications')
-    <div class="container my-4">
-        <div class="row justify-content-center">
-            <div class="col-md-8 mx-auto text-center">
-                @if ($user->email_verified_at == null)
-                    <script>
-                        swal("Your account is not verified!","", "info",{
-                            buttons: ["Verify", "Cancel"],
-                        });
-                    </script>
-                @endif
-
-                @if (\Session::has('success'))
-                    <script>
-                        swal("{{ \Session::get('success') }}","", "success");
-                    </script>
-                @endif
-                @if (\Session::has('error'))
-                    <script>
-                        swal("{{ \Session::get('error') }}","", "error");
-
-                    </script>
-                @endif
-            </div>
-        </div>
-    </div>
-@endsection
-
 
 @section('content')
     <div class="container">
@@ -46,9 +18,9 @@
                 <form action="{{route('user.update')}}" method="POST">
                     @csrf
                     @method('put')
-                    <img src="https://picsum.photos/200" alt="" class="profile-img p-1 mb-4">
+                    <img src="{{file_exists(asset('storage/avatars/users'. $user->avatar)) ? : asset('storage/avatars/users/defaultuser.png')}}" alt="" class="profile-img p-1">
                     <br>
-                    <button class="btn btn-outline-primary mb-4">Update Avatar</button>
+                    <button class="btn btn-outline-primary my-4">Update Avatar</button>
                     <hr class="mx-5">
 
                     <div class="row text-left mt-4">
@@ -128,6 +100,13 @@
                             </span>
                                     @endif
                                 </div>
+                            </div>
+                            <div class="form-group btn-file">
+                            <span class="btn btn-primary btn-file">
+                                <i class="fa fa-camera" aria-hidden="true"></i>
+                                &nbsp; &nbsp;
+                                Select Avatar <input type="file" name="avatarobject" >
+                            </span>
                             </div>
                             <div class="form-group py-2">
                                 <div >

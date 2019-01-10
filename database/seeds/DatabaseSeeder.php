@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -11,6 +12,23 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        Eloquent::unguard();
+
+        // Ask for db migration refresh, default is no
+        if ($this->command->confirm('Do you wish to refresh migration before seeding, it will clear all old data ?')) {
+
+            // Call the php artisan migrate:fresh using Artisan
+            $this->command->call('migrate:fresh');
+
+            $this->command->line("Database cleared.");
+        }
+
+
+        $this->call(userTableSeeder::class);
+
+        $this->command->info("Database seeded.");
+
+        // Re Guard model
+        Eloquent::reguard();
     }
 }

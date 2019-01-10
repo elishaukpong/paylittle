@@ -72,28 +72,34 @@
                             {{-- <li class="nav-item mx-1">
                                 <a class="nav-link text-light" href="/"><i class="fa fa-home" aria-hidden="true"></i></a>
                             </li> --}}
+                            {{--<li class="nav-item mx-1 note">--}}
+                                {{--<a class="nav-link text-light" href="#">--}}
+                                    {{--<i class="fa fa-bell-o" aria-hidden="true"> </i> --}}
+                                {{--</a>--}}
+                                {{--<i class="badge bg-danger text-light">3</i>--}}
+                            {{--</li>--}}
                             <li class="nav-item mx-1 note">
-                                <a class="nav-link text-light" href="#">
-                                    <i class="fa fa-bell-o" aria-hidden="true"> </i> 
+                                <a class="nav-link text-light" href="{{route('clientarea')}}">
+                                    Dashboad
                                 </a>
-                                <i class="badge bg-danger text-light">3</i>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link text-light dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                <i class="fa fa-user" aria-hidden="true"></i> <span class="caret"></span>
+
+                            <li class="nav-item mx-1 note">
+                                <a class="nav-link text-light" href="{{route('user.edit',$user->id)}}">
+                                  Account
+                                </a>
+                            </li>
+
+                            <li class="nav-item mx-1 note">
+                                <a class="nav-link text-light" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                        document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item nav-link text-primary" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                                        document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
                             </li>
                         @endguest
                     </ul>
@@ -106,7 +112,31 @@
                 {{-- Flash Notifications --}}
                 <div class="row">
                     <div class="col-12">
-                        @yield('notifications')
+                        <div class="container my-4">
+                            <div class="row justify-content-center">
+                                <div class="col-md-8 mx-auto text-center">
+                                    @if ($user->email_verified_at !== null)
+                                        <script>
+                                             swal("Your account is not verified!","", "info",{
+                                                buttons: ["Verify", "Cancel"],
+                                             });
+                                        </script>
+                                    @endif
+
+                                    @if (\Session::has('success'))
+                                        <script>
+                                            swal("{{ \Session::get('success') }}","", "success");
+                                        </script>
+                                    @endif
+                                    @if (\Session::has('error'))
+                                        <script>
+                                            swal("{{ \Session::get('error') }}","", "error");
+
+                                        </script>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
 
                     </div>
                 </div>
@@ -117,7 +147,7 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-12 text-center mb-5">
-                                    <img src="https://picsum.photos/200" alt="" class="profile-img p-1">
+                                    <img src="{{file_exists(asset('storage/avatars/users/'. $user->avatar)) ? : asset('storage/avatars/users/defaultuser.png')}}" alt="" class="profile-img p-1">
                                 </div>
                                 <div class="col-12">
                                     <div class="card">
@@ -131,7 +161,7 @@
                                             <p>
                                                 <i class="fa fa-cogs" aria-hidden="true"></i>
                                                 &nbsp; &nbsp;
-                                                Your Projects: 0
+                                                Your Projects: {{$user->projects->count()}}
                                             </p>
                                             <p>
                                                 <i class="fa fa-envelope" aria-hidden="true"></i>
@@ -143,9 +173,7 @@
                                                 &nbsp; &nbsp;
                                                 Joined {{$user->created_at->diffForHumans()}}
                                             </p>
-                                            <div class="text-center">
-                                                <a href="{{route('user.edit',$user->id)}}" class="btn btn-primary mt-3">Go to Account</a>
-                                            </div>
+                                            
                                         </div>
                                     </div>
                                 </div>
