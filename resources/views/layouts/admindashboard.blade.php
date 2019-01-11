@@ -34,8 +34,8 @@
     <div id="app">
         <nav class="navbar navbar-expand-md bg-primary ">
             <div class="container">
-                <a class="navbar-brand text-light" href="{{ url('/clientarea') }}">
-                Pay Little | Client Area
+                <a class="navbar-brand text-light" href="{{ url('/adminarea') }}">
+                Pay Little | Admin Area
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -85,13 +85,13 @@
                             </li>
 
                             <li class="nav-item mx-1 note">
-                                <a class="nav-link text-light" href="{{route('user.edit',$user->id)}}">
+                                <a class="nav-link text-light" href="{{route('admin.edit')}}">
                                   Account
                                 </a>
                             </li>
 
                             <li class="nav-item mx-1 note">
-                                <a class="nav-link text-light" href="{{route('user.edit',$user->id)}}">
+                                <a class="nav-link text-light" href="{{route('admin.showallprojects')}}">
                                     All Projects
                                 </a>
                             </li>
@@ -141,7 +141,7 @@
                 </div>
 
                 {{-- App Layout --}}
-                    <div class="col-md-9 col-12">
+                    <div class="col-md-12 col-12">
                         @yield('content')
                     </div>
                 </div>

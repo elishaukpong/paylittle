@@ -123,6 +123,10 @@ footer{
     border: .2em solid #328af1;
 }
 
+.admin-profile-img{
+    border: .2em solid #84b8f1;
+}
+
 .swal-title{
     font-weight: normal;
     font-family: 'Poppins', sans-serif !important;

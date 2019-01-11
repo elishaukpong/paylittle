@@ -29,14 +29,20 @@ Route::post('/project', 'ProjectController@store')->name('project.store');
 Route::get('/project/{project}', 'ProjectController@show')->name('userProjects.show');
 Route::get('/project/{project}/edit', 'ProjectController@edit')->name('userProjects.edit');
 Route::put('/project/{project}', 'ProjectController@update')->name('userProjects.update');
-Route::get('/projects/{user}', 'ProjectController@filterBy')->name('userProjects.view');
+Route::post('/projects/{user}', 'ProjectController@filterBy')->name('userProjects.view');
 
 
 
 Auth::routes(['verify' => true]);
 
 Route::get('/adminarea', 'AdminController@index')->name('admin.home');
-
+Route::get('/admin/edit', 'AdminController@edit')->name('admin.edit');
+Route::get('/admin/allusers', 'AdminController@showUsers')->name('admin.showallusers');
+Route::get('/admin/allusers/{user}', 'AdminController@filterByUser')->name('admin.showuser');
+Route::get('/admin/{user}/projects', 'AdminController@filterByUserProjects')->name('admin.showuserprojects');
+Route::get('/admin/allprojects', 'AdminController@showProjects')->name('admin.showallprojects');
+Route::get('/admin/projects/{project}', 'AdminController@filterByProject')->name('admin.showproject');
+Route::get('/admin/updatestatus/{project}/{status}', 'AdminController@updateStatus')->name('admin.updatestatus');
 
 
 

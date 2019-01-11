@@ -14,7 +14,10 @@ use Faker\Generator as Faker;
 */
 $factory->define(App\User::class, function (Faker $faker) {
     $status = ['admin','null'];
+    $gender = ['male','female', 'others'];
     $index = array_rand($status);
+    $indexx = array_rand($gender);
+
 
     return [
         'id' => $faker->uuid,
@@ -22,7 +25,7 @@ $factory->define(App\User::class, function (Faker $faker) {
         'last_name' => $faker->lastName,
         'email' => $faker->unique()->safeEmail,
         'phone' => $faker->phoneNumber,
-        'gender' => 'male',
+        'gender' => $gender[$indexx],
         'avatar' => $faker->image('storage/app/public/avatars/users',400,400, null,false),
         'address' => $faker->address,
         'verification_string' => $faker->randomNumber(),

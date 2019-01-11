@@ -1,4 +1,4 @@
-@extends('layouts.dashboard')
+@extends('layouts.admindashboard')
 
 @section('content')
     <div class="container">
@@ -24,7 +24,6 @@
                         </div>
                     </div>
                     <br>
-                    <button class="btn btn-outline-primary my-4">Update Avatar</button>
                     <hr class="mx-5">
 
                     <div class="row text-left mt-4">
@@ -48,7 +47,7 @@
                                     <label for="email">Email</label>
                                     <input id="email" type="text" class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}"
                                            name="email" value="{{ $user->email }}"  disabled>
-                                    
+
                                 </div>
                             </div>
 
@@ -61,7 +60,7 @@
                                     <option {{($user->gender =="others") ? 'selected' :  " "}} value="others">Others</option>
                                 </select>
                             </div>
-                            
+
                         </div>
 
 
@@ -115,7 +114,7 @@
                             <div class="form-group py-2">
                                 <div >
                                     <input type="submit" value="Update" class="btn btn-primary float-right">
-                                   
+
                                 </div>
                             </div>
                         </div>
