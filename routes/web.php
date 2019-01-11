@@ -33,8 +33,10 @@ Route::get('/projects/{user}', 'ProjectController@filterBy')->name('userProjects
 
 
 
-
 Auth::routes(['verify' => true]);
+
+Route::get('/adminarea', 'AdminController@index')->name('admin.home');
+
 
 
 

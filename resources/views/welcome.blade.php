@@ -2,6 +2,23 @@
 
 @section('content')
 
+    <section class="header">
+        <div class="bg-shadow">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 my-md-5 py-md-3 text-center">
+                        <h1 class="text-uppercase mt-5 pt-md-5 text-light display-4 font-weight-bold">We make life better</h1>
+                        <p class="text-light mb-5">Pay Little Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, nam.</p>
+
+                        <a href="/sponsor" class="btn btn-success btn-lg mx-4 px-5 my-2">Become a Sponsor</a>
+                        <a href="/client" class="btn btn-primary btn-lg mx-4 px-5 my-2">Become a Pay Littler</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
     <section class="my-5 py-4 who-we-are">
         <div class="container">
             <div class="row my-5">

@@ -79,7 +79,7 @@
                                 {{--<i class="badge bg-danger text-light">3</i>--}}
                             {{--</li>--}}
                             <li class="nav-item mx-1 note">
-                                <a class="nav-link text-light" href="{{route('clientarea')}}">
+                                <a class="nav-link text-light" href="{{route('admin.home')}}">
                                     Dashboard
                                 </a>
                             </li>
@@ -87,6 +87,12 @@
                             <li class="nav-item mx-1 note">
                                 <a class="nav-link text-light" href="{{route('user.edit',$user->id)}}">
                                   Account
+                                </a>
+                            </li>
+
+                            <li class="nav-item mx-1 note">
+                                <a class="nav-link text-light" href="{{route('user.edit',$user->id)}}">
+                                    All Projects
                                 </a>
                             </li>
 
@@ -115,14 +121,7 @@
                         <div class="container my-4">
                             <div class="row justify-content-center">
                                 <div class="col-md-8 mx-auto text-center">
-                                    @if ($user->email_verified_at !== null)
-                                        <script>
-                                             swal("Your account is not verified!","", "info",{
-                                                buttons: ["Verify", "Cancel"],
-                                             });
-                                        </script>
-                                    @endif
-
+                                  
                                     @if (\Session::has('success'))
                                         <script>
                                             swal("{{ \Session::get('success') }}","", "success");
@@ -142,45 +141,6 @@
                 </div>
 
                 {{-- App Layout --}}
-                <div class="row">
-                    <div class="col-md-3 col-12  mx-auto">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-12 text-center mb-5">
-                                    <img src="{{asset('storage/avatars/users/' . $user->avatar)}}" alt="" class="profile-img p-1 img-fluid ">
-                                </div>
-                                <div class="col-12">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h5 class="card-title mb-5 text-center">{{$user->first_name}} {{$user->last_name}}</h5>
-                                            <p>
-                                                <i class="fa fa-cog" aria-hidden="true"></i>
-                                                &nbsp; &nbsp;
-                                                Sponsored Projects: 10
-                                            </p>
-                                            <p>
-                                                <i class="fa fa-cogs" aria-hidden="true"></i>
-                                                &nbsp; &nbsp;
-                                                Your Projects: {{$user->projects->count()}}
-                                            </p>
-                                            <p>
-                                                <i class="fa fa-envelope" aria-hidden="true"></i>
-                                                &nbsp; &nbsp;
-                                                Account not verified
-                                            </p>
-                                            <p>
-                                                <i class="fa fa-user-circle-o" aria-hidden="true"></i>
-                                                &nbsp; &nbsp;
-                                                Joined {{$user->created_at->diffForHumans()}}
-                                            </p>
-                                            
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="col-md-9 col-12">
                         @yield('content')
                     </div>

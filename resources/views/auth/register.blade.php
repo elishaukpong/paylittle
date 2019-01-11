@@ -8,7 +8,7 @@
             </div>
             <form method="POST" action="{{ route('register') }}" class="mt-5">
                 @csrf
-
+                <input type="hidden" name="avatar" value="defaultuser.png">
                 <div class="form-group row">
                     <div class="col-md-6 col-12 mx-auto ">
                         <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }} auth-input" name="name" value="{{ old('name') }}" placeholder="Name"

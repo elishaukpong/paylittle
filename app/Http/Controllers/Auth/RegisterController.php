@@ -79,7 +79,10 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'phone' => $data['phone'],
             'verification_string' => $data['verification_string'],
-            'password' => $data['password']
+            'password' => $data['password'] ,
+            'avatar' => $data['avatar'],
+            'gender' => '',
+            'is_admin' => '',
         ]);
 
         return $user;

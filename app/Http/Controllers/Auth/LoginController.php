@@ -25,7 +25,8 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/clientarea';
+//    protected $redirectTo = '/clientarea';
+    protected $redirectTo = '/adminarea';
 
     /**
      * Create a new controller instance.

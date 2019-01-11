@@ -40,7 +40,7 @@
 
 <div class="container my-4">
     <div class="row">
-        @forelse ($user->projects as $project)
+        @forelse ($projects as $project)
             <div class="col-md-4 col-12 mt-3">
                 <img class="card-img-top" src="{{asset('storage/avatars/projects/'. $project->avatar)}}" alt="Card image cap">
                 <div class="card border border-primary">
@@ -65,6 +65,11 @@
             </div>
         @endforelse
 
+    </div>
+    <div class="row my-4 text-center">
+        <div class="col-md-3 col-12 mx-auto ">
+            {{$projects->links()}}
+        </div>
     </div>
 </div>
 @endsection
