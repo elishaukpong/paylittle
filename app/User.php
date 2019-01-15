@@ -22,7 +22,10 @@ class User extends Authenticatable
     protected $fillable = [
        'id', 'first_name', 'last_name', 'email', 'phone', 'verification_string', 'password', 'gender', 'address', 'avatar',
     ];
-   
+
+    protected $dates = [
+          'dob',
+    ];
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -37,8 +40,27 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Project');
     }
 
+    public function projectsSponsored()
+    {
+        return $this->hasMany('App\Models\ProjectSubscription');
+    }
+
+    public function IsAdmin()
+    {
+        if($this->is_admin != 'admin'){
+            return false;
+        }
+        return true;
+    }
+
     public function setPasswordAttribute($value){
         $this->attributes['password'] = Hash::make($value);
+    }
+    public function setFirstNameAttribute($value){
+        $this->attributes['first_name'] = ucfirst($value);
+    }
+    public function setLastNameAttribute($value){
+        $this->attributes['last_name'] = ucfirst($value);
     }
     
 }

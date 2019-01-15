@@ -28,9 +28,9 @@
         width:100%;
         height:100%
     }
-.navbar{
-    padding: 0;
-}
+    .navbar{
+        padding: 0;
+    }
 </style>
 <body class="auth">
     <div id="app">

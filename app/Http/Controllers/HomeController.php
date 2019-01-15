@@ -26,7 +26,7 @@ class HomeController extends Controller
     public function index()
     {
         $data['user'] = User::findOrFail(Auth::user()->id);
-        // return $data;
+//         return $data;
         return view('home', $data);
     }
 }

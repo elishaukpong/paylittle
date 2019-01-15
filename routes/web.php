@@ -24,12 +24,14 @@ Route::get('/verify', 'SponsorController@verify')->name('verify');
 Route::get('/account/{id}', 'UserController@index')->name('user.edit');
 Route::put('/account', 'UserController@update')->name('user.update');
 
-Route::get('/project', 'ProjectController@create')->name('project.create');
+Route::get('/project', 'ProjectController@index')->name('userProjects.all');
+Route::get('/project/create', 'ProjectController@create')->name('project.create');
 Route::post('/project', 'ProjectController@store')->name('project.store');
 Route::get('/project/{project}', 'ProjectController@show')->name('userProjects.show');
 Route::get('/project/{project}/edit', 'ProjectController@edit')->name('userProjects.edit');
 Route::put('/project/{project}', 'ProjectController@update')->name('userProjects.update');
-Route::post('/projects/{user}', 'ProjectController@filterBy')->name('userProjects.view');
+Route::get('/projects/{user}', 'ProjectController@filterBy')->name('userProjects.view');
+
 
 
 

@@ -1,6 +1,7 @@
 <?php
 
 use Faker\Generator as Faker;
+use Carbon\Carbon;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,19 +19,18 @@ $factory->define(App\User::class, function (Faker $faker) {
     $index = array_rand($status);
     $indexx = array_rand($gender);
 
-
     return [
         'id' => $faker->uuid,
         'first_name' => $faker->firstName,
         'last_name' => $faker->lastName,
         'email' => $faker->unique()->safeEmail,
         'phone' => $faker->phoneNumber,
+        'dob' =>   Carbon::now()->subMonth(rand(19,40)),
         'gender' => $gender[$indexx],
         'avatar' => $faker->image('storage/app/public/avatars/users',400,400, null,false),
         'address' => $faker->address,
-        'verification_string' => $faker->randomNumber(),
         'is_admin' => $status[$index],
-        'email_verified_at' => now(),
+        'email_verified_at' => Carbon::now(),
         'password' => 'secret', // secret
         'remember_token' => str_random(10),
     ];

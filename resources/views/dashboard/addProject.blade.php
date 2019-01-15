@@ -77,8 +77,18 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="gender">Repayment Plans</label>
+                            <select class="form-control" id="gender" name="gender">
+                                <option>Select Plan</option>
+                                @foreach($repayments as $repayment)
+                                    <option value="{{$repayment->id}}">{{$repayment->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group">
                             <label for="project_details">Project Details</label>
-                            <textarea class="form-control {{$errors->has('details') ? ' is-invalid' : ''}}" id="project_details" rows="6" name="details">{{ old('details') }}</textarea>
+                            <textarea style="resize: none;" class="form-control {{$errors->has('details') ? ' is-invalid' : ''}}" id="project_details" rows="6" name="details">{{ old('details') }}</textarea>
                             @if ($errors->has('details'))
                                 <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first('details') }}</strong>
@@ -88,19 +98,15 @@
                     </div>
 
 
-
-                    <div class="col-md-4 col-12 mx-auto">
-                        <div class="form-group py-2">
-                            <div >
-                                <label for="duration">Project Duration</label>
-                                <input id="duration" type="text" class="form-control {{ $errors->has('duration') ? ' is-invalid' : '' }}"
-                                       name="duration" value="{{ old('duration') }}" required>
-                                @if ($errors->has('duration'))
-                                <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('duration') }}</strong>
-                            </span>
-                                @endif
-                            </div>
+                    <div class="col-md-4 col-12 mx-auto mt-2">
+                        <div class="form-group">
+                            <label for="duration">Project Duration</label>
+                            <select class="form-control" id="duration" name="duration">
+                                <option>Select Duration</option>
+                                @foreach($durations as $duration)
+                                    <option value="{{$duration->id}}">{{$duration->duration}}</option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="form-group py-2">
@@ -116,7 +122,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group py-2">
+                        <div class="form-group py-2 mb-5">
                             <div >
                                 <label for="address">Address</label>
                                 <input id="address" type="text" class="form-control {{ $errors->has('address') ? ' is-invalid' : '' }}"
@@ -128,6 +134,7 @@
                                 @endif
                             </div>
                         </div>
+
                         <div class="form-group btn-file">
                             <span class="btn btn-primary btn-file">
                                 <i class="fa fa-camera" aria-hidden="true"></i>

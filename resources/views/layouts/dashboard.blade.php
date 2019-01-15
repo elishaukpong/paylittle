@@ -85,6 +85,12 @@
                             </li>
 
                             <li class="nav-item mx-1 note">
+                                <a class="nav-link text-light" href="{{route('userProjects.all')}}">
+                                    Projects
+                                </a>
+                            </li>
+
+                            <li class="nav-item mx-1 note">
                                 <a class="nav-link text-light" href="{{route('user.edit',$user->id)}}">
                                   Account
                                 </a>

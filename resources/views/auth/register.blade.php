@@ -1,5 +1,6 @@
 @extends('layouts.auth') 
 @section('content')
+    
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8 col-12">
@@ -11,12 +12,23 @@
                 <input type="hidden" name="avatar" value="defaultuser.png">
                 <div class="form-group row">
                     <div class="col-md-6 col-12 mx-auto ">
-                        <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }} auth-input" name="name" value="{{ old('name') }}" placeholder="Name"
-                            required autofocus> 
-                        @if ($errors->has('name'))
+                        <input id="first_name" type="text" class="form-control{{ $errors->has('first_name') ? ' is-invalid' : '' }} auth-input" name="first_name" value="{{ old('first_name') }}" placeholder="First Name"
+                            required autofocus>
+                        @if ($errors->has('first_name'))
                             <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('name') }}</strong>
-                            </span> 
+                                <strong>{{ $errors->first('first_name') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-md-6 col-12 mx-auto ">
+                        <input id="last_name" type="text" class="form-control{{ $errors->has('last_name') ? ' is-invalid' : '' }} auth-input" name="last_name" value="{{ old('last_name') }}" placeholder="Last Name"
+                               required autofocus>
+                        @if ($errors->has('last_name'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('last_name') }}</strong>
+                            </span>
                         @endif
                     </div>
                 </div>
@@ -24,48 +36,48 @@
                 <div class="form-group row">
                     <div class="col-md-6 col-12 mx-auto">
                         <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }} auth-input" name="email" value="{{ old('email') }}"
-                            required placeholder="Email"> 
+                            required placeholder="Email">
                         @if ($errors->has('email'))
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first('email') }}</strong>
-                            </span> 
+                            </span>
                         @endif
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <div class="col-md-6 col-12 mx-auto">
-                        <input id="number" type="number" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }} auth-input" name="phone" value="{{ old('phone') }}"
-                            required placeholder="Phone Number"> 
+                        <input id="phone" type="text" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }} auth-input" name="phone" value="{{ old('phone') }}"
+                            required placeholder="Phone Number">
                         @if ($errors->has('phone'))
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first('phone') }}</strong>
-                            </span> 
+                            </span>
                         @endif
                     </div>
                 </div>
 
                 <div class="form-group row">
-                
+
                     <div class="col-md-6 col-12 mx-auto">
                         <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }} auth-input" name="password" placeholder="Password"
-                            required> 
+                            required>
                         @if ($errors->has('password'))
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first('password') }}</strong>
-                            </span> 
+                            </span>
                         @endif
                     </div>
                 </div>
 
                 <div class="form-group row">
-                
+
                     <div class="col-md-6 col-12 mx-auto">
-                        <input id="password-confirm" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }} auth-input" name="password_confirmation" placeholder="Confirm Password" required> 
-                       
+                        <input id="password-confirm" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }} auth-input" name="password_confirmation" placeholder="Confirm Password" required>
+
                     </div>
                 </div>
-              
+
 
 
                 <div class="form-group row mt-5">
@@ -84,10 +96,10 @@
                         <a class=" home-link mt-4 text-white px-4" href="/login">
                             Already Have account? Click here
                         </a>
-                      
+
                     </div>
                 </div>
-               
+
             </form>
         </div>
     </div>

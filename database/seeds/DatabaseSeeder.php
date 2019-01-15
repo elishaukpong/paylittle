@@ -24,6 +24,9 @@ class DatabaseSeeder extends Seeder
         }
 
 
+        $this->call(projectStatusSeeder::class);
+        $this->call(repaymentPlansSeeder::class);
+        $this->call(projectDurationSeeder::class);
         $this->call(userTableSeeder::class);
 
         $this->command->info("Database seeded.");
