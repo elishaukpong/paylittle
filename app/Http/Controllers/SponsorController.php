@@ -2,49 +2,40 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Sponsor;
 use App\User;
-use Illuminate\Support\Facades\Validator;
 use Ramsey\Uuid\Uuid;
+use App\Models\Sponsor;
+use App\Models\Project;
+use Illuminate\Http\Request;
+use App\Models\ProjectSubscription;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+
+
 
 
 class SponsorController extends Controller
 {
 
-    /**
-     * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     * @throws \Exception
-     */
-    public function createSponsor(Request $request)
-    {
-        $request['id'] = Uuid::uuid1();
-        $request['password'] = 'secret';
-        $string = 'qwertyuiopasdfghjklzxcvbnm1234567890';
-        $request['verification_string'] = str_shuffle($string);
-        $validRequest = $request->except(['_token']);
 
-        $validator = Validator::make($validRequest, [
-            'name' => 'required|max:255|min:6',
-            'email' => 'required|unique:users,email|max:255',
-            'phone' => 'required|min:11|max:13',
-            'amount' => 'required',
-            'duration' => 'required'
-        ]);
-      
-        if ($validator->fails()) {
-            return redirect('sponsor')
-                ->withErrors($validator)
-                ->withInput();
-        }
-        User::create($validRequest);
-        return redirect()->back();
+    public function sponsorProject(Request $request, Project $project)
+    {
+        $userId = Auth::user()->id;
+        $data['id'] = Uuid::uuid1();
+        $data['amount'] = $request['amount'];       //validate this bro!
+        $data['user_id'] = $userId;
+        $data['project_id'] = $project->id;
+
+        ProjectSubscription::create($data);
+        return redirect()->route('view.sponsor', $userId)->with('success', 'Project Sponsored');
     }
-    public function verify(){
-//        $user = User::findOrFail(Auth::user()->id);
-//        return view('home');
-        return 33;
+
+    public function sponsoredProjects(User $user)
+    {
+        $data['user'] = $user;
+        $data['projectsubscriptions'] =  ProjectSubscription::whereUserId($user->id)->get();
+
+        return view('dashboard.showsponsored', $data);
     }
 
 }

@@ -1,4 +1,4 @@
-@extends('layouts.admindashboard')
+@extends('layouts.dashboard')
     @section('notifications')
         {{--<div class="container my-4">--}}
             {{--<div class="row justify-content-center">--}}
@@ -33,7 +33,7 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-12">
-                    <h1 class="p-c font-weight-light"> Admin Area : All Users</h1>
+                    <h1 class="p-c font-weight-light"> Sponsored Projects</h1>
                     <br>
                 </div>
             </div>
@@ -47,20 +47,25 @@
                         <thead>
                         <tr>
                             <th scope="col">S/N</th>
-                            <th scope="col"> Full Name</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Gender</th>
-                            <th scope="col">Action</th>
+                            <th scope="col"> Project Name</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Date Due</th>
+                            <th scope="col">Returns</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($users as $key => $user)
+                        @foreach($projectsubscriptions as $key => $projectsubscription)
                             <tr>
                                 <th scope="row">{{ $key+1 }}</th>
-                                <td>{{ $user->first_name }} {{ $user->last_name }}</td>
-                                <td>{{ $user->email}}</td>
-                                <td>{{ $user->gender}}</td>
-                                <td><a href="{{route('admin.showuser', $user->id)}}" class="btn btn-primary">View User</a></td>
+                                <td>{{ $projectsubscription->project->name }}</td>
+                                <td>{{ $projectsubscription->status->status ?? 'Waiting'}}</td>
+                                <td>{{ $projectsubscription->amount}}</td>
+                                {{--make this two true data--}}
+                                <td>{{ $projectsubscription->created_at->addMonth(rand(2,8))->diffForHumans()}}</td>
+                                <td>{{ $projectsubscription->amountdue}}</td>
+                                {{--<td>{{ $project->gender}}</td>--}}
+                                {{--<td><a href="{{route('admin.showuser', $project->id)}}" class="btn btn-primary">View User</a></td>--}}
 
                             </tr>
                         @endforeach
@@ -70,7 +75,7 @@
                 </div>
                     <div class="row my-4 text-center">
                         <div class="col-md-3 col-12 mx-auto ">
-                            {{$users->links()}}
+                            {{--{{$user->links()}}--}}
                         </div>
                     </div>
                     {{--<a href="" class="btn btn-secondary my-4">See Joined Classes</a>--}}

@@ -21,18 +21,25 @@ Route::get('/client', 'NavigationController@paylittler');
 Route::get('/verify', 'SponsorController@verify')->name('verify');
 
 
-Route::get('/account/{id}', 'UserController@index')->name('user.edit');
+Route::get('/account/{user}', 'UserController@show')->name('user.show');
+Route::get('/account/{user}/edit', 'UserController@edit')->name('user.edit');
 Route::put('/account', 'UserController@update')->name('user.update');
+
 
 Route::get('/project', 'ProjectController@index')->name('userProjects.all');
 Route::get('/project/create', 'ProjectController@create')->name('project.create');
 Route::post('/project', 'ProjectController@store')->name('project.store');
-Route::get('/project/{project}', 'ProjectController@show')->name('userProjects.show');
+Route::get('/project/{project}/show', 'ProjectController@show')->name('userProjects.show');
 Route::get('/project/{project}/edit', 'ProjectController@edit')->name('userProjects.edit');
 Route::put('/project/{project}', 'ProjectController@update')->name('userProjects.update');
 Route::get('/projects/{user}', 'ProjectController@filterBy')->name('userProjects.view');
 
 
+Route::post('/projects/{project}/sponsor', 'SponsorController@sponsorProject')->name('sponsor.project');
+Route::get('/projects/{user}/sponsored', 'SponsorController@sponsoredProjects')->name('view.sponsor');
+
+//
+//Route::get('');
 
 
 Auth::routes(['verify' => true]);

@@ -11,7 +11,7 @@
                         <p class="text-light mb-5">Pay Little Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, nam.</p>
 
                         <a href="/sponsor" class="btn btn-success btn-lg mx-4 px-5 my-2">Become a Sponsor</a>
-                        <a href="/client" class="btn btn-primary btn-lg mx-4 px-5 my-2">Become a Pay Littler</a>
+                        <a href="/client" class="btn btn-primary btn-lg mx-4 px-5 my-2">Become a Paylittler</a>
                     </div>
                 </div>
             </div>
@@ -57,7 +57,7 @@
         <div class="container my-5 py-5">
             <div class="row">
                 <div class="col-12">
-                    <h5 class="text-center text-light">With Pay Little, you could either get help with optimizing your income to afford a range of commodities, or you could be a benefactor and help others live a comfortable life, this comes with its perks  </h5>
+                    <h5 class="text-center text-light">With Paylittle, you could either get help with optimizing your income to afford a range of commodities, or you could be a benefactor and help others live a comfortable life, this comes with its perks  </h5>
                 </div>
             </div>
         </div>

@@ -56,28 +56,32 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <h5>Project Amount Needed: </h5>
-                <p> N {{$project->amount}}</p>
+            
+            <form action="{{route('sponsor.project', $project->id)}}" method="POST" >
+                @csrf
+                <div class="modal-body">
+                    <h5>Project Amount Needed: </h5>
+                    <p> N {{$project->amount}}</p>
 
-                <div class="form-group">
-                    <label for="gender">Sponsorship Amount</label>
+                        <div class="form-group">
 
-                    <select name="amount" id="sponsoramount" class="form-control">
-                        <option value="null" selected>Sponsorship Amount</option>
-                        <option value="10">10 Thousand</option>
-                        <option value="20">20 Thousand</option>
-                        <option value="30">30 Thousand</option>
-                        <option value="40">40 Thousand</option>
-                        <option value="50">50 Thousand</option>
-
-                    </select>
+                            <label for="sponsoramount">Sponsorship Amount</label>
+                            <select name="amount" id="sponsoramount" class="form-control">
+                                <option value="null" selected>Sponsorship Amount</option>
+                                <option value="10">10 Thousand</option>
+                                <option value="20">20 Thousand</option>
+                                <option value="30">30 Thousand</option>
+                                <option value="40">40 Thousand</option>
+                                <option value="50">50 Thousand</option>
+                            </select>
+                        </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Sponsor Project</button>
-            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Sponsor Project</button>
+                </div>
+            </form>
+
         </div>
     </div>
 </div>

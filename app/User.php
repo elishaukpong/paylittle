@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Hash;
+use Carbon\Carbon;
 
 
 class User extends Authenticatable   
@@ -20,7 +21,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-       'id', 'first_name', 'last_name', 'email', 'phone', 'verification_string', 'password', 'gender', 'address', 'avatar',
+       'id', 'first_name', 'last_name', 'email', 'phone', 'verification_string', 'password', 'gender', 'address', 'avatar',  'dob','details'
     ];
 
     protected $dates = [
@@ -40,9 +41,9 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Project');
     }
 
-    public function projectsSponsored()
+    public function sponsoredProjects()
     {
-        return $this->hasMany('App\Models\ProjectSubscription');
+        return $this->hasMany('App\Models\ProjectSubscription', 'user_id');
     }
 
     public function IsAdmin()
@@ -53,14 +54,21 @@ class User extends Authenticatable
         return true;
     }
 
-    public function setPasswordAttribute($value){
+    public function setPasswordAttribute($value)
+    {
         $this->attributes['password'] = Hash::make($value);
     }
-    public function setFirstNameAttribute($value){
+    public function setFirstNameAttribute($value)
+    {
         $this->attributes['first_name'] = ucfirst($value);
     }
-    public function setLastNameAttribute($value){
+    public function setLastNameAttribute($value)
+    {
         $this->attributes['last_name'] = ucfirst($value);
     }
-    
+
+     public function getDobAttribute($value){
+        return Carbon::Parse($value)->format('Y-m-d');
+    }
+
 }

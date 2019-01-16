@@ -166,3 +166,6 @@ footer{
     cursor: inherit;
     display: block;
 }
+.invalid-files{
+    color: #e3342f;
+}

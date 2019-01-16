@@ -28,7 +28,7 @@
         <nav class="navbar navbar-light bg-primary navbar-expand-md">
             <div class="container">
                 <a class="navbar-brand text-light" href="{{ url('/') }}">
-                Pay Little
+                    PayLittle
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon text-light"></span>

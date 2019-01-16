@@ -55,17 +55,17 @@
                 <div class="col-md-4 col-12 mt-3">
                    <div class="card border border-primary">
                         <div class="card-body">
-                            <h5 class="card-title display-1 font-weight-bold  p-c">23</h5>
+                            <h5 class="card-title display-1 font-weight-bold  p-c">{{$user->sponsoredProjects->count()}}</h5>
                             <p class="card-text h5 p-c">Sponsored Projects</p>
                             <hr class="dahsboard-border">                            
-                            <a class="btn btn-primary text-white form-control">View Details</a>
+                            <a class="btn btn-primary text-white form-control" href="{{route('view.sponsor', $user->id)}}">View Details</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4 col-12 mt-3">
                    <div class="card border border-primary">
                         <div class="card-body">
-                            <h5 class="card-title display-1 font-weight-bold  p-c">23</h5>
+                            <h5 class="card-title display-1 font-weight-bold  p-c">{{$user->sponsoredProjects->count()}}</h5>
                             <p class="card-text h5 p-c">Projects History</p>
                             <hr class="dahsboard-border">
                             <a class="btn btn-primary text-white form-control">View Details</a>

@@ -91,7 +91,7 @@
                             </li>
 
                             <li class="nav-item mx-1 note">
-                                <a class="nav-link text-light" href="{{route('user.edit',$user->id)}}">
+                                <a class="nav-link text-light" href="{{route('user.show', Auth::user()->id)}}">
                                   Account
                                 </a>
                             </li>
@@ -162,7 +162,7 @@
                                             <p>
                                                 <i class="fa fa-cog" aria-hidden="true"></i>
                                                 &nbsp; &nbsp;
-                                                Sponsored Projects: 10
+                                                Sponsored Projects: {{$user->sponsoredProjects->count()}}
                                             </p>
                                             <p>
                                                 <i class="fa fa-cogs" aria-hidden="true"></i>
