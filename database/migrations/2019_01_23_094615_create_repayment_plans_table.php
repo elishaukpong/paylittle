@@ -14,8 +14,11 @@ class CreateRepaymentPlansTable extends Migration
     public function up()
     {
         Schema::create('repayment_plans', function (Blueprint $table) {
-            $table->increments('id');
+            $table->string('id', 36);
+            $table->string('timeline');
             $table->timestamps();
+
+            $table->primary('id');
         });
     }
 

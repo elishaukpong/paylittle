@@ -17,6 +17,8 @@ class CreateDurationsTable extends Migration
             $table->string('id', 36);
             $table->string('timeline');
             $table->timestamps();
+
+            $table->primary('id');
         });
     }
 

@@ -11,7 +11,7 @@ class RepaymentPlanSeeder extends Seeder
      */
     public function run()
     {
-        $repaymentplans = collect([1,3, 6, 12]);
+        $repaymentplans = collect(['monthly','quarterly','bi-annually', 'yearly']);
     	$repaymentplans->each(function ($repaymentplan) {
     		factory(App\Models\RepaymentPlan::class)->create(['timeline' => $repaymentplan]);
 	    });

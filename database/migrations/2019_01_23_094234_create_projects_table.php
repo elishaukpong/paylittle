@@ -17,8 +17,16 @@ class CreateProjectsTable extends Migration
             $table->string('id', 36);
             $table->string('user_id');
             $table->string('duration_id');
-
+            $table->string('repayment_id');
+            $table->string('status_id')->default(1);
+            $table->string('name');
+            $table->integer('amount')->unsigned();
+            $table->text('details');
+            $table->string('address');
+            $table->string('location');
             $table->timestamps();
+
+            $table->primary('id');
         });
     }
 

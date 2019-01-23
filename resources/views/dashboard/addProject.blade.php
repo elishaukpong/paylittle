@@ -77,13 +77,18 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="gender">Repayment Plans</label>
-                            <select class="form-control" id="gender" name="gender">
+                            <label for="repayment_id">Repayment Plans</label>
+                            <select class="form-control {{ $errors->has('repayment_id') ? ' is-invalid' : '' }}" id="gender" name="repayment_id">
                                 <option>Select Plan</option>
-                                {{-- @foreach($repayments as $repayment)
-                                    <option value="{{$repayment->id}}">{{$repayment->name}}</option>
-                                @endforeach --}}
+                                @foreach($repaymentPlans as $repaymentPlan)
+                                    <option value="{{$repaymentPlan->id}}">{{$repaymentPlan->timeline}}</option>
+                                @endforeach
                             </select>
+                            @if ($errors->has('repayment_id'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('repayment_id') }}</strong>
+                                </span>
+                            @endif
                         </div>
 
                         <div class="form-group">
@@ -100,13 +105,18 @@
 
                     <div class="col-md-4 col-12 mx-auto mt-2">
                         <div class="form-group">
-                            <label for="duration">Project Duration</label>
-                            <select class="form-control" id="duration" name="duration">
+                            <label for="duration_id">Project Duration</label>
+                            <select class="form-control {{ $errors->has('duration_id') ? ' is-invalid' : '' }}" id="duration" name="duration_id">
                                 <option>Select Duration</option>
                                 @foreach($durations as $duration)
                                     <option value="{{$duration->id}}">{{$duration->timeline}}</option>
                                 @endforeach
                             </select>
+                            @if ($errors->has('duration_id'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('duration_id') }}</strong>
+                                </span>
+                            @endif
                         </div>
 
                         <div class="form-group py-2">
@@ -147,12 +157,11 @@
                         </div>
                         <div class="form-group py-2">
                             <div>
-                                <input type="submit" value="Create Project" class="btn btn-primary float-right form-control" required>
+                                <input type="submit" value="Create Project" class="btn btn-primary float-right form-control">
                             </div>
                         </div>
                     </div>
                 </div>
-
 
             </form>
 

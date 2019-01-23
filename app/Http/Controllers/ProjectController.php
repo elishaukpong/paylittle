@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\Models\Duration;
+use App\Models\RepaymentPlan;
+use App\Http\Requests\CreateProjectRequest;
+use App\Models\Project;
+use Ramsey\Uuid\Uuid;
+use App\User;
 
 class ProjectController extends Controller
 {
@@ -27,6 +32,7 @@ class ProjectController extends Controller
     {
         $data['user'] = Auth::user();
         $data['durations'] = Duration::all();
+        $data['repaymentPlans'] = RepaymentPlan::all();
         return view('dashboard.addProject', $data);
     }
 
@@ -36,9 +42,16 @@ class ProjectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateProjectRequest $request)
     {
-        //
+        $request['id'] = Uuid::uuid1();
+        $request['user_id'] = Auth::user()->id;
+        $project = Project::create($request->except(['_token']));
+
+        if(!$project){
+            return redirect()->route('project.create')->with('error','Could not create project');
+        }
+        return redirect()->route('clientarea')->with('success','Project Created Successfully');
     }
 
     /**
@@ -58,9 +71,11 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Project $project)
     {
-        //
+        $data['user'] = Auth::user();
+        $data['project'] = $project;
+        return view('dashboard.editProject', $data);
     }
 
     /**
@@ -84,5 +99,11 @@ class ProjectController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function filterBy(User $user){
+        $data['user'] = $user;
+        $data['projects'] = Project::whereUserId($user->id)->paginate(10);
+        return view('dashboard.userprojects', $data);
     }
 }
