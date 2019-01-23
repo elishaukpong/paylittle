@@ -162,12 +162,12 @@
                                             <p>
                                                 <i class="fa fa-cog" aria-hidden="true"></i>
                                                 &nbsp; &nbsp;
-                                                Sponsored Projects: {{$user->sponsoredProjects->count()}}
+                                                Sponsored Projects: {{$user->sponsoredProjects->count() ?? 0}}
                                             </p>
                                             <p>
                                                 <i class="fa fa-cogs" aria-hidden="true"></i>
                                                 &nbsp; &nbsp;
-                                                Your Projects: {{$user->projects->count()}}
+                                                Your Projects: {{$user->projects->count() ?? 0}}
                                             </p>
                                             <p>
                                                 <i class="fa fa-envelope" aria-hidden="true"></i>

@@ -80,9 +80,9 @@
                             <label for="gender">Repayment Plans</label>
                             <select class="form-control" id="gender" name="gender">
                                 <option>Select Plan</option>
-                                @foreach($repayments as $repayment)
+                                {{-- @foreach($repayments as $repayment)
                                     <option value="{{$repayment->id}}">{{$repayment->name}}</option>
-                                @endforeach
+                                @endforeach --}}
                             </select>
                         </div>
 
@@ -104,7 +104,7 @@
                             <select class="form-control" id="duration" name="duration">
                                 <option>Select Duration</option>
                                 @foreach($durations as $duration)
-                                    <option value="{{$duration->id}}">{{$duration->duration}}</option>
+                                    <option value="{{$duration->id}}">{{$duration->timeline}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -142,7 +142,7 @@
                                 Select Avatar <input type="file" name="avatarobject" required>
                                 {{--<img src="#" id="blah" alt="">--}}
                             </span>
-                         
+
                             {{--<p class="btn btn-primary form-control">Select Avatar</p>--}}
                         </div>
                         <div class="form-group py-2">

@@ -66,9 +66,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'phone' => $data['phone'],
             'password' => $data['password'] ,
-            'avatar' => $data['avatar'],
             'details' => '',
-            'dob' => '',
             'gender' => '',
             'is_admin' => '',
         ]);
