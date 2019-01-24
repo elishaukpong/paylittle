@@ -42,7 +42,7 @@
     <div class="row">
         @forelse ($projects as $project)
             <div class="col-md-4 col-12 mt-3">
-                <img class="card-img-top" src="{{asset('storage/avatars/projects/'. $project->avatar)}}" alt="Card image cap">
+                <img class="card-img-top" src="{{asset($project->avatar)}}" alt="Card image cap">
                 <div class="card border border-primary">
                     <div class="card-body">
                         <p class="card-title font-weight-bold p-c">{{$project->name}}</p>

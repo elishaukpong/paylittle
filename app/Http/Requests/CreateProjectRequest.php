@@ -30,7 +30,7 @@ class CreateProjectRequest extends FormRequest
             'location' => 'required|string|min:5|max:150',
             'details' => 'required|string|min:5|max:300',
             'duration_id' => 'required|string|min:36|max:36',
-            // 'avatarobject' => 'image|size:1024',
+            'avatarobject' => 'image|mimes:jpeg,png,jpg|max:1024',
             'repayment_id' => 'required|string|min:36|max:36',
         ];
     }

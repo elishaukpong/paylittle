@@ -23,7 +23,7 @@ Route::get('/verify', 'SponsorController@verify')->name('verify');
 
 Route::get('/account/{user}', 'UserController@show')->name('user.show');
 Route::get('/account/{user}/edit', 'UserController@edit')->name('user.edit');
-Route::put('/account', 'UserController@update')->name('user.update');
+Route::put('/account/{user}', 'UserController@update')->name('user.update');
 
 
 Route::get('/project', 'ProjectController@index')->name('userProjects.all');

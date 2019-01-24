@@ -15,10 +15,10 @@
             <div class="col-12 text-center">
 
 
-                <form action="{{route('user.update')}}" method="POST" enctype="multipart/form-data"!>
+                <form action="{{route('user.update', $user->id)}}" method="POST" enctype="multipart/form-data"!>
                     @csrf
                     @method('put')
-                   
+
                     <div class="row text-left">
                         <div class="col-md-5 offset-md-1 col-12">
 
@@ -39,12 +39,17 @@
 
                             <div class="form-group">
                                 <label for="gender">Gender</label>
-                                <select class="form-control" id="gender" name="gender">
-                                    <option {{($user->gender =="null") ? 'selected' :  " "}} value="null">Not Set</option>
+                                <select class="form-control {{ $errors->has('gender') ? ' is-invalid' : '' }}" id="gender" name="gender">
+                                    <option {{($user->gender =="null") ? 'selected' :  " "}} value=" ">Not Set</option>
                                     <option {{($user->gender =="male") ? 'selected' :  " "}} value="male">Male</option>
                                     <option {{($user->gender =="female") ? 'selected' :  " "}} value="female">Female</option>
                                     <option {{($user->gender =="others") ? 'selected' :  " "}} value="others">Others</option>
                                 </select>
+                                @if ($errors->has('gender'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('gender') }}</strong>
+                                </span>
+                                @endif
                             </div>
 
                             <div class="form-group py-2">
@@ -124,18 +129,18 @@
 
                             <div class="form-group py-3">
                                 <div >
-                                    <label for="last_name">Occupation</label>
-                                    <input id="last_name" type="text"
-                                           class="form-control {{ $errors->has('last_name') ? ' is-invalid' : '' }}"
-                                           name="last_name" value="{{ $user->last_name }}" required>
-                                    @if ($errors->has('last_name'))
+                                    <label for="occupation">Occupation</label>
+                                    <input id="occupation" type="text"
+                                           class="form-control {{ $errors->has('occupation') ? ' is-invalid' : '' }}"
+                                           name="occupation" value="{{ $user->occupation }}" required>
+                                    @if ($errors->has('occupation'))
                                         <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('last_name') }}</strong>
+                                        <strong>{{ $errors->first('occupation') }}</strong>
                                     </span>
                                     @endif
                                 </div>
                             </div>
-                                
+
                             <div class="form-group btn-file">
                                 <span class="btn btn-primary btn-file">
                                     <i class="fa fa-camera" aria-hidden="true"></i>
@@ -147,12 +152,10 @@
                                 @endif
                             </div>
                                 <small class="py-3 text-secondary text-center">Image must be jpeg,png,jpg and less than 1MB</small>
-                            <div class="form-group py-2">
 
+                            <div >
+                                <input type="submit" value="Update Information" class="btn btn-primary form-control float-right">
                             </div>
-                        </div>
-                        <div>
-                            <input type="submit" value="Update Information" class="btn btn-primary form-control">
                         </div>
                     </div>
 

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePhotosTable extends Migration
+class AddOccupationColumnToUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class CreatePhotosTable extends Migration
      */
     public function up()
     {
-        Schema::create('photos', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('avatar');
-            $table->string('imageable_id');
-            $table->string('imageable_type');
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('occupation')->nullable();
         });
     }
 
@@ -29,6 +25,8 @@ class CreatePhotosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('photos');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('occupation');
+        });
     }
 }

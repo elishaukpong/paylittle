@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
 
 
-class User extends Authenticatable   
+class User extends Authenticatable
 {
     public $incrementing = false;
 
@@ -21,7 +21,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-       'id', 'first_name', 'last_name', 'email', 'phone', 'verification_string', 'password', 'gender', 'address', 'dob','details'
+       'id', 'first_name', 'last_name', 'email', 'phone', 'verification_string', 'password', 'gender', 'address', 'dob','details', 'occupation'
     ];
 
     protected $dates = [
@@ -46,6 +46,10 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\ProjectSubscription', 'user_id');
     }
 
+    public function avatar()
+    {
+        return $this->morphOne('App\Models\Photo', 'imageable');
+    }
     public function IsAdmin()
     {
         if($this->is_admin != 'admin'){

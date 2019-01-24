@@ -13,6 +13,8 @@ use App\User;
 
 class ProjectController extends Controller
 {
+    protected $newImageName;
+    protected $previousImageName;
     /**
      * Display a listing of the resource.
      *
@@ -44,9 +46,13 @@ class ProjectController extends Controller
      */
     public function store(CreateProjectRequest $request)
     {
+
         $request['id'] = Uuid::uuid1();
         $request['user_id'] = Auth::user()->id;
+        $this->storeOrReplaceImage($request);
+        $request['avatar'] = $this->newImageName;
         $project = Project::create($request->except(['_token']));
+        return $project->avatar();
 
         if(!$project){
             return redirect()->route('project.create')->with('error','Could not create project');
@@ -119,9 +125,40 @@ class ProjectController extends Controller
         return redirect()->route('userProjects.view', Auth::user()->id);
     }
 
-    public function filterBy(User $user){
+    public function filterBy(User $user)
+    {
         $data['user'] = $user;
         $data['projects'] = Project::whereUserId($user->id)->paginate(10);
         return view('dashboard.userprojects', $data);
+    }
+
+    // Don't mess around here
+    public function storeOrReplaceImage($request, $project = null, $storeOrReplace = "store" )
+    {
+        if($storeOrReplace != "store"){
+            return $this->replaceImage($request, $project);
+        }
+        return $this->storeImage($request);
+    }
+
+    public function storeImage($request)
+    {
+        $this->newImageName = Auth::user()->id . "_" . Auth::user()->first_name . "_" . time() . "." . $request->avatarobject->getClientOriginalExtension();
+        if(!$request->avatarobject->storeAs('public/avatars/projects', $this->newImageName)){
+            return redirect()->back()->with('error', 'Can\'t save image');
+        }
+    }
+
+    public function replaceImage($request, $project)
+    {
+        $this->previousImageName = $project->avatar !== null ? $project->avatar :'nothing';
+
+        if(Storage::disk('image')->exists($this->previousImageName) && !Storage::delete($this->previousImageName)){
+            return redirect()->back()->with('error', 'Can\'t Process the file at the moment');
+        }
+        $this->newImageName = $user->id . "_" . $user->first_name . "_" . time() . "." . $request->avatarobject->getClientOriginalExtension();
+        if(!$request->avatarobject->storeAs('public/avatars/users', $this->newImageName)){
+            return redirect()->back()->with('error', 'Can\'t save image');
+        }
     }
 }
