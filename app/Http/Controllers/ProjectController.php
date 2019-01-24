@@ -8,6 +8,7 @@ use App\Models\Duration;
 use App\Models\RepaymentPlan;
 use App\Http\Requests\CreateProjectRequest;
 use App\Models\Project;
+use App\Models\Photo;
 use Ramsey\Uuid\Uuid;
 use App\User;
 
@@ -49,11 +50,8 @@ class ProjectController extends Controller
 
         $request['id'] = Uuid::uuid1();
         $request['user_id'] = Auth::user()->id;
-        $this->storeOrReplaceImage($request);
-        $request['avatar'] = $this->newImageName;
         $project = Project::create($request->except(['_token']));
-        return $project->avatar();
-
+        $this->storeOrReplaceImage($request, $project);
         if(!$project){
             return redirect()->route('project.create')->with('error','Could not create project');
         }
@@ -133,17 +131,21 @@ class ProjectController extends Controller
     }
 
     // Don't mess around here
-    public function storeOrReplaceImage($request, $project = null, $storeOrReplace = "store" )
+    public function storeOrReplaceImage($request, $project, $storeOrReplace = "store" )
     {
         if($storeOrReplace != "store"){
             return $this->replaceImage($request, $project);
         }
-        return $this->storeImage($request);
+        return $this->storeImage($request, $project);
     }
 
-    public function storeImage($request)
+    public function storeImage($request, $project)
     {
         $this->newImageName = Auth::user()->id . "_" . Auth::user()->first_name . "_" . time() . "." . $request->avatarobject->getClientOriginalExtension();
+        $request['avatar'] = $this->newImageName;
+        $request['imageable_type'] = $project->model;
+        $request['imageable_id'] = $project->id;
+        $photo = Photo::create($request->except(['_token']));
         if(!$request->avatarobject->storeAs('public/avatars/projects', $this->newImageName)){
             return redirect()->back()->with('error', 'Can\'t save image');
         }

@@ -16,7 +16,7 @@ class Project extends Model
         return $this->belongsTo('App\User');
     }
 
-    public function avatar()
+    public function photo()
     {
         return $this->morphOne('App\Models\Photo', 'imageable');
     }
@@ -26,6 +26,9 @@ class Project extends Model
     }
     public function getAvatarAttribute($value){
         return  $value;
+    }
+    public function getModelAttribute(){
+        return  "App\Models\Project";
     }
 }
 
