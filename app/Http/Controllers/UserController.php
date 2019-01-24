@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateUserRequest;
 use App\User;
+use App\Models\Project;
+use Illuminate\Support\Facades\Storage;
+use App\Models\Photo;
 
 class UserController extends Controller
 {
@@ -50,7 +53,7 @@ class UserController extends Controller
     {
         $data['user'] = $user;
         $data['projects'] = Project::whereUserId($user->id)
-                            ->orderBy('created_by', 'desc')
+                            ->orderBy('created_at', 'desc')
                             ->take(3)
                             ->get();
         return view('dashboard.userprofile',$data);
@@ -79,7 +82,6 @@ class UserController extends Controller
     {
         if($request->hasFile('avatarobject')){
             $this->replaceImage($request, $user);
-            $request['avatar'] = $this->newImagename;
         }
         if(!$user->update($request->except(['_token','_method']))){
             return redirect()->back()->with('error', 'couldn\'t update user');
@@ -106,6 +108,10 @@ class UserController extends Controller
             return redirect()->back()->with('error', 'Can\'t Process the file at the moment');
         }
         $this->newImageName = $user->id . "_" . $user->first_name . "_" . time() . "." . $request->avatarobject->getClientOriginalExtension();
+        $request['avatar'] = $this->newImageName;
+        $request['imageable_type'] = $user->model;
+        $request['imageable_id'] = $user->id;
+        $photo = Photo::create($request->except(['_token']));
         if(!$request->avatarobject->storeAs('public/avatars/users', $this->newImageName)){
             return redirect()->back()->with('error', 'Can\'t save image');
         }

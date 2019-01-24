@@ -13,8 +13,11 @@ class Photo extends Model
     public function imageable(){
         return $this->morphTo();
     }
-    public function getAvatarAttribute($value)
+    public function getProjectavatarAttribute(){
+        return 'storage/avatars/projects/' . $this->avatar;
+    }
+    public function getUseravatarAttribute()
     {
-        return 'storage/avatars/projects/' . $value;
+        return 'storage/avatars/users/' . $this->avatar;
     }
 }

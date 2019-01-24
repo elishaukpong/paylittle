@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use App\User;
 use App\Models\Duration;
 use App\Models\RepaymentPlan;
 use App\Http\Requests\CreateProjectRequest;
 use App\Models\Project;
 use App\Models\Photo;
 use Ramsey\Uuid\Uuid;
-use App\User;
+use \Illuminate\Support\Facades\Storage;
+
 
 class ProjectController extends Controller
 {
@@ -82,7 +84,7 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         $data['user'] = Auth::user();
-         $data['durations'] = Duration::all();
+        $data['durations'] = Duration::all();
         $data['repaymentPlans'] = RepaymentPlan::all();
         $data['project'] = $project;
         return view('dashboard.editProject', $data);
@@ -97,8 +99,12 @@ class ProjectController extends Controller
      */
     public function update(CreateProjectRequest $request, $id)
     {
+
         $project = Project::findOrFail($id);
         $project->update($request->except(['_token']));
+         if($request->hasFile('avatarobject')){
+             $this->storeOrReplaceImage($request, $project,"replace");
+        }
         if(!$project){
             $request->session()->flash('error','Could not Update project');
             return redirect()->route('userProjects.show', $project->id);
@@ -145,22 +151,26 @@ class ProjectController extends Controller
         $request['avatar'] = $this->newImageName;
         $request['imageable_type'] = $project->model;
         $request['imageable_id'] = $project->id;
-        $photo = Photo::create($request->except(['_token']));
         if(!$request->avatarobject->storeAs('public/avatars/projects', $this->newImageName)){
             return redirect()->back()->with('error', 'Can\'t save image');
         }
+        $photo = Photo::create($request->except(['_token']));
     }
 
     public function replaceImage($request, $project)
     {
-        $this->previousImageName = $project->avatar !== null ? $project->avatar :'nothing';
-
-        if(Storage::disk('image')->exists($this->previousImageName) && !Storage::delete($this->previousImageName)){
+        $this->previousImageName = $project->photo->avatar ?? 'nothing';
+        if(Storage::disk('public')->exists("avatars/projects/".$this->previousImageName) && !Storage::disk('public')->delete('avatars/projects/'.$this->previousImageName)){
             return redirect()->back()->with('error', 'Can\'t Process the file at the moment');
         }
-        $this->newImageName = $user->id . "_" . $user->first_name . "_" . time() . "." . $request->avatarobject->getClientOriginalExtension();
-        if(!$request->avatarobject->storeAs('public/avatars/users', $this->newImageName)){
+        $this->newImageName = Auth::user()->id . "_" . Auth::user()->first_name . "_" . time() . "." . $request->avatarobject->getClientOriginalExtension();
+        if(!$request->avatarobject->storeAs('public/avatars/projects', $this->newImageName)){
             return redirect()->back()->with('error', 'Can\'t save image');
         }
+        $request['avatar'] = $this->newImageName;
+        $project->photo()->update([
+            'avatar' => $request['avatar']
+        ]);
+
     }
 }

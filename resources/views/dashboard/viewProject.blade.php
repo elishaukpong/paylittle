@@ -13,7 +13,7 @@
 <div class="container my-4">
     <div class="row">
         <div class="col-4">
-            <img class="card-img-top img-fluid" src="{{asset('storage/avatars/projects/'. $project->avatar)}}" alt="Card image cap">
+            <img class="card-img-top img-fluid" src="{{asset($project->photo->projectavatar)}}" alt="Card image cap">
         </div>
         <div class="col-8">
             <h5>Project Name: </h5>

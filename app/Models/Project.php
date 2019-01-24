@@ -30,5 +30,8 @@ class Project extends Model
     public function getModelAttribute(){
         return  "App\Models\Project";
     }
+    public function getShortDetailsAttribute(){
+        return substr_replace($this->details, "...",25);
+    }
 }
 

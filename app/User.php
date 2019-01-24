@@ -46,7 +46,7 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\ProjectSubscription', 'user_id');
     }
 
-    public function avatar()
+    public function photo()
     {
         return $this->morphOne('App\Models\Photo', 'imageable');
     }
@@ -71,8 +71,14 @@ class User extends Authenticatable
         $this->attributes['last_name'] = ucfirst($value);
     }
 
-     public function getDobAttribute($value){
+    public function getDobAttribute($value)
+    {
         return Carbon::Parse($value)->format('Y-m-d');
+    }
+
+    public function getModelAttribute()
+    {
+        return  "App\User";
     }
 
 }

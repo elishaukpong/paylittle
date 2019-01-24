@@ -22,7 +22,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-4 col-12 my-5 my-md-3">
-            <img class="card-img-top img-fluid" src="{{asset('storage/avatars/users/'. $user->avatar)}}" alt="Card image cap">
+            <img class="card-img-top img-fluid" src="{{asset( $user->photo->useravatar)}}" alt="Card image cap">
         </div>
         <div class="col-md-8 col-12 my-md-3">
 
@@ -63,7 +63,7 @@
     <div class="row">
         @forelse ($projects as $project)
             <div class="col-md-4 col-12 mt-3">
-                <img class="card-img-top" src="{{asset('storage/avatars/projects/'. $project->avatar)}}" alt="Card image cap">
+                <img class="card-img-top" src="{{asset($project->photo->projectavatar)}}" alt="Card image cap">
                 <div class="card border border-primary">
                     <div class="card-body">
                         <p class="card-title font-weight-bold p-c">{{$project->name}}</p>

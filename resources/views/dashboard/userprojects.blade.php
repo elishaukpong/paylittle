@@ -42,11 +42,12 @@
     <div class="row">
         @forelse ($projects as $project)
             <div class="col-md-4 col-12 mt-3">
-                <img class="card-img-top" src="{{asset($project->photo->avatar)}}" alt="Card image cap">
+                <img class="card-img-top" src="{{asset($project->photo->projectavatar)}}" alt="Card image cap">
                 <div class="card border border-primary">
                     <div class="card-body">
                         <p class="card-title font-weight-bold p-c">{{$project->name}}</p>
                         <p class="card-text">{{$project->shortDetails}}</p>
+
                         <hr class="dahsboard-border">
                         <a href="{{route('userProjects.show', $project->id)}}" class="btn btn-primary text-white form-control">View Project</a>
                     </div>
@@ -58,7 +59,7 @@
                     <div class="card-body text-center">
                         <p class="card-title font-weight-bold p-c">No Project Yet</p>
                         <hr class="dahsboard-border">
-                        <a href="" class="btn btn-primary text-white form-control">Create Project</a>
+                        <a href="{{route('project.create')}}" class="btn btn-primary text-white form-control">Create Project</a>
                     </div>
                 </div>
             </div>

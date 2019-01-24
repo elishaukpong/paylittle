@@ -153,7 +153,7 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-12 text-center mb-5">
-                                    <img src="{{asset('storage/avatars/users/' . ($user->avatar ?? 'default.png'))}}" alt="" class="profile-img p-1 img-fluid ">
+                                    <img src="{{asset($user->photo->useravatar ?? 'default.png')}}" alt="" class="profile-img p-1 img-fluid ">
                                 </div>
                                 <div class="col-12">
                                     <div class="card">
