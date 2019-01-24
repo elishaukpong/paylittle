@@ -149,7 +149,7 @@
                             <span class="btn btn-primary btn-file">
                                 <i class="fa fa-camera" aria-hidden="true"></i>
                                 &nbsp; &nbsp;
-                                Select Avatar <input type="file" name="avatarobject" required>
+                                Select Avatar <input type="file" name="avatarobject">
                                 {{--<img src="#" id="blah" alt="">--}}
                             </span>
 

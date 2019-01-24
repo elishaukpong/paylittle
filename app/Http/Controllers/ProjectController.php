@@ -60,9 +60,13 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Project $project)
     {
-        //
+        $data['project'] = $project;
+        $data['user'] = Auth::user();
+        $data['durations'] = Duration::all();
+        $data['repaymentPlans'] = RepaymentPlan::all();
+       return view('dashboard.viewProject', $data);
     }
 
     /**
@@ -74,6 +78,8 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         $data['user'] = Auth::user();
+         $data['durations'] = Duration::all();
+        $data['repaymentPlans'] = RepaymentPlan::all();
         $data['project'] = $project;
         return view('dashboard.editProject', $data);
     }
@@ -85,9 +91,16 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CreateProjectRequest $request, $id)
     {
-        //
+        $project = Project::findOrFail($id);
+        $project->update($request->except(['_token']));
+        if(!$project){
+            $request->session()->flash('error','Could not Update project');
+            return redirect()->route('userProjects.show', $project->id);
+        }
+        $request->session()->flash('success','Project Updated Successfully');
+        return redirect()->route('userProjects.show', $project->id);
     }
 
     /**
@@ -96,9 +109,14 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Project $project )
     {
-        //
+         if(!$project->delete()){
+            session()->flash('error','Could not Delete Project');
+            return redirect()->route('userProjects.view', Auth::user()->id);
+        }
+        session()->flash('success','Project Deleted Successfully');
+        return redirect()->route('userProjects.view', Auth::user()->id);
     }
 
     public function filterBy(User $user){

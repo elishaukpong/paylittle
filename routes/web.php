@@ -31,6 +31,7 @@ Route::get('/project/create', 'ProjectController@create')->name('project.create'
 Route::post('/project', 'ProjectController@store')->name('project.store');
 Route::get('/project/{project}/show', 'ProjectController@show')->name('userProjects.show');
 Route::get('/project/{project}/edit', 'ProjectController@edit')->name('userProjects.edit');
+Route::get('/project/{project}/delete', 'ProjectController@destroy')->name('userProjects.delete');
 Route::put('/project/{project}', 'ProjectController@update')->name('userProjects.update');
 Route::get('/projects/{user}', 'ProjectController@filterBy')->name('userProjects.view');
 
