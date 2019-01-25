@@ -25,7 +25,10 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        //
+        $data['projects'] = Project::paginate(12);
+        $data['count'] = Project::all()->count();
+        $data['user'] = Auth::user();
+        return view('dashboard.allprojects', $data);
     }
 
     /**
@@ -132,7 +135,8 @@ class ProjectController extends Controller
     public function filterBy(User $user)
     {
         $data['user'] = $user;
-        $data['projects'] = Project::whereUserId($user->id)->paginate(10);
+        $data['projects'] = Project::whereUserId($user->id)
+                            ->paginate(9);
         return view('dashboard.userprojects', $data);
     }
 

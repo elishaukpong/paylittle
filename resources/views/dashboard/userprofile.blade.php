@@ -10,7 +10,8 @@
             <h1 class="p-c font-weight-light">{{$user->first_name}}'s Profile</h1>
         </div>
             <div class="col-md-10">
-                @if(Auth::user()->id == $user->id)
+                @if(Auth::user()->id ==
+                 $user->id)
                     <a href="{{route('user.edit', $user->id)}}" class="float-right btn btn-xl badge-pill badge-primary text-white">Edit</a>
                     {{-- <a class="float-right btn btn-xl badge-pill badge-primary text-white" data-toggle="modal" data-target="#editModal">Edit</a> --}}
                 @endif

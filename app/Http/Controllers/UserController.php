@@ -107,13 +107,21 @@ class UserController extends Controller
         if(Storage::disk('image')->exists($this->previousImageName) && !Storage::delete($this->previousImageName)){
             return redirect()->back()->with('error', 'Can\'t Process the file at the moment');
         }
+
         $this->newImageName = $user->id . "_" . $user->first_name . "_" . time() . "." . $request->avatarobject->getClientOriginalExtension();
-        $request['avatar'] = $this->newImageName;
-        $request['imageable_type'] = $user->model;
-        $request['imageable_id'] = $user->id;
-        $photo = Photo::create($request->except(['_token']));
+
         if(!$request->avatarobject->storeAs('public/avatars/users', $this->newImageName)){
             return redirect()->back()->with('error', 'Can\'t save image');
         }
+        if(!$this->previousImageName){
+            $request['avatar'] = $this->newImageName;
+            $request['imageable_type'] = $user->model;
+            $request['imageable_id'] = $user->id;
+            $photo = Photo::create($request->except(['_token']));
+        }
+        $request['avatar'] = $this->newImageName;
+        $user->photo()->update([
+           'avatar' =>  $request['avatar']
+        ]);
     }
 }
