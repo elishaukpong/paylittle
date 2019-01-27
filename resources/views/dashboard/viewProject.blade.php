@@ -41,15 +41,16 @@
         </div>
     </div>
     <hr class="mt-4">
-    <div  class="float-right text-white">
-        <a class="btn btn-primary btn-sm badge-pill" data-toggle="modal" data-target="#editModal">
-            Edit Project
-        </a>
-        <a class="btn btn-danger btn-sm badge-pill " data-toggle="modal" data-target="#deleteModal">
-            Delete Project
-        </a>
-    </div>
-
+    @if(Auth::user()->id == $project->user->id)
+        <div  class="float-right text-white">
+            <a class="btn btn-primary btn-sm badge-pill" data-toggle="modal" data-target="#editModal">
+                Edit Project
+            </a>
+            <a class="btn btn-danger btn-sm badge-pill " data-toggle="modal" data-target="#deleteModal">
+                Delete Project
+            </a>
+        </div>
+    @endif
 
 </div>
 
