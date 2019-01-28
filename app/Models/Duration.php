@@ -12,7 +12,8 @@ class Duration extends Model
         'id', 'timeline',
     ];
 
-    public function getTimelineAttribute($value){
-        return $value . " Months";
+    public function getFormattedTimelineAttribute()
+    {
+        return $this->timeline . " Months";
     }
 }

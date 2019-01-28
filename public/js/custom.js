@@ -70,4 +70,32 @@ $(document).ready(function() {
             }
         });
     }
+
+    $('#sponsoramount').change(function(){
+        //The aria attributes has the id of the project
+        aria = $('#proposedamount').attr('aria');
+        //the value of the sponsorship amount
+        sponsorshipAmount = $(this).val();
+        //Ajax Function
+        sponsorReturns(aria, sponsorshipAmount);
+    });
+
+
+    function sponsorReturns(id, sponsorshipAmount) {
+        $.ajax({
+            type:'GET',
+            url:'/sponsorreturns/' + id + '/' + sponsorshipAmount,
+            success:function(data) {
+                sentence = 'N ' + data;
+                $('#proposedamount').text(sentence);
+                $('#returns').attr('value', data);
+            },
+            error:function(data){
+                $('#proposedamount').text("Couldn't retrieve percentage");
+
+            }
+        });
+    }
+
+
 });

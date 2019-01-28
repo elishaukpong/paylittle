@@ -36,6 +36,7 @@ Route::put('/project/{project}', 'ProjectController@update')->name('userProjects
 Route::get('/projects/{user}', 'ProjectController@filterBy')->name('userProjects.view');
 
 
+//Sponsorship routes
 Route::post('/projects/{project}/sponsor', 'SponsorController@sponsorProject')->name('sponsor.project');
 Route::get('/projects/{user}/sponsored', 'SponsorController@sponsoredProjects')->name('view.sponsor');
 
@@ -52,8 +53,11 @@ Route::get('/admin/allusers/{user}', 'AdminController@filterByUser')->name('admi
 Route::get('/admin/{user}/projects', 'AdminController@filterByUserProjects')->name('admin.showuserprojects');
 Route::get('/admin/allprojects', 'AdminController@showProjects')->name('admin.showallprojects');
 Route::get('/admin/projects/{project}', 'AdminController@filterByProject')->name('admin.showproject');
-Route::get('/admin/updatestatus/{project}/{status}', 'AdminController@updateStatus')->name('admin.updatestatus');
 
 
 
 Route::get('/clientarea', 'HomeController@index')->name('clientarea');
+
+//Ajax Routes
+Route::get('/admin/updatestatus/{project}/{status}', 'AdminController@updateStatus')->name('admin.updatestatus');
+Route::get('/sponsorreturns/{project}/{amount}', 'SponsorController@sponsorReturns');

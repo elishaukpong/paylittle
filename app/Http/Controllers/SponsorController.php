@@ -9,7 +9,8 @@ use App\Models\Project;
 use Illuminate\Http\Request;
 use App\Models\ProjectSubscription;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
+use App\Models\Status;
+use App\Http\Requests\SponsorshipRequest;
 
 
 
@@ -18,16 +19,14 @@ class SponsorController extends Controller
 {
 
 
-    public function sponsorProject(Request $request, Project $project)
+    public function sponsorProject(SponsorshipRequest $request, Project $project)
     {
-        $userId = Auth::user()->id;
-        $data['id'] = Uuid::uuid1();
-        $data['amount'] = $request['amount'];       //validate this bro!
-        $data['user_id'] = $userId;
-        $data['project_id'] = $project->id;
+        $request['id'] = Uuid::uuid1();
+        $request['user_id'] = Auth::user()->id;
+        $request['project_id'] = $project->id;
 
-        ProjectSubscription::create($data);
-        return redirect()->route('view.sponsor', $userId)->with('success', 'Project Sponsored');
+        ProjectSubscription::create($request->except(['_token']));
+        return redirect()->route('view.sponsor', Auth::user()->id)->with('success', 'Project Sponsored');
     }
 
     public function sponsoredProjects(User $user)
@@ -38,4 +37,10 @@ class SponsorController extends Controller
         return view('dashboard.showsponsored', $data);
     }
 
+    public function sponsorReturns(Project $project, $amount)
+    {
+        $percentageReturns = ($amount * $project->returnsPercentage) + $amount;
+
+        return $percentageReturns;
+    }
 }

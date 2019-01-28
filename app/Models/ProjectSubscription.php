@@ -9,7 +9,7 @@ class ProjectSubscription extends Model
     public $incrementing = false;
 
     protected $fillable = [
-        'id', 'user_id', 'project_id', 'status_id', 'amount'
+        'id', 'user_id', 'project_id', 'status_id', 'amount', 'returns',
     ];
     public function user()
     {
@@ -21,7 +21,7 @@ class ProjectSubscription extends Model
     }
     public function status()
     {
-        return $this->belongsTo('App\Models\ProjectStatus', 'status_id');
+        return $this->belongsTo('App\Models\Status', 'status_id');
     }
     public function getAmountDueAttribute(){
         return $this->amount + (($this->amount/100) *15);

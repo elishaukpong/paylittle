@@ -109,7 +109,7 @@
                             <select class="form-control {{ $errors->has('duration_id') ? ' is-invalid' : '' }}" id="duration" name="duration_id">
                                 <option>Select Duration</option>
                                 @foreach($durations as $duration)
-                                    <option value="{{$duration->id}}">{{$duration->timeline}}</option>
+                                    <option value="{{$duration->id}}">{{$duration->formattedtimeline}}</option>
                                 @endforeach
                             </select>
                             @if ($errors->has('duration_id'))

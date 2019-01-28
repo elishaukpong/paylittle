@@ -21,6 +21,11 @@ class Project extends Model
         return $this->morphOne('App\Models\Photo', 'imageable');
     }
 
+    public function duration()
+    {
+        return $this->belongsTo('\App\Models\Duration');
+    }
+
     public function status(){
         return $this->belongsTo('App\Models\Status');
     }
@@ -32,6 +37,24 @@ class Project extends Model
     }
     public function getShortDetailsAttribute(){
         return substr_replace($this->details, "...",25);
+    }
+
+    public function getReturnspercentageAttribute()
+    {
+
+        switch($this->duration->timeline){
+            case 3:
+                return 0.075;
+                break;
+            case 6:
+                return 0.15;
+                break;
+            case 12:
+                return 0.30;
+                break;
+            default:
+                break;
+        }
     }
 }
 

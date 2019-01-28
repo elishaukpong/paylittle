@@ -78,14 +78,23 @@
                             <label for="sponsoramount">Sponsorship Amount</label>
                             <select name="amount" id="sponsoramount" class="form-control">
                                 <option value="null" selected>Sponsorship Amount</option>
-                                <option value="10">10 Thousand</option>
-                                <option value="20">20 Thousand</option>
-                                <option value="30">30 Thousand</option>
-                                <option value="40">40 Thousand</option>
-                                <option value="50">50 Thousand</option>
+                                <option value="10000">10 Thousand</option>
+                                <option value="20000">20 Thousand</option>
+                                <option value="30000">30 Thousand</option>
+                                <option value="40000">40 Thousand</option>
+                                <option value="50000">50 Thousand</option>
                             </select>
                         </div>
+
+
+                    <div>
+                        <h5>Proposed Return Amount</h5>
+                        <p id="proposedamount" aria="{{$project->id}}">N0 </p>
+                        <input type="hidden" name="returns" id="returns">
+                    </div>
                 </div>
+
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Sponsor Project</button>
