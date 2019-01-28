@@ -10,6 +10,11 @@ use App\Models\Photo;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth','verified']);
+    }
+
     protected $newImageName;
     protected $previousImageName;
     /**

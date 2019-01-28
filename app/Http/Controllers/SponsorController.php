@@ -18,6 +18,10 @@ use App\Http\Requests\SponsorshipRequest;
 class SponsorController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware(['auth']);
+    }
 
     public function sponsorProject(SponsorshipRequest $request, Project $project)
     {

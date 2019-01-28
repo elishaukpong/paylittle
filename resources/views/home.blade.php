@@ -65,8 +65,8 @@
                 <div class="col-md-4 col-12 mt-3">
                    <div class="card border border-primary">
                         <div class="card-body">
-                            <h5 class="card-title display-1 font-weight-bold  p-c">{{$user->sponsoredProjects->count() ?? 0}}</h5>
-                            <p class="card-text h5 p-c">Projects History</p>
+                            <h5 class="card-title display-1 font-weight-bold  p-c">{{$user->totalcount ?? 0}}</h5>
+                            <p class="card-text h5 p-c">Sponsorship History</p>
                             <hr class="dahsboard-border">
                             <a class="btn btn-primary text-white form-control">View Details</a>
                         </div>

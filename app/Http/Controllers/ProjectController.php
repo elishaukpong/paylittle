@@ -18,6 +18,12 @@ class ProjectController extends Controller
 {
     protected $newImageName;
     protected $previousImageName;
+
+    public function __construct()
+    {
+        $this->middleware(['auth','verified']);
+    }
+
     /**
      * Display a listing of the resource.
      *

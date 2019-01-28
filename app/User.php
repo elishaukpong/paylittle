@@ -81,4 +81,9 @@ class User extends Authenticatable
         return  "App\User";
     }
 
+    public function getTotalCountAttribute()
+    {
+        return $this->sponsoredProjects()->count() + $this->projects()->count();
+    }
+
 }
