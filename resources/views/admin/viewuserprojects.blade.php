@@ -7,7 +7,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <h1 class="p-c font-weight-light">{{$user->first_name}}'s Projects <span class="badge badge-pill badge-primary">{{$count}}</span></h1>
+            <h1 class="p-c font-weight-light">{{$user->first_name}}'s Projects <span class="badge badge-pill badge-primary">{{$user->projects()->count()}}</span></h1>
             {{--<h1 class="p-c font-weight-light">{{$user->first_name}}'s Projects <small class="badge badge-dark h6">{{$user->projects->count()}}</small></h1>--}}
             <hr>
         </div>
@@ -20,7 +20,7 @@
     <div class="row">
         @forelse ($projects as $project)
             <div class="col-md-4 col-12 mt-3">
-                <img class="card-img-top" src="{{asset('storage/avatars/projects/'. $project->avatar)}}" alt="Card image cap">
+                <img class="card-img-top" src="{{asset($project->photo->projectavatar)}}" alt="Card image cap">
                 <div class="card border border-primary">
                     <div class="card-body">                    
                         <p class="card-title font-weight-bold p-c">{{$project->name}}</p>

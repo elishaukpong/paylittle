@@ -47,4 +47,19 @@ class SponsorController extends Controller
 
         return $percentageReturns;
     }
+
+    public function subscriptionStatus(ProjectSubscription $subscription, $status)
+    {
+        if($subscription->status_id != $status){
+            $subscription->update([
+                'status_id' => $status
+            ]);
+            return "Project status updated";
+        }
+
+
+        return "Project status already updated with that value";
+
+
+    }
 }

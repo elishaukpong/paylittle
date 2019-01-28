@@ -86,4 +86,9 @@ class User extends Authenticatable
         return $this->sponsoredProjects()->count() + $this->projects()->count();
     }
 
+    public function getFullnameAttribute()
+    {
+        return $this->first_name . ' ' .  $this->last_name;
+    }
+
 }

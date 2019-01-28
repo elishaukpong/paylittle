@@ -53,6 +53,7 @@ Route::get('/admin/allusers/{user}', 'AdminController@filterByUser')->name('admi
 Route::get('/admin/{user}/projects', 'AdminController@filterByUserProjects')->name('admin.showuserprojects');
 Route::get('/admin/allprojects', 'AdminController@showProjects')->name('admin.showallprojects');
 Route::get('/admin/projects/{project}', 'AdminController@filterByProject')->name('admin.showproject');
+Route::get('/admin/subscriptions', 'AdminController@subscriptions')->name('admin.projectsubscriptions');
 
 
 
@@ -61,3 +62,4 @@ Route::get('/clientarea', 'HomeController@index')->name('clientarea');
 //Ajax Routes
 Route::get('/admin/updatestatus/{project}/{status}', 'AdminController@updateStatus')->name('admin.updatestatus');
 Route::get('/sponsorreturns/{project}/{amount}', 'SponsorController@sponsorReturns');
+Route::get('/subscriptionstatus/{subscription}/{status}', 'SponsorController@subscriptionStatus');

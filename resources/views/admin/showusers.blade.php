@@ -50,6 +50,7 @@
                             <th scope="col"> Full Name</th>
                             <th scope="col">Email</th>
                             <th scope="col">Gender</th>
+                            <th scope="col">Role</th>
                             <th scope="col">Action</th>
                         </tr>
                         </thead>
@@ -60,6 +61,7 @@
                                 <td>{{ $user->first_name }} {{ $user->last_name }}</td>
                                 <td>{{ $user->email}}</td>
                                 <td>{{ $user->gender}}</td>
+                                <td>{{ $user->is_admin == 'admin' ? $user->is_admin : 'user'}}</td>
                                 <td><a href="{{route('admin.showuser', $user->id)}}" class="btn btn-primary">View User</a></td>
 
                             </tr>

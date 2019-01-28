@@ -25,9 +25,9 @@ class ProjectSubscription extends Model
     }
 
     public function getAmountAttribute($value){
-        return "N{$value}";
+        return "N " . number_format($value);
     }
     public function getReturnsAttribute($value){
-        return "N{$value}";
+         return "N " . number_format($value);
     }
 }

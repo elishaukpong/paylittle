@@ -1,4 +1,4 @@
-@extends('layouts.dashboard')
+@extends('layouts.admindashboard')
     @section('notifications')
         {{--<div class="container my-4">--}}
             {{--<div class="row justify-content-center">--}}
@@ -33,7 +33,7 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-12">
-                    <h1 class="p-c font-weight-light"> Sponsored Projects</h1>
+                    <h1 class="p-c font-weight-light"> Admin Area : All Project Subscriptions</h1>
                     <br>
                 </div>
             </div>
@@ -47,25 +47,45 @@
                         <thead>
                         <tr>
                             <th scope="col">S/N</th>
-                            <th scope="col"> Project Name</th>
+                            <th scope="col">Project Name</th>
+                            <th scope="col">Sponsor</th>
                             <th scope="col">Status</th>
                             <th scope="col">Amount</th>
-                            <th scope="col">Date Due</th>
                             <th scope="col">Returns</th>
+                            <th scope="col">Timeline</th>
+                            <th scope="col">Action</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($projectsubscriptions as $key => $projectsubscription)
                             <tr>
                                 <th scope="row">{{ $key+1 }}</th>
-                                <td>{{ $projectsubscription->project->name }}</td>
+                                <td>{{ $projectsubscription->project->name }} {{ $projectsubscription->last_name }}</td>
+                                <td>{{ $projectsubscription->user->fullname}}</td>
                                 <td>{{ $projectsubscription->status->name}}</td>
                                 <td>{{ $projectsubscription->amount}}</td>
-                                {{--make this two true data--}}
-                                <td>{{ $projectsubscription->created_at->addMonth(rand(2,8))->diffForHumans()}}</td>
                                 <td>{{ $projectsubscription->returns}}</td>
-                                {{--<td>{{ $project->gender}}</td>--}}
-                                {{--<td><a href="{{route('admin.showuser', $project->id)}}" class="btn btn-primary">View User</a></td>--}}
+                                <td>{{ $projectsubscription->project->duration->formattedTimeline}}</td>
+                                <td>
+                                    <div class="form-group">
+                                        <select  class="form-control subscriptionStatus  {{ $errors->has('status_id') ? ' is-invalid' : '' }}" name="duration_id">
+                                            @foreach($statuses as $status)
+                                                @if($status->id == $projectsubscription->status->id)
+                                                    <option class="subscriptionId" projectid="{{$projectsubscription->id}}"
+                                                            value="{{$status->id}}" selected>{{$status->name}}</option>
+                                                @else
+                                                <option class="subscriptionId" projectid="{{$projectsubscription->id}}"
+                                                        value="{{$status->id}}">{{$status->name}}</option>
+                                                @endif
+                                            @endforeach
+                                        </select>
+                                        @if ($errors->has('duration_id'))
+                                            <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('duration_id') }}</strong>
+                                </span>
+                                        @endif
+                                    </div>
+                                </td>
 
                             </tr>
                         @endforeach
@@ -75,7 +95,7 @@
                 </div>
                     <div class="row my-4 text-center">
                         <div class="col-md-3 col-12 mx-auto ">
-                            {{--{{$user->links()}}--}}
+                            {{$projectsubscriptions->links()}}
                         </div>
                     </div>
                     {{--<a href="" class="btn btn-secondary my-4">See Joined Classes</a>--}}

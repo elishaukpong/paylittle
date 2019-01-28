@@ -12,6 +12,7 @@ function readURL(input) {
         reader.readAsDataURL(input.files[0]);
     }
 }
+
 $(document).ready(function() {
   
     $('.project-status').click(function(e){
@@ -33,17 +34,17 @@ $(document).ready(function() {
                 if (willApprove) {
                     id = $(this).attr('use');
                     status = $(this).attr('id');
-                    updateProjectStatus(id, status);
-                    if(action == "Approve"){
-                        $('.status').removeClass('btn-outline-danger');
-                        $('.status').addClass('btn-outline-success');
-                        $('.status').text('Project Accepted')
-                    }else{
-                        $('.status').removeClass('btn-outline-success');
-                        $('.status').addClass('btn-outline-danger');
-                        $('.status').text('Project Rejected');
-
-                    }
+                    updateProjectStatus(id, status, action);
+                    // if(action == "Approve"){
+                    //     $('.status').removeClass('btn-outline-danger');
+                    //     $('.status').addClass('btn-outline-success');
+                    //     $('.status').text('Project Accepted')
+                    // }else{
+                    //     $('.status').removeClass('btn-outline-success');
+                    //     $('.status').addClass('btn-outline-danger');
+                    //     $('.status').text('Project Rejected');
+                    //
+                    // }
 
                 }
             });
@@ -56,7 +57,7 @@ $(document).ready(function() {
         }
     });
     
-    function updateProjectStatus(id, status) {
+    function updateProjectStatus(id, status, action) {
         $.ajax({
             type:'GET',
             url:'/admin/updatestatus/' + id + "/" + status,
@@ -64,12 +65,26 @@ $(document).ready(function() {
                 swal(data," ", {
                     icon: "info",
                 });
+                if(action == "Approve"){
+                    $('.status').removeClass('btn-outline-danger');
+                    $('.status').addClass('btn-outline-success');
+                    $('.status').text('Project Accepted')
+                }else{
+                    $('.status').removeClass('btn-outline-success');
+                    $('.status').addClass('btn-outline-danger');
+                    $('.status').text('Project Rejected');
+
+                }
             },
             error:function(data){
-                console.log(data);
+                swal('There was an error processing the request'," ", {
+                    icon: "error",
+                });
             }
         });
     }
+
+
 
     $('#sponsoramount').change(function(){
         //The aria attributes has the id of the project
@@ -96,6 +111,36 @@ $(document).ready(function() {
             }
         });
     }
+
+
+    $('.subscriptionStatus').change(function(){
+        // $(this) here is the select
+        subscriptionId = $(this).find('.subscriptionId').first().attr('projectid');
+        subscriptionStats = $(this).find(":selected").attr('value');
+        subscriptionStatus(subscriptionId, subscriptionStats);
+    });
+
+
+    function subscriptionStatus(subcriptionId, subscriptionStats) {
+        $.ajax({
+            type:'GET',
+            url:'/subscriptionstatus/' + subscriptionId + '/' + subscriptionStats,
+            success:function(data) {
+                console.log(data);
+                swal(data," ", {
+                    icon: "success",
+                });
+            },
+            error:function(data){
+                swal("Couldn't update project status"," ", {
+                    icon: "error",
+                });
+
+            }
+        });
+    }
+
+
 
 
 });

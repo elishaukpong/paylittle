@@ -14,7 +14,7 @@
 <div class="container my-4">
     <div class="row">
         <div class="col-4">
-            <img class="card-img-top img-fluid" src="{{asset('storage/avatars/projects/'. $project->avatar)}}" alt="Card image cap">
+            <img class="card-img-top img-fluid" src="{{asset($project->photo->projectavatar)}}" alt="Card image cap">
         </div>
         <div class="col-8">
             <h5>Project Name: </h5>
@@ -29,7 +29,7 @@
             <a href="#" class="btn btn-sm btn-outline-danger "><small>Personal</small></a>
 
             <h5 class="mt-3">Status:</h5>
-            <a href="#" class="status btn btn-sm btn-outline-{{$project->status->status == "accepted" ? 'success' : 'danger'}}"><small>Project {{$project->status->status}}</small></a>
+            <a href="#" class="status btn btn-sm btn-outline-{{$project->status->name == "Accepted" ? 'success' : 'danger'}}"><small>Project {{$project->status->name}}</small></a>
 
         </div>
     </div>
