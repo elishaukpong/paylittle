@@ -23,7 +23,11 @@ class ProjectSubscription extends Model
     {
         return $this->belongsTo('App\Models\Status', 'status_id');
     }
-    public function getAmountDueAttribute(){
-        return $this->amount + (($this->amount/100) *15);
+
+    public function getAmountAttribute($value){
+        return "N{$value}";
+    }
+    public function getReturnsAttribute($value){
+        return "N{$value}";
     }
 }

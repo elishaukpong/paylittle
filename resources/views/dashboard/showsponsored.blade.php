@@ -63,7 +63,7 @@
                                 <td>{{ $projectsubscription->amount}}</td>
                                 {{--make this two true data--}}
                                 <td>{{ $projectsubscription->created_at->addMonth(rand(2,8))->diffForHumans()}}</td>
-                                <td>{{ $projectsubscription->amountdue}}</td>
+                                <td>{{ $projectsubscription->returns}}</td>
                                 {{--<td>{{ $project->gender}}</td>--}}
                                 {{--<td><a href="{{route('admin.showuser', $project->id)}}" class="btn btn-primary">View User</a></td>--}}
 
