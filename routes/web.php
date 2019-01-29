@@ -41,7 +41,6 @@ Route::post('/projects/{project}/sponsor', 'SponsorController@sponsorProject')->
 Route::get('/projects/{user}/sponsored', 'SponsorController@sponsoredProjects')->name('view.sponsor');
 
 
-//Route::get('');
 
 
 Auth::routes(['verify' => true]);

@@ -36,7 +36,7 @@ class Project extends Model
         return  "App\Models\Project";
     }
     public function getShortDetailsAttribute(){
-        return substr_replace($this->details, "...",25);
+        return substr_replace($this->details, "...",100);
     }
 
     public function getReturnspercentageAttribute()

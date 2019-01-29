@@ -12,20 +12,24 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,700,800" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Gothic+A1:200,300,400,700,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
         crossorigin="anonymous">
+
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-light bg-primary navbar-expand-md">
+        <nav class="navbar navbar-light navbar-expand-md">
             <div class="container">
                 <a class="navbar-brand text-light" href="{{ url('/') }}">
                     PayLittle
@@ -59,7 +63,7 @@
                                 <a class="nav-link text-light" href="/login">Login</a>
                             </li>
                             <li class="nav-item mx-3">
-                                <a class="nav-link text-primary btn btn-warning" href="/register">Sign Up</a>
+                                <a class="nav-link text-primary btn btn-warning px-4" href="/register">Sign Up</a>
                             </li>
 
                         @else
@@ -94,4 +98,6 @@
         </main>
     </div>
 </body>
+
+
 </html>

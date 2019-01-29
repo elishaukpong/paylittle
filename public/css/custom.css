@@ -1,5 +1,24 @@
-* {
-    font-family: 'Poppins', sans-serif;
+body {
+    font-family: 'Gothic A1', sans-serif !important;
+
+}
+nav{
+    font-family: 'Gothic A1', sans-serif !important;
+    font-weight: 300;
+    background: linear-gradient(118deg,#328bf2,#1644ad);
+}
+.home-divider{
+    border-top: .5px solid white;
+    width:140%;
+    /*margin-bottom: 0px !important;*/
+    /*margin-top:1rem;*/
+}
+.nav-link.active{
+    background: linear-gradient(118deg,#328bf2,#1644ad) !important;
+}
+
+.featured-projects{
+    font-family: 'Roboto', sans-serif;
 }
 
 .p-c {
@@ -8,14 +27,16 @@
 
 .bg-shadow,.bene-header-shadow,.about-header-shadow {
     width: 100%;
-    height: 600px;
+    height: 700px;
     background-color: rgba(3, 58, 107, 0.531);
 }
 .bene-header-shadow,.about-header-shadow{
     height: 400px;  /* this height overides the height above*/
 }
 .header {
-    background-image: url('../img/bench-chair-comfort-1166406.jpg');
+    background-image: url('../img/homebg.jpeg');
+    background-size: cover;
+    background-position: center;
 }
 .bene-header{
     background-image: url('../img/bene.jpg');
