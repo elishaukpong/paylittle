@@ -61,6 +61,7 @@ class UserController extends Controller
                             ->orderBy('created_at', 'desc')
                             ->take(3)
                             ->get();
+//        return var_dump($user->photo);
         return view('dashboard.userprofile',$data);
     }
 

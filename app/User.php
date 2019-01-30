@@ -76,6 +76,16 @@ class User extends Authenticatable
         return Carbon::Parse($value)->format('Y-m-d');
     }
 
+    public function getdefaultAvatarAttribute()
+    {
+        return 'https://placeimg.com/400/400/any';
+    }
+
+    public function getGenderAttribute($value)
+    {
+        return ucwords($value);
+    }
+
     public function getModelAttribute()
     {
         return  "App\User";

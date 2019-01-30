@@ -35,7 +35,7 @@
         <nav class="navbar navbar-expand-md bg-primary ">
             <div class="container">
                 <a class="navbar-brand text-light" href="{{ url('/adminarea') }}">
-                Pay Little | Admin Area
+                Paylittle
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -49,35 +49,9 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto my-2 dashboard">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li class="nav-item mx-3">
-                                <a class="nav-link text-light" href="/">Home</a>
-                            </li>
-                            <li class="nav-item mx-3">
-                                <a class="nav-link text-light" href="/about">About</a>
-                            </li>
-                            <li class="nav-item mx-3">
-                                <a class="nav-link text-light" href="/contact">Contact</a>
-                            </li>
-                            {{-- <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif --}}
-                        @else
-                            {{-- <li class="nav-item mx-1">
-                                <a class="nav-link text-light" href="/"><i class="fa fa-home" aria-hidden="true"></i></a>
-                            </li> --}}
-                            {{--<li class="nav-item mx-1 note">--}}
-                                {{--<a class="nav-link text-light" href="#">--}}
-                                    {{--<i class="fa fa-bell-o" aria-hidden="true"> </i> --}}
-                                {{--</a>--}}
-                                {{--<i class="badge bg-danger text-light">3</i>--}}
-                            {{--</li>--}}
+
+                        @auth
+
                             <li class="nav-item mx-1 note">
                                 <a class="nav-link text-light" href="{{route('admin.home')}}">
                                     Dashboard
@@ -107,7 +81,7 @@
                                     @csrf
                                 </form>
                             </li>
-                        @endguest
+                        @endauth
                     </ul>
                 </div>
             </div>

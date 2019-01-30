@@ -9,17 +9,12 @@
 
     <title>{{ config('app.name', 'PayLITTLE') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,700,800" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Gothic+A1:200,300,400,700,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,300i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:700,300,300i" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -70,7 +65,17 @@
                             </li>
 
                         @else
-                            <li class="nav-item dropdown">
+                            <li class="nav-item mx-3">
+                                <a class="nav-link text-light" href="/about">About</a>
+                            </li>
+                            <li class="nav-item mx-3">
+                                <a class="nav-link text-light" href="/contact">How it works</a>
+                            </li>
+                            <li class="nav-item mx-3">
+                                <a class="nav-link text-light" href="/project">Blog</a>
+                            </li>
+
+                            <li class="nav-item mx-3 dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->first_name }} <span class="caret"></span>
                                 </a>
@@ -99,11 +104,93 @@
         <main class="">
             @yield('content')
         </main>
+
+        <footer class="text-white">
+            <div class="container py-5 border-bottom">
+                <div class="row">
+                    <div class="col-md-4 col-12">
+                        <p class="text-uppercase font-weight-bold">Contact</p>
+                        <ul class="list-inline  pb-4 pb-md-0">
+                            <li class="list-inline-item py-1 pr-5">
+                                <i class="fa fa-map-marker mr-3" aria-hidden="true"></i> 16 Abua Street, PH
+                            </li><br>
+                            <li class="list-inline-item py-1">
+                                <i class="fa fa-envelope mr-3" aria-hidden="true"></i> info@paylittle.com.ng
+                            </li><br>
+                            <li class="list-inline-item py-1">
+                                <i class="fa fa-phone mr-3" aria-hidden="true"></i> Null
+                            </li><br>
+                            <li class="list-inline-item py-1">
+                                <i class="fa fa-fax mr-3" aria-hidden="true"></i> Null
+                            </li><br>
+                        </ul>
+                    </div>
+                    <div class="col-md-2 col-12">
+                        <p class="text-uppercase font-weight-bold">Products</p>
+                        <ul class="list-inline  pb-4 pb-md-0">
+                            <li class="list-inline-item py-1">Oracle Technology</li> <br>
+                            <li class="list-inline-item py-1">Google Cloud</li> <br>
+                            <li class="list-inline-item py-1">Bonitasoft</li> <br>
+                            <li class="list-inline-item py-1">Microsoft Suites</li> <br>
+                        </ul>
+                    </div>
+                    <div class="col-md-2 offset-md-1 col-12">
+                        <p class="text-uppercase font-weight-bold">Useful Links</p>
+                        <ul class="list-inline  pb-4 pb-md-0">
+                            <li class="list-inline-item py-1">About Us</li> <br>
+                            <li class="list-inline-item py-1">Products & Services</li><br>
+                            <li class="list-inline-item py-1">Blog</li><br>
+                            <li class="list-inline-item py-1">Contact Us</li><br>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 col-12">
+                        <!-- <div class="mt-5 pt-2"></div> -->
+                        <p class="text-uppecase font-weight-bold pb-2 ml-md-4"> Get Updates from us</p>
+                        <div class="ml-md-4">
+                            <input type="text" class="form-control mb-2" placeholder="Type Email Address">
+                            <input type="submit" value="Submit" class="btn btn-success form-control">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row pt-3">
+                    <div class="col-md-7 offset-md-2 col-12 text-center">
+                        <p class="copyright">&copy; 2018 Copyright : PayLittle</p>
+                    </div>
+                    <div class="col-md-3 col-12 text-center">
+                        <ul class="list-inline">
+                            <li class="list-inline-item py-1">
+                                <i class="fa fa-instagram" aria-hidden="true"></i>
+                            </li>
+                            <li class="list-inline-item py-1">
+                                <i class="fa fa-google-plus" aria-hidden="true"></i>
+                            </li>
+                            <li class="list-inline-item py-1">
+                                <i class="fa fa-facebook" aria-hidden="true"></i>
+                            </li>
+                            <li class="list-inline-item py-1">
+                                <i class="fa fa-linkedin" aria-hidden="true"></i>
+                            </li>
+                            <li class="list-inline-item py-1">
+                                <i class="fa fa-twitter" aria-hidden="true"></i>
+                            </li>
+                            <li class="list-inline-item py-1">
+                                <a href="#" class="color-p">Back to Top</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
     </div>
 </body>
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}" defer></script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 <script src="{{ asset('js/custom.js') }}" defer></script>
 

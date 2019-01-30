@@ -488,7 +488,7 @@
                     <h1 class="font-weight-bold text-white py-4 py-md-0">Ready to create your project?</h1>
                 </div>
                 <div class="col-md-3 col-12 text-center text-md-left">
-                    <a href="#" class="btn boo btn-warning btn-lg px-4"> Get Started</a>
+                    <a href="{{route('register')}}" class="btn boo btn-warning btn-lg px-4"> Get Started</a>
                 </div>
             </div>
 

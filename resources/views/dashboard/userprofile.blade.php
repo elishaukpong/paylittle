@@ -1,4 +1,4 @@
-@extends('layouts.admindashboard')
+@extends('layouts.dashboardclean')
 @section('notifications')
 @endsection
 
@@ -23,7 +23,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-4 col-12 my-5 my-md-3">
-            <img class="card-img-top img-fluid" src="{{asset( $user->photo->useravatar)}}" alt="Card image cap">
+            <img class="card-img-top img-fluid" src="{{asset( $user->photo->useravatar ?? $user->defaultAvatar)}}" alt="Card image cap">
         </div>
         <div class="col-md-8 col-12 my-md-3">
 
@@ -41,7 +41,7 @@
                     <p class="mr-5 pr-5 text-justify"> {{$user->phone}}<p>
                     <h5 class="mt-4">Gender: </h5>
                     <p> {{$user->gender}}</p>
-                    <h5 class="mt-5 pt-5">Joined:</h5>
+                    <h5 class="mt-3 pt-3">Joined:</h5>
                     <p> {{$user->created_at->diffForHumans()}}</p>
 
                 </div>
@@ -62,9 +62,10 @@
 
 <div class="container my-4">
     <div class="row">
+
         @forelse ($projects as $project)
             <div class="col-md-4 col-12 mt-3">
-                <img class="card-img-top" src="{{asset($project->photo->projectavatar)}}" alt="Card image cap">
+                <img class="card-img-top" src="{{asset($project->photo->projectavatar ?? $user->defaultAvatar) }}" alt="Card image cap">
                 <div class="card border border-primary">
                     <div class="card-body">
                         <p class="card-title font-weight-bold p-c">{{$project->name}}</p>
@@ -75,6 +76,7 @@
                     </div>
                 </div>
             </div>
+
         @empty
             <div class="col-md-4 col-12 mt-3">
                 <div class="card border border-primary">
@@ -87,14 +89,21 @@
             </div>
         @endforelse
 
+
+
+
     </div>
-    <div class="row my-5 text-center">
-        <div class="col-md-3 col-12 mx-auto py-3">
-            @if(Auth::user()->id == $user->id)
-                <a href="{{route('userProjects.view', $user->id)}}" class="btn btn-outline-primary form-control">Show More</a>
-            @endif
+    @if($projects->count() > 0)
+        <div class="row my-5">
+            <div class="col-12 text-right">
+                <a href="{{route('userProjects.view', $user->id)}}" class="btn btn-outline-primary btn-lg pl-md-5 pr-md-4 boo">
+                    See More <i class="fa fa-long-arrow-right pl-3" aria-hidden="true"></i>
+                </a>
+            </div>
         </div>
-    </div>
+
+    @endif
+
 </div>
 
 <!-- Edit Modal -->
@@ -102,7 +111,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Edit {{$project->name}}'s Project</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Edit {{$user->name}}'s Project</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
