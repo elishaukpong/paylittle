@@ -12,7 +12,7 @@
                         <p class="text-light mb-5 font-weight-light">Pay Little helps you afford whatever you want while paying at your convinience.</p>
                         <br>
                         <a href="/sponsor" class="btn btn-primary btn-lg mr-4 px-5 py-3 my-2">Get Started</a>
-                        <a href="/client" class="btn btn-outline-light btn-lg mx-4 px-5 py-3 my-2">Learn How</a>
+                        <a href="/client" class="btn btn-outline-light btn-lg mx-md-4 px-5 py-3 my-2">Learn How</a>
                     </div>
                 </div>
 
@@ -60,7 +60,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 mx-auto">
-                    <ul class="nav nav-pills mb-3 ml-5 pl-5" id="pills-tab" role="tablist">
+                    <ul class="nav nav-pills mb-3 ml-md-5 pl-md-5" id="pills-tab" role="tablist">
                         <li class="nav-item mx-4">
                             <a class="nav-link px-5 active" id="pills-home-tab" data-toggle="pill" href="#pills-allCampaigns" role="tab" aria-controls="pills-all" aria-selected="true">
                                 All Projects
@@ -83,7 +83,9 @@
                         </li>
 
                     </ul>
+
                     <div class="tab-content my-5" id="pills-tabContent">
+                        {{--All Campaigns--}}
                         <div class="tab-pane fade show active" id="pills-allCampaigns" role="tabpanel" aria-labelledby="pills-all-tab">
                             <div class="container my-4">
                                 <div class="row">
@@ -119,8 +121,8 @@
 
                                 <div class="row my-5">
                                     <div class="col-12 text-center">
-                                        <div class="col-12 text-right">
-                                            <a href="{{route('userProjects.all')}}" class="btn btn-outline-primary btn-lg pl-5 pr-4 boo">
+                                        <div class="col-12 text-center text-md-right">
+                                            <a href="{{route('userProjects.all')}}" class="btn btn-outline-primary btn-lg pl-md-5 pr-md-4 boo">
                                                 See More <i class="fa fa-long-arrow-right pl-3" aria-hidden="true"></i>
                                             </a>
                                         </div>
@@ -129,18 +131,145 @@
 
                             </div>
                         </div>
+                        {{--Trending Campaigns--}}
                         <div class="tab-pane fade" id="pills-trendingCampaigns" role="tabpanel" aria-labelledby="pills-trending-tab">
+                            <div class="container my-4">
+                                <div class="row">
+                                    @forelse ($projects as $project)
+                                        <div class="col-md-4 col-12 mt-3">
+                                            <div class="card">
+                                                <img class="card-img-top img-fluid" src="{{asset($project->photo->projectavatar)}}" alt="Card image cap">
+                                                <div class="card-body mt-3">
+                                                    <p class="card-title font-weight-bold text-secondary">{{$project->name}}</p>
+                                                    <p class="card-text">{{$project->shortDetails}}</p>
+                                                    <p class="text-right text-primary">
+                                                        <i class="fa fa-users" aria-hidden="true"></i>
+                                                        {{ $project->subscription->count() ? $project->subscription->count(): 0}} Sponsors
+                                                    </p>
+                                                    <div class="progress">
+                                                        <div class="progress-bar" role="progressbar" style="width: {{random_int(10,100)}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    </div>
+                                                    <br>
+                                                    <p class="float-left text-secondary">N {{$project->amountsponsored}} <small>Raised</small></p>
+                                                    <p class="float-right text-secondary"><small>Total</small> {{$project->amount}}</p>
+                                                </div>
+                                            </div>
 
-                            Same as above will happen here with appropraite content
+                                        </div>
 
+
+
+                                    @empty
+
+                                    @endforelse
+
+                                </div>
+
+                                <div class="row my-5">
+                                    <div class="col-12 text-center">
+                                        <div class="col-12 text-center text-md-right">
+                                            <a href="{{route('userProjects.all')}}" class="btn btn-outline-primary btn-lg pl-md-5 pr-md-4 boo">
+                                                See More <i class="fa fa-long-arrow-right pl-3" aria-hidden="true"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
+                        {{--Newest Campaigns--}}
                         <div class="tab-pane fade" id="pills-newestCampaigns" role="tabpanel" aria-labelledby="pills-newest-tab">
+                            <div class="container my-4">
+                                <div class="row">
+                                    @forelse ($projects as $project)
+                                        <div class="col-md-4 col-12 mt-3">
+                                            <div class="card">
+                                                <img class="card-img-top img-fluid" src="{{asset($project->photo->projectavatar)}}" alt="Card image cap">
+                                                <div class="card-body mt-3">
+                                                    <p class="card-title font-weight-bold text-secondary">{{$project->name}}</p>
+                                                    <p class="card-text">{{$project->shortDetails}}</p>
+                                                    <p class="text-right text-primary">
+                                                        <i class="fa fa-users" aria-hidden="true"></i>
+                                                        {{ $project->subscription->count() ? $project->subscription->count(): 0}} Sponsors
+                                                    </p>
+                                                    <div class="progress">
+                                                        <div class="progress-bar" role="progressbar" style="width: {{random_int(10,100)}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    </div>
+                                                    <br>
+                                                    <p class="float-left text-secondary">N {{$project->amountsponsored}} <small>Raised</small></p>
+                                                    <p class="float-right text-secondary"><small>Total</small> {{$project->amount}}</p>
+                                                </div>
+                                            </div>
 
-                            Same here
+                                        </div>
+
+
+
+                                    @empty
+
+                                    @endforelse
+
+                                </div>
+
+                                <div class="row my-5">
+                                    <div class="col-12 text-center">
+                                        <div class="col-12 text-center text-md-right">
+                                            <a href="{{route('userProjects.all')}}" class="btn btn-outline-primary btn-lg pl-md-5 pr-md-4 boo">
+                                                See More <i class="fa fa-long-arrow-right pl-3" aria-hidden="true"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
+                        {{--Most Funded--}}
                         <div class="tab-pane fade" id="pills-mostFundedCampaigns" role="tabpanel" aria-labelledby="pills-mostfunded-tab">
 
-                            same here
+                            <div class="container my-4">
+                                <div class="row">
+                                    @forelse ($projects as $project)
+                                        <div class="col-md-4 col-12 mt-3">
+                                            <div class="card">
+                                                <img class="card-img-top img-fluid" src="{{asset($project->photo->projectavatar)}}" alt="Card image cap">
+                                                <div class="card-body mt-3">
+                                                    <p class="card-title font-weight-bold text-secondary">{{$project->name}}</p>
+                                                    <p class="card-text">{{$project->shortDetails}}</p>
+                                                    <p class="text-right text-primary">
+                                                        <i class="fa fa-users" aria-hidden="true"></i>
+                                                        {{ $project->subscription->count() ? $project->subscription->count(): 0}} Sponsors
+                                                    </p>
+                                                    <div class="progress">
+                                                        <div class="progress-bar" role="progressbar" style="width: {{random_int(10,100)}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                    </div>
+                                                    <br>
+                                                    <p class="float-left text-secondary">N {{$project->amountsponsored}} <small>Raised</small></p>
+                                                    <p class="float-right text-secondary"><small>Total</small> {{$project->amount}}</p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+
+                                    @empty
+
+                                    @endforelse
+
+                                </div>
+
+                                <div class="row my-5">
+                                    <div class="col-12 text-center">
+                                        <div class="col-12 text-center text-md-right">
+                                            <a href="{{route('userProjects.all')}}" class="btn btn-outline-primary btn-lg pl-md-5 pr-md-4 boo">
+                                                See More <i class="fa fa-long-arrow-right pl-3" aria-hidden="true"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -156,20 +285,32 @@
             <div class="container">
                 <div class="row py-5 text-white">
                     <div class="col-12">
-                        <h3 class="display-5 text-white font-weight-bold">How it works</h3>
-                        <p class="text-white"> We recommend you follow this process</p>
+                        <h3 class="display-5 text-whiter font-weight-bold">How it works</h3>
+                        <p class="text-whiter"> We recommend you follow this process</p>
                     </div>
                 </div>
 
-                <div class="row text-center">
-                    <div class="col-4">
-                        hey
+                <div class="row text-center how-we-work pb-4">
+                    <div class="col-12 col-md-4">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                        <br><br>
+                        <h5 class="font-weight-bold mt-3 text-white">1. Create Account</h5>
+                        <p class="px-5 text-whiter pt-3 font-weight-light">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam autem consequuntur
+                            cupiditate eius fugit iste maxime, nesciunt nulla odio quae quibusdam, sequi, suscipit ut voluptate.</p>
                     </div>
-                    <div class="col-4">
-                        you
+                    <div class="col-12 col-md-4">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                        <br><br>
+                        <h5 class="font-weight-bold mt-3 text-white">2. Create Project</h5>
+                        <p class="px-5 text-whiter pt-3 font-weight-light">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam autem consequuntur
+                            cupiditate eius fugit iste maxime, nesciunt nulla odio quae quibusdam, sequi, suscipit ut voluptate.</p>
                     </div>
-                    <div class="col-4">
-                        there
+                    <div class="col-12 col-md-4">
+                        <i class="fa fa-money" aria-hidden="true"></i>
+                        <br><br>
+                        <h5 class="font-weight-bold mt-3 text-white">3. Raise Funds</h5>
+                        <p class="px-5 text-whiter pt-3 font-weight-light">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam autem consequuntur
+                            cupiditate eius fugit iste maxime, nesciunt nulla odio quae quibusdam, sequi, suscipit ut voluptate.</p>
                     </div>
                 </div>
             </div>
@@ -253,7 +394,7 @@
         <div class="container">
 
             <div id="carouselExampleIndicators" class="carousel slide mt-4" data-ride="carousel">
-                <ol class="carousel-indicators">
+                <ol class="carousel-indicators d-none d-md-flex">
                     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
                     <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
@@ -262,18 +403,18 @@
                 <div class="carousel-inner">
                     <div class="carousel-item active">
                         <div class="row">
-                            <div class="col-4">
-                                <img src="{{asset('img/twelve.png')}}" class=" ml-5 pl-5 img-fluid rounded-circle" alt="">
+                            <div class="col-md-4">
+                                <img src="{{asset('img/twelve.png')}}" class=" ml-md-5 pl-md-5 img-fluid rounded-circle" alt="">
                             </div>
-                            <div class="col-7 ml-5">
-                                <p class="mt-4 text-justify  testimonial">
+                            <div class="col-md-7 ml-md-5">
+                                <p class="mt-4 py-3 py-0 px-4 px-md-0 text-justify  testimonial">
                                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam assumenda at consectetur eveniet explicabo.
                                     Culpa cupiditate eos est ex fugiat, maxime nemo nisi officiis porro praesentium sed,
                                     suscipit? Alias beatae consectetur, consequuntur delectus deserunt distinctio dolor,
                                     fugit harum hic id incidunt libero quia quisquam totam voluptatibus! Architecto aut ?
                                 </p>
-                                <h5 class="font-weight-bold"> JOHN MILLER</h5>
-                                <p>Founder, Farmsponsors</p>
+                                <h5 class="font-weight-bold px-4 px-md-0 "> JOHN MILLER</h5>
+                                <p class="px-4 px-md-0 ">Founder, Farmsponsors</p>
                             </div>
 
                         </div>
@@ -281,18 +422,18 @@
                     <div class="carousel-item">
 
                         <div class="row">
-                            <div class="col-4">
-                                <img src="{{asset('img/twelve.png')}}" class=" ml-5 pl-5 img-fluid rounded-circle" alt="">
+                            <div class="col-md-4">
+                                <img src="{{asset('img/twelve.png')}}" class=" ml-md-5 pl-md-5 img-fluid rounded-circle" alt="">
                             </div>
-                            <div class="col-7 ml-5">
-                                <p class="mt-4 text-justify  testimonial">
+                            <div class="col-md-7 ml-md-5">
+                                <p class="mt-4  py-3 py-0 px-4 px-md-0  text-justify  testimonial">
                                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam assumenda at consectetur eveniet explicabo.
                                     Culpa cupiditate eos est ex fugiat, maxime nemo nisi officiis porro praesentium sed,
                                     suscipit? Alias beatae consectetur, consequuntur delectus deserunt distinctio dolor,
                                     fugit harum hic id incidunt libero quia quisquam totam voluptatibus! Architecto aut ?
                                 </p>
-                                <h5 class="font-weight-bold"> JOHN MILLER</h5>
-                                <p>Founder, Farmsponsors</p>
+                                <h5 class="font-weight-bold px-4 px-md-0 "> JOHN MILLER</h5>
+                                <p class="px-4 px-md-0 ">Founder, Farmsponsors</p>
                             </div>
 
                         </div>
@@ -301,18 +442,18 @@
                     <div class="carousel-item">
 
                         <div class="row">
-                            <div class="col-4">
-                                <img src="{{asset('img/twelve.png')}}" class=" ml-5 pl-5 img-fluid rounded-circle" alt="">
+                            <div class="col-md-4">
+                                <img src="{{asset('img/twelve.png')}}" class=" ml-md-5 pl-md-5 img-fluid rounded-circle" alt="">
                             </div>
-                            <div class="col-7 ml-5">
-                                <p class="mt-4 text-justify  testimonial">
+                            <div class="col-md-7 ml-md-5">
+                                <p class="mt-md-4  py-3 py-0 px-4 px-md-0  text-justify  testimonial">
                                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam assumenda at consectetur eveniet explicabo.
                                     Culpa cupiditate eos est ex fugiat, maxime nemo nisi officiis porro praesentium sed,
                                     suscipit? Alias beatae consectetur, consequuntur delectus deserunt distinctio dolor,
                                     fugit harum hic id incidunt libero quia quisquam totam voluptatibus! Architecto aut ?
                                 </p>
-                                <h5 class="font-weight-bold"> JOHN MILLER</h5>
-                                <p>Founder, Farmsponsors</p>
+                                <h5 class="font-weight-bold px-4 px-md-0 "> JOHN MILLER</h5>
+                                <p class="px-4 px-md-0 ">Founder, Farmsponsors</p>
                             </div>
 
                         </div>
@@ -343,10 +484,10 @@
 
         <div class="container">
             <div class="row py-5">
-                <div class="col-9 text-center">
-                    <h1 class="font-weight-bold text-white">Ready to create your project?</h1>
+                <div class="col-md-9 col-12 text-center text-md-left">
+                    <h1 class="font-weight-bold text-white py-4 py-md-0">Ready to create your project?</h1>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3 col-12 text-center text-md-left">
                     <a href="#" class="btn boo btn-warning btn-lg px-4"> Get Started</a>
                 </div>
             </div>
@@ -391,7 +532,7 @@
                         </ul>
                     </div>
                     <div class="col-md-3 col-12">
-                        <p class="text-uppecase font-weight-bold pb-2 ml-md-4"> Get Updates from us</p>
+                        <p class="text-uppecase font-weight-bold pb-2 ml-md-4"> Get updates from us</p>
                         <div class="ml-md-4">
                             <input type="text" class="form-control mb-2" placeholder="Type Email Address">
                             <input type="submit" value="Submit" class="btn btn-warning form-control">
