@@ -9,7 +9,9 @@ class NavigationController extends Controller
 {
     public function index()
     {
+        $data['projectcount'] = Project::all()->count();
         $data['projects'] = Project::limit(6)->get();
+//        $data['projects'] = Project::limit(6)->get();
         return view('welcome', $data);
     }
     public function about()

@@ -29,15 +29,38 @@ class Project extends Model
     public function status(){
         return $this->belongsTo('App\Models\Status');
     }
+
+    public function subscription()
+    {
+        return $this->hasMany('App\Models\ProjectSubscription');
+    }
+
+    public function getamountSponsoredAttribute()
+    {
+        $sponsorships = $this->subscription()->get()->pluck('amount');
+        $sponsorshipAmount = 0;
+        foreach( $sponsorships as $sponsorship){
+            $sponsorshipAmount += $sponsorship;
+
+        }
+        return $sponsorshipAmount;
+    }
+
+
     public function getAvatarAttribute($value){
         return  $value;
     }
     public function getModelAttribute(){
         return  "App\Models\Project";
     }
+    public function getAmountAttribute($value){
+        return "N " . number_format($value);
+    }
+
     public function getShortDetailsAttribute(){
         return substr_replace($this->details, "...",100);
     }
+
 
     public function getReturnspercentageAttribute()
     {

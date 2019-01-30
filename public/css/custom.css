@@ -13,19 +13,22 @@ nav{
     /*margin-bottom: 0px !important;*/
     /*margin-top:1rem;*/
 }
-.nav-link.active{
+.nav-link.active,.banner{
     background: linear-gradient(118deg,#328bf2,#1644ad) !important;
 }
 
-.featured-projects{
+.featured-projects, footer{
     font-family: 'Roboto', sans-serif;
 }
 
 .p-c {
     color: rgb(22, 102, 173) !important;
 }
-
-.bg-shadow,.bene-header-shadow,.about-header-shadow {
+.testimonial{
+    font-family: 'Lato', sans-serif;
+    font-style: italic;
+}
+.bg-shadow,.bene-header-shadow,.about-header-shadow, .bg2-shadow {
     width: 100%;
     height: 700px;
     background-color: rgba(3, 58, 107, 0.531);
@@ -37,6 +40,18 @@ nav{
     background-image: url('../img/homebg.jpeg');
     background-size: cover;
     background-position: center;
+
+}
+.second-header {
+    background-image: url('../img/homebg-2.jpeg');
+    background-size: cover;
+    background-position: center;
+    /*background-attachment: fixed;*/
+}
+.bg2-shadow {
+    width: 100%;
+    height: 500px;
+    background-color: rgba(3, 58, 107, 0.731);
 }
 .bene-header{
     background-image: url('../img/bene.jpg');
@@ -125,6 +140,11 @@ footer{
 .dashboard i{
     font-size: 1.4em;
 }
+.boo{
+    -webkit-border-radius: 5rem;
+    -moz-border-radius: 5rem;
+    border-radius: 5rem;
+}
 .dashboard .badge{
     position: absolute;
     top:15px;
@@ -135,9 +155,8 @@ footer{
 .note{
     position: relative;
 }
-.dashboard-border{
-    border-bottom:3px solid #328af1;
-    width:50%;
+.progress {
+    height: .5rem;
 }
 .profile-img{
     border-radius:50%;
@@ -189,4 +208,20 @@ footer{
 }
 .invalid-files{
     color: #e3342f;
+}
+.carousel-indicators li{
+   background-color:#1d68a7;
+}
+
+.carousel-indicators li.active{
+    background-color: red;
+}
+
+ol.carousel-indicators {
+    position: absolute;
+    bottom: -1em;
+    margin: 0;
+    left: 25em;
+    right: 0;
+    width: auto;
 }

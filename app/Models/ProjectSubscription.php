@@ -25,9 +25,15 @@ class ProjectSubscription extends Model
     }
 
     public function getAmountAttribute($value){
-        return "N " . number_format($value);
+        return $value;
+    }
+    public function getFormattedAmountAttribute(){
+        return "N " . number_format($this->amount);
     }
     public function getReturnsAttribute($value){
          return "N " . number_format($value);
+    }
+    public function getFormattedReturnsAttribute(){
+        return "N " . number_format($this->returns);
     }
 }

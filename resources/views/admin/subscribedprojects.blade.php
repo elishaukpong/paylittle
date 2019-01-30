@@ -63,8 +63,8 @@
                                 <td>{{ $projectsubscription->project->name }} {{ $projectsubscription->last_name }}</td>
                                 <td>{{ $projectsubscription->user->fullname}}</td>
                                 <td>{{ $projectsubscription->status->name}}</td>
-                                <td>{{ $projectsubscription->amount}}</td>
-                                <td>{{ $projectsubscription->returns}}</td>
+                                <td>{{ $projectsubscription->formattedamount}}</td>
+                                <td>{{ $projectsubscription->formattedreturns}}</td>
                                 <td>{{ $projectsubscription->project->duration->formattedTimeline}}</td>
                                 <td>
                                     <div class="form-group">
