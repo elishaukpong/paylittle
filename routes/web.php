@@ -39,6 +39,7 @@ Route::get('/projects/{user}', 'ProjectController@filterBy')->name('userProjects
 //})->name('sponsor.project');
 Route::post('/projects/{project}/sponsor', 'SponsorController@sponsorProject')->name('sponsor.project');
 Route::get('/projects/{user}/sponsored', 'SponsorController@sponsoredProjects')->name('view.sponsor');
+Route::get('/projects/{project}/hit', 'ProjectController@increaseProjectHit')->name('view.sponsor');
 
 
 

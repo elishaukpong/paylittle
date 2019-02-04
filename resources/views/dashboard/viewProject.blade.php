@@ -22,10 +22,15 @@
                 <p> {{$project->amount}}</p>
             <h5>Project Details: </h5>
                 <p class="mr-5 pr-5 text-justify"> {{$project->details}}<p>
+
+            <h5 class="mt-3">Duration:</h5>
+            <p>{{$project->duration->formattedTimeline}}</p>
+
             <h5>Tags</h5>
             <a href="#" class="btn btn-sm btn-outline-primary"><small>Real Estate</small></a>
             <a href="#" class="btn btn-sm btn-outline-secondary"><small></small>PayLittle</a>
             <a href="#" class="btn btn-sm btn-outline-danger "><small>Personal</small></a>
+
 
             <h5 class="mt-3">Status:</h5>
             <a href="#" class="btn btn-sm btn-outline-{{$project->status->id == 2 ? 'success' : ($project->status->id == 1 ? 'secondary':'danger')}}"><small>Project {{$project->status->name}}</small></a>
@@ -273,4 +278,10 @@
         </div>
     </div>
 </div>
+<script src="{{ asset('js/hits.js') }}" defer></script>
+<script>
+    $(document).ready(function() {
+        increaseprojectHit("{{$project->id}}");
+    });
+</script>
 @endsection

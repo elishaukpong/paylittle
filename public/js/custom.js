@@ -1,17 +1,17 @@
-function readURL(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-
-        reader.onload = function (e) {
-            $('#blah')
-                .attr('src', e.target.result)
-                .width(150)
-                .height(200);
-        };
-
-        reader.readAsDataURL(input.files[0]);
-    }
-}
+// function readURL(input) {
+//     if (input.files && input.files[0]) {
+//         var reader = new FileReader();
+//
+//         reader.onload = function (e) {
+//             $('#blah')
+//                 .attr('src', e.target.result)
+//                 .width(150)
+//                 .height(200);
+//         };
+//
+//         reader.readAsDataURL(input.files[0]);
+//     }
+// }
 
 $(document).ready(function() {
   
@@ -56,7 +56,12 @@ $(document).ready(function() {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-    
+
+    const formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'NGN',
+        minimumFractionDigits: 0
+    });
     function updateProjectStatus(id, status, action) {
         $.ajax({
             type:'GET',
@@ -111,11 +116,7 @@ $(document).ready(function() {
             }
         });
     }
-    const formatter = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'NGN',
-        minimumFractionDigits: 0
-    });
+
 
     $('.subscriptionStatus').change(function(){
         // $(this) here is the select
@@ -143,8 +144,6 @@ $(document).ready(function() {
             }
         });
     }
-
-
 
 
 });

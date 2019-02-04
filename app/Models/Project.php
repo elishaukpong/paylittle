@@ -41,7 +41,6 @@ class Project extends Model
         $sponsorshipAmount = 0;
         foreach( $sponsorships as $sponsorship){
             $sponsorshipAmount += $sponsorship;
-
         }
         return $sponsorshipAmount;
     }

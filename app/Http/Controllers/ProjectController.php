@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Hits;
 use Illuminate\Http\Request;
 use Auth;
 use App\User;
@@ -181,6 +182,27 @@ class ProjectController extends Controller
         $project->photo()->update([
             'avatar' => $request['avatar']
         ]);
+
+    }
+
+    public function increaseProjectHit(Project $project)
+    {
+        $hits = Hits::whereProjectId($project->id)->get();
+
+
+        if(count($hits) != 1){
+            $data['project_id'] = $project->id;
+            $data['count'] = 1;
+            Hits::create($data);
+            return ;
+        }
+
+        $updatedHit = $hits->first()->count +=1;
+
+        $hits->first()->update([
+            'count' => $updatedHit,
+        ]);
+        return;
 
     }
 }

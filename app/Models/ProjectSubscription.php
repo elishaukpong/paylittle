@@ -9,8 +9,11 @@ class ProjectSubscription extends Model
     public $incrementing = false;
 
     protected $fillable = [
-        'id', 'user_id', 'project_id', 'status_id', 'amount', 'returns',
+        'id', 'user_id', 'project_id', 'status_id', 'amount', 'returns','due_date'
     ];
+
+    protected $dates = ['due_date'];
+
     public function user()
     {
         return $this->belongsTo('App\User', 'user_id');

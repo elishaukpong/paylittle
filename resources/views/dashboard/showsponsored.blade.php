@@ -1,4 +1,4 @@
-@extends('layouts.dashboard')
+@extends('layouts.dashboardclean')
     @section('notifications')
         {{--<div class="container my-4">--}}
             {{--<div class="row justify-content-center">--}}
@@ -52,6 +52,7 @@
                             <th scope="col">Amount</th>
                             <th scope="col">Date Due</th>
                             <th scope="col">Returns</th>
+                            <th scope="col"></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -61,9 +62,11 @@
                                 <td>{{ $projectsubscription->project->name }}</td>
                                 <td>{{ $projectsubscription->status->name}}</td>
                                 <td>{{ $projectsubscription->amount}}</td>
-                                {{--make this two true data--}}
-                                <td>{{ $projectsubscription->created_at->addMonth(rand(2,8))->diffForHumans()}}</td>
+                                <td>{{$projectsubscription->due_date->diffForHumans()}}</td>
                                 <td>{{ $projectsubscription->returns}}</td>
+                                <td>
+                                    <a href="{{route('userProjects.show', $projectsubscription->project->id)}}" class="btn btn-primary">View Project</a>
+                                </td>
                                 {{--<td>{{ $project->gender}}</td>--}}
                                 {{--<td><a href="{{route('admin.showuser', $project->id)}}" class="btn btn-primary">View User</a></td>--}}
 
@@ -83,4 +86,5 @@
                 </div>
             </div>
         </div>
+
     @endsection
