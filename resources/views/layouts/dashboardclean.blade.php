@@ -22,6 +22,11 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,700,800" rel="stylesheet">
 
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+          crossorigin="anonymous">
 
 </head>
 <body>
@@ -55,24 +60,15 @@
                             <li class="nav-item mx-3">
                                 <a class="nav-link text-light" href="/contact">Contact</a>
                             </li>
-                            {{-- <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            <li class="nav-item mx-3">
+                                <a class="nav-link text-light" href="/login">Login</a>
                             </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif --}}
+                            <li class="nav-item mx-3">
+                                <a class="nav-link text-primary btn btn-warning px-4" href="/register">Sign Up</a>
+                            </li>
+
                         @else
-                            {{-- <li class="nav-item mx-1">
-                                <a class="nav-link text-light" href="/"><i class="fa fa-home" aria-hidden="true"></i></a>
-                            </li> --}}
-                            {{--<li class="nav-item mx-1 note">--}}
-                                {{--<a class="nav-link text-light" href="#">--}}
-                                    {{--<i class="fa fa-bell-o" aria-hidden="true"> </i> --}}
-                                {{--</a>--}}
-                                {{--<i class="badge bg-danger text-light">3</i>--}}
-                            {{--</li>--}}
+
                             <li class="nav-item mx-1 note">
                                 <a class="nav-link text-light" href="{{route('clientarea')}}">
                                     Dashboard
@@ -110,19 +106,20 @@
 
         <main class="">
             <div class="container-fluid my-4">
+                @auth
                 {{-- Flash Notifications --}}
                 <div class="row">
                     <div class="col-12">
                         <div class="container my-4">
                             <div class="row justify-content-center">
                                 <div class="col-md-8 mx-auto text-center">
-                                    @if ($user->email_verified_at !== null)
-                                        <script>
-                                             swal("Your account is not verified!","", "info",{
-                                                buttons: ["Verify", "Cancel"],
-                                             });
-                                        </script>
-                                    @endif
+                                    {{--@if ($user->email_verified_at !== null)--}}
+                                        {{--<script>--}}
+                                             {{--swal("Your account is not verified!","", "info",{--}}
+                                                {{--buttons: ["Verify", "Cancel"],--}}
+                                             {{--});--}}
+                                        {{--</script>--}}
+                                    {{--@endif--}}
 
                                     @if (\Session::has('success'))
                                         <script>
@@ -141,6 +138,7 @@
 
                     </div>
                 </div>
+                @endauth
 
                 {{-- App Layout --}}
                 <div class="row">
@@ -155,7 +153,7 @@
             <div class="container pt-5 border-bottom">
                 <div class="row">
                     <div class="col-md-4 col-12">
-                        <p class="text-uppercase font-weight-bold">Contact</p>
+                        <p class="text-uppercase font-weight-light">Contact</p>
                         <ul class="list-inline  pb-4 pb-md-0">
                             <li class="list-inline-item py-1 pr-5">
                                 <i class="fa fa-map-marker mr-3" aria-hidden="true"></i> 16 Abua Street, PH
@@ -164,13 +162,14 @@
                                 <i class="fa fa-envelope mr-3" aria-hidden="true"></i> info@paylittle.ng
                             </li><br>
                             <li class="list-inline-item py-1">
-                                <i class="fa fa-phone mr-3" aria-hidden="true"></i> Null
+                                <i class="fa fa-phone mr-3" aria-hidden="true"></i>
+                                07031960724 <br> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 08080990560
                             </li><br>
 
                         </ul>
                     </div>
                     <div class="col-md-2 col-12">
-                        <p class="text-uppercase font-weight-bold">Products</p>
+                        <p class="text-uppercase font-weight-light">Products</p>
                         <ul class="list-inline  pb-4 pb-md-0">
                             <li class="list-inline-item py-1">Oracle Technology</li> <br>
                             <li class="list-inline-item py-1">Google Cloud</li> <br>
@@ -179,7 +178,7 @@
                         </ul>
                     </div>
                     <div class="col-md-2 offset-md-1 col-12">
-                        <p class="text-uppercase font-weight-bold">Useful Links</p>
+                        <p class="text-uppercase font-weight-light">Useful Links</p>
                         <ul class="list-inline  pb-4 pb-md-0">
                             <li class="list-inline-item py-1">About Us</li> <br>
                             <li class="list-inline-item py-1">Products & Services</li><br>
@@ -188,7 +187,7 @@
                         </ul>
                     </div>
                     <div class="col-md-3 col-12">
-                        <p class="text-uppecase font-weight-bold pb-2 ml-md-4"> Get updates from us</p>
+                        <p class="text-uppecase font-weight-light pb-2 ml-md-4"> Get updates from us</p>
                         <div class="ml-md-4">
                             <input type="text" class="form-control mb-2" placeholder="Type Email Address">
                             <input type="submit" value="Submit" class="btn btn-warning form-control">

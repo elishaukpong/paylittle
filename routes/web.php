@@ -11,13 +11,10 @@
 |
 */
 Route::get('/', 'NavigationController@index')->name('/');
+Route::get('/about', 'NavigationController@about')->name('about');
+Route::get('/contact', 'NavigationController@contact')->name('contact');
+Route::get('/blog', 'NavigationController@blog')->name('blog');
 
-Route::get('/about', 'NavigationController@about');
-Route::get('/contact', 'NavigationController@contact');
-Route::get('/sponsor', 'NavigationController@sponsor')->name('sponsor');
-Route::post('/sponsor', 'SponsorController@createSponsor');
-Route::get('/client', 'NavigationController@paylittler');
-//Route::get('/verify/{$verificationString}', 'SponsorController@verify')->name('verify');
 Route::get('/verify', 'SponsorController@verify')->name('verify');
 
 
@@ -37,13 +34,16 @@ Route::get('/projects/{user}', 'ProjectController@filterBy')->name('userProjects
 
 
 //Sponsorship routes
+//Route::post('/projects/{project}/sponsor', function (\Illuminate\Http\Request $request, $project){
+//   return $project;
+//})->name('sponsor.project');
 Route::post('/projects/{project}/sponsor', 'SponsorController@sponsorProject')->name('sponsor.project');
 Route::get('/projects/{user}/sponsored', 'SponsorController@sponsoredProjects')->name('view.sponsor');
 
 
 
 
-Auth::routes(['verify' => true]);
+Auth::routes();
 
 Route::get('/adminarea', 'AdminController@index')->name('admin.home');
 Route::get('/admin/edit', 'AdminController@edit')->name('admin.edit');

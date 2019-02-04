@@ -13,8 +13,11 @@ nav{
     /*margin-bottom: 0px !important;*/
     /*margin-top:1rem;*/
 }
-.nav-link.active,.banner{
-    background: linear-gradient(118deg,#328bf2,#1644ad) !important;
+.nav-link.active{
+    /*background: linear-gradient(118deg,#328bf2,#1644ad) !important;*/
+}
+.banner{
+    background-color: rgb(3, 58, 107);
 }
 
 .featured-projects, footer{
@@ -40,6 +43,7 @@ nav{
 }
 .about{
     font-family: 'Lato', sans-serif;
+    overflow-x: hidden;
 }
 
 .bg-shadow,.bene-header-shadow{
@@ -96,7 +100,7 @@ nav{
     line-height:1.6em;
 }
 footer{
-    background-color: rgb(10, 65, 112) !important;
+    background: linear-gradient(118deg,#328bf2,#1644ad);
 }
 
 /* benefactor page */
@@ -250,4 +254,15 @@ ol.carousel-indicators {
 }
 .text-secondaryy{
     color: #4F4F4F;
+}
+.shape{
+    position: absolute;
+    left: -25em;
+    opacity: .1;
+    top: -4em;
+}
+.contact-hr{
+    width:40%;
+    border:0;
+    border-top: .5px solid white;
 }

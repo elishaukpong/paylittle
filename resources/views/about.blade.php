@@ -48,6 +48,9 @@
     </div>
 </section>
 
+<br>
+<hr class="mx-5 px-5">
+
 <section class="my-5 py-5">
     <div class="container">
         <div class="row">
@@ -56,6 +59,7 @@
             </div>
 
             <div class="col-md-8 offset-md-1 col-12">
+                <img src="{{asset('img/shapes.svg')}}" alt="" class="shape">
                 <p class="font-weight-bold p-c">Our Mission</p>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus ipsa ipsam ipsum iure
                     laboriosam laborum magni necessitatibus nobis rem reprehenderit soluta tempore,
@@ -72,12 +76,27 @@
     </div>
 </section>
 
+<hr>
+
 <section class="my-5">
 
     <div class="container">
         <div class="row">
             <div class="col-12 text-center">
-                <h1 class="font-weight-bold text-secondaryy">Our Partners</h1>
+                <h1 class="font-weight-bold text-secondaryy my-4">Our Partners</h1>
+
+                <ul class="list-inline">
+                    <li class="list-inline-item text-white mr-5">
+                        <img src="{{asset('img/intuit.png')}}" class="">
+                    </li>
+                    <li class="list-inline-item text-white mr-5">
+                        <img src="{{asset('img/intuit.png')}}" class="">
+                    </li>
+                    <li class="list-inline-item text-white mr-5">
+                        <img src="{{asset('img/intuit.png')}}" class="">
+                    </li>
+
+                </ul>
             </div>
         </div>
     </div>

@@ -101,8 +101,8 @@ $(document).ready(function() {
             type:'GET',
             url:'/sponsorreturns/' + id + '/' + sponsorshipAmount,
             success:function(data) {
-                sentence = 'N ' + data;
-                $('#proposedamount').text(sentence);
+                formattedData = formatter.format(data);
+                $('#proposedamount').text(formattedData);
                 $('#returns').attr('value', data);
             },
             error:function(data){
@@ -111,7 +111,11 @@ $(document).ready(function() {
             }
         });
     }
-
+    const formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'NGN',
+        minimumFractionDigits: 0
+    });
 
     $('.subscriptionStatus').change(function(){
         // $(this) here is the select

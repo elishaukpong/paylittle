@@ -51,10 +51,10 @@
                                 <a class="nav-link text-light" href="/about">About</a>
                             </li>
                             <li class="nav-item mx-3">
-                                <a class="nav-link text-light" href="/contact">How it works</a>
+                                <a class="nav-link text-light" href="/blog">Blog</a>
                             </li>
                             <li class="nav-item mx-3">
-                                <a class="nav-link text-light" href="/project">Blog</a>
+                                <a class="nav-link text-light" href="/contact">Contact Us</a>
                             </li>
 
                              <li class="nav-item mx-3">
@@ -69,10 +69,10 @@
                                 <a class="nav-link text-light" href="/about">About</a>
                             </li>
                             <li class="nav-item mx-3">
-                                <a class="nav-link text-light" href="/contact">How it works</a>
+                                <a class="nav-link text-light" href="/Blog">Blog</a>
                             </li>
                             <li class="nav-item mx-3">
-                                <a class="nav-link text-light" href="/project">Blog</a>
+                                <a class="nav-link text-light" href="/contact">Contact Us</a>
                             </li>
 
                             <li class="nav-item mx-3 dropdown">
@@ -105,28 +105,27 @@
             @yield('content')
         </main>
 
-        <footer class="text-white">
-            <div class="container py-5 border-bottom">
+        <footer class="text-white font-weight-light">
+            <div class="container pt-5 border-bottom">
                 <div class="row">
                     <div class="col-md-4 col-12">
-                        <p class="text-uppercase font-weight-bold">Contact</p>
+                        <p class="text-uppercase font-weight-light">Contact</p>
                         <ul class="list-inline  pb-4 pb-md-0">
                             <li class="list-inline-item py-1 pr-5">
                                 <i class="fa fa-map-marker mr-3" aria-hidden="true"></i> 16 Abua Street, PH
                             </li><br>
                             <li class="list-inline-item py-1">
-                                <i class="fa fa-envelope mr-3" aria-hidden="true"></i> info@paylittle.com.ng
+                                <i class="fa fa-envelope mr-3" aria-hidden="true"></i> info@paylittle.ng
                             </li><br>
                             <li class="list-inline-item py-1">
-                                <i class="fa fa-phone mr-3" aria-hidden="true"></i> Null
+                                <i class="fa fa-phone mr-3" aria-hidden="true"></i>
+                                07031960724 <br> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 08080990560
                             </li><br>
-                            <li class="list-inline-item py-1">
-                                <i class="fa fa-fax mr-3" aria-hidden="true"></i> Null
-                            </li><br>
+
                         </ul>
                     </div>
                     <div class="col-md-2 col-12">
-                        <p class="text-uppercase font-weight-bold">Products</p>
+                        <p class="text-uppercase font-weight-light">Products</p>
                         <ul class="list-inline  pb-4 pb-md-0">
                             <li class="list-inline-item py-1">Oracle Technology</li> <br>
                             <li class="list-inline-item py-1">Google Cloud</li> <br>
@@ -135,7 +134,7 @@
                         </ul>
                     </div>
                     <div class="col-md-2 offset-md-1 col-12">
-                        <p class="text-uppercase font-weight-bold">Useful Links</p>
+                        <p class="text-uppercase font-weight-light">Useful Links</p>
                         <ul class="list-inline  pb-4 pb-md-0">
                             <li class="list-inline-item py-1">About Us</li> <br>
                             <li class="list-inline-item py-1">Products & Services</li><br>
@@ -144,11 +143,14 @@
                         </ul>
                     </div>
                     <div class="col-md-3 col-12">
-                        <!-- <div class="mt-5 pt-2"></div> -->
-                        <p class="text-uppecase font-weight-bold pb-2 ml-md-4"> Get Updates from us</p>
+                        <p class="text-uppecase font-weight-light pb-2 ml-md-4"> Get updates from us</p>
                         <div class="ml-md-4">
                             <input type="text" class="form-control mb-2" placeholder="Type Email Address">
-                            <input type="submit" value="Submit" class="btn btn-success form-control">
+                            <input type="submit" value="Submit" class="btn btn-warning form-control">
+                        </div>
+                        <div class="ml-md-4 mt-5">
+                            <img src="{{asset('img/leadway.png')}}" style="width:30%" class="img-fluid float-right">
+                            <p class="float-right pt-4">Insured By:</p>
                         </div>
 
                     </div>
@@ -157,7 +159,7 @@
             <div class="container">
                 <div class="row pt-3">
                     <div class="col-md-7 offset-md-2 col-12 text-center">
-                        <p class="copyright">&copy; 2018 Copyright : PayLittle</p>
+                        <p class="copyright">&copy; 2019 Copyright : PayLittle</p>
                     </div>
                     <div class="col-md-3 col-12 text-center">
                         <ul class="list-inline">

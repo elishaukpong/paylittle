@@ -1,4 +1,4 @@
-@extends('layouts.dashboard')
+@extends('layouts.dashboardclean')
 
 @section('content')
 <div class="container">
@@ -15,7 +15,7 @@
         <div class="col-4">
             <img class="card-img-top img-fluid" src="{{asset($project->photo->projectavatar)}}" alt="Card image cap">
         </div>
-        <div class="col-8">
+        <div class="col-7 offset-md-1">
             <h5>Project Name: </h5>
                 <p> {{$project->name}}</p>
             <h5>Project Amount: </h5>
@@ -32,25 +32,35 @@
 
 
             <br><br>
-            @if(Auth::user()->id != $project->user->id)
-            <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary form-control" data-toggle="modal" data-target="#exampleModal">
-                    Sponsor Project
-                </button>
-            @endif
+            @guest
+                <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary form-control" data-toggle="modal" data-target="#exampleModal">
+                        Sponsor Project
+                    </button>
+            @else
+                @if(Auth::user()->id != $project->user->id)
+                <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary form-control" data-toggle="modal" data-target="#exampleModal">
+                        Sponsor Project
+                    </button>
+                @endif
+            @endguest
         </div>
     </div>
     <hr class="mt-4">
-    @if(Auth::user()->id == $project->user->id)
-        <div  class="float-right text-white">
-            <a class="btn btn-primary btn-sm badge-pill" data-toggle="modal" data-target="#editModal">
-                Edit Project
-            </a>
-            <a class="btn btn-danger btn-sm badge-pill " data-toggle="modal" data-target="#deleteModal">
-                Delete Project
-            </a>
-        </div>
-    @endif
+    @auth
+        @if(Auth::user()->id == $project->user->id)
+            <div  class="float-right text-white">
+                <a class="btn btn-primary btn-sm badge-pill" data-toggle="modal" data-target="#editModal">
+                    Edit Project
+                </a>
+                <a class="btn btn-danger btn-sm badge-pill " data-toggle="modal" data-target="#deleteModal">
+                    Delete Project
+                </a>
+            </div>
+        @endif
+    @endauth
+
 
 </div>
 
@@ -71,7 +81,7 @@
                 @csrf
                 <div class="modal-body">
                     <h5>Project Amount Needed: </h5>
-                    <p> N {{$project->amount}}</p>
+                    <p>{{$project->amount}}</p>
 
                         <div class="form-group">
 
@@ -89,7 +99,7 @@
 
                     <div>
                         <h5>Proposed Return Amount</h5>
-                        <p id="proposedamount" aria="{{$project->id}}">N0 </p>
+                        <p id="proposedamount" aria="{{$project->id}}">NGN 0,000 </p>
                         <input type="hidden" name="returns" id="returns">
                     </div>
                 </div>
