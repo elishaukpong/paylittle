@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Hits;
 use App\Models\Project;
 use Illuminate\Http\Request;
 
@@ -11,6 +12,9 @@ class NavigationController extends Controller
     {
         $data['projectcount'] = Project::all()->count();
         $data['projects'] = Project::limit(6)->get();
+        $data['trendingprojects'] = Hits::limit(6)
+                                    ->orderBy('count','desc')
+                                    ->get();
         return view('welcome', $data);
     }
 

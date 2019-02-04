@@ -135,10 +135,10 @@
                         <div class="tab-pane fade" id="pills-trendingCampaigns" role="tabpanel" aria-labelledby="pills-trending-tab">
                             <div class="container my-4">
                                 <div class="row">
-                                    @forelse ($projects as $project)
+                                    @forelse ($trendingprojects as $trendingproject)
                                         <div class="col-md-4 col-12 mt-3">
                                             <div class="card">
-                                                <img class="card-img-top img-fluid" src="{{asset($project->photo->projectavatar)}}" alt="Card image cap">
+                                                <img class="card-img-top img-fluid" src="{{asset($trendingproject->project->photo->projectavatar)}}" alt="Card image cap">
                                                 <div class="card-body mt-3">
                                                     <p class="card-title font-weight-bold text-secondary">{{$project->name}}</p>
                                                     <p class="card-text">{{$project->shortDetails}}</p>
