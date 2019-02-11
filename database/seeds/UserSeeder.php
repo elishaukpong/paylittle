@@ -35,6 +35,12 @@ class UserSeeder extends Seeder
                 'avatar' => Faker\Factory::create()->image('storage/app/public/avatars/users',400,400, null,false),
             ]);
 
+            factory(App\Models\bvn::class)->create([
+                'user_id' => $user->id,
+                'status_id' => App\Models\Status::all()->random()->id,
+                'number' => Faker\Factory::create()->randomNumber(5),
+            ]);
+
         });
 
 

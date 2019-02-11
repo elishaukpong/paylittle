@@ -10,6 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+use App\Models\States;
+
 Route::get('/', 'NavigationController@index')->name('/');
 Route::get('/about', 'NavigationController@about')->name('about');
 Route::get('/contact', 'NavigationController@contact')->name('contact');
@@ -32,19 +35,22 @@ Route::get('/project/{project}/delete', 'ProjectController@destroy')->name('user
 Route::put('/project/{project}', 'ProjectController@update')->name('userProjects.update');
 Route::get('/projects/{user}', 'ProjectController@filterBy')->name('userProjects.view');
 
+Route::get('test/{project}', 'ProjectController@checkSponsorshipAmountRemaining');
+Route::get('test', function(){
+    return States::all();
+}
+);
 
 //Sponsorship routes
-//Route::post('/projects/{project}/sponsor', function (\Illuminate\Http\Request $request, $project){
-//   return $project;
-//})->name('sponsor.project');
 Route::post('/projects/{project}/sponsor', 'SponsorController@sponsorProject')->name('sponsor.project');
 Route::get('/projects/{user}/sponsored', 'SponsorController@sponsoredProjects')->name('view.sponsor');
-Route::get('/projects/{project}/hit', 'ProjectController@increaseProjectHit')->name('view.sponsor');
+Route::get('/projects/{project}/hit', 'ProjectController@increaseProjectHit');
 
-
-
+//Email Route
+Route::post('/email', 'EmailSubscriptionController@subscribe')->name('email.subscribe');
 
 Auth::routes();
+Route::get('/registerphase', 'UserController@continuereg')->name('reg.phase2');
 
 Route::get('/adminarea', 'AdminController@index')->name('admin.home');
 Route::get('/admin/edit', 'AdminController@edit')->name('admin.edit');

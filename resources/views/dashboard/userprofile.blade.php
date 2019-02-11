@@ -41,6 +41,10 @@
                     <p class="mr-5 pr-5 text-justify"> {{$user->phone}}<p>
                     <h5 class="mt-4">Gender: </h5>
                     <p> {{$user->gender}}</p>
+                    @if(Auth::user()->id == $user->id)
+                    <h5 class="mt-4">BVN: </h5>
+                    <p> {{$user->bvn->number}}</p>
+                    @endif
                     <h5 class="mt-3 pt-3">Joined:</h5>
                     <p> {{$user->created_at->diffForHumans()}}</p>
 

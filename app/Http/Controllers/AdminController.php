@@ -5,9 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use App\Models\ProjectSubscription;
 use App\Models\Status;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -35,8 +34,8 @@ class AdminController extends Controller
     {
         $data['user'] = $user;
         $data['projects'] = Project::whereUserId($user->id)
-                            ->orderBy('created_at', 'desc')
-                            ->paginate(3);
+            ->orderBy('created_at', 'desc')
+            ->paginate(3);
         return view('admin.userprojects', $data);
     }
 
@@ -44,8 +43,8 @@ class AdminController extends Controller
     {
         $data['user'] = $user;
         $data['projects'] = Project::whereUserId($user->id)
-                            ->orderBy('created_at', 'desc')
-                            ->paginate(9);
+            ->orderBy('created_at', 'desc')
+            ->paginate(9);
 
         return view('admin.viewuserprojects', $data);
     }
@@ -58,11 +57,11 @@ class AdminController extends Controller
 
     public function updateStatus(Project $project, $status)
     {
-        if($status != "accepted"){
+        if ($status != "accepted") {
             $project->update([
                 'status_id' => 3,
             ]);
-        return 'Project was rejected successfully!';
+            return 'Project was rejected successfully!';
         }
 
         $project->update([

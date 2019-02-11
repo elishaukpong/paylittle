@@ -14,7 +14,7 @@
 // }
 
 $(document).ready(function() {
-  
+
     $('.project-status').click(function(e){
         e.preventDefault();
         var projectName = $('.projectname').html();
@@ -144,6 +144,40 @@ $(document).ready(function() {
             }
         });
     }
+
+
+    $('#state').change(function(){
+        $this = $(this);
+        state = $this.find(":selected").first().text();
+        lgaList(state);
+    });
+
+    function lgaList(state){
+        $.ajax({
+            type:'GET',
+            url:'http://locationsng-api.herokuapp.com/api/v1/states/' + state + '/lgas',
+            success:function(data) {
+                //retrieved LGA List from the data object returned
+                lgas = data;
+                //initialize LGA into a list
+                var lgaOptionlist = '<option>Select LGA</option>';
+                //Iterate the list to get the names
+                var key = 1;
+                lgas.forEach(function(lga){
+                    lgaOptionlist +='<option value=' + key + '>' + lga + '</option> <br>';
+                    key++;
+                });
+                lga = $('#lga').html(lgaOptionlist);
+
+                console.log(lgaOptionlist);
+            },
+            error:function(data){
+                var lgaOptionlist = '<option>Couldn\'t retrieve LGA</option>';
+                lga = $('#lga').text(lgaOptionlist);
+            }
+        });
+    }
+
 
 
 });

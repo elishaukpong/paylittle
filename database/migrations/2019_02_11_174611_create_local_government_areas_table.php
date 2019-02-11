@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateHitsTable extends Migration
+class CreateLocalGovernmentAreasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateHitsTable extends Migration
      */
     public function up()
     {
-        Schema::create('hits', function (Blueprint $table) {
+        Schema::create('local_government_areas', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('project_id');
-            $table->integer('count')->unsigned()->default(0);
+            $table->integer('state_id')->unsigned();
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateHitsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hits');
+        Schema::dropIfExists('local_government_areas');
     }
 }

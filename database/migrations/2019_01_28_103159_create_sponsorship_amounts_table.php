@@ -15,6 +15,7 @@ class CreateSponsorshipAmountsTable extends Migration
     {
         Schema::create('sponsorship_amounts', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('amount');
             $table->timestamps();
         });
     }

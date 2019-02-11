@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Project extends Model
 {
+    protected $sponsorshipAmount = 0;
+
     public $incrementing = false;
 
     protected $fillable = [
@@ -38,11 +40,10 @@ class Project extends Model
     public function getamountSponsoredAttribute()
     {
         $sponsorships = $this->subscription()->get()->pluck('amount');
-        $sponsorshipAmount = 0;
-        foreach( $sponsorships as $sponsorship){
-            $sponsorshipAmount += $sponsorship;
-        }
-        return $sponsorshipAmount;
+        $sponsorships->each(function($sponsorship){
+            $this->sponsorshipAmount += $sponsorship;
+        });
+        return $this->sponsorshipAmount;
     }
 
 
@@ -52,8 +53,8 @@ class Project extends Model
     public function getModelAttribute(){
         return  "App\Models\Project";
     }
-    public function getAmountAttribute($value){
-        return "N " . number_format($value);
+    public function getFormattedAmountAttribute(){
+        return "NGN " . number_format($this->amount);
     }
 
     public function getShortDetailsAttribute(){
@@ -66,13 +67,13 @@ class Project extends Model
 
         switch($this->duration->timeline){
             case 3:
-                return 0.075;
+                return 0.05;
                 break;
             case 6:
-                return 0.15;
+                return 0.10;
                 break;
             case 12:
-                return 0.30;
+                return 0.20;
                 break;
             default:
                 break;

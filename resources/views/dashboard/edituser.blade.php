@@ -41,9 +41,9 @@
                                 <label for="gender">Gender</label>
                                 <select class="form-control {{ $errors->has('gender') ? ' is-invalid' : '' }}" id="gender" name="gender">
                                     <option {{($user->gender =="null") ? 'selected' :  " "}} value=" ">Not Set</option>
-                                    <option {{($user->gender =="male") ? 'selected' :  " "}} value="male">Male</option>
-                                    <option {{($user->gender =="female") ? 'selected' :  " "}} value="female">Female</option>
-                                    <option {{($user->gender =="others") ? 'selected' :  " "}} value="others">Others</option>
+                                    <option {{($user->gender =="Male") ? 'selected' :  " "}} value="male">Male</option>
+                                    <option {{($user->gender =="Female") ? 'selected' :  " "}} value="female">Female</option>
+                                    <option {{($user->gender =="Others") ? 'selected' :  " "}} value="others">Others</option>
                                 </select>
                                 @if ($errors->has('gender'))
                                 <span class="invalid-feedback" role="alert">
@@ -52,6 +52,18 @@
                                 @endif
                             </div>
 
+                            <div class="form-group py-2">
+                                <div >
+                                    <label for="phone">Phone</label>
+                                    <input id="phone" type="text" class="form-control {{ $errors->has('phone') ? ' is-invalid' : '' }}"
+                                           name="phone" value="{{ $user->phone }}">
+                                    @if ($errors->has('phone'))
+                                        <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('phone') }}</strong>
+                            </span>
+                                    @endif
+                                </div>
+                            </div>
                             <div class="form-group py-2">
                                 <div>
                                     <label for="dob">Date of Birth</label>
@@ -66,6 +78,7 @@
 
                                 </div>
                             </div>
+
 
                             <div class="form-group py-2">
                                 <div>
@@ -101,18 +114,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group py-2">
-                                <div >
-                                    <label for="phone">Phone</label>
-                                    <input id="phone" type="text" class="form-control {{ $errors->has('phone') ? ' is-invalid' : '' }}"
-                                           name="phone" value="{{ $user->phone }}">
-                                    @if ($errors->has('phone'))
-                                        <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('phone') }}</strong>
-                            </span>
-                                    @endif
-                                </div>
-                            </div>
+
 
                             <div class="form-group py-2">
                                 <div >
@@ -127,6 +129,20 @@
                                 </div>
                             </div>
 
+
+                            <div class="form-group">
+                                <label for="gender">Organization</label>
+                                <select class="form-control {{ $errors->has('gender') ? ' is-invalid' : '' }}" id="gender" name="gender">
+
+                                </select>
+                                @if ($errors->has('gender'))
+                                    <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('gender') }}</strong>
+                                </span>
+                                @endif
+                            </div>
+
+
                             <div class="form-group py-3">
                                 <div >
                                     <label for="occupation">Occupation</label>
@@ -140,6 +156,7 @@
                                     @endif
                                 </div>
                             </div>
+
 
                             <div class="form-group btn-file">
                                 <span class="btn btn-primary btn-file">

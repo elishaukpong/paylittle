@@ -101,7 +101,19 @@
             </div>
         </nav>
 
-        <main class="">
+            <main class="">
+                @if (\Session::has('success'))
+                    <script>
+                        swal("{{ \Session::get('success') }}","", "success");
+                    </script>
+                @endif
+                @if (\Session::has('error'))
+                    <script>
+                        swal("{{ \Session::get('error') }}","", "error");
+
+                    </script>
+                @endif
+
             @yield('content')
         </main>
 
@@ -143,10 +155,14 @@
                         </ul>
                     </div>
                     <div class="col-md-3 col-12">
-                        <p class="text-uppecase font-weight-light pb-2 ml-md-4"> Get updates from us</p>
+                        <p class="text-uppercase font-weight-light pb-2 ml-md-4"> Get updates from us</p>
                         <div class="ml-md-4">
-                            <input type="text" class="form-control mb-2" placeholder="Type Email Address">
-                            <input type="submit" value="Submit" class="btn btn-warning form-control">
+                            <form action="{{route('email.subscribe')}}" method="POST">
+                                @csrf
+                                <input type="text" class="form-control mb-2" placeholder="Type Email Address" name="emails">
+                                <input type="submit" value="Submit" class="btn btn-warning form-control" id="email">
+                            </form>
+
                         </div>
                         <div class="ml-md-4 mt-5">
                             <img src="{{asset('img/leadway.png')}}" style="width:30%" class="img-fluid float-right">
@@ -194,7 +210,10 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll@14.0.0/dist/smooth-scroll.polyfills.min.js"></script>
 <script src="{{ asset('js/custom.js') }}" defer></script>
-
+<script>
+    // var scroll = new SmoothScroll('a[href*="#"]', {easing: 'easeInQuad'});
+</script>
 
 </html>

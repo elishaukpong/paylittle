@@ -24,7 +24,6 @@ class CreateProjectsTable extends Migration
             $table->text('details');
             $table->string('address');
             $table->string('location');
-            $table->integer('hits')->unsigned()->default(0);
             $table->timestamps();
 
             $table->primary('id');

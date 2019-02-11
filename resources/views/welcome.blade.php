@@ -11,8 +11,8 @@
                         <h1 class="text-uppercase mt-5 pt-md-5 text-light display-4 font-weight-bold">We make life <br> better and cozzy</h1>
                         <p class="text-light mb-5 font-weight-light">Pay Little helps you afford whatever you want while paying at your convinience.</p>
                         <br>
-                        <a href="/sponsor" class="btn btn-primary btn-lg mr-4 px-5 py-3 my-2">Get Started</a>
-                        <a href="/client" class="btn btn-outline-light btn-lg mx-md-4 px-5 py-3 my-2">Learn How</a>
+                        <a href="{{route('userProjects.all')}}" class="btn btn-primary btn-lg mr-4 px-5 py-3 my-2">Get Started</a>
+                        <a href="#learnhow" class="btn btn-outline-light btn-lg mx-md-4 px-5 py-3 my-2">Learn How</a>
                     </div>
                 </div>
 
@@ -21,15 +21,15 @@
                 <div class="row">
                     <div class="col-12">
                         <ul class="list-inline">
-                            <li class="list-inline-item text-white mr-5">
+                            <li class="list-inline-item text-white mr-md-5">
                                 <p class="font-weight-bold">
                                     Raised:
 
                                 </p>
                                 <hr class="home-divider">
-                                <p class="font-weight-bold">N69M</p>
+                                <p class="font-weight-bold">NGN {{$totalRaisedAmount}}</p>
                             </li>
-                            <li class="list-inline-item text-white mx-5">
+                            <li class="list-inline-item text-white mx-md-5 mx-2">
                                 <p class="font-weight-bold">
                                     Projects:
 
@@ -37,13 +37,13 @@
                                 <hr class="home-divider">
                                 <p class="font-weight-bold">{{$projectcount}}</p>
                             </li>
-                            <li class="list-inline-item text-white mx-5">
+                            <li class="list-inline-item text-white mx-md-5 mx-2">
                                 <p class="font-weight-bold">
                                     Sponsored Up To:
 
                                 </p>
                                 <hr class="home-divider">
-                                <p class="font-weight-bold">N500M</p>
+                                <p class="font-weight-bold">NGN {{$totalSponsoredAmount}}</p>
                             </li>
                         </ul>
                     </div>
@@ -92,7 +92,7 @@
                                     @forelse ($projects as $project)
                                         <div class="col-md-4 col-12 mt-3">
                                             <div class="card">
-                                                <img class="card-img-top img-fluid" src="{{asset($project->photo->projectavatar)}}" alt="Card image cap">
+                                                <a href="{{route('userProjects.show',$project->id)}}"><img class="card-img-top img-fluid" src="{{asset($project->photo->projectavatar)}}" alt="Card image cap"></a>
                                                 <div class="card-body mt-3">
                                                     <p class="card-title font-weight-bold text-secondary">{{$project->name}}</p>
                                                     <p class="card-text">{{$project->shortDetails}}</p>
@@ -106,6 +106,9 @@
                                                     <br>
                                                     <p class="float-left text-secondary">N {{$project->amountsponsored}} <small>Raised</small></p>
                                                     <p class="float-right text-secondary"><small>Total</small> {{$project->amount}}</p>
+                                                    <br><br>
+                                                    <a href="{{route('userProjects.show', $project->id)}}" class="btn btn-primary form-control text-white">View Project Details</a>
+
                                                 </div>
                                             </div>
 
@@ -181,7 +184,7 @@
                         <div class="tab-pane fade" id="pills-newestCampaigns" role="tabpanel" aria-labelledby="pills-newest-tab">
                             <div class="container my-4">
                                 <div class="row">
-                                    @forelse ($projects as $project)
+                                    @forelse ($newestprojects as $project)
                                         <div class="col-md-4 col-12 mt-3">
                                             <div class="card">
                                                 <img class="card-img-top img-fluid" src="{{asset($project->photo->projectavatar)}}" alt="Card image cap">
@@ -280,13 +283,13 @@
     </section>
 
 
-    <section class="second-header">
+    <section class="second-header" id="learnhow">
         <div class="bg2-shadow">
             <div class="container">
                 <div class="row py-5 text-white">
                     <div class="col-12">
-                        <h3 class="display-5 text-whiter font-weight-bold">How it works</h3>
-                        <p class="text-whiter"> We recommend you follow this process</p>
+                        <h3 class="display-5 text-white font-weight-bold">How it works</h3>
+                        <p class="text-white"> We recommend you follow this process</p>
                     </div>
                 </div>
 
@@ -295,21 +298,21 @@
                         <i class="fa fa-user" aria-hidden="true"></i>
                         <br><br>
                         <h5 class="font-weight-bold mt-3 text-white">1. Create Account</h5>
-                        <p class="px-5 text-whiter pt-3 font-weight-light">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam autem consequuntur
+                        <p class="px-5 text-white pt-3 font-weight-light">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam autem consequuntur
                             cupiditate eius fugit iste maxime, nesciunt nulla odio quae quibusdam, sequi, suscipit ut voluptate.</p>
                     </div>
                     <div class="col-12 col-md-4">
                         <i class="fa fa-plus" aria-hidden="true"></i>
                         <br><br>
                         <h5 class="font-weight-bold mt-3 text-white">2. Create Project</h5>
-                        <p class="px-5 text-whiter pt-3 font-weight-light">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam autem consequuntur
+                        <p class="px-5 text-white pt-3 font-weight-light">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam autem consequuntur
                             cupiditate eius fugit iste maxime, nesciunt nulla odio quae quibusdam, sequi, suscipit ut voluptate.</p>
                     </div>
                     <div class="col-12 col-md-4">
                         <i class="fa fa-money" aria-hidden="true"></i>
                         <br><br>
                         <h5 class="font-weight-bold mt-3 text-white">3. Raise Funds</h5>
-                        <p class="px-5 text-whiter pt-3 font-weight-light">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam autem consequuntur
+                        <p class="px-5 text-white pt-3 font-weight-light">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam autem consequuntur
                             cupiditate eius fugit iste maxime, nesciunt nulla odio quae quibusdam, sequi, suscipit ut voluptate.</p>
                     </div>
                 </div>

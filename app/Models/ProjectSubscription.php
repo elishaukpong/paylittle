@@ -27,15 +27,10 @@ class ProjectSubscription extends Model
         return $this->belongsTo('App\Models\Status', 'status_id');
     }
 
-    public function getAmountAttribute($value){
-        return $value;
-    }
     public function getFormattedAmountAttribute(){
         return "N " . number_format($this->amount);
     }
-    public function getReturnsAttribute($value){
-         return "N " . number_format($value);
-    }
+
     public function getFormattedReturnsAttribute(){
         return "N " . number_format($this->returns);
     }

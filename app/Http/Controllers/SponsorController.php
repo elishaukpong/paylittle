@@ -18,7 +18,7 @@ class SponsorController extends Controller
 
     public function __construct()
     {
-//        $this->middleware(['auth']);
+        $this->middleware(['auth'])->except(['sponsorReturns']);
     }
 
     public function sponsorProject(SponsorshipRequest $request, Project $project)
@@ -33,6 +33,7 @@ class SponsorController extends Controller
         };
         return redirect()->route('view.sponsor', Auth::user()->id)->with('success', 'Project Sponsored');
     }
+
     public function sponsoredProjects(User $user)
     {
         $data['user'] = $user;

@@ -48,7 +48,7 @@ nav{
 
 .bg-shadow,.bene-header-shadow{
     width: 100%;
-    height: 700px;
+    /*height: 700px;*/
     background-color: rgba(3, 58, 107, 0.531);
 }
 .bene-header-shadow,.about-header-shadow{
@@ -117,7 +117,7 @@ footer{
 .login-header{
     font-weight:300;
 }
-.auth-input,.auth-input:focus,.auth-input:active{
+.auth-input,.auth-inputs,.auth-input:focus,.auth-inputs:focus,.auth-input:active,.auth-inputs:active{
     background: transparent;
     border:0;
     border-radius: 0;
@@ -127,6 +127,9 @@ footer{
     color: hsla(0,0%,100%,.75)!important;
     padding:0;
     font-family: Nunito;
+}
+auth-inputs,.auth-inputs:active,.auth-inputs:focus{
+    color: black !important;
 }
 .auth-input:-webkit-autofill {
     box-shadow: 0 0 0px 1000px #328bf2 inset !important;
@@ -266,3 +269,5 @@ ol.carousel-indicators {
     border:0;
     border-top: .5px solid white;
 }
+
+

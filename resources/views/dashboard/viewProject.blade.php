@@ -12,14 +12,14 @@
 
 <div class="container my-4">
     <div class="row">
-        <div class="col-4">
+        <div class="col-md-4 col-12">
             <img class="card-img-top img-fluid" src="{{asset($project->photo->projectavatar)}}" alt="Card image cap">
         </div>
-        <div class="col-7 offset-md-1">
+        <div class="col-md-7 col-12 offset-md-1 text-secondary">
             <h5>Project Name: </h5>
                 <p> {{$project->name}}</p>
             <h5>Project Amount: </h5>
-                <p> {{$project->amount}}</p>
+                <p> {{$project->formattedamount}}</p>
             <h5>Project Details: </h5>
                 <p class="mr-5 pr-5 text-justify"> {{$project->details}}<p>
 
@@ -30,11 +30,6 @@
             <a href="#" class="btn btn-sm btn-outline-primary"><small>Real Estate</small></a>
             <a href="#" class="btn btn-sm btn-outline-secondary"><small></small>PayLittle</a>
             <a href="#" class="btn btn-sm btn-outline-danger "><small>Personal</small></a>
-
-
-            <h5 class="mt-3">Status:</h5>
-            <a href="#" class="btn btn-sm btn-outline-{{$project->status->id == 2 ? 'success' : ($project->status->id == 1 ? 'secondary':'danger')}}"><small>Project {{$project->status->name}}</small></a>
-
 
             <br><br>
             @guest
@@ -85,19 +80,20 @@
             <form action="{{route('sponsor.project', $project->id)}}" method="POST" >
                 @csrf
                 <div class="modal-body">
-                    <h5>Project Amount Needed: </h5>
+                    <h5>Project Cost: </h5>
                     <p>{{$project->amount}}</p>
 
                         <div class="form-group">
 
-                            <label for="sponsoramount">Sponsorship Amount</label>
+                            <label for="sponsoramount">Amount to Sponsor</label>
                             <select name="amount" id="sponsoramount" class="form-control">
                                 <option value="null" selected>Sponsorship Amount</option>
-                                <option value="10000">10 Thousand</option>
-                                <option value="20000">20 Thousand</option>
-                                <option value="30000">30 Thousand</option>
-                                <option value="40000">40 Thousand</option>
-                                <option value="50000">50 Thousand</option>
+                                @foreach($sponsorshipAmounts as $amount)
+                                    {{--@if()--}}
+                                    {{--@endif--}}
+                                    <option value="{{$amount->amount}}" {{$amountremaining < $amount->amount ? 'disabled' : ''}}>{{$amount->amount}} Thousand</option>
+                                @endforeach
+
                             </select>
                         </div>
 

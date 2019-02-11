@@ -2,11 +2,10 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
 
 
 class User extends Authenticatable
@@ -21,11 +20,12 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-       'id', 'first_name', 'last_name', 'email', 'phone', 'verification_string', 'password', 'gender', 'address', 'dob','details', 'occupation'
+        'id', 'first_name', 'last_name', 'email', 'phone',
+        'verification_string', 'password', 'gender', 'address', 'dob', 'details', 'occupation'
     ];
 
     protected $dates = [
-          'dob',
+        'dob',
     ];
     /**
      * The attributes that should be hidden for arrays.
@@ -36,23 +36,19 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function projects()
-    {
-        return $this->hasMany('App\Models\Project');
-    }
-
-    public function sponsoredProjects()
-    {
-        return $this->hasMany('App\Models\ProjectSubscription', 'user_id');
-    }
-
     public function photo()
     {
         return $this->morphOne('App\Models\Photo', 'imageable');
     }
+
+    public function bvn()
+    {
+        return $this->hasOne('App\Models\bvn');
+    }
+
     public function IsAdmin()
     {
-        if($this->is_admin != 'admin'){
+        if ($this->is_admin != 'admin') {
             return false;
         }
         return true;
@@ -62,10 +58,12 @@ class User extends Authenticatable
     {
         $this->attributes['password'] = Hash::make($value);
     }
+
     public function setFirstNameAttribute($value)
     {
         $this->attributes['first_name'] = ucfirst($value);
     }
+
     public function setLastNameAttribute($value)
     {
         $this->attributes['last_name'] = ucfirst($value);
@@ -88,7 +86,7 @@ class User extends Authenticatable
 
     public function getModelAttribute()
     {
-        return  "App\User";
+        return "App\User";
     }
 
     public function getTotalCountAttribute()
@@ -96,9 +94,19 @@ class User extends Authenticatable
         return $this->sponsoredProjects()->count() + $this->projects()->count();
     }
 
+    public function sponsoredProjects()
+    {
+        return $this->hasMany('App\Models\ProjectSubscription', 'user_id');
+    }
+
+    public function projects()
+    {
+        return $this->hasMany('App\Models\Project');
+    }
+
     public function getFullnameAttribute()
     {
-        return $this->first_name . ' ' .  $this->last_name;
+        return $this->first_name . ' ' . $this->last_name;
     }
 
 }
