@@ -1,9 +1,7 @@
 @extends('layouts.app')
-
 @section('content')
 
     <section class="header">
-
         <div class="bg-shadow">
             <div class="container">
                 <div class="row">
@@ -101,11 +99,11 @@
                                                         {{ $project->subscription->count() ? $project->subscription->count(): 0}} Sponsors
                                                     </p>
                                                     <div class="progress">
-                                                        <div class="progress-bar" role="progressbar" style="width: {{random_int(10,100)}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                        <div class="progress-bar" role="progressbar" style="width: {{$project->projectsponsorshippercentage}}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                     </div>
                                                     <br>
-                                                    <p class="float-left text-secondary">N {{$project->amountsponsored}} <small>Raised</small></p>
-                                                    <p class="float-right text-secondary"><small>Total</small> {{$project->amount}}</p>
+                                                    <p class="float-left text-secondary">NGN {{$project->amountsponsored}} <small>Raised</small></p>
+                                                    <p class="float-right text-secondary"><small>Total</small> NGN {{$project->amount}}</p>
                                                     <br><br>
                                                     <a href="{{route('userProjects.show', $project->id)}}" class="btn btn-primary form-control text-white">View Project Details</a>
 
@@ -497,6 +495,4 @@
 
         </div>
     </section>
-
-
 @endsection

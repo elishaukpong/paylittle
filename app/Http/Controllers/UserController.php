@@ -5,11 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\Photo;
 use App\Models\Project;
+use App\Models\States;
 use App\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
-class UserController extends Controller {
+class UserController extends Controller
+{
     protected $newImageName;
     protected $previousImageName;
 
@@ -20,7 +23,7 @@ class UserController extends Controller {
 
     public function show( User $user )
     {
-        $data['user'] = $user;
+        $data['user']     = $user;
         $data['projects'] = Project::whereUserId($user->id)->orderBy('created_at', 'desc')->take(3)->get();
         return view('dashboard.userprofile', $data);
     }
@@ -72,41 +75,43 @@ class UserController extends Controller {
         }
         if (!$this->previousImageName)
         {
-            $request['avatar'] = $this->newImageName;
+            $request['avatar']         = $this->newImageName;
             $request['imageable_type'] = $user->model;
-            $request['imageable_id'] = $user->id;
-            $photo = Photo::create($request->except([ '_token' ]));
+            $request['imageable_id']   = $user->id;
+            $photo                     = Photo::create($request->except([ '_token' ]));
         }
         $request['avatar'] = $this->newImageName;
         $user->photo()->update([ 'avatar' => $request['avatar'] ]);
     }
 
-   
+
     public function destroy( $id )
     {
         //
     }
 
-    public function continuereg( )
+    public function continuereg()
     {
-//        Using API to retrieve state content
-        $url = 'http://locationsng-api.herokuapp.com/api/v1/states';
-//        Initiate Curl
-        $ch = curl_init();
-//        Will return the response, if false it print the response
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-//        Set the URL
-        curl_setopt($ch, CURLOPT_URL, $url);
-//        Execute
-        $result=curl_exec($ch);
-//        Closing Curl Session
-        curl_close($ch);
-
-        $states = json_decode($result, true);
-        foreach($states as $key => $state){
-            $data['states'][] = $state['name'];
-        }
-        $data['user'] = Auth::user();
+        $data['states'] = States::all();
+        $data['user']   = Auth::user();
         return view('auth.register-second', $data);
+    }
+
+    public function continueregSave( Request $request )
+    {
+        $this->validate($request, [
+            'state_id' => 'required|integer',
+            'localgovernmentarea_id' => 'required | integer',
+            'city' => 'required | string | min:5',
+            'address' => 'required | string'
+        ]);
+        $user = Auth::user();
+        $user->update($request->except('token'));
+        return redirect()->route('clientarea');
+    }
+
+    public function getLgaByState( States $state )
+    {
+        return $state->lga;
     }
 }

@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Project extends Model
 {
-    protected $sponsorshipAmount = 0;
-
     public $incrementing = false;
 
     protected $fillable = [
@@ -39,17 +37,18 @@ class Project extends Model
 
     public function getamountSponsoredAttribute()
     {
-        $sponsorships = $this->subscription()->get()->pluck('amount');
-        $sponsorships->each(function($sponsorship){
-            $this->sponsorshipAmount += $sponsorship;
-        });
-        return $this->sponsorshipAmount;
+        $sponsorships = $this->subscription()->get()->pluck('amount')->all();
+        return array_sum($sponsorships);
     }
 
-
-    public function getAvatarAttribute($value){
-        return  $value;
+    public function getProjectSponsorshipPercentageAttribute(  )
+    {
+        $projectCost = $this->amount;
+        $projectAmountSponsored = $this->amountSponsored;
+        $projectSponsorshipPercentage = round( ($projectAmountSponsored/$projectCost) * 100 );
+        return $projectSponsorshipPercentage . "%";
     }
+
     public function getModelAttribute(){
         return  "App\Models\Project";
     }
@@ -60,7 +59,6 @@ class Project extends Model
     public function getShortDetailsAttribute(){
         return substr_replace($this->details, "...",100);
     }
-
 
     public function getReturnspercentageAttribute()
     {

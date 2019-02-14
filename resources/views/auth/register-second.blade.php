@@ -7,14 +7,14 @@
             <div class="text-center mt-5 pt-3 font-weight-light text-white">
                 <h1 class="login-header mt-5"> Register</h1>
             </div>
-            <form method="POST" action="{{ route('register') }}" class="mt-5">
+            <form method="POST" action="{{ route('save.regphase') }}" class="mt-5">
                 @csrf
                 <div class="form-group row">
                     <div class="col-md-6 col-12 mx-auto">
-                        <select class="form-control {{ $errors->has('state') ? ' is-invalid' : '' }} auth-inputs " id="state" name="state">
+                        <select class="form-control {{ $errors->has('state') ? ' is-invalid' : '' }} auth-inputs " id="state_id" name="state_id">
                             <option>Select State</option>
-                            @foreach($states as $key => $state)
-                                <option value="{{$key}}">{{$state}}</option>
+                            @foreach($states as $state)
+                                <option value="{{$state->id}}">{{$state->name}}</option>
                             @endforeach
                         </select>
                         @if ($errors->has('state'))
@@ -27,7 +27,7 @@
 
                 <div class="form-group row">
                     <div class="col-md-6 col-12 mx-auto ">
-                        <select class="form-control {{ $errors->has('lga') ? ' is-invalid' : '' }} auth-inputs" id="lga" name="lga">
+                        <select class="form-control {{ $errors->has('lga') ? ' is-invalid' : '' }} auth-inputs" id="lga" name="localgovernmentarea_id">
                             <option>Select LGA</option>
 
                         </select>

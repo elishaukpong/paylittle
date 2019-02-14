@@ -1,0 +1,27 @@
+<div class="container my-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8 mx-auto text-center">
+
+            @if ($user->email_verified_at == null)
+                <script>
+                    swal("Your account is not verified!","", "info",{
+                        buttons: ["Verify", "Cancel"],
+                    });
+                </script>
+            @endif
+
+            @if (session('success'))
+                <script>
+                    swal("{{ session('success') }}","", "success");
+                </script>
+            @endif
+            @if (session('error'))
+                <script>
+                    swal("{{ session('error') }}","", "error");
+
+                </script>
+            @endif
+        </div>
+    </div>
+</div>
+

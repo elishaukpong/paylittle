@@ -17,7 +17,7 @@ class CreateBvnsTable extends Migration
             $table->increments('id');
             $table->string('user_id');
             $table->integer('status_id');
-            $table->integer('number')->unsigned();
+            $table->string('number');
             $table->timestamps();
         });
     }

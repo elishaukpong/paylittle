@@ -30,6 +30,8 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeeder::class);
         $this->call(EmailSubscriptionSeeder::class);
         $this->call(SubscriptionAmountSeeder::class);
+        $this->call(StateSeeder::class);
+        $this->call(LocalGovernmentAreaSeeder::class);
 
         $this->command->info("Database seeded.");
 

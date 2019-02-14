@@ -33,7 +33,7 @@ class UpdateUserRequest extends FormRequest
             'address' => 'required|string|min:5|max:250',
             'occupation' => 'required|string|min:5|max:250',
             'bvn' => 'string',
-            'avatarobject' => 'mimes:jpeg,jpg,png|max:10000',
+            'avatarobject' => 'mimes:jpeg,jpg,png|max:600',
         ];
     }
 }

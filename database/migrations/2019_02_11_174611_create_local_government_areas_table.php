@@ -15,7 +15,7 @@ class CreateLocalGovernmentAreasTable extends Migration
     {
         Schema::create('local_government_areas', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('state_id')->unsigned();
+            $table->integer('states_id')->unsigned();
             $table->string('name');
             $table->timestamps();
         });

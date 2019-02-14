@@ -22,10 +22,13 @@ class CreateUsersTable extends Migration
             $table->text('details')->nullable();
             $table->string('gender')->nullable();
             $table->timestamp('dob')->nullable();
-            $table->string('address')->nullable();
             $table->string('occupation')->nullable();
             $table->string('is_admin')->default(0);
             $table->integer('organization_id')->unsigned()->default(0);
+            $table->integer('state_id')->unsigned()->default(0);
+            $table->integer('localgovernmentarea_id')->unsigned()->default(0);
+            $table->string('city')->nullable();
+            $table->string('address')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

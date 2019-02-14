@@ -10,14 +10,10 @@
     <title>{{ config('app.name', 'PayLITTLE') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
-    <script src="{{ asset('js/custom.js') }}" defer></script>
+    @include('inc.scripts')
 
 
-
-    <!-- Fonts -->
+<!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,700,800" rel="stylesheet">
@@ -92,32 +88,13 @@
                 {{-- Flash Notifications --}}
                 <div class="row">
                     <div class="col-12">
-                        <div class="container my-4">
-                            <div class="row justify-content-center">
-                                <div class="col-md-8 mx-auto text-center">
-                                  
-                                    @if (\Session::has('success'))
-                                        <script>
-                                            swal("{{ \Session::get('success') }}","", "success");
-                                        </script>
-                                    @endif
-                                    @if (\Session::has('error'))
-                                        <script>
-                                            swal("{{ \Session::get('error') }}","", "error");
-
-                                        </script>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-
+                        @include('inc.alerts')
                     </div>
                 </div>
 
                 {{-- App Layout --}}
-                    <div class="col-md-12 col-12">
-                        @yield('content')
-                    </div>
+                <div class="col-md-12 col-12">
+                    @yield('content')
                 </div>
             </div>
         </main>

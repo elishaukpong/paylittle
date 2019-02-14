@@ -6,9 +6,9 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <title>{{ config('app.name', 'PayLITTLE') }}</title>
-
+    {{--Scripts--}}
+    @include('inc.scripts')
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -18,12 +18,10 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/sweetalert.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
         crossorigin="anonymous">
-
-
-
 </head>
 <body>
     <div id="app">
@@ -74,7 +72,11 @@
                             <li class="nav-item mx-3">
                                 <a class="nav-link text-light" href="/contact">Contact Us</a>
                             </li>
-
+                            <li class="nav-item mx-1 note">
+                                <a class="nav-link text-light" href="{{route('userProjects.all')}}">
+                                    Projects
+                                </a>
+                            </li>
                             <li class="nav-item mx-3 dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->first_name }} <span class="caret"></span>
@@ -101,119 +103,19 @@
             </div>
         </nav>
 
-            <main class="">
-                @if (\Session::has('success'))
-                    <script>
-                        swal("{{ \Session::get('success') }}","", "success");
-                    </script>
-                @endif
-                @if (\Session::has('error'))
-                    <script>
-                        swal("{{ \Session::get('error') }}","", "error");
-
-                    </script>
-                @endif
+        <main class="">
+            @if (session('success'))
+                <script>
+                    swal("{{ session('success') }}","", "success");
+                </script>
+            @endif
 
             @yield('content')
         </main>
 
-        <footer class="text-white font-weight-light">
-            <div class="container pt-5 border-bottom">
-                <div class="row">
-                    <div class="col-md-4 col-12">
-                        <p class="text-uppercase font-weight-light">Contact</p>
-                        <ul class="list-inline  pb-4 pb-md-0">
-                            <li class="list-inline-item py-1 pr-5">
-                                <i class="fa fa-map-marker mr-3" aria-hidden="true"></i> 16 Abua Street, PH
-                            </li><br>
-                            <li class="list-inline-item py-1">
-                                <i class="fa fa-envelope mr-3" aria-hidden="true"></i> info@paylittle.ng
-                            </li><br>
-                            <li class="list-inline-item py-1">
-                                <i class="fa fa-phone mr-3" aria-hidden="true"></i>
-                                07031960724 <br> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; 08080990560
-                            </li><br>
-
-                        </ul>
-                    </div>
-                    <div class="col-md-2 col-12">
-                        <p class="text-uppercase font-weight-light">Products</p>
-                        <ul class="list-inline  pb-4 pb-md-0">
-                            <li class="list-inline-item py-1">Oracle Technology</li> <br>
-                            <li class="list-inline-item py-1">Google Cloud</li> <br>
-                            <li class="list-inline-item py-1">Bonitasoft</li> <br>
-                            <li class="list-inline-item py-1">Microsoft Suites</li> <br>
-                        </ul>
-                    </div>
-                    <div class="col-md-2 offset-md-1 col-12">
-                        <p class="text-uppercase font-weight-light">Useful Links</p>
-                        <ul class="list-inline  pb-4 pb-md-0">
-                            <li class="list-inline-item py-1">About Us</li> <br>
-                            <li class="list-inline-item py-1">Products & Services</li><br>
-                            <li class="list-inline-item py-1">Blog</li><br>
-                            <li class="list-inline-item py-1">Contact Us</li><br>
-                        </ul>
-                    </div>
-                    <div class="col-md-3 col-12">
-                        <p class="text-uppercase font-weight-light pb-2 ml-md-4"> Get updates from us</p>
-                        <div class="ml-md-4">
-                            <form action="{{route('email.subscribe')}}" method="POST">
-                                @csrf
-                                <input type="text" class="form-control mb-2" placeholder="Type Email Address" name="emails">
-                                <input type="submit" value="Submit" class="btn btn-warning form-control" id="email">
-                            </form>
-
-                        </div>
-                        <div class="ml-md-4 mt-5">
-                            <img src="{{asset('img/leadway.png')}}" style="width:30%" class="img-fluid float-right">
-                            <p class="float-right pt-4">Insured By:</p>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row pt-3">
-                    <div class="col-md-7 offset-md-2 col-12 text-center">
-                        <p class="copyright">&copy; 2019 Copyright : PayLittle</p>
-                    </div>
-                    <div class="col-md-3 col-12 text-center">
-                        <ul class="list-inline">
-                            <li class="list-inline-item py-1">
-                                <i class="fa fa-instagram" aria-hidden="true"></i>
-                            </li>
-                            <li class="list-inline-item py-1">
-                                <i class="fa fa-google-plus" aria-hidden="true"></i>
-                            </li>
-                            <li class="list-inline-item py-1">
-                                <i class="fa fa-facebook" aria-hidden="true"></i>
-                            </li>
-                            <li class="list-inline-item py-1">
-                                <i class="fa fa-linkedin" aria-hidden="true"></i>
-                            </li>
-                            <li class="list-inline-item py-1">
-                                <i class="fa fa-twitter" aria-hidden="true"></i>
-                            </li>
-                            <li class="list-inline-item py-1">
-                                <a href="#" class="color-p">Back to Top</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </footer>
+       @include('inc.footer')
 
     </div>
 </body>
-<!-- Scripts -->
-<script src="{{ asset('js/app.js') }}" defer></script>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll@14.0.0/dist/smooth-scroll.polyfills.min.js"></script>
-<script src="{{ asset('js/custom.js') }}" defer></script>
-<script>
-    // var scroll = new SmoothScroll('a[href*="#"]', {easing: 'easeInQuad'});
-</script>
 
 </html>

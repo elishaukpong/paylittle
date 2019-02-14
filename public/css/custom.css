@@ -270,4 +270,20 @@ ol.carousel-indicators {
     border-top: .5px solid white;
 }
 
-
+.dashlinks:hover .card{
+    background: red;
+}
+.verification-card{
+    border:0;
+    background-color: transparent;
+    -webkit-border-radius: 1em;
+    -moz-border-radius: 1em;
+    border-radius: 1em;
+}
+.verification-card-body{
+    background: rgba(22, 68, 173, 0.23);
+    -webkit-border-radius: 1em;
+    -moz-border-radius: 1em;
+    border-radius: 1em;
+    border:0;
+}

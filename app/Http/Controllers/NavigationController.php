@@ -42,7 +42,6 @@ class NavigationController extends Controller
         $totalRaisedAmount = 0;
         foreach ($projectSubscriptions as $key => $project){
             $totalRaisedAmount += $project->amount;
-
             $totalSponsoredAmount += $project->returns;
         }
         return [

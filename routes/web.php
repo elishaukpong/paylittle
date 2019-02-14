@@ -37,7 +37,7 @@ Route::get('/projects/{user}', 'ProjectController@filterBy')->name('userProjects
 
 Route::get('test/{project}', 'ProjectController@checkSponsorshipAmountRemaining');
 Route::get('test', function(){
-    return States::all();
+    return States::find(5)->lga;
 }
 );
 
@@ -49,8 +49,10 @@ Route::get('/projects/{project}/hit', 'ProjectController@increaseProjectHit');
 //Email Route
 Route::post('/email', 'EmailSubscriptionController@subscribe')->name('email.subscribe');
 
-Auth::routes();
+Auth::routes([ 'verify' => true]);
 Route::get('/registerphase', 'UserController@continuereg')->name('reg.phase2');
+Route::post('/registerphase', 'UserController@continueregSave')->name('save.regphase');
+Route::get('/register/{state}/lgas', 'UserController@getLgaByState');
 
 Route::get('/adminarea', 'AdminController@index')->name('admin.home');
 Route::get('/admin/edit', 'AdminController@edit')->name('admin.edit');

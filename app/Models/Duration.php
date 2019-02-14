@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Duration extends Model
 {
     public $incrementing = false;
-
     protected $fillable = [
         'id', 'timeline',
     ];

@@ -21,15 +21,15 @@
             <h5>Project Amount: </h5>
                 <p> {{$project->formattedamount}}</p>
             <h5>Project Details: </h5>
-                <p class="mr-5 pr-5 text-justify"> {{$project->details}}<p>
+                <p class="mr-5 pr-5 text-justify" style="width: 20em; word-break: break-word"> {{$project->details}}<p>
 
             <h5 class="mt-3">Duration:</h5>
             <p>{{$project->duration->formattedTimeline}}</p>
 
-            <h5>Tags</h5>
-            <a href="#" class="btn btn-sm btn-outline-primary"><small>Real Estate</small></a>
-            <a href="#" class="btn btn-sm btn-outline-secondary"><small></small>PayLittle</a>
-            <a href="#" class="btn btn-sm btn-outline-danger "><small>Personal</small></a>
+            {{--<h5>Tags</h5>--}}
+            {{--<a href="#" class="btn btn-sm btn-outline-primary"><small>Real Estate</small></a>--}}
+            {{--<a href="#" class="btn btn-sm btn-outline-secondary"><small></small>PayLittle</a>--}}
+            {{--<a href="#" class="btn btn-sm btn-outline-danger "><small>Personal</small></a>--}}
 
             <br><br>
             @guest
@@ -107,7 +107,7 @@
 
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Sponsor Project</button>
                 </div>
             </form>

@@ -146,30 +146,28 @@ $(document).ready(function() {
     }
 
 
-    $('#state').change(function(){
+    $('#state_id').change(function(){
         $this = $(this);
-        state = $this.find(":selected").first().text();
+        state = $this.find(":selected").first().attr('value');
         lgaList(state);
     });
 
     function lgaList(state){
         $.ajax({
             type:'GET',
-            url:'http://locationsng-api.herokuapp.com/api/v1/states/' + state + '/lgas',
+            url:'/register/' + state + '/lgas',
             success:function(data) {
-                //retrieved LGA List from the data object returned
+                // //retrieved LGA List from the data object returned
                 lgas = data;
-                //initialize LGA into a list
+                // //initialize LGA into a list
                 var lgaOptionlist = '<option>Select LGA</option>';
-                //Iterate the list to get the names
-                var key = 1;
+                // //Iterate the list to get the names
                 lgas.forEach(function(lga){
-                    lgaOptionlist +='<option value=' + key + '>' + lga + '</option> <br>';
-                    key++;
+                    lgaOptionlist +='<option value=' + lga.id + '>' + lga.name + '</option> <br>';
                 });
-                lga = $('#lga').html(lgaOptionlist);
+                $('#lga').html(lgaOptionlist);
 
-                console.log(lgaOptionlist);
+                // console.log(lgaOptionlist);
             },
             error:function(data){
                 var lgaOptionlist = '<option>Couldn\'t retrieve LGA</option>';

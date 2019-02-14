@@ -10,7 +10,7 @@
     <title>{{ config('app.name', 'PayLITTLE') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    @include('inc.scripts')
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -80,6 +80,7 @@
         <main class="">
             @yield('content')
         </main>
+        @include('inc.footer')
     </div>
 </body>
 <!-- Scripts -->
