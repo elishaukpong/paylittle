@@ -161,7 +161,6 @@
                             <div class="form-group btn-file">
                                 <span class="btn btn-primary btn-file">
                                     <i class="fa fa-camera" aria-hidden="true"></i>
-                                    &nbsp; &nbsp;
                                     Update Avatar <input type="file" name="avatarobject">
                                 </span> <br>
                                 @if ($errors->has('avatarobject'))

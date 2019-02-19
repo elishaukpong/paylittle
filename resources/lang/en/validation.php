@@ -127,10 +127,12 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'avatarobject' => [
+            'required' => 'You need to upload an image for your project',
+            'max' => 'Your image has exceeded the specified size limit',
         ],
     ],
+
 
     /*
     |--------------------------------------------------------------------------

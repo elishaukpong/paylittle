@@ -13,16 +13,15 @@
 //     }
 // }
 
-$(document).ready(function() {
+$(document).ready(function () {
 
-    $('.project-status').click(function(e){
+    $('.project-status').click(function (e) {
         e.preventDefault();
         var projectName = $('.projectname').html();
 
-        if($(this).attr('id') == 'accepted')
-        {
+        if ($(this).attr('id') == 'accepted') {
             action = "Approve";
-        }else{
+        } else {
             action = "Reject";
         }
 
@@ -31,23 +30,23 @@ $(document).ready(function() {
             icon: "info",
             buttons: ["Cancel", "Proceed"],
         }).then((willApprove) => {
-                if (willApprove) {
-                    id = $(this).attr('use');
-                    status = $(this).attr('id');
-                    updateProjectStatus(id, status, action);
-                    // if(action == "Approve"){
-                    //     $('.status').removeClass('btn-outline-danger');
-                    //     $('.status').addClass('btn-outline-success');
-                    //     $('.status').text('Project Accepted')
-                    // }else{
-                    //     $('.status').removeClass('btn-outline-success');
-                    //     $('.status').addClass('btn-outline-danger');
-                    //     $('.status').text('Project Rejected');
-                    //
-                    // }
+            if (willApprove) {
+                id = $(this).attr('use');
+                status = $(this).attr('id');
+                updateProjectStatus(id, status, action);
+                // if(action == "Approve"){
+                //     $('.status').removeClass('btn-outline-danger');
+                //     $('.status').addClass('btn-outline-success');
+                //     $('.status').text('Project Accepted')
+                // }else{
+                //     $('.status').removeClass('btn-outline-success');
+                //     $('.status').addClass('btn-outline-danger');
+                //     $('.status').text('Project Rejected');
+                //
+                // }
 
-                }
-            });
+            }
+        });
 
     });
 
@@ -62,27 +61,28 @@ $(document).ready(function() {
         currency: 'NGN',
         minimumFractionDigits: 0
     });
+
     function updateProjectStatus(id, status, action) {
         $.ajax({
-            type:'GET',
-            url:'/admin/updatestatus/' + id + "/" + status,
-            success:function(data) {
-                swal(data," ", {
+            type: 'GET',
+            url: '/admin/updatestatus/' + id + "/" + status,
+            success: function (data) {
+                swal(data, " ", {
                     icon: "info",
                 });
-                if(action == "Approve"){
+                if (action == "Approve") {
                     $('.status').removeClass('btn-outline-danger');
                     $('.status').addClass('btn-outline-success');
                     $('.status').text('Project Accepted')
-                }else{
+                } else {
                     $('.status').removeClass('btn-outline-success');
                     $('.status').addClass('btn-outline-danger');
                     $('.status').text('Project Rejected');
 
                 }
             },
-            error:function(data){
-                swal('There was an error processing the request'," ", {
+            error: function (data) {
+                swal('There was an error processing the request', " ", {
                     icon: "error",
                 });
             }
@@ -90,27 +90,47 @@ $(document).ready(function() {
     }
 
 
-
-    $('#sponsoramount').change(function(){
+    $('#sponsoramount').change(function () {
         //The aria attributes has the id of the project
         aria = $('#proposedamount').attr('aria');
         //the value of the sponsorship amount
-        sponsorshipAmount = $(this).val();
+        var sponsorshipAmount = $(this).val();
+        if (sponsorshipAmount == 'others') {
+            $('#others').removeAttr('disabled');
+            $('#proposedamount').text('NGN 0,000');
+        } else {
+            $('#others').attr('disabled', 'disabled');
+            sponsorReturns(aria, sponsorshipAmount);
+        }
         //Ajax Function
+    });
+
+    $('#others').keyup(function () {
+        var sponsorshipAmount = parseLocaleNumber($(this).val());
         sponsorReturns(aria, sponsorshipAmount);
     });
 
+    // to convert 1,000,000 to 1000000 to be processed by ajax return amount API
+    function parseLocaleNumber(stringNumber) {
+        var thousandSeparator = (1111).toLocaleString().replace(/1/g, '');
+        var decimalSeparator = (1.1).toLocaleString().replace(/1/g, '');
+
+        return parseFloat(stringNumber
+            .replace(new RegExp('\\' + thousandSeparator, 'g'), '')
+            .replace(new RegExp('\\' + decimalSeparator), '.')
+        );
+    }
 
     function sponsorReturns(id, sponsorshipAmount) {
         $.ajax({
-            type:'GET',
-            url:'/sponsorreturns/' + id + '/' + sponsorshipAmount,
-            success:function(data) {
+            type: 'GET',
+            url: '/sponsorreturns/' + id + '/' + sponsorshipAmount,
+            success: function (data) {
                 formattedData = formatter.format(data);
                 $('#proposedamount').text(formattedData);
                 $('#returns').attr('value', data);
             },
-            error:function(data){
+            error: function (data) {
                 $('#proposedamount').text("Couldn't retrieve percentage");
 
             }
@@ -118,7 +138,7 @@ $(document).ready(function() {
     }
 
 
-    $('.subscriptionStatus').change(function(){
+    $('.subscriptionStatus').change(function () {
         // $(this) here is the select
         subscriptionId = $(this).find('.subscriptionId').first().attr('projectid');
         subscriptionStats = $(this).find(":selected").attr('value');
@@ -128,16 +148,16 @@ $(document).ready(function() {
 
     function subscriptionStatus(subcriptionId, subscriptionStats) {
         $.ajax({
-            type:'GET',
-            url:'/subscriptionstatus/' + subscriptionId + '/' + subscriptionStats,
-            success:function(data) {
+            type: 'GET',
+            url: '/subscriptionstatus/' + subscriptionId + '/' + subscriptionStats,
+            success: function (data) {
                 console.log(data);
-                swal(data," ", {
+                swal(data, " ", {
                     icon: "success",
                 });
             },
-            error:function(data){
-                swal("Couldn't update project status"," ", {
+            error: function (data) {
+                swal("Couldn't update project status", " ", {
                     icon: "error",
                 });
 
@@ -146,36 +166,35 @@ $(document).ready(function() {
     }
 
 
-    $('#state_id').change(function(){
+    $('#state_id').change(function () {
         $this = $(this);
         state = $this.find(":selected").first().attr('value');
         lgaList(state);
     });
 
-    function lgaList(state){
+    function lgaList(state) {
         $.ajax({
-            type:'GET',
-            url:'/register/' + state + '/lgas',
-            success:function(data) {
+            type: 'GET',
+            url: '/register/' + state + '/lgas',
+            success: function (data) {
                 // //retrieved LGA List from the data object returned
                 lgas = data;
                 // //initialize LGA into a list
                 var lgaOptionlist = '<option>Select LGA</option>';
                 // //Iterate the list to get the names
-                lgas.forEach(function(lga){
-                    lgaOptionlist +='<option value=' + lga.id + '>' + lga.name + '</option> <br>';
+                lgas.forEach(function (lga) {
+                    lgaOptionlist += '<option value=' + lga.id + '>' + lga.name + '</option> <br>';
                 });
                 $('#lga').html(lgaOptionlist);
 
                 // console.log(lgaOptionlist);
             },
-            error:function(data){
+            error: function (data) {
                 var lgaOptionlist = '<option>Couldn\'t retrieve LGA</option>';
                 lga = $('#lga').text(lgaOptionlist);
             }
         });
     }
-
 
 
 });

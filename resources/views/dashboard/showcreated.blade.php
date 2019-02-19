@@ -5,7 +5,7 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-12">
-                    <h1 class="p-c font-weight-light"> Sponsored Projects</h1>
+                    <h1 class="p-c font-weight-light"> Created Projects</h1>
                     <br>
                 </div>
             </div>
@@ -22,24 +22,25 @@
                             <th scope="col"> Project Name</th>
                             <th scope="col">Status</th>
                             <th scope="col">Amount</th>
-                            <th scope="col">Start Date</th>
+                            <th scope="col">Repayment Amount</th>
+                            <th scope="col">Repayment Plan</th>
                             <th scope="col">Date Due</th>
-                            <th scope="col">Returns</th>
                             <th scope="col"></th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($projectsubscriptions as $key => $projectsubscription)
+                        @foreach($projects as $key => $project)
                             <tr>
                                 <th scope="row">{{ $key+1 }}</th>
-                                <td>{{ $projectsubscription->project->name }}</td>
-                                <td>{{ $projectsubscription->status->name}}</td>
-                                <td>{{ $projectsubscription->amount}}</td>
-                                <td>{{$projectsubscription->created_at->format('l\, jS F Y')}}</td>
-                                <td>{{$projectsubscription->due_date->format('l\, jS F Y')}}</td>
-                                <td>{{ $projectsubscription->returns}}</td>
+                                <td>{{ $project->name }}</td>
+                                <td>{{ $project->status->name}}</td>
+                                <td>{{ $project->formattedamount}}</td>
+                                <td>{{$project->formattedrepaymentamount}}</td>
+                                <td>{{$project->repaymentplan->timeline}}</td>
+{{--                                <td>{{$project->due_date->diffForHumans()}}</td>--}}
+                                <td>{{ $project->returns}}</td>
                                 <td>
-                                    <a href="{{route('userProjects.show', $projectsubscription->project->id)}}" class="btn btn-primary">View Project</a>
+                                    <a href="{{route('userProjects.show', $project->id)}}" class="btn btn-primary">View Project</a>
                                 </td>
                                 {{--<td>{{ $project->gender}}</td>--}}
                                 {{--<td><a href="{{route('admin.showuser', $project->id)}}" class="btn btn-primary">View User</a></td>--}}

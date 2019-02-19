@@ -21,8 +21,9 @@ class CreateProjectsTable extends Migration
             $table->string('status_id')->default(1);
             $table->string('name');
             $table->integer('amount')->unsigned();
+            $table->integer('repayment_amount')->unsigned();
             $table->text('details');
-            $table->string('address');
+//            $table->string('address');
             $table->string('location');
             $table->timestamps();
 

@@ -7,7 +7,6 @@ $factory->define(Project::class, function (Faker $faker) {
         'id' => $faker->uuid,
         'name' => $faker->name,
         'amount' => $faker->numberBetween(400000, 1000000),
-        'address' => $faker->address,
         'location' => $faker->address,
         'details' => $faker->text(200),
     ];

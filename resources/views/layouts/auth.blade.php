@@ -80,7 +80,6 @@
         <main class="">
             @yield('content')
         </main>
-        @include('inc.footer')
     </div>
 </body>
 <!-- Scripts -->

@@ -20,26 +20,20 @@ Route::get('/blog', 'NavigationController@blog')->name('blog');
 
 Route::get('/verify', 'SponsorController@verify')->name('verify');
 
-
 Route::get('/account/{user}', 'UserController@show')->name('user.show');
 Route::get('/account/{user}/edit', 'UserController@edit')->name('user.edit');
 Route::put('/account/{user}', 'UserController@update')->name('user.update');
 
-
 Route::get('/project', 'ProjectController@index')->name('userProjects.all');
 Route::get('/project/create', 'ProjectController@create')->name('project.create');
 Route::post('/project', 'ProjectController@store')->name('project.store');
-Route::get('/project/{project}/show', 'ProjectController@show')->name('userProjects.show');
+Route::get('/project/{project}/show', 'ProjectController@show')->name('userProjects.show')->middleware('checkprojectstatus');
 Route::get('/project/{project}/edit', 'ProjectController@edit')->name('userProjects.edit');
 Route::get('/project/{project}/delete', 'ProjectController@destroy')->name('userProjects.delete');
 Route::put('/project/{project}', 'ProjectController@update')->name('userProjects.update');
 Route::get('/projects/{user}', 'ProjectController@filterBy')->name('userProjects.view');
 
 Route::get('test/{project}', 'ProjectController@checkSponsorshipAmountRemaining');
-Route::get('test', function(){
-    return States::find(5)->lga;
-}
-);
 
 //Sponsorship routes
 Route::post('/projects/{project}/sponsor', 'SponsorController@sponsorProject')->name('sponsor.project');
@@ -50,6 +44,7 @@ Route::get('/projects/{project}/hit', 'ProjectController@increaseProjectHit');
 Route::post('/email', 'EmailSubscriptionController@subscribe')->name('email.subscribe');
 
 Auth::routes([ 'verify' => true]);
+
 Route::get('/registerphase', 'UserController@continuereg')->name('reg.phase2');
 Route::post('/registerphase', 'UserController@continueregSave')->name('save.regphase');
 Route::get('/register/{state}/lgas', 'UserController@getLgaByState');

@@ -287,3 +287,6 @@ ol.carousel-indicators {
     border-radius: 1em;
     border:0;
 }
+.project-link{
+    text-decoration: none !important;
+}

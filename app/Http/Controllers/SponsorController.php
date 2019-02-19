@@ -23,7 +23,7 @@ class SponsorController extends Controller
 
     public function sponsorProject(SponsorshipRequest $request, Project $project)
     {
-        $projectDuration =  $project->duration->timeline;
+        $projectDuration =  $project->duration->timeline + 1;
         $request['id'] = Uuid::uuid1();
         $request['user_id'] = Auth::user()->id;
         $request['project_id'] = $project->id;

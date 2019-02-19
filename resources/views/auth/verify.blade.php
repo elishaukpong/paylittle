@@ -21,7 +21,7 @@
 
                         {{ __('If you did not receive the email') }},
                     </p>
-                        <a href="#" class="btn btn-primary">{{ __('Click here to request another') }}</a>.
+                        <a href="{{route('verification.resend')}}" class="btn btn-primary">{{ __('Click here to request another') }}</a>.
                 </div>
             </div>
         </div>

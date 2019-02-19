@@ -25,13 +25,13 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md bg-primary ">
+        <nav class="navbar navbar-expand-md bg-primary navbar-dark ">
             <div class="container">
                 <a class="navbar-brand text-light" href="{{ url('/') }}">
                 Paylittle
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon text-light"></span>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -102,7 +102,7 @@
 
                 {{-- App Layout --}}
                 <div class="row">
-                    <div class="col-md-3 col-12  mx-auto">
+                    <div class="col-md-3 col-12  mx-auto d-none d-md-block">
                         <div class="container">
                             <div class="row">
                                 <div class="col-12 text-center mb-5">
@@ -125,13 +125,9 @@
                                             <p>
                                                 <i class="fa fa-envelope" aria-hidden="true"></i>
                                                 &nbsp; &nbsp;
-                                                Account not verified
+                                                {{$user->hasVerifiedEmail() ? 'Account Verified' : 'Account Not Verified'}}
                                             </p>
-                                            <p>
-                                                <i class="fa fa-user-circle-o" aria-hidden="true"></i>
-                                                &nbsp; &nbsp;
-                                                Joined {{$user->created_at->diffForHumans()}}
-                                            </p>
+
 
                                         </div>
                                     </div>

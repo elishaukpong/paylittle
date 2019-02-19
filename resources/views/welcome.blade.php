@@ -19,15 +19,15 @@
                 <div class="row">
                     <div class="col-12">
                         <ul class="list-inline">
-                            <li class="list-inline-item text-white mr-md-5">
-                                <p class="font-weight-bold">
-                                    Raised:
+                            {{--<li class="list-inline-item text-white mr-md-5">--}}
+                                {{--<p class="font-weight-bold">--}}
+                                    {{--Raised:--}}
 
-                                </p>
-                                <hr class="home-divider">
-                                <p class="font-weight-bold">NGN {{$totalRaisedAmount}}</p>
-                            </li>
-                            <li class="list-inline-item text-white mx-md-5 mx-2">
+                                {{--</p>--}}
+                                {{--<hr class="home-divider">--}}
+                                {{--<p class="font-weight-bold">NGN {{$totalRaisedAmount}}</p>--}}
+                            {{--</li>--}}
+                            <li class="list-inline-item text-white mr-md-5">
                                 <p class="font-weight-bold">
                                     Projects:
 
@@ -102,8 +102,8 @@
                                                         <div class="progress-bar" role="progressbar" style="width: {{$project->projectsponsorshippercentage}}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                     </div>
                                                     <br>
-                                                    <p class="float-left text-secondary">NGN {{$project->amountsponsored}} <small>Raised</small></p>
-                                                    <p class="float-right text-secondary"><small>Total</small> NGN {{$project->amount}}</p>
+                                                    <p class="float-left text-secondary"> {{$project->formattedamountsponsored}} <small>Raised</small></p>
+                                                    <p class="float-right text-secondary"><small>Total</small> {{$project->formattedamount}}</p>
                                                     <br><br>
                                                     <a href="{{route('userProjects.show', $project->id)}}" class="btn btn-primary form-control text-white">View Project Details</a>
 
@@ -115,7 +115,6 @@
 
 
                                     @empty
-
                                     @endforelse
 
                                 </div>
@@ -141,18 +140,21 @@
                                             <div class="card">
                                                 <img class="card-img-top img-fluid" src="{{asset($trendingproject->project->photo->projectavatar)}}" alt="Card image cap">
                                                 <div class="card-body mt-3">
-                                                    <p class="card-title font-weight-bold text-secondary">{{$project->name}}</p>
-                                                    <p class="card-text">{{$project->shortDetails}}</p>
+                                                    <p class="card-title font-weight-bold text-secondary">{{$trendingproject->name}}</p>
+                                                    <p class="card-text">{{$trendingproject->shortDetails}}</p>
                                                     <p class="text-right text-primary">
                                                         <i class="fa fa-users" aria-hidden="true"></i>
-                                                        {{ $project->subscription->count() ? $project->subscription->count(): 0}} Sponsors
+                                                        {{ $trendingproject->subscription ? $trendingproject->subscription->count(): 0}} Sponsors
                                                     </p>
                                                     <div class="progress">
-                                                        <div class="progress-bar" role="progressbar" style="width: {{random_int(10,100)}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                        <div class="progress-bar" role="progressbar" style="width: {{$trendingproject->projectsponsorshippercentage}}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                     </div>
                                                     <br>
-                                                    <p class="float-left text-secondary">N {{$project->amountsponsored}} <small>Raised</small></p>
-                                                    <p class="float-right text-secondary"><small>Total</small> {{$project->amount}}</p>
+                                                    <p class="float-left text-secondary">{{$trendingproject->formattedamountsponsored}} <small>Raised</small></p>
+                                                    <p class="float-right text-secondary"><small>Total</small> {{$trendingproject->formattedamount}}</p>
+                                                    <br><br>
+                                                    <a href="{{route('userProjects.show', $trendingproject->id)}}" class="btn btn-primary form-control text-white">View Project Details</a>
+
                                                 </div>
                                             </div>
 
@@ -163,6 +165,7 @@
                                     @empty
 
                                     @endforelse
+
 
                                 </div>
 
@@ -194,11 +197,14 @@
                                                         {{ $project->subscription->count() ? $project->subscription->count(): 0}} Sponsors
                                                     </p>
                                                     <div class="progress">
-                                                        <div class="progress-bar" role="progressbar" style="width: {{random_int(10,100)}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                        <div class="progress-bar" role="progressbar" style="width: {{$project->projectsponsorshippercentage}}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                     </div>
                                                     <br>
-                                                    <p class="float-left text-secondary">N {{$project->amountsponsored}} <small>Raised</small></p>
-                                                    <p class="float-right text-secondary"><small>Total</small> {{$project->amount}}</p>
+                                                    <p class="float-left text-secondary">{{$project->formattedamountsponsored}} <small>Raised</small></p>
+                                                    <p class="float-right text-secondary"><small>Total</small> {{$project->formattedamount}}</p>
+                                                    <br><br>
+                                                    <a href="{{route('userProjects.show', $project->id)}}" class="btn btn-primary form-control text-white">View Project Details</a>
+
                                                 </div>
                                             </div>
 
@@ -241,11 +247,14 @@
                                                         {{ $project->subscription->count() ? $project->subscription->count(): 0}} Sponsors
                                                     </p>
                                                     <div class="progress">
-                                                        <div class="progress-bar" role="progressbar" style="width: {{random_int(10,100)}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                        <div class="progress-bar" role="progressbar" style="width: {{$project->projectsponsorshippercentage}}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                     </div>
                                                     <br>
-                                                    <p class="float-left text-secondary">N {{$project->amountsponsored}} <small>Raised</small></p>
-                                                    <p class="float-right text-secondary"><small>Total</small> {{$project->amount}}</p>
+                                                    <p class="float-left text-secondary">{{$project->formattedamountsponsored}} <small>Raised</small></p>
+                                                    <p class="float-right text-secondary"><small>Total</small> {{$project->formattedamount}}</p>
+                                                    <br><br>
+                                                    <a href="{{route('userProjects.show', $project->id)}}" class="btn btn-primary form-control text-white">View Project Details</a>
+
                                                 </div>
                                             </div>
 
@@ -292,26 +301,41 @@
                 </div>
 
                 <div class="row text-center how-we-work pb-4">
-                    <div class="col-12 col-md-4">
+                    <div class="col-12 col-md-3">
                         <i class="fa fa-user" aria-hidden="true"></i>
                         <br><br>
-                        <h5 class="font-weight-bold mt-3 text-white">1. Create Account</h5>
-                        <p class="px-5 text-white pt-3 font-weight-light">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam autem consequuntur
-                            cupiditate eius fugit iste maxime, nesciunt nulla odio quae quibusdam, sequi, suscipit ut voluptate.</p>
+                        <h5 class="font-weight-bold mt-3 text-white">1. Create An Account</h5>
+                        <p class=" text-white pt-3 font-weight-light">
+                            Click on Get Started, fill in your details and submit.
+                            Head to your mail box to confirm you email and then login
+                        </p>
                     </div>
-                    <div class="col-12 col-md-4">
+
+                    <div class="col-12 col-md-3">
                         <i class="fa fa-plus" aria-hidden="true"></i>
                         <br><br>
-                        <h5 class="font-weight-bold mt-3 text-white">2. Create Project</h5>
-                        <p class="px-5 text-white pt-3 font-weight-light">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam autem consequuntur
-                            cupiditate eius fugit iste maxime, nesciunt nulla odio quae quibusdam, sequi, suscipit ut voluptate.</p>
+                        <h5 class="font-weight-bold mt-3 text-white">2. Sponsor A Project</h5>
+                        <p class=" text-white pt-3 font-weight-light">
+                            Check our project listings and select a project you wish to sponsor, read the details, and sponsor
+                        </p>
                     </div>
-                    <div class="col-12 col-md-4">
+
+                    <div class="col-12 col-md-3">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                        <br><br>
+                        <h5 class="font-weight-bold mt-3 text-white">3. Create A Project</h5>
+                        <p class=" text-white pt-3 font-weight-light">
+                            On your dashboard, click the create a project button, follow the instructions and submit
+                        </p>
+                    </div>
+
+                    <div class="col-12 col-md-3">
                         <i class="fa fa-money" aria-hidden="true"></i>
                         <br><br>
-                        <h5 class="font-weight-bold mt-3 text-white">3. Raise Funds</h5>
-                        <p class="px-5 text-white pt-3 font-weight-light">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam autem consequuntur
-                            cupiditate eius fugit iste maxime, nesciunt nulla odio quae quibusdam, sequi, suscipit ut voluptate.</p>
+                        <h5 class="font-weight-bold mt-3 text-white">4. Project Validation</h5>
+                        <p class=" text-white pt-3 font-weight-light">
+                           We will validate your project and then open for sponsorship, if it meets the criteria.
+                        </p>
                     </div>
                 </div>
             </div>
