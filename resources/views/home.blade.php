@@ -66,6 +66,23 @@
                 <div class="card">
                     <div class="card-body">
                         <br>
+                        <a href="{{route('guarantor.index', $user->id)}}" class="project-link">
+                            <h5 class="card-title display-1 font-weight-bold p-c text-center">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                            </h5>
+                            <hr class="dahsboard-border">
+                            <a href="{{route('guarantor.index')}}" class="btn btn-primary text-white form-control">
+                                See Guarantors
+                            </a>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-12 mt-3">
+                <div class="card">
+                    <div class="card-body">
+                        <br>
                         <a href="{{route('userProjects.all')}}" class="project-link">
                             <h5 class="card-title display-1 font-weight-bold p-c text-center">
                                 <i class="fa fa-credit-card-alt" aria-hidden="true"></i>

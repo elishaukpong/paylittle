@@ -2,18 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreateProjectRequest;
-use App\Models\Duration;
+use App\Models\Guarantor;
+use Auth;
+use App\User;
 use App\Models\Hits;
 use App\Models\Photo;
+use Ramsey\Uuid\Uuid;
 use App\Models\Project;
-use App\Models\ProjectSubscription;
+use App\Models\Duration;
 use App\Models\RepaymentPlan;
 use App\Models\sponsorshipAmount;
-use App\User;
-use Auth;
+use App\Models\ProjectSubscription;
 use Illuminate\Support\Facades\Storage;
-use Ramsey\Uuid\Uuid;
+use App\Http\Requests\CreateProjectRequest;
+use App\Http\Requests\UpdateProjectRequest;
 
 
 class ProjectController extends Controller
@@ -30,10 +32,10 @@ class ProjectController extends Controller
 
     public function index()
     {
+        $data['user']     = Auth::user();
         $data['projects'] = Project::whereStatusId(2)->paginate(12);
         $data['count']    = Project::whereStatusId(2)->count();
-        $data['user']     = Auth::user();
-        return view('dashboard.allprojects', $data);
+        return view('dashboard.projects.index', $data);
     }
 
 
@@ -42,15 +44,16 @@ class ProjectController extends Controller
         $data['user']           = Auth::user();
         $data['durations']      = Duration::all();
         $data['repaymentPlans'] = RepaymentPlan::all();
-        return view('dashboard.addProject', $data);
+        $data['guarantors'] = Guarantor::;
+        return view('dashboard.projects.create', $data);
     }
 
     public function store( CreateProjectRequest $request )
     {
-        $request['id']      = Uuid::uuid1();
-        $request['user_id'] = Auth::user()->id;
+        $request['id']               = Uuid::uuid1();
+        $request['user_id']          = Auth::user()->id;
         $request['repayment_amount'] = $request->amount + ($request->amount * 0.35);
-        $project            = Project::create($request->except([ '_token' ]));
+        $project                     = Project::create($request->except([ '_token' ]));
         $this->storeOrReplaceImage($request, $project);
         if (!$project)
         {
@@ -59,6 +62,74 @@ class ProjectController extends Controller
         return redirect()->route('clientarea')->with('success', 'Project Created Successfully');
     }
 
+
+    public function show( Project $project )
+    {
+        $data['project']            = $project;
+        $data['user']               = Auth::user();
+        $data['durations']          = Duration::all();
+        $data['repaymentPlans']     = RepaymentPlan::all();
+        $data['sponsorshipAmounts'] = sponsorshipAmount::all();
+        $data['amountremaining']    = $this->checkSponsorshipAmountRemaining($project->id);
+        //        return $data;
+        return view('dashboard.viewProject', $data);
+    }
+
+    public function checkSponsorshipAmountRemaining( $project )
+    {
+        $project                   = Project::findOrfail($project);
+        $projectSubscriptionAmount = ProjectSubscription::whereProjectId($project->id)->pluck('amount');
+        $projectSubscriptionAmount->each(function ( $amount ) {
+            $this->amountSubscribed += $amount;
+        });
+        return $project->amount - $this->amountSubscribed;
+    }
+
+
+    public function edit( Project $project )
+    {
+        $data['user']           = Auth::user();
+        $data['durations']      = Duration::all();
+        $data['repaymentPlans'] = RepaymentPlan::all();
+        $data['project']        = $project;
+        return view('dashboard.projects.edit', $data);
+    }
+
+    public function update( UpdateProjectRequest $request, $id )
+    {
+        $project = Project::findOrFail($id);
+        $project->update($request->except([ '_token' ]));
+        if ($request->hasFile('avatarobject'))
+        {
+            $this->storeOrReplaceImage($request, $project, "replace");
+        }
+        if (!$project)
+        {
+            $request->session()->flash('error', 'Could not Update project');
+            return redirect()->route('userProjects.show', $project->id);
+        }
+        $request->session()->flash('success', 'Project Updated');
+        return redirect()->route('userProjects.show', $project->id);
+    }
+
+    public function destroy( Project $project )
+    {
+        if (!$project->delete())
+        {
+            session()->flash('error', 'Could not Delete Project');
+            return redirect()->route('userProjects.view', Auth::user()->id);
+        }
+        session()->flash('success', 'Project Deleted Successfully');
+        return redirect()->route('userProjects.view', Auth::user()->id);
+    }
+
+    public function filterBy( User $user )
+    {
+        $data['projects'] = Project::whereUserId($user->id)->paginate(9);
+        return view('dashboard.showcreated', $data);
+    }
+
+    // Don't mess around here
     public function storeOrReplaceImage( $request, $project, $storeOrReplace = "store" )
     {
         if ($storeOrReplace != "store")
@@ -100,78 +171,9 @@ class ProjectController extends Controller
         $photo = Photo::create($request->except([ '_token' ]));
     }
 
-    public function show( Project $project )
-    {
-        $data['project']            = $project;
-        $data['user']               = Auth::user();
-        $data['durations']          = Duration::all();
-        $data['repaymentPlans']     = RepaymentPlan::all();
-        $data['sponsorshipAmounts'] = sponsorshipAmount::all();
-        $data['amountremaining']    = $this->checkSponsorshipAmountRemaining($project->id);
-        //        return $data;
-        return view('dashboard.viewProject', $data);
-    }
-
-    public function checkSponsorshipAmountRemaining( $project )
-    {
-        $project                   = Project::findOrfail($project);
-        $projectSubscriptionAmount = ProjectSubscription::whereProjectId($project->id)->pluck('amount');
-        $projectSubscriptionAmount->each(function ( $amount ) {
-            $this->amountSubscribed += $amount;
-        });
-        return $project->amount - $this->amountSubscribed;
-    }
-
-    // Don't mess around here
-
-    public function edit( Project $project )
-    {
-        $data['user']           = Auth::user();
-        $data['durations']      = Duration::all();
-        $data['repaymentPlans'] = RepaymentPlan::all();
-        $data['project']        = $project;
-        return view('dashboard.editProject', $data);
-    }
-
-    public function update( CreateProjectRequest $request, $id )
-    {
-
-        $project = Project::findOrFail($id);
-        $project->update($request->except([ '_token' ]));
-        if ($request->hasFile('avatarobject'))
-        {
-            $this->storeOrReplaceImage($request, $project, "replace");
-        }
-        if (!$project)
-        {
-            $request->session()->flash('error', 'Could not Update project');
-            return redirect()->route('userProjects.show', $project->id);
-        }
-        return redirect()->route('userProjects.show', $project->id);
-    }
-
-    public function destroy( Project $project )
-    {
-        if (!$project->delete())
-        {
-            session()->flash('error', 'Could not Delete Project');
-            return redirect()->route('userProjects.view', Auth::user()->id);
-        }
-        session()->flash('success', 'Project Deleted Successfully');
-        return redirect()->route('userProjects.view', Auth::user()->id);
-    }
-
-    public function filterBy( User $user )
-    {
-        $data['user']     = $user;
-        $data['projects'] = Project::whereUserId($user->id)->paginate(9);
-        return view('dashboard.showcreated', $data);
-    }
-
     public function increaseProjectHit( Project $project )
     {
         $hits = Hits::whereProjectId($project->id)->get();
-
 
         if (count($hits) != 1)
         {

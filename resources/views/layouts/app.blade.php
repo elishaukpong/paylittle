@@ -75,11 +75,28 @@
                         <li class="nav-item mx-3">
                             <a class="nav-link text-light" href="/contact">Contact Us</a>
                         </li>
-                        <li class="nav-item mx-3">
-                            <a class="nav-link text-light" href="{{route('userProjects.all')}}">
+                        <li class="nav-item mx-1 note">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle text-light"
+                               role="button"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 Projects
+                                <span class="caret"></span>
                             </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{route('userProjects.view', $user->id)}}">
+                                    My Projects
+                                </a>
+                                <a class="dropdown-item" href="{{route('userProjects.all')}}">
+                                    All Projects
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                      style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
                         </li>
+
                         <li class="nav-item mx-3 dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle text-light" href="#" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

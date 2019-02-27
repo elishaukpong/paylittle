@@ -43,13 +43,23 @@
                         </button>
                     @endif
                 @endguest
+                    <br>
+                    @if ($errors->has('amount'))
+                        <span class="text-danger" role="alert">
+                <strong>{{ $errors->first('amount') }}</strong>
+            </span>
+                @endif
             </div>
         </div>
+
         <hr class="mt-4">
         @auth
             @if(Auth::user()->id == $project->user->id)
                 <div class="float-right text-white">
-                    <a class="btn btn-primary btn-sm badge-pill" data-toggle="modal" data-target="#editModal">
+                    {{--<a class="btn btn-primary btn-sm badge-pill" data-toggle="modal" data-target="#editModal">--}}
+                        {{--Edit Project--}}
+                    {{--</a>--}}
+                    <a class="btn btn-primary btn-sm badge-pill" href="{{route('userProjects.edit', $project->id)}}">
                         Edit Project
                     </a>
                     <a class="btn btn-danger btn-sm badge-pill " data-toggle="modal" data-target="#deleteModal">
@@ -79,9 +89,10 @@
                 <form action="{{route('sponsor.project', $project->id)}}" method="POST">
                     @csrf
                     <div class="modal-body">
-                        <h5>Project Cost: </h5>
-                        <p>{{$project->amount}}</p>
-
+                        <h5>
+                            Project Cost: <small> {{$project->formattedamount}} </small>
+                        </h5>
+                        <br>
                         <div class="form-group">
 
                             <label for="sponsoramount">Amount to Sponsor</label>
@@ -92,21 +103,24 @@
                                         Thousand
                                     </option>
                                 @endforeach
-                                <option id="other" value="others">Others</option>
+                                <option id="other" value="others" data ="{{$amountremaining}}">Others</option>
                             </select>
                         </div>
 
+                        <br>
                         <div class="form-group">
                             <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        NGN
+                                    </div>
+                                </div>
                                 <input id="others" type="text"
                                        class="form-control {{ $errors->has('others') ? ' is-invalid' : '' }}"
                                        name="others"  placeholder="Choose Other Above" disabled>
-                                @if ($errors->has('name'))
-                                    <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('name') }}</strong>
-                                        </span>
-                                @endif
+
                             </div>
+                                <small class="text-danger">Don't Sponsor above NGN{{number_format($amountremaining)}}</small>
                         </div>
 
                         <div>

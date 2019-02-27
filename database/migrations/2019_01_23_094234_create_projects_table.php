@@ -23,7 +23,6 @@ class CreateProjectsTable extends Migration
             $table->integer('amount')->unsigned();
             $table->integer('repayment_amount')->unsigned();
             $table->text('details');
-//            $table->string('address');
             $table->string('location');
             $table->timestamps();
 

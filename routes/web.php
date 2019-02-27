@@ -11,8 +11,6 @@
 |
 */
 
-use App\Models\States;
-
 Route::get('/', 'NavigationController@index')->name('/');
 Route::get('/about', 'NavigationController@about')->name('about');
 Route::get('/contact', 'NavigationController@contact')->name('contact');
@@ -24,6 +22,10 @@ Route::get('/account/{user}', 'UserController@show')->name('user.show');
 Route::get('/account/{user}/edit', 'UserController@edit')->name('user.edit');
 Route::put('/account/{user}', 'UserController@update')->name('user.update');
 
+//Guarantor Route
+Route::resource('/guarantor', 'GuarantorController');
+
+
 Route::get('/project', 'ProjectController@index')->name('userProjects.all');
 Route::get('/project/create', 'ProjectController@create')->name('project.create');
 Route::post('/project', 'ProjectController@store')->name('project.store');
@@ -32,13 +34,17 @@ Route::get('/project/{project}/edit', 'ProjectController@edit')->name('userProje
 Route::get('/project/{project}/delete', 'ProjectController@destroy')->name('userProjects.delete');
 Route::put('/project/{project}', 'ProjectController@update')->name('userProjects.update');
 Route::get('/projects/{user}', 'ProjectController@filterBy')->name('userProjects.view');
+Route::get('/projects/{project}/hit', 'ProjectController@increaseProjectHit');
 
-Route::get('test/{project}', 'ProjectController@checkSponsorshipAmountRemaining');
+Route::get('test', function(){
+    return view('bankdetails');
+});
 
 //Sponsorship routes
 Route::post('/projects/{project}/sponsor', 'SponsorController@sponsorProject')->name('sponsor.project');
 Route::get('/projects/{user}/sponsored', 'SponsorController@sponsoredProjects')->name('view.sponsor');
-Route::get('/projects/{project}/hit', 'ProjectController@increaseProjectHit');
+Route::get('/sponsor/payment', 'SponsorController@payment')->name('payment');
+
 
 //Email Route
 Route::post('/email', 'EmailSubscriptionController@subscribe')->name('email.subscribe');

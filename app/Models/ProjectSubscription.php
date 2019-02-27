@@ -28,10 +28,10 @@ class ProjectSubscription extends Model
     }
 
     public function getFormattedAmountAttribute(){
-        return "N " . number_format($this->amount);
+        return "NGN " . number_format($this->amount);
     }
 
     public function getFormattedReturnsAttribute(){
-        return "N " . number_format($this->returns);
+        return "NGN " . number_format($this->returns);
     }
 }

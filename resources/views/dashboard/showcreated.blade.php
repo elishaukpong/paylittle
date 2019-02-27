@@ -37,13 +37,10 @@
                                 <td>{{ $project->formattedamount}}</td>
                                 <td>{{$project->formattedrepaymentamount}}</td>
                                 <td>{{$project->repaymentplan->timeline}}</td>
-{{--                                <td>{{$project->due_date->diffForHumans()}}</td>--}}
                                 <td>{{ $project->returns}}</td>
                                 <td>
                                     <a href="{{route('userProjects.show', $project->id)}}" class="btn btn-primary">View Project</a>
                                 </td>
-                                {{--<td>{{ $project->gender}}</td>--}}
-                                {{--<td><a href="{{route('admin.showuser', $project->id)}}" class="btn btn-primary">View User</a></td>--}}
 
                             </tr>
                         @endforeach
@@ -53,7 +50,7 @@
                 </div>
                     <div class="row my-4 text-center">
                         <div class="col-md-3 col-12 mx-auto ">
-                            {{--{{$user->links()}}--}}
+                            {{$projects->links()}}
                         </div>
                     </div>
                     {{--<a href="" class="btn btn-secondary my-4">See Joined Classes</a>--}}

@@ -15,10 +15,22 @@
 
 $(document).ready(function () {
 
+    //Setting up functions
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    const formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'NGN',
+        minimumFractionDigits: 0
+    });
+
     $('.project-status').click(function (e) {
         e.preventDefault();
         var projectName = $('.projectname').html();
-
         if ($(this).attr('id') == 'accepted') {
             action = "Approve";
         } else {
@@ -50,17 +62,7 @@ $(document).ready(function () {
 
     });
 
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
 
-    const formatter = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'NGN',
-        minimumFractionDigits: 0
-    });
 
     function updateProjectStatus(id, status, action) {
         $.ajax({
@@ -96,30 +98,26 @@ $(document).ready(function () {
         //the value of the sponsorship amount
         var sponsorshipAmount = $(this).val();
         if (sponsorshipAmount == 'others') {
+            //Remove the disabled, then rename the placeholder and swap the amount name attribute to the element
             $('#others').removeAttr('disabled');
+            $('#others').attr('placeholder', 'Enter Amount');
+            $('#others').attr('name', 'amount');
+            $(this).removeAttr('name');
             $('#proposedamount').text('NGN 0,000');
         } else {
             $('#others').attr('disabled', 'disabled');
+            $('#others').removeAttr('name');
+            $('#others').attr('placeholder', 'Choose Other Above');
+            $(this).attr('name', 'amount');
             sponsorReturns(aria, sponsorshipAmount);
         }
         //Ajax Function
     });
 
     $('#others').keyup(function () {
-        var sponsorshipAmount = parseLocaleNumber($(this).val());
+        var sponsorshipAmount = $(this).val();
         sponsorReturns(aria, sponsorshipAmount);
     });
-
-    // to convert 1,000,000 to 1000000 to be processed by ajax return amount API
-    function parseLocaleNumber(stringNumber) {
-        var thousandSeparator = (1111).toLocaleString().replace(/1/g, '');
-        var decimalSeparator = (1.1).toLocaleString().replace(/1/g, '');
-
-        return parseFloat(stringNumber
-            .replace(new RegExp('\\' + thousandSeparator, 'g'), '')
-            .replace(new RegExp('\\' + decimalSeparator), '.')
-        );
-    }
 
     function sponsorReturns(id, sponsorshipAmount) {
         $.ajax({

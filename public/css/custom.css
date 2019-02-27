@@ -290,3 +290,9 @@ ol.carousel-indicators {
 .project-link{
     text-decoration: none !important;
 }
+
+.bank-text{
+    font-size: 1.1em;
+    font-family: 'Lato', sans-serif;
+    color: #1d68a7;
+}

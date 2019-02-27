@@ -11,9 +11,6 @@
 
     {{--Scripts--}}
    @include('inc.scripts')
-
-
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
@@ -73,10 +70,27 @@
                             </li>
 
                             <li class="nav-item mx-1 note">
-                                <a class="nav-link text-light" href="{{route('userProjects.all')}}">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle text-light"
+                                   role="button"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     Projects
+                                    <span class="caret"></span>
                                 </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{route('userProjects.view', $user->id)}}">
+                                        My Projects
+                                    </a>
+                                    <a class="dropdown-item" href="{{route('userProjects.all')}}">
+                                        All Projects
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                          style="display: none;">
+                                        @csrf
+                                    </form>
+                                </div>
                             </li>
+
 
                             <li class="nav-item mx-1 note">
                                 <a class="nav-link text-light" href="{{route('user.show', Auth::user()->id)}}">
