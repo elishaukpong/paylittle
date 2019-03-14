@@ -358,3 +358,11 @@ ol.carousel-indicators {
     z-index: 99;
     font-family: 'Gothic A1', sans-serif !important;
 }
+
+.create-project-image {
+    transform: rotate(1deg);
+}
+
+.sponsor-project-image {
+    transform: rotate(-1deg);
+}

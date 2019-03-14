@@ -6,7 +6,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 my-md-5 py-md-3">
-                        <h1 class="text-uppercase mt-5 pt-md-5 text-light display-4 font-weight-bold">We make life <br> better and cozzy</h1>
+                        <h1 class="text-uppercase mt-5 pt-md-5 text-light display-4 font-weight-bold">We make life <br> better and cozy</h1>
                         <p class="text-light mb-5 font-weight-light">Pay Little helps you afford whatever you want while paying at your convinience.</p>
                         <br>
                         <a href="{{route('userProjects.all')}}" class="btn btn-primary btn-lg mr-4 px-5 py-3 my-2">Get Started</a>
@@ -327,14 +327,81 @@
     <section>
         <div class="container">
             <div class="row">
-                <div class="col-12 text-center">
-                    <h1>How It Works</h1>
+                <div class="col-12 text-center pb-3">
+                    <h1 class="p-c">How It Works</h1>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-6 col-12 mx-auto">
+                            <p>We make it possible to afford quick loans to take care of pressing issues and repay over a period of time.
+                                Its a fast and simple process to secure this loan</p>
+
+                        </div>
+                    </div>
                 </div>
             </div>
+            <br>
+            <br>
+
+            <div class="row mt-5">
+                <div class="col-12 col-md-7">
+                    <img src="{{asset('img/create.jpg')}}" class="img-fluid rounded create-project-image">
+                </div>
+                <div class="col-12 col-md-5 text-center">
+
+                    <h1 class="p-c">Create Project</h1>
+                    <br><br>
+                    <ul>
+                        <li class="my-4">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo quae mollitia nihil iste, placeat accusamus temporibus labore maxime officiis ex suscipit autem ut eum dignissimos sunt amet nemo dolor corrupti. Beatae voluptate ex perferendis.
+                        </li>
+                        <li class="my-4">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo quae mollitia nihil iste, placeat accusamus temporibus labore
+                            maxime officiis ex suscipit autem ut eum dignissimos sunt amet nemo dolor corrupti. Beatae voluptate ex perferendis.
+                        </li>
+                        <li class="my-4">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo quae mollitia nihil iste, placeat accusamus temporibus labore
+                            maxime officiis ex suscipit autem ut eum dignissimos sunt amet nemo dolor corrupti. Beatae voluptate ex perferendis.
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div>
+<br><br>
+            <div class="row mt-5 pt-5">
+
+                <div class="col-12 col-md-5">
+
+                    <h1 class="p-c">Sponsor Project</h1>
+
+                   <br><br>
+                    <ul>
+                        <li class="my-4">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo quae mollitia nihil iste, placeat accusamus temporibus labore
+                            maxime officiis ex suscipit autem ut eum dignissimos sunt amet nemo dolor corrupti. Beatae voluptate ex perferendis.
+                        </li>
+                        <li class="my-4">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo quae mollitia nihil iste, placeat accusamus temporibus labore
+                            maxime officiis ex suscipit autem ut eum dignissimos sunt amet nemo dolor corrupti. Beatae voluptate ex perferendis.
+                        </li>
+                        <li class="my-4">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo quae mollitia nihil iste, placeat accusamus temporibus labore
+                            maxime officiis ex suscipit autem ut eum dignissimos sunt amet nemo dolor corrupti. Beatae voluptate ex perferendis.
+                        </li>
+
+                    </ul>
+
+                </div>
+                <div class="col-12 col-md-7">
+                    <img src="{{asset('img/sponsor.jpg')}}" class="img-fluid rounded sponsor-project-image">
+                </div>
+            </div>
+
+
         </div>
     </section>
 
-
+{{--
     <section class="second-header" id="learnhow">
         <div class="bg2-shadow">
             <div class="container">
@@ -385,79 +452,29 @@
                 </div>
             </div>
         </div>
+    </section> --}}
+
+
+<br>
+<br>
+<br>
+<br>
+
+
+    <section class="banner">
+
+        <div class="container">
+            <div class="row py-5">
+                <div class="col-md-9 col-12 text-center text-md-left">
+                    <h1 class="font-weight-bold text-white py-4 py-md-0">Ready to create your project?</h1>
+                </div>
+                <div class="col-md-3 col-12 text-center text-md-left">
+                    <a href="{{route('register')}}" class="btn boo btn-warning btn-lg px-4"> Get Started</a>
+                </div>
+            </div>
+
+        </div>
     </section>
-
-
-
-    {{--<section class="my-5 py-4 who-we-are">--}}
-        {{--<div class="container">--}}
-            {{--<div class="row my-5">--}}
-                {{--<div class="col-12 text-center">--}}
-                    {{--<h1 class="text-uppercase p-c who mb-3">Who we are</h1>--}}
-                    {{--<p class="mx-5 px-md-5 p-c">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Beatae id inventore ullam numquam architecto molestiae quis rem deserunt quo atque.</p>--}}
-                {{--</div>--}}
-            {{--</div>--}}
-
-            {{--<div class="row text-center">--}}
-                {{--<div class="col-md-4 col-12 px-4">--}}
-                    {{--<i class="fa fa-lightbulb-o p-c my-4" aria-hidden="true"></i>--}}
-                    {{--<h2 class="p-c text-uppercase">We Make your dreams come true</h2>--}}
-                    {{--<p class="p-c my-3">Getting that perfect dream can be financially draining and physically stressful. We are here to alleviate this burden--}}
-                        {{--from your shoulders</p>--}}
-                {{--</div>--}}
-
-                {{--<div class="col-md-4 col-12 px-4">--}}
-                    {{--<i class="fa fa-cogs p-c my-4" aria-hidden="true"></i>--}}
-                    {{--<h2 class="p-c text-uppercase">We help you do more with your finances</h2>--}}
-                    {{--<p class="p-c my-3">Very little and more can be done wth your income. Let's help you optimize your income to create tthe life you desire </p>--}}
-                {{--</div>--}}
-
-                {{--<div class="col-md-4 col-12 px-4">--}}
-                    {{--<i class="fa fa-university p-c my-4" aria-hidden="true"></i>--}}
-                    {{--<h2 class="p-c text-uppercase">We help you secure your home</h2>--}}
-                    {{--<p class="p-c my-3">Acquire homes through the PayLittle Housing scheme at very flexible payment deals. Start Living in your own apartment now</p>--}}
-                {{--</div>--}}
-
-            {{--</div>--}}
-
-        {{--</div>--}}
-    {{--</section>--}}
-
-    {{--<section class="home-jum">--}}
-        {{--<div class="container my-5 py-5">--}}
-            {{--<div class="row">--}}
-                {{--<div class="col-12">--}}
-                    {{--<h5 class="text-center text-light">With Paylittle, you could either get help with optimizing your income to afford a range of commodities, or you could be a benefactor and help others live a comfortable life, this comes with its perks  </h5>--}}
-                {{--</div>--}}
-            {{--</div>--}}
-        {{--</div>--}}
-    {{--</section>--}}
-    {{----}}
-    {{--<section class="partners my-5 py-3">--}}
-        {{--<div class="container">--}}
-            {{--<div class="row">--}}
-                {{--<div class="col-12 text-center">--}}
-                    {{--<h3 class="p-c">Our Partners</h3>--}}
-
-                {{--</div>--}}
-                {{--<div class="col-12">--}}
-                    {{--<div class="col-12 mx-auto text-center mb-4">--}}
-                        {{--<ul class="list-inline">--}}
-                            {{--<li data-aos="zoom-in" data-aos-duration="3000" class="list-inline-item mx-5">--}}
-                            {{--<img src="{{asset('img/intuit.png')}}" alt="">--}}
-                            {{--</li>--}}
-                            {{--<li data-aos="zoom-in" data-aos-duration="3000" class="list-inline-item mx-5">--}}
-                            {{--<img src="{{asset('img/intuit.png')}}" alt="">--}}
-                            {{--</li>--}}
-                            {{--<li data-aos="zoom-in" data-aos-duration="3000" class="list-inline-item mx-5">--}}
-                            {{--<img src="{{asset('img/intuit.png')}}" alt="">--}}
-                            {{--</li>--}}
-                        {{--</ul>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-            {{--</div>--}}
-        {{--</div>--}}
-    {{--</section>--}}
 
     <section class="my-5 py-5">
 
@@ -478,10 +495,10 @@
                             </div>
                             <div class="col-md-7 ml-md-5">
                                 <p class="mt-4 py-3 py-0 px-4 px-md-0 text-justify  testimonial">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam assumenda at consectetur eveniet explicabo.
-                                    Culpa cupiditate eos est ex fugiat, maxime nemo nisi officiis porro praesentium sed,
-                                    suscipit? Alias beatae consectetur, consequuntur delectus deserunt distinctio dolor,
-                                    fugit harum hic id incidunt libero quia quisquam totam voluptatibus! Architecto aut ?
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam assumenda at consectetur eveniet explicabo. Culpa cupiditate
+                                    eos est ex fugiat, maxime nemo nisi officiis porro praesentium sed, suscipit? Alias beatae
+                                    consectetur, consequuntur delectus deserunt distinctio dolor, fugit harum hic id incidunt
+                                    libero quia quisquam totam voluptatibus! Architecto aut ?
                                 </p>
                                 <h5 class="font-weight-bold px-4 px-md-0 "> JOHN MILLER</h5>
                                 <p class="px-4 px-md-0 ">Founder, Farmsponsors</p>
@@ -497,10 +514,10 @@
                             </div>
                             <div class="col-md-7 ml-md-5">
                                 <p class="mt-4  py-3 py-0 px-4 px-md-0  text-justify  testimonial">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam assumenda at consectetur eveniet explicabo.
-                                    Culpa cupiditate eos est ex fugiat, maxime nemo nisi officiis porro praesentium sed,
-                                    suscipit? Alias beatae consectetur, consequuntur delectus deserunt distinctio dolor,
-                                    fugit harum hic id incidunt libero quia quisquam totam voluptatibus! Architecto aut ?
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam assumenda at consectetur eveniet explicabo. Culpa cupiditate
+                                    eos est ex fugiat, maxime nemo nisi officiis porro praesentium sed, suscipit? Alias beatae
+                                    consectetur, consequuntur delectus deserunt distinctio dolor, fugit harum hic id incidunt
+                                    libero quia quisquam totam voluptatibus! Architecto aut ?
                                 </p>
                                 <h5 class="font-weight-bold px-4 px-md-0 "> JOHN MILLER</h5>
                                 <p class="px-4 px-md-0 ">Founder, Farmsponsors</p>
@@ -517,10 +534,10 @@
                             </div>
                             <div class="col-md-7 ml-md-5">
                                 <p class="mt-md-4  py-3 py-0 px-4 px-md-0  text-justify  testimonial">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam assumenda at consectetur eveniet explicabo.
-                                    Culpa cupiditate eos est ex fugiat, maxime nemo nisi officiis porro praesentium sed,
-                                    suscipit? Alias beatae consectetur, consequuntur delectus deserunt distinctio dolor,
-                                    fugit harum hic id incidunt libero quia quisquam totam voluptatibus! Architecto aut ?
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam assumenda at consectetur eveniet explicabo. Culpa cupiditate
+                                    eos est ex fugiat, maxime nemo nisi officiis porro praesentium sed, suscipit? Alias beatae
+                                    consectetur, consequuntur delectus deserunt distinctio dolor, fugit harum hic id incidunt
+                                    libero quia quisquam totam voluptatibus! Architecto aut ?
                                 </p>
                                 <h5 class="font-weight-bold px-4 px-md-0 "> JOHN MILLER</h5>
                                 <p class="px-4 px-md-0 ">Founder, Farmsponsors</p>
@@ -532,36 +549,21 @@
                 </div>
 
 
-                {{--Arrow right and left--}}
+                {{-- Arrow right and left--}} {{--
 
-                {{--<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">--}}
-                    {{--<span class="carousel-control-prev-icon" aria-hidden="true"></span>--}}
-                    {{--<span class="sr-only">Previous</span>--}}
-                {{--</a>--}}
-                {{--<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">--}}
-                    {{--<span class="carousel-control-next-icon" aria-hidden="true"></span>--}}
-                    {{--<span class="sr-only">Next</span>--}}
-                {{--</a>--}}
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">--}}
+                        {{--<span class="carousel-control-prev-icon" aria-hidden="true"></span>--}}
+                        {{--<span class="sr-only">Previous</span>--}}
+                    {{--</a>--}} {{--
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">--}}
+                        {{--<span class="carousel-control-next-icon" aria-hidden="true"></span>--}}
+                        {{--<span class="sr-only">Next</span>--}}
+                    {{--</a> --}}
             </div>
         </div>
 
 
 
 
-    </section>
-
-    <section class="banner">
-
-        <div class="container">
-            <div class="row py-5">
-                <div class="col-md-9 col-12 text-center text-md-left">
-                    <h1 class="font-weight-bold text-white py-4 py-md-0">Ready to create your project?</h1>
-                </div>
-                <div class="col-md-3 col-12 text-center text-md-left">
-                    <a href="{{route('register')}}" class="btn boo btn-warning btn-lg px-4"> Get Started</a>
-                </div>
-            </div>
-
-        </div>
     </section>
 @endsection
