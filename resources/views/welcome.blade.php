@@ -282,18 +282,56 @@
                 </div>
             </div>
         @else
-            <div class="container">
+            <div class="container-fluid mb-5 pb-5">
                 <div class="row">
                     <div class="col-12 col-md-6">
-                        <img src="" alt="">
+                        <div class="overhead-text">
+                            <h1 class="p-3 font-weight-bold text-white">Real Estate Loans</h1>
+                        </div>
+                        <img src="{{asset('img/side-l.jpeg')}}" alt="" class="img-fluid">
                     </div>
                     <div class="col-12 col-md-6">
-<p>ioiwiwi</p>
+                        <div class="row">
+                            <div class="col-12 col-md-6 pb-3">
+                               <div class="overhead-text">
+                                    <h5 class="p-3 font-weight-bold text-white">Furniture Loans</h5>
+                                </div>
+                                <img src="{{asset('img/side-r1.jpeg')}}" alt="" class="img-fluid">
+                            </div>
+                            <div class="col-12 col-md-6 pb-3">
+                                <div class="overhead-text">
+                                    <h5 class="p-3 font-weight-bold text-white">Real Estate Loans</h5>
+                                </div>
+                                <img src="{{asset('img/side-l.jpeg')}}" alt="" class="img-fluid">
+                            </div>
+                            <div class="col-12 col-md-6 pb-3">
+                                <div class="overhead-text">
+                                    <h5 class="p-3 font-weight-bold text-white">School Fees</h>
+                                </div>
+                                <img src="{{asset('img/side-l.jpeg')}}" alt="" class="img-fluid">
+                            </div>
+                            <div class="col-12 col-md-6 pb-3">
+                                <div class="overhead-text">
+                                    <h5 class="p-3 font-weight-bold text-white">and more loans</h5>
+                                </div>
+                                <img src="{{asset('img/side-r1.jpeg')}}" alt="" class="img-fluid">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         @endif
 
+    </section>
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h1>How It Works</h1>
+                </div>
+            </div>
+        </div>
     </section>
 
 
