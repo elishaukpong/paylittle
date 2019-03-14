@@ -9,8 +9,11 @@ class ProjectSubscription extends Model
     public $incrementing = false;
 
     protected $fillable = [
-        'id', 'user_id', 'project_id', 'status_id', 'amount'
+        'id', 'user_id', 'project_id', 'status_id', 'amount', 'returns','due_date'
     ];
+
+    protected $dates = ['due_date'];
+
     public function user()
     {
         return $this->belongsTo('App\User', 'user_id');
@@ -21,9 +24,14 @@ class ProjectSubscription extends Model
     }
     public function status()
     {
-        return $this->belongsTo('App\Models\ProjectStatus', 'status_id');
+        return $this->belongsTo('App\Models\Status', 'status_id');
     }
-    public function getAmountDueAttribute(){
-        return $this->amount + (($this->amount/100) *15);
+
+    public function getFormattedAmountAttribute(){
+        return "NGN " . number_format($this->amount);
+    }
+
+    public function getFormattedReturnsAttribute(){
+        return "NGN " . number_format($this->returns);
     }
 }

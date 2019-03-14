@@ -9,7 +9,6 @@
             </div>
             <form method="POST" action="{{ route('register') }}" class="mt-5">
                 @csrf
-                <input type="hidden" name="avatar" value="defaultuser.png">
                 <div class="form-group row">
                     <div class="col-md-6 col-12 mx-auto ">
                         <input id="first_name" type="text" class="form-control{{ $errors->has('first_name') ? ' is-invalid' : '' }} auth-input" name="first_name" value="{{ old('first_name') }}" placeholder="First Name"
@@ -52,6 +51,18 @@
                         @if ($errors->has('phone'))
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first('phone') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-md-6 col-12 mx-auto">
+                        <input id="bvn" type="text" class="form-control{{ $errors->has('bvn') ? ' is-invalid' : '' }} auth-input" name="bvn" value="{{ old('bvn') }}"
+                               required placeholder="BVN">
+                        @if ($errors->has('bvn'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $errors->first('bvn') }}</strong>
                             </span>
                         @endif
                     </div>

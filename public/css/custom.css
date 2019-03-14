@@ -1,37 +1,88 @@
-* {
-    font-family: 'Poppins', sans-serif;
+body {
+    font-family: 'Gothic A1', sans-serif !important;
+
+}
+nav{
+    font-family: 'Gothic A1', sans-serif !important;
+    font-weight: 300;
+    background: linear-gradient(118deg,#328bf2,#1644ad);
+}
+.home-divider{
+    border-top: .5px solid white;
+    width:140%;
+    /*margin-bottom: 0px !important;*/
+    /*margin-top:1rem;*/
+}
+.nav-link.active{
+    /*background: linear-gradient(118deg,#328bf2,#1644ad) !important;*/
+}
+.banner{
+    background-color: rgb(3, 58, 107);
 }
 
+.featured-projects, footer{
+    font-family: 'Roboto', sans-serif;
+}
+.how-we-work .fa{
+    font-size:3.5em;
+    padding:.5em .7em;
+    border-radius: 50%;
+    color:white;
+    background-color: rgba(3, 58, 107, 0.531);
+
+}
+.text-whiter{
+    color: #e0e0e0;
+}
 .p-c {
     color: rgb(22, 102, 173) !important;
 }
+.testimonial{
+    font-family: 'Lato', sans-serif;
+    font-style: italic;
+}
+.about{
+    font-family: 'Lato', sans-serif;
+    overflow-x: hidden;
+}
 
-.bg-shadow,.bene-header-shadow,.about-header-shadow {
+.bg-shadow,.bene-header-shadow{
     width: 100%;
-    height: 600px;
+    /*height: 700px;*/
     background-color: rgba(3, 58, 107, 0.531);
 }
 .bene-header-shadow,.about-header-shadow{
-    height: 400px;  /* this height overides the height above*/
+    height: 300px;  /* this height overides the height above*/
+
 }
 .header {
-    background-image: url('../img/bench-chair-comfort-1166406.jpg');
+    background-image: url('../img/homebg.jpeg');
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    /*height: 100%;*/
+}
+.second-header {
+    background-image: url('../img/homebg-2.jpeg');
+    background-size: cover;
+    background-position: center;
+    /*background-attachment: fixed;*/
+}
+.bg2-shadow {
+    width: 100%;
+    /*height: 550px;*/
+    background-color: rgba(3, 58, 107, 0.731);
 }
 .bene-header{
     background-image: url('../img/bene.jpg');
     height:400px;
 }
 .about-header{
-    background-image: url('../img/close-up-door-focus-101808.jpg');
+    background: linear-gradient(118deg,#328bf2,#1644ad);
     background-size:cover;
     background-position: center;
 }
-.header{
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    /* background-position: center; */
-}
+
 
 .who {
     font-weight: 300;
@@ -49,7 +100,7 @@
     line-height:1.6em;
 }
 footer{
-    background-color: rgb(10, 65, 112) !important;
+    background: linear-gradient(118deg,#328bf2,#1644ad);
 }
 
 /* benefactor page */
@@ -66,7 +117,7 @@ footer{
 .login-header{
     font-weight:300;
 }
-.auth-input,.auth-input:focus,.auth-input:active{
+.auth-input,.auth-inputs,.auth-input:focus,.auth-inputs:focus,.auth-input:active,.auth-inputs:active{
     background: transparent;
     border:0;
     border-radius: 0;
@@ -76,6 +127,9 @@ footer{
     color: hsla(0,0%,100%,.75)!important;
     padding:0;
     font-family: Nunito;
+}
+auth-inputs,.auth-inputs:active,.auth-inputs:focus{
+    color: black !important;
 }
 .auth-input:-webkit-autofill {
     box-shadow: 0 0 0px 1000px #328bf2 inset !important;
@@ -104,6 +158,11 @@ footer{
 .dashboard i{
     font-size: 1.4em;
 }
+.boo{
+    -webkit-border-radius: 5rem;
+    -moz-border-radius: 5rem;
+    border-radius: 5rem;
+}
 .dashboard .badge{
     position: absolute;
     top:15px;
@@ -114,9 +173,8 @@ footer{
 .note{
     position: relative;
 }
-.dashboard-border{
-    border-bottom:3px solid #328af1;
-    width:50%;
+.progress {
+    height: .5rem;
 }
 .profile-img{
     border-radius:50%;
@@ -168,4 +226,73 @@ footer{
 }
 .invalid-files{
     color: #e3342f;
+}
+.carousel-indicators li{
+   background-color:#1d68a7;
+}
+
+.carousel-indicators li.active{
+    background-color: red;
+}
+
+ol.carousel-indicators {
+    position: absolute;
+    bottom: -1em;
+    margin: 0;
+    left: 25em;
+    right: 0;
+    width: auto;
+}
+
+
+.about-image{
+  position: relative;
+    right:-5em;
+    overflow-x: hidden;
+}
+.img-top{
+    position: absolute;
+    right: 12em;
+    top: 50em;
+}
+.text-secondaryy{
+    color: #4F4F4F;
+}
+.shape{
+    position: absolute;
+    left: -25em;
+    opacity: .1;
+    top: -4em;
+}
+.contact-hr{
+    width:40%;
+    border:0;
+    border-top: .5px solid white;
+}
+
+.dashlinks:hover .card{
+    background: red;
+}
+.verification-card{
+    border:0;
+    background-color: transparent;
+    -webkit-border-radius: 1em;
+    -moz-border-radius: 1em;
+    border-radius: 1em;
+}
+.verification-card-body{
+    background: rgba(22, 68, 173, 0.23);
+    -webkit-border-radius: 1em;
+    -moz-border-radius: 1em;
+    border-radius: 1em;
+    border:0;
+}
+.project-link{
+    text-decoration: none !important;
+}
+
+.bank-text{
+    font-size: 1.1em;
+    font-family: 'Lato', sans-serif;
+    color: #1d68a7;
 }

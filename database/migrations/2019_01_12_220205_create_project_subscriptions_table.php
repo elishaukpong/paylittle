@@ -17,7 +17,8 @@ class CreateProjectSubscriptionsTable extends Migration
             $table->string('id', 36);
             $table->string('user_id', 36);
             $table->string('project_id', 36);
-            $table->boolean('status_id')->default(1);
+            $table->integer('status_id')->default(1);
+
             $table->timestamps();
 
             $table->primary('id');

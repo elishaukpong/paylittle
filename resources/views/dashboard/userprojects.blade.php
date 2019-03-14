@@ -1,4 +1,4 @@
-@extends('layouts.dashboard')
+@extends('layouts.dashboardclean')
 @section('notifications')
 <div class="container my-4">
     <div class="row justify-content-center">
@@ -42,14 +42,14 @@
     <div class="row">
         @forelse ($projects as $project)
             <div class="col-md-4 col-12 mt-3">
-                <img class="card-img-top" src="{{asset('storage/avatars/projects/'. $project->avatar)}}" alt="Card image cap">
-                <div class="card border border-primary">
-                    <div class="card-body">                    
+                <div class="card">
+                <img class="card-img-top" src="{{asset($project->photo->projectavatar)}}" alt="Card image cap">
+                    <div class="card-body">
                         <p class="card-title font-weight-bold p-c">{{$project->name}}</p>
                         <p class="card-text">{{$project->shortDetails}}</p>
+
                         <hr class="dahsboard-border">
-                        <a href="{{route('userProjects.edit', $project->id)}}" class="btn btn-danger text-white">Edit Project</a>
-                        <a href="{{route('userProjects.show', $project->id)}}" class="btn btn-primary text-white ml-4">View Project</a>
+                        <a href="{{route('userProjects.show', $project->id)}}" class="btn btn-primary text-white form-control">View Project</a>
                     </div>
                 </div>
             </div>
@@ -59,7 +59,7 @@
                     <div class="card-body text-center">
                         <p class="card-title font-weight-bold p-c">No Project Yet</p>
                         <hr class="dahsboard-border">
-                        <a href="" class="btn btn-primary text-white form-control">Create Project</a>
+                        <a href="{{route('project.create')}}" class="btn btn-primary text-white form-control">Create Project</a>
                     </div>
                 </div>
             </div>

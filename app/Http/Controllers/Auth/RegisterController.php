@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\bvn;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -28,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/clientarea';
+    protected $redirectTo = '/registerphase';
 
     /**
      * Create a new controller instance.
@@ -53,25 +54,34 @@ class RegisterController extends Controller
             'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
+            'bvn' => ['required', 'string', 'min:11', 'max:11']
         ]);
     }
 
 
     protected function create(array $data)
     {
+        $data['id'] = Uuid::uuid1();
+
         $user =  User::create([
-            'id' => Uuid::uuid1(),
+            'id' => $data['id'],
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
             'email' => $data['email'],
             'phone' => $data['phone'],
-            'password' => $data['password'] ,
-            'avatar' => $data['avatar'],
+            'password' => $data['password'],
             'details' => '',
-            'dob' => '',
             'gender' => '',
             'is_admin' => '',
         ]);
+
+        if($user){
+            bvn::create([
+                'user_id' => $data['id'],
+               'number' => $data['bvn'],
+                'status_id' => 1
+            ]);
+        }
 
         return $user;
 

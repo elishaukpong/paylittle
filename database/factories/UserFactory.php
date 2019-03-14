@@ -2,6 +2,7 @@
 
 use Faker\Generator as Faker;
 use Carbon\Carbon;
+use App\Models\States;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,8 @@ $factory->define(App\User::class, function (Faker $faker) {
     $gender = ['male','female', 'others'];
     $index = array_rand($status);
     $indexx = array_rand($gender);
+    $state = States::all()->random();
+    $lga = $state->lga()->get()->random();
 
     return [
         'id' => $faker->uuid,
@@ -27,11 +30,15 @@ $factory->define(App\User::class, function (Faker $faker) {
         'phone' => $faker->phoneNumber,
         'dob' =>   Carbon::now()->subMonth(rand(19,40)),
         'gender' => $gender[$indexx],
-        'avatar' => $faker->image('storage/app/public/avatars/users',400,400, null,false),
+        'occupation' => $faker->company,
         'address' => $faker->address,
+        'state_id' => $state->id,
+        'localgovernmentarea_id' => $lga->id,
+        'details' => $faker->text(250),
         'is_admin' => $status[$index],
         'email_verified_at' => Carbon::now(),
         'password' => 'secret', // secret
         'remember_token' => str_random(10),
     ];
 });
+

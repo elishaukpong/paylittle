@@ -2,14 +2,14 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
+use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
-use Carbon\Carbon;
 
 
-class User extends Authenticatable   
+class User extends Authenticatable implements MustVerifyEmail
 {
     public $incrementing = false;
 
@@ -20,25 +20,73 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = [
-       'id', 'first_name', 'last_name', 'email', 'phone', 'verification_string', 'password', 'gender', 'address', 'avatar',  'dob','details'
-    ];
+    protected $fillable = [ 'id', 'first_name', 'last_name', 'email', 'phone', 'gender', 'dob', 'address', 'is_admin', 'organization_id', 'password', 'details', 'occupation', 'city', 'state_id', 'localgovernmentarea_id', ];
 
-    protected $dates = [
-          'dob',
-    ];
+    protected $dates = [ 'dob', ];
     /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
      */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+    protected $hidden = [ 'password', 'remember_token', ];
 
-    public function projects()
+    public function photo()
     {
-        return $this->hasMany('App\Models\Project');
+        return $this->morphOne('App\Models\Photo', 'imageable');
+    }
+
+    public function bvn()
+    {
+        return $this->hasOne('App\Models\bvn');
+    }
+
+    public function IsAdmin()
+    {
+        if ($this->is_admin != 'admin')
+        {
+            return false;
+        }
+        return true;
+    }
+
+    public function setPasswordAttribute( $value )
+    {
+        $this->attributes['password'] = Hash::make($value);
+    }
+
+    public function setFirstNameAttribute( $value )
+    {
+        $this->attributes['first_name'] = ucfirst($value);
+    }
+
+    public function setLastNameAttribute( $value )
+    {
+        $this->attributes['last_name'] = ucfirst($value);
+    }
+
+    public function getDobAttribute( $value )
+    {
+        return Carbon::Parse($value)->format('Y-m-d');
+    }
+
+    public function getdefaultAvatarAttribute()
+    {
+        return 'https://placeimg.com/400/400/any';
+    }
+
+    public function getGenderAttribute( $value )
+    {
+        return ucwords($value);
+    }
+
+    public function getModelAttribute()
+    {
+        return "App\User";
+    }
+
+    public function getTotalCountAttribute()
+    {
+        return $this->sponsoredProjects()->count() + $this->projects()->count();
     }
 
     public function sponsoredProjects()
@@ -46,29 +94,15 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\ProjectSubscription', 'user_id');
     }
 
-    public function IsAdmin()
+    public function projects()
     {
-        if($this->is_admin != 'admin'){
-            return false;
-        }
-        return true;
+        return $this->hasMany('App\Models\Project');
     }
 
-    public function setPasswordAttribute($value)
+    public function getFullnameAttribute()
     {
-        $this->attributes['password'] = Hash::make($value);
-    }
-    public function setFirstNameAttribute($value)
-    {
-        $this->attributes['first_name'] = ucfirst($value);
-    }
-    public function setLastNameAttribute($value)
-    {
-        $this->attributes['last_name'] = ucfirst($value);
+        return $this->first_name . ' ' . $this->last_name;
     }
 
-     public function getDobAttribute($value){
-        return Carbon::Parse($value)->format('Y-m-d');
-    }
 
 }

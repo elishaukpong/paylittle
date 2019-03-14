@@ -44,7 +44,7 @@
                 <div class="col-md-4 col-12 mt-3">
                     <div class="card border border-primary">
                         <div class="card-body">
-                            <h5 class="card-title display-1 font-weight-bold p-c">{{$user->projects->count()}}</h5>
+                            <h5 class="card-title display-1 font-weight-bold p-c">{{$usercount}}</h5>
                             <p class="card-text h5 p-c">Users</p>
                             <hr class="dahsboard-border">
                             <a href="{{route('admin.showallusers')}}" class="btn btn-primary text-white form-control">View Details</a>
@@ -54,7 +54,7 @@
                 <div class="col-md-4 col-12 mt-3">
                     <div class="card border border-primary">
                         <div class="card-body">
-                            <h5 class="card-title display-1 font-weight-bold p-c">{{$count}}</h5>
+                            <h5 class="card-title display-1 font-weight-bold p-c">{{$projectcount}}</h5>
                             <p class="card-text h5 p-c">Projects</p>
                             <hr class="dahsboard-border">
                             <a href="{{route('admin.showallprojects')}}" class="btn btn-primary text-white form-control">View Projects</a>
@@ -64,10 +64,10 @@
                 <div class="col-md-4 col-12 mt-3">
                     <div class="card border border-primary">
                         <div class="card-body">
-                            <h5 class="card-title display-1 font-weight-bold p-c">{{$user->projects->count()}}</h5>
-                            <p class="card-text h5 p-c">Benefactors</p>
+                            <h5 class="card-title display-1 font-weight-bold p-c">{{$subscriptioncount}}</h5>
+                            <p class="card-text h5 p-c">Project Subscriptions</p>
                             <hr class="dahsboard-border">
-                            <a href="{{route('userProjects.view', $user->id)}}" class="btn btn-primary text-white form-control">View Details</a>
+                            <a href="{{route('admin.projectsubscriptions')}}" class="btn btn-primary text-white form-control">View Details</a>
                         </div>
                     </div>
                 </div>
