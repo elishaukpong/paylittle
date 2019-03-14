@@ -1,5 +1,4 @@
 <?php
-use App\Models\States;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,10 +36,6 @@ Route::put('/project/{project}', 'ProjectController@update')->name('userProjects
 Route::get('/projects/{user}', 'ProjectController@filterBy')->name('userProjects.view');
 Route::get('/projects/{project}/hit', 'ProjectController@increaseProjectHit');
 
-Route::get('test', function(){
-    $states = States::all()->random();
-    return  $states->lga()->get()->random();
-});
 
 //Sponsorship routes
 Route::post('/projects/{project}/sponsor', 'SponsorController@sponsorProject')->name('sponsor.project');

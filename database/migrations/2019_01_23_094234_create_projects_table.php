@@ -18,6 +18,7 @@ class CreateProjectsTable extends Migration
             $table->string('user_id');
             $table->string('duration_id');
             $table->string('repayment_id');
+            $table->string('guarantor_id');
             $table->string('status_id')->default(1);
             $table->string('name');
             $table->integer('amount')->unsigned();

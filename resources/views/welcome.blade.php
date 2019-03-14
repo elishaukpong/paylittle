@@ -54,238 +54,245 @@
 
     {{--Featured Projects--}}
     <section class="mt-5 pt-5 featured-projects">
+        @if($projects->count() == 2)
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 mx-auto">
+                        <ul class="nav nav-pills mb-3 ml-md-5 pl-md-5" id="pills-tab" role="tablist">
+                            <li class="nav-item mx-4 mx-auto">
+                                <a class="nav-link px-5 active" id="pills-home-tab" data-toggle="pill" href="#pills-allCampaigns" role="tab" aria-controls="pills-all" aria-selected="true">
+                                    All Projects
+                                </a>
+                            </li>
+                            @if($trendingprojects->count() >  2)
+                            <li class="nav-item mx-4 mx-auto">
+                                <a class="nav-link px-5" id="pills-profile-tab" data-toggle="pill" href="#pills-trendingCampaigns" role="tab" aria-controls="pills-trending" aria-selected="false">
+                                    Trending
+                                </a>
+                            </li>
+                            @endif
+                            <li class="nav-item mx-4 mx-auto">
+                                <a class="nav-link px-5" id="pills-contact-tab" data-toggle="pill" href="#pills-newestCampaigns" role="tab" aria-controls="pills-newest" aria-selected="false">
+                                    Newest
+                                </a>
+                            </li>
+                            <li class="nav-item mx-4 mx-auto">
+                                <a class="nav-link px-5" id="pills-contact-tab" data-toggle="pill" href="#pills-mostFundedCampaigns" role="tab" aria-controls="pills-mostfunded" aria-selected="false">
+                                    Most Sponsored
+                                </a>
+                            </li>
 
-        <div class="container">
-            <div class="row">
-                <div class="col-12 mx-auto">
-                    <ul class="nav nav-pills mb-3 ml-md-5 pl-md-5" id="pills-tab" role="tablist">
-                        <li class="nav-item mx-4">
-                            <a class="nav-link px-5 active" id="pills-home-tab" data-toggle="pill" href="#pills-allCampaigns" role="tab" aria-controls="pills-all" aria-selected="true">
-                                All Projects
-                            </a>
-                        </li>
-                        <li class="nav-item mx-4">
-                            <a class="nav-link px-5" id="pills-profile-tab" data-toggle="pill" href="#pills-trendingCampaigns" role="tab" aria-controls="pills-trending" aria-selected="false">
-                                Trending
-                            </a>
-                        </li>
-                        <li class="nav-item mx-4">
-                            <a class="nav-link px-5" id="pills-contact-tab" data-toggle="pill" href="#pills-newestCampaigns" role="tab" aria-controls="pills-newest" aria-selected="false">
-                                Newest
-                            </a>
-                        </li>
-                        <li class="nav-item mx-4">
-                            <a class="nav-link px-5" id="pills-contact-tab" data-toggle="pill" href="#pills-mostFundedCampaigns" role="tab" aria-controls="pills-mostfunded" aria-selected="false">
-                                Most Sponsored
-                            </a>
-                        </li>
+                        </ul>
 
-                    </ul>
+                        <div class="tab-content my-5" id="pills-tabContent">
+                            {{--All Campaigns--}}
+                            <div class="tab-pane fade show active" id="pills-allCampaigns" role="tabpanel" aria-labelledby="pills-all-tab">
+                                <div class="container my-4">
+                                    <div class="row">
+                                        @forelse ($projects as $project)
+                                            <div class="col-md-4 col-12 mt-3">
+                                                <div class="card">
+                                                    <a href="{{route('userProjects.show',$project->id)}}"><img class="card-img-top img-fluid" src="{{asset($project->photo->projectavatar)}}" alt="Card image cap"></a>
+                                                    <div class="card-body mt-3">
+                                                        <p class="card-title font-weight-bold text-secondary">{{$project->name}}</p>
+                                                        <p class="card-text">{{$project->shortDetails}}</p>
+                                                        <p class="text-right text-primary">
+                                                            <i class="fa fa-users" aria-hidden="true"></i>
+                                                            {{ $project->subscription->count() ? $project->subscription->count(): 0}} Sponsors
+                                                        </p>
+                                                        <div class="progress">
+                                                            <div class="progress-bar" role="progressbar" style="width: {{$project->projectsponsorshippercentage}}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                        </div>
+                                                        <br>
+                                                        <p class="float-left text-secondary"> {{$project->formattedamountsponsored}} <small>Raised</small></p>
+                                                        <p class="float-right text-secondary"><small>Total</small> {{$project->formattedamount}}</p>
+                                                        <br><br>
+                                                        <a href="{{route('userProjects.show', $project->id)}}" class="btn btn-primary form-control text-white">View Project Details</a>
 
-                    <div class="tab-content my-5" id="pills-tabContent">
-                        {{--All Campaigns--}}
-                        <div class="tab-pane fade show active" id="pills-allCampaigns" role="tabpanel" aria-labelledby="pills-all-tab">
-                            <div class="container my-4">
-                                <div class="row">
-                                    @forelse ($projects as $project)
-                                        <div class="col-md-4 col-12 mt-3">
-                                            <div class="card">
-                                                <a href="{{route('userProjects.show',$project->id)}}"><img class="card-img-top img-fluid" src="{{asset($project->photo->projectavatar)}}" alt="Card image cap"></a>
-                                                <div class="card-body mt-3">
-                                                    <p class="card-title font-weight-bold text-secondary">{{$project->name}}</p>
-                                                    <p class="card-text">{{$project->shortDetails}}</p>
-                                                    <p class="text-right text-primary">
-                                                        <i class="fa fa-users" aria-hidden="true"></i>
-                                                        {{ $project->subscription->count() ? $project->subscription->count(): 0}} Sponsors
-                                                    </p>
-                                                    <div class="progress">
-                                                        <div class="progress-bar" role="progressbar" style="width: {{$project->projectsponsorshippercentage}}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                                                     </div>
-                                                    <br>
-                                                    <p class="float-left text-secondary"> {{$project->formattedamountsponsored}} <small>Raised</small></p>
-                                                    <p class="float-right text-secondary"><small>Total</small> {{$project->formattedamount}}</p>
-                                                    <br><br>
-                                                    <a href="{{route('userProjects.show', $project->id)}}" class="btn btn-primary form-control text-white">View Project Details</a>
-
                                                 </div>
+
                                             </div>
 
-                                        </div>
 
 
+                                        @empty
+                                        @endforelse
 
-                                    @empty
-                                    @endforelse
+                                    </div>
 
-                                </div>
-
-                                <div class="row my-5">
-                                    <div class="col-12 text-center">
-                                        <div class="col-12 text-center text-md-right">
-                                            <a href="{{route('userProjects.all')}}" class="btn btn-outline-primary btn-lg pl-md-5 pr-md-4 boo">
-                                                See More <i class="fa fa-long-arrow-right pl-3" aria-hidden="true"></i>
-                                            </a>
+                                    <div class="row my-5">
+                                        <div class="col-12 text-center">
+                                            <div class="col-12 text-center text-md-right">
+                                                <a href="{{route('userProjects.all')}}" class="btn btn-outline-primary btn-lg pl-md-5 pr-md-4 boo">
+                                                    See More <i class="fa fa-long-arrow-right pl-3" aria-hidden="true"></i>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
+
+                                </div>
+                            </div>
+
+                            {{--Trending Campaigns--}}
+                            <div class="tab-pane fade" id="pills-trendingCampaigns" role="tabpanel" aria-labelledby="pills-trending-tab">
+                                <div class="container my-4">
+                                    <div class="row">
+                                        @foreach ($trendingprojects as $trendingproject)
+                                            <div class="col-md-4 col-12 mt-3">
+                                                <div class="card">
+                                                    <img class="card-img-top img-fluid" src="{{asset($trendingproject->project->photo->projectavatar)}}" alt="Card image cap">
+                                                    <div class="card-body mt-3">
+                                                        <p class="card-title font-weight-bold text-secondary">{{$trendingproject->name}}</p>
+                                                        <p class="card-text">{{$trendingproject->shortDetails}}</p>
+                                                        <p class="text-right text-primary">
+                                                            <i class="fa fa-users" aria-hidden="true"></i>
+                                                            {{ $trendingproject->subscription ? $trendingproject->subscription->count(): 0}} Sponsors
+                                                        </p>
+                                                        <div class="progress">
+                                                            <div class="progress-bar" role="progressbar" style="width: {{$trendingproject->projectsponsorshippercentage}}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                        </div>
+                                                        <br>
+                                                        <p class="float-left text-secondary">{{$trendingproject->formattedamountsponsored}} <small>Raised</small></p>
+                                                        <p class="float-right text-secondary"><small>Total</small> {{$trendingproject->formattedamount}}</p>
+                                                        <br><br>
+                                                        <a href="{{route('userProjects.show', $trendingproject->id)}}" class="btn btn-primary form-control text-white">View Project Details</a>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        @endforeach
+
+                                    </div>
+
+                                    <div class="row my-5">
+                                        <div class="col-12 text-center">
+                                            <div class="col-12 text-center text-md-right">
+                                                <a href="{{route('userProjects.all')}}" class="btn btn-outline-primary btn-lg pl-md-5 pr-md-4 boo">
+                                                    See More <i class="fa fa-long-arrow-right pl-3" aria-hidden="true"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            {{--Newest Campaigns--}}
+                            <div class="tab-pane fade" id="pills-newestCampaigns" role="tabpanel" aria-labelledby="pills-newest-tab">
+                                <div class="container my-4">
+                                    <div class="row">
+                                        @foreach ($newestprojects as $project)
+                                            <div class="col-md-4 col-12 mt-3">
+                                                <div class="card">
+                                                    <img class="card-img-top img-fluid" src="{{asset($project->photo->projectavatar)}}" alt="Card image cap">
+                                                    <div class="card-body mt-3">
+                                                        <p class="card-title font-weight-bold text-secondary">{{$project->name}}</p>
+                                                        <p class="card-text">{{$project->shortDetails}}</p>
+                                                        <p class="text-right text-primary">
+                                                            <i class="fa fa-users" aria-hidden="true"></i>
+                                                            {{ $project->subscription->count() ? $project->subscription->count(): 0}} Sponsors
+                                                        </p>
+                                                        <div class="progress">
+                                                            <div class="progress-bar" role="progressbar" style="width: {{$project->projectsponsorshippercentage}}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                        </div>
+                                                        <br>
+                                                        <p class="float-left text-secondary">{{$project->formattedamountsponsored}} <small>Raised</small></p>
+                                                        <p class="float-right text-secondary"><small>Total</small> {{$project->formattedamount}}</p>
+                                                        <br><br>
+                                                        <a href="{{route('userProjects.show', $project->id)}}" class="btn btn-primary form-control text-white">View Project Details</a>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        @endforeach
+
+                                    </div>
+
+                                    <div class="row my-5">
+                                        <div class="col-12 text-center">
+                                            <div class="col-12 text-center text-md-right">
+                                                <a href="{{route('userProjects.all')}}" class="btn btn-outline-primary btn-lg pl-md-5 pr-md-4 boo">
+                                                    See More <i class="fa fa-long-arrow-right pl-3" aria-hidden="true"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            {{--Most Funded--}}
+                            <div class="tab-pane fade" id="pills-mostFundedCampaigns" role="tabpanel" aria-labelledby="pills-mostfunded-tab">
+
+                                <div class="container my-4">
+                                    <div class="row">
+                                        @forelse ($projects as $project)
+                                            <div class="col-md-4 col-12 mt-3">
+                                                <div class="card">
+                                                    <img class="card-img-top img-fluid" src="{{asset($project->photo->projectavatar)}}" alt="Card image cap">
+                                                    <div class="card-body mt-3">
+                                                        <p class="card-title font-weight-bold text-secondary">{{$project->name}}</p>
+                                                        <p class="card-text">{{$project->shortDetails}}</p>
+                                                        <p class="text-right text-primary">
+                                                            <i class="fa fa-users" aria-hidden="true"></i>
+                                                            {{ $project->subscription->count() ? $project->subscription->count(): 0}} Sponsors
+                                                        </p>
+                                                        <div class="progress">
+                                                            <div class="progress-bar" role="progressbar" style="width: {{$project->projectsponsorshippercentage}}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                        </div>
+                                                        <br>
+                                                        <p class="float-left text-secondary">{{$project->formattedamountsponsored}} <small>Raised</small></p>
+                                                        <p class="float-right text-secondary"><small>Total</small> {{$project->formattedamount}}</p>
+                                                        <br><br>
+                                                        <a href="{{route('userProjects.show', $project->id)}}" class="btn btn-primary form-control text-white">View Project Details</a>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+
+
+                                        @empty
+
+                                        @endforelse
+
+                                    </div>
+
+                                    <div class="row my-5">
+                                        <div class="col-12 text-center">
+                                            <div class="col-12 text-center text-md-right">
+                                                <a href="{{route('userProjects.all')}}" class="btn btn-outline-primary btn-lg pl-md-5 pr-md-4 boo">
+                                                    See More <i class="fa fa-long-arrow-right pl-3" aria-hidden="true"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
 
                             </div>
-                        </div>
-                        {{--Trending Campaigns--}}
-                        <div class="tab-pane fade" id="pills-trendingCampaigns" role="tabpanel" aria-labelledby="pills-trending-tab">
-                            <div class="container my-4">
-                                <div class="row">
-                                    @forelse ($trendingprojects as $trendingproject)
-                                        <div class="col-md-4 col-12 mt-3">
-                                            <div class="card">
-                                                <img class="card-img-top img-fluid" src="{{asset($trendingproject->project->photo->projectavatar)}}" alt="Card image cap">
-                                                <div class="card-body mt-3">
-                                                    <p class="card-title font-weight-bold text-secondary">{{$trendingproject->name}}</p>
-                                                    <p class="card-text">{{$trendingproject->shortDetails}}</p>
-                                                    <p class="text-right text-primary">
-                                                        <i class="fa fa-users" aria-hidden="true"></i>
-                                                        {{ $trendingproject->subscription ? $trendingproject->subscription->count(): 0}} Sponsors
-                                                    </p>
-                                                    <div class="progress">
-                                                        <div class="progress-bar" role="progressbar" style="width: {{$trendingproject->projectsponsorshippercentage}}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                    <br>
-                                                    <p class="float-left text-secondary">{{$trendingproject->formattedamountsponsored}} <small>Raised</small></p>
-                                                    <p class="float-right text-secondary"><small>Total</small> {{$trendingproject->formattedamount}}</p>
-                                                    <br><br>
-                                                    <a href="{{route('userProjects.show', $trendingproject->id)}}" class="btn btn-primary form-control text-white">View Project Details</a>
-
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-
-
-                                    @empty
-
-                                    @endforelse
-
-
-                                </div>
-
-                                <div class="row my-5">
-                                    <div class="col-12 text-center">
-                                        <div class="col-12 text-center text-md-right">
-                                            <a href="{{route('userProjects.all')}}" class="btn btn-outline-primary btn-lg pl-md-5 pr-md-4 boo">
-                                                See More <i class="fa fa-long-arrow-right pl-3" aria-hidden="true"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        {{--Newest Campaigns--}}
-                        <div class="tab-pane fade" id="pills-newestCampaigns" role="tabpanel" aria-labelledby="pills-newest-tab">
-                            <div class="container my-4">
-                                <div class="row">
-                                    @forelse ($newestprojects as $project)
-                                        <div class="col-md-4 col-12 mt-3">
-                                            <div class="card">
-                                                <img class="card-img-top img-fluid" src="{{asset($project->photo->projectavatar)}}" alt="Card image cap">
-                                                <div class="card-body mt-3">
-                                                    <p class="card-title font-weight-bold text-secondary">{{$project->name}}</p>
-                                                    <p class="card-text">{{$project->shortDetails}}</p>
-                                                    <p class="text-right text-primary">
-                                                        <i class="fa fa-users" aria-hidden="true"></i>
-                                                        {{ $project->subscription->count() ? $project->subscription->count(): 0}} Sponsors
-                                                    </p>
-                                                    <div class="progress">
-                                                        <div class="progress-bar" role="progressbar" style="width: {{$project->projectsponsorshippercentage}}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                    <br>
-                                                    <p class="float-left text-secondary">{{$project->formattedamountsponsored}} <small>Raised</small></p>
-                                                    <p class="float-right text-secondary"><small>Total</small> {{$project->formattedamount}}</p>
-                                                    <br><br>
-                                                    <a href="{{route('userProjects.show', $project->id)}}" class="btn btn-primary form-control text-white">View Project Details</a>
-
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-
-
-                                    @empty
-
-                                    @endforelse
-
-                                </div>
-
-                                <div class="row my-5">
-                                    <div class="col-12 text-center">
-                                        <div class="col-12 text-center text-md-right">
-                                            <a href="{{route('userProjects.all')}}" class="btn btn-outline-primary btn-lg pl-md-5 pr-md-4 boo">
-                                                See More <i class="fa fa-long-arrow-right pl-3" aria-hidden="true"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        {{--Most Funded--}}
-                        <div class="tab-pane fade" id="pills-mostFundedCampaigns" role="tabpanel" aria-labelledby="pills-mostfunded-tab">
-
-                            <div class="container my-4">
-                                <div class="row">
-                                    @forelse ($projects as $project)
-                                        <div class="col-md-4 col-12 mt-3">
-                                            <div class="card">
-                                                <img class="card-img-top img-fluid" src="{{asset($project->photo->projectavatar)}}" alt="Card image cap">
-                                                <div class="card-body mt-3">
-                                                    <p class="card-title font-weight-bold text-secondary">{{$project->name}}</p>
-                                                    <p class="card-text">{{$project->shortDetails}}</p>
-                                                    <p class="text-right text-primary">
-                                                        <i class="fa fa-users" aria-hidden="true"></i>
-                                                        {{ $project->subscription->count() ? $project->subscription->count(): 0}} Sponsors
-                                                    </p>
-                                                    <div class="progress">
-                                                        <div class="progress-bar" role="progressbar" style="width: {{$project->projectsponsorshippercentage}}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                    <br>
-                                                    <p class="float-left text-secondary">{{$project->formattedamountsponsored}} <small>Raised</small></p>
-                                                    <p class="float-right text-secondary"><small>Total</small> {{$project->formattedamount}}</p>
-                                                    <br><br>
-                                                    <a href="{{route('userProjects.show', $project->id)}}" class="btn btn-primary form-control text-white">View Project Details</a>
-
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-
-
-                                    @empty
-
-                                    @endforelse
-
-                                </div>
-
-                                <div class="row my-5">
-                                    <div class="col-12 text-center">
-                                        <div class="col-12 text-center text-md-right">
-                                            <a href="{{route('userProjects.all')}}" class="btn btn-outline-primary btn-lg pl-md-5 pr-md-4 boo">
-                                                See More <i class="fa fa-long-arrow-right pl-3" aria-hidden="true"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-
+        @else
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <img src="" alt="">
+                    </div>
+                    <div class="col-12 col-md-6">
+<p>ioiwiwi</p>
+                    </div>
+                </div>
+            </div>
+        @endif
 
     </section>
 
