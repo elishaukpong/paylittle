@@ -72,7 +72,7 @@
                             </h5>
                             <hr class="dahsboard-border">
                             <a href="{{route('guarantor.index')}}" class="btn btn-primary text-white form-control">
-                                See Guarantors
+                                My Guarantors
                             </a>
                         </a>
                     </div>

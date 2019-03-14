@@ -78,7 +78,7 @@
 
 <hr>
 
-<section class="my-5">
+{{-- <section class="my-5">
 
     <div class="container">
         <div class="row">
@@ -100,7 +100,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 
 <section class="banner">
 

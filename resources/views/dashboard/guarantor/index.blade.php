@@ -8,7 +8,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <h1 class="p-c font-weight-light"> All Guarantors </h1>
-                    <a href="{{route('guarantor.create')}}" class="btn btn-success btn-sm">Create New Guarantor</a>
+                    <a href="{{route('guarantor.create')}}" class="btn btn-success btn-sm">Add New Guarantor</a>
                 <hr>
             </div>
         </div>

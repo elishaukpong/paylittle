@@ -286,7 +286,7 @@
                 <div class="row">
                     <div class="col-12 col-md-6">
                         <div class="overhead-text">
-                            <h1 class="p-3 font-weight-bold text-white">Real Estate Loans</h1>
+                            <h1 class="p-3 font-weight-bold text-white">House Rents</h1>
                         </div>
                         <img src="{{asset('img/side-l.jpeg')}}" alt="" class="img-fluid">
                     </div>
@@ -294,13 +294,13 @@
                         <div class="row">
                             <div class="col-12 col-md-6 pb-3">
                                <div class="overhead-text">
-                                    <h5 class="p-3 font-weight-bold text-white">Furniture Loans</h5>
+                                    <h5 class="p-3 font-weight-bold text-white">Furnitures</h5>
                                 </div>
                                 <img src="{{asset('img/side-r1.jpeg')}}" alt="" class="img-fluid">
                             </div>
                             <div class="col-12 col-md-6 pb-3">
                                 <div class="overhead-text">
-                                    <h5 class="p-3 font-weight-bold text-white">Real Estate Loans</h5>
+                                    <h5 class="p-3 font-weight-bold text-white">Cars</h5>
                                 </div>
                                 <img src="{{asset('img/side-l.jpeg')}}" alt="" class="img-fluid">
                             </div>
@@ -312,7 +312,7 @@
                             </div>
                             <div class="col-12 col-md-6 pb-3">
                                 <div class="overhead-text">
-                                    <h5 class="p-3 font-weight-bold text-white">and more loans</h5>
+                                    <h5 class="p-3 font-weight-bold text-white">and more</h5>
                                 </div>
                                 <img src="{{asset('img/side-r1.jpeg')}}" alt="" class="img-fluid">
                             </div>

@@ -27,6 +27,6 @@ class HomeController extends Controller
     {
         $data['user'] = User::findOrFail(Auth::user()->id);
 //         return $data;
-        return view('home', $data);
+        return view('dashboard.index', $data);
     }
 }
