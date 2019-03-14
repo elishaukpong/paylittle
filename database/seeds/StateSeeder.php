@@ -11,7 +11,7 @@ class StateSeeder extends Seeder
      */
     public function run()
     {
-        $url = 'http://locationsng-api.herokuapp.com/api/v1/states';
+        $url = 'https://locationsng-api.herokuapp.com/api/v1/states';
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_URL, $url);

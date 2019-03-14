@@ -19,7 +19,7 @@ class LocalGovernmentAreaSeeder extends Seeder
 
         $state->each(function ( $state ) {
             $this->singleState = $state;
-            $url = 'http://locationsng-api.herokuapp.com/api/v1/states/' . $this->singleState->name . '/lgas';
+            $url = 'https://locationsng-api.herokuapp.com/api/v1/states/' . $this->singleState->name . '/lgas';
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($ch, CURLOPT_URL, $url);

@@ -20,7 +20,8 @@ $factory->define(App\User::class, function (Faker $faker) {
     $index = array_rand($status);
     $indexx = array_rand($gender);
     $state = States::all()->random();
-    $lga = $state->lga()->get()->random();
+
+    $lga = $state->lga()->get()->random()->id;
 
     return [
         'id' => $faker->uuid,
@@ -33,7 +34,7 @@ $factory->define(App\User::class, function (Faker $faker) {
         'occupation' => $faker->company,
         'address' => $faker->address,
         'state_id' => $state->id,
-        'localgovernmentarea_id' => $lga->id,
+        'localgovernmentarea_id' => $lga,
         'details' => $faker->text(250),
         'is_admin' => $status[$index],
         'email_verified_at' => Carbon::now(),

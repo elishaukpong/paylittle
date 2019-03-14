@@ -44,7 +44,12 @@ class ProjectController extends Controller
         $data['user']           = Auth::user();
         $data['durations']      = Duration::all();
         $data['repaymentPlans'] = RepaymentPlan::all();
-        $data['guarantors'] = Guarantor::;
+        $data['guarantors'] = Guarantor::all();
+
+        if($data['guarantors']->count() == 0){
+            return redirect()->back()->with('info', 'Create at least one Guarantor first!');
+        }
+
         return view('dashboard.projects.create', $data);
     }
 

@@ -1,4 +1,5 @@
 <?php
+use App\Models\States;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,7 +38,8 @@ Route::get('/projects/{user}', 'ProjectController@filterBy')->name('userProjects
 Route::get('/projects/{project}/hit', 'ProjectController@increaseProjectHit');
 
 Route::get('test', function(){
-    return view('bankdetails');
+    $states = States::all()->random();
+    return  $states->lga()->get()->random();
 });
 
 //Sponsorship routes

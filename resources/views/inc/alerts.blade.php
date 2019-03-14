@@ -21,6 +21,11 @@
 
                 </script>
             @endif
+            @if (session('info'))
+            <script>
+                swal("{{ session('info') }}","", "info");
+            </script>
+            @endif
         </div>
     </div>
 </div>

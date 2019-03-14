@@ -12,7 +12,7 @@ class UserSeeder extends Seeder
     public function run()
     {
 
-        $users = factory(App\User::class, 12)->create();
+        $users = factory(App\User::class, 4)->create();
 
         $users->each(function ( $user ) {
             $projects = factory(App\Models\Project::class, rand(9, 14))->create([
