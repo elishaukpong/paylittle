@@ -114,29 +114,51 @@ class ProjectController extends Controller
     {
         $project = Project::findOrFail($id);
         $project->update($request->except([ '_token' ]));
+
         if ($request->hasFile('avatarobject'))
         {
             $this->storeOrReplaceImage($request, $project, "replace");
         }
-        if (!$project)
-        {
-            $request->session()->flash('error', 'Could not Update project');
+
+        if (!$project){
+            Session::flash('error', 'Could not Update project');
             return redirect()->route('userProjects.show', $project->id);
         }
-        $request->session()->flash('success', 'Project Updated');
+
+        Session::flash('success', 'Project Updated');
         return redirect()->route('userProjects.show', $project->id);
     }
 
-    public function destroy( Project $project )
+    public function delete( Project $project )
     {
+        $project->delete();
 
-        // session()->flash('success', 'Project Deleted Successfully');
-        // return redirect()->route('userProjects.view', Auth::user()->id);
+        Session::flash('success', 'Project Thrashed Successfully');
+        return redirect()->back();
     }
 
-    public function filterBy( User $user )
+    public function destroy( $project ){
+        Project::onlyTrashed()->find($project)->forceDelete();
+
+        Session::flash('success', 'Project Deleted Permanently');
+        return redirect()->route('projects.trashed');
+    }
+
+    public function trashedProjects(){
+        $data['projects'] = Project::onlyTrashed()->whereUserId(Auth::id())->paginate(9);
+        return view('dashboard.projects.trashed',$data);
+    }
+
+    public function restoreProject($project){
+        Project::onlyTrashed()->find($project)->restore();
+
+        Session::flash('success', 'Project Restored Successfully');
+        return redirect()->route('projects.trashed');
+    }
+
+    public function filterByUser( )
     {
-        $data['projects'] = Project::whereUserId($user->id)->paginate(9);
+        $data['projects'] = Project::whereUserId(Auth::id())->paginate(9);
 
         if($data['projects']->count() == 0){
             Session::flash('info', 'You have not created any project yet!');
@@ -174,7 +196,6 @@ class ProjectController extends Controller
         $project->photo()->update([
             'avatar' => $request['avatar'],
         ]);
-
     }
 
     public function storeImage( $request, $project )
@@ -183,11 +204,12 @@ class ProjectController extends Controller
         $request['avatar']         = $this->newImageName;
         $request['imageable_type'] = $project->model;
         $request['imageable_id']   = $project->id;
-        if (!$request->avatarobject->storeAs('public/avatars/projects', $this->newImageName))
-        {
+
+        if (!$request->avatarobject->storeAs('public/avatars/projects', $this->newImageName)){
             Session::flash('error', 'Can\'t save image');
             return redirect()->back();
         }
+
         $photo = Photo::create($request->except([ '_token' ]));
     }
 
@@ -215,11 +237,15 @@ class ProjectController extends Controller
     public function ProjectsHistory( ){
         $projects = Project::whereUserId(Auth::id())->get();
         $subscriptions = ProjectSubscription::whereUserId(Auth::id())->get();
+
         if($projects->count() == 0){
             Session::flash('info', 'You must have atleast one project.');
             return redirect()->back();
         }
+
         $data['allProjects'] = $projects->merge($subscriptions)->sortByDesc('created_at');
         return view('dashboard.projects.history', $data);
     }
+
+
 }

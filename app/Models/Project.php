@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Project extends Model
 {
     use softDeletes;
+
     public $incrementing = false;
 
     protected $fillable = [ 'id', 'user_id', 'duration_id', 'repayment_id', 'guarantor_id', 'status_id', 'name', 'amount', 'details', 'repayment_amount', 'location' ];
@@ -78,11 +79,11 @@ class Project extends Model
     {
         return 'NGN ' . number_format($this->amountSponsored);
     }
+
     public function getFormattedRepaymentAmountAttribute()
     {
         return 'NGN ' . number_format($this->repayment_amount);
     }
-
 
     public function getShortDetailsAttribute()
     {
@@ -111,7 +112,6 @@ class Project extends Model
     {
         return $this->returnspercentage * 100 . '%';
     }
-
 
 
 }

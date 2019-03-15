@@ -28,7 +28,7 @@
             <div class="col-md-4 col-12 mt-3">
                 <div class="card">
                     <div class="card-body">
-                        <a href="{{route('userProjects.view', $user->id)}}" class="project-link">
+                        <a href="{{route('userProjects.view')}}" class="project-link">
                             <h5 class="card-title display-1 font-weight-bold p-c">{{$user->projects->count() ?? 0}}</h5>
                             <p class="card-text h5 p-c">Created Projects</p>
                         </a>

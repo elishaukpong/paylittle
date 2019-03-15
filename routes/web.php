@@ -32,11 +32,17 @@ Route::get('/project/create', 'ProjectController@create')->name('project.create'
 Route::post('/project', 'ProjectController@store')->name('project.store');
 Route::get('/project/{project}/show', 'ProjectController@show')->name('userProjects.show')->middleware('checkprojectstatus');
 Route::get('/project/{project}/edit', 'ProjectController@edit')->name('userProjects.edit');
-Route::get('/project/{project}/delete', 'ProjectController@destroy')->name('userProjects.delete');
+
+Route::delete('/project/{project}/delete', 'ProjectController@delete')->name('userProjects.delete');
+Route::delete('/project/{project}/destroy', 'ProjectController@destroy')->name('project.destroy');
+Route::get('/thrashedprojects', 'ProjectController@trashedProjects')->name('projects.trashed');
+Route::get('/projects/{project}/restore', 'ProjectController@restoreProject')->name('project.restore');
+
 Route::put('/project/{project}', 'ProjectController@update')->name('userProjects.update');
-Route::get('/projects/{user}', 'ProjectController@filterBy')->name('userProjects.view');
+Route::get('/projects', 'ProjectController@filterByUser')->name('userProjects.view');
 Route::get('/projects/{project}/hit', 'ProjectController@increaseProjectHit');
 Route::get('/projectshistory', 'ProjectController@ProjectsHistory')->name('projects.history');
+
 
 
 //Sponsorship routes

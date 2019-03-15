@@ -5,8 +5,8 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-12">
-                    <h1 class="p-c font-weight-light"> Created Projects</h1>
-                    <a href="{{route('projects.trashed')}}" class="btn btn-sm btn-danger my-3">Thrashed Projects</a>
+                    <h1 class="p-c font-weight-light"> Thrashed Projects</h1>
+                    <a href="{{route('userProjects.view', $user->id)}}" class="btn btn-sm btn-success my-3">All Projects</a>
                     <br>
                 </div>
             </div>
@@ -39,16 +39,20 @@
                                 <td>{{$project->formattedrepaymentamount}}</td>
                                 <td>{{$project->repaymentplan->timeline}}</td>
                                 <td>
-                                    <a href="{{route('userProjects.show', $project->id)}}" class="btn btn-sm btn-primary">View Project</a>
+                                    <a href="{{route('project.restore', $project->id)}}" class="btn btn-sm btn-primary">
+                                        <i class="fa fa-reply-all" aria-hidden="true"></i> &nbsp; Restore Project
+                                    </a>
                                 </td>
+
                                 <td>
-                                    <form action="{{route('userProjects.delete', $project->id)}}" method="post">
+                                    <form action="{{route('project.destroy', $project->id)}}" method="post">
                                         @csrf @method('DELETE')
 
-                                        <button type="submit" class="btn btn-sm btn-danger cp-delete" data-id="{{$project->id}}">
-                                            <i class="fa fa-trash" aria-hidden="true"></i> Thrash Project</button>
+                                        <button type="submit" class="btn btn-sm btn-danger tp-delete" data-id="{{$project->id}}">
+                                                                            <i class="fa fa-trash" aria-hidden="true"></i> Delete Project</button>
                                     </form>
                                 </td>
+
 
                             </tr>
                         @endforeach

@@ -22,10 +22,9 @@
                     <div class="card">
                         <div class="card-body mt-3">
                             <h2 class="card-title font-weight-bold text-secondary">{{$guarantor->name}}</h2>
-                            {{-- <p class="font-weight-bold">Projects Guarantored</p> --}}
                             <br>
-                            <a href="{{route('guarantor.edit', $guarantor->id)}}" class="btn btn-success btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
-                        {{-- <a href="{{route('guarantor.delete', $guarantor->id)}}" class="btn btn-danger btn-sm g-delete" data-id="{{$guarantor->id}}">Delete</a> --}}
+                            <a href="{{route('guarantor.edit', $guarantor->id)}}" class="btn btn-success btn-sm">
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
                             <form action="{{route('guarantor.destroy', $guarantor->id)}}" method="post" class="my-3">
                                 @csrf
                                 @method('DELETE')

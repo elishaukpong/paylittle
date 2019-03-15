@@ -199,13 +199,38 @@ $(document).ready(function() {
 
 $('.g-delete').click(function(e) {
     e.preventDefault();
-    guarantorId = $(this).attr('data-id');
     swal({
         title: "Are you sure you want to delete this gurantor?",
         icon: "info",
         buttons: ["Cancel", "Proceed"],
     }).then((deleteGuarantor) => {
         if (deleteGuarantor) {
+            $(this).parent().submit();
+        }
+    });
+})
+
+
+$('.cp-delete').click(function(e) {
+    e.preventDefault();
+    swal({
+        title: "Are you sure you want to move this project to trash?",
+        icon: "info",
+        buttons: ["Cancel", "Yes"],
+    }).then((trashProject) => {
+        if (trashProject) {
+            $(this).parent().submit();
+        }
+    });
+})
+$('.tp-delete').click(function(e) {
+    e.preventDefault();
+    swal({
+        title: "Are you sure you want to delete this project permanently?",
+        icon: "info",
+        buttons: ["Cancel", "Yes"],
+    }).then((trashProject) => {
+        if (trashProject) {
             $(this).parent().submit();
         }
     });
