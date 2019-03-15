@@ -208,8 +208,13 @@ class ProjectController extends Controller
     }
 
     public function ProjectsHistory( ){
-        $projects = Project::all();
+        $projects = Project::whereUserId(Auth::id());
         $subscriptions = ProjectSubscription::whereUserId(Auth::id())->get();
+
+        if($projects->count() == 0){
+            Session::flash('info', 'You must have atleast one project.');
+            return redirect()->back();
+        }
         $data['allProjects'] = $projects->merge($subscriptions)->sortByDesc('created_at');
         return view('dashboard.projects.history', $data);
     }
