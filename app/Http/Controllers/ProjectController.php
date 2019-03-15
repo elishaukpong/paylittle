@@ -131,6 +131,7 @@ class ProjectController extends Controller
 
     public function delete( Project $project )
     {
+        //implement a feature that checks if project has sponsorship already, if it does, it can't be deleted
         $project->delete();
 
         Session::flash('success', 'Project Thrashed Successfully');

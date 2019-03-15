@@ -93,9 +93,57 @@
                 </div>
 
                 {{-- App Layout --}}
-                <div class="col-md-12 col-12">
-                    @yield('content')
+                <div class="row">
+                    <div class="col-12 col-md-3">
+                        <div class="card">
+
+                            <div class="card-body">
+                                <ul class="list-group">
+                                    <li class="list-group-item">
+                                        <a href="#">
+                                            Users
+                                        </a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href="#">
+                                            Projects
+                                        </a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href="#">
+                                            Guarantors
+                                        </a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href="#">
+                                            Status
+                                        </a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href="#">
+                                            Repayment Plans
+                                        </a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href="#">
+                                            Sponsorship Amounts
+                                        </a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href="#">
+                                            Organization
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-9 col-12">
+                        @yield('content')
+                    </div>
                 </div>
+
             </div>
         </main>
     </div>

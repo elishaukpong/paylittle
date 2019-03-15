@@ -61,7 +61,7 @@ class SponsorController extends Controller
         $data['user'] = $user;
         $data['projectsubscriptions'] =  ProjectSubscription::whereUserId($user->id)->paginate(10);
         if($data['projectsubscriptions']->count() == 0){
-            Session::flash('info', 'You have not sponsored a project yet!');
+            Session::flash('info', 'You have not sponsored any project yet!');
             return redirect()->back();
         }
         return view('dashboard.projects.showsponsored', $data);
