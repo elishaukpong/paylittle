@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use Session;
 use App\Models\Guarantor;
 use Illuminate\Http\Request;
@@ -22,7 +23,7 @@ class GuarantorController extends Controller
      */
     public function index()
     {
-        $data['guarantors'] = Guarantor::paginate(9);
+        $data['guarantors'] = Guarantor::whereUserId(Auth::id())->paginate(9);
         return view('dashboard.guarantor.index', $data);
     }
 

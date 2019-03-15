@@ -70,9 +70,11 @@ class ProjectController extends Controller
         $this->storeOrReplaceImage($request, $project);
         if (!$project)
         {
-            return redirect()->route('project.create')->with('error', 'Could not create project');
+            Session::flash('error', 'Could not create project');
+            return redirect()->route('project.create');
         }
-        return redirect()->route('clientarea')->with('success', 'Project Created Successfully');
+        Session::flash('success', 'Project Created Successfully');
+        return redirect()->route('clientarea');
     }
 
 
@@ -159,12 +161,14 @@ class ProjectController extends Controller
         $this->previousImageName = $project->photo->avatar ?? 'nothing';
         if (Storage::disk('public')->exists("avatars/projects/" . $this->previousImageName) && !Storage::disk('public')->delete('avatars/projects/' . $this->previousImageName))
         {
-            return redirect()->back()->with('error', 'Can\'t Process the file at the moment');
+            Session::flash('error', 'Can\'t Process the file at the moment');
+            return redirect()->back();
         }
         $this->newImageName = Auth::user()->id . "_" . Auth::user()->first_name . "_" . time() . "." . $request->avatarobject->getClientOriginalExtension();
         if (!$request->avatarobject->storeAs('public/avatars/projects', $this->newImageName))
         {
-            return redirect()->back()->with('error', 'Can\'t save image');
+            Session::flash('error', 'Can\'t save image');
+            return redirect()->back();
         }
         $request['avatar'] = $this->newImageName;
         $project->photo()->update([
@@ -181,7 +185,8 @@ class ProjectController extends Controller
         $request['imageable_id']   = $project->id;
         if (!$request->avatarobject->storeAs('public/avatars/projects', $this->newImageName))
         {
-            return redirect()->back()->with('error', 'Can\'t save image');
+            Session::flash('error', 'Can\'t save image');
+            return redirect()->back();
         }
         $photo = Photo::create($request->except([ '_token' ]));
     }
@@ -208,9 +213,8 @@ class ProjectController extends Controller
     }
 
     public function ProjectsHistory( ){
-        $projects = Project::whereUserId(Auth::id());
+        $projects = Project::whereUserId(Auth::id())->get();
         $subscriptions = ProjectSubscription::whereUserId(Auth::id())->get();
-
         if($projects->count() == 0){
             Session::flash('info', 'You must have atleast one project.');
             return redirect()->back();
