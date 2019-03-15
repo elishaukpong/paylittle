@@ -22,7 +22,7 @@
                     <div class="card">
                         <div class="card-body mt-3">
                             <h2 class="card-title font-weight-bold text-secondary">{{$guarantor->name}}</h2>
-                            <p class="font-weight-bold">Projects Guarantored</p>
+                            {{-- <p class="font-weight-bold">Projects Guarantored</p> --}}
                             <a href="{{route('guarantor.edit', $guarantor->id)}}" class="btn btn-success btn-sm">Edit</a>
                         </div>
                     </div>

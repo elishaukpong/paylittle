@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Auth;
-use App\User;
 use Session;
+use App\User;
 use App\Models\Hits;
 use App\Models\Photo;
 use Ramsey\Uuid\Uuid;
@@ -36,6 +36,12 @@ class ProjectController extends Controller
         $data['user']     = Auth::user();
         $data['projects'] = Project::whereStatusId(2)->paginate(12);
         $data['count']    = Project::whereStatusId(2)->count();
+
+        if($data['count'] == 0){
+            Session::flash('info', 'No sponsorable project yet!');
+            return redirect()->back();
+        }
+
         return view('dashboard.projects.index', $data);
     }
 
