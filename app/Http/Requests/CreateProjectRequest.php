@@ -29,6 +29,7 @@ class CreateProjectRequest extends FormRequest
             'location' => 'required|string|max:150',
             'details' => 'required|string|min:5|max:300',
             'duration_id' => 'required|string|min:36|max:36',
+            'guarantor_id' => 'required',
             'avatarobject' => 'required|image|mimes:jpeg,png,jpg|max:1024',
             'repayment_id' => 'required|string',
         ];

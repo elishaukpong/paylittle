@@ -105,11 +105,11 @@ class GuarantorController extends Controller
      */
     public function destroy(Guarantor $guarantor)
     {
-        $guranteedProjects = $guarantor->projects;
+        $guaranteedProjects = $guarantor->projects;
 
-        foreach($guranteedProjects as $guranteedProject){
-            if($guranteedProject->status == 2 ){
-                Session::flash('error', 'You cannot delete a gurantor when the projects he is guranteeing is not completed.');
+        foreach($guaranteedProjects as $guaranteedProject){
+            if($guaranteedProject->status->id == '2' ){
+                Session::flash('error', 'Guarantor has one or more ongoing projects.');
                 return redirect()->back();
             }
         }
