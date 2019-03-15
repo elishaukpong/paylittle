@@ -206,4 +206,11 @@ class ProjectController extends Controller
         return;
 
     }
+
+    public function ProjectsHistory( ){
+        $projects = Project::all();
+        $subscriptions = ProjectSubscription::whereUserId(Auth::id())->get();
+        $data['allProjects'] = $projects->merge($subscriptions)->sortByDesc('created_at');
+        return view('dashboard.projects.history', $data);
+    }
 }

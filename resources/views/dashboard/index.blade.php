@@ -52,11 +52,10 @@
             </div>
             <div class="col-md-4 col-12 mt-3">
                 <div class="card">
-                    <a href="#" class="project-link">
+                <a href="{{route('projects.history')}}" class="project-link">
                         <div class="card-body">
                             <h5 class="card-title display-1 font-weight-bold  p-c">{{$user->totalcount ?? 0}}</h5>
                             <p class="card-text h5 p-c">Project History</p>
-                            {{--<hr class="dahsboard-border">--}}
                         </div>
                     </a>
                 </div>

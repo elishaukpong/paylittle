@@ -64,7 +64,7 @@ class SponsorController extends Controller
             Session::flash('info', 'You have not sponsored a project yet!');
             return redirect()->back();
         }
-        return view('dashboard.showsponsored', $data);
+        return view('dashboard.projects.showsponsored', $data);
     }
 
     public function sponsorReturns(Project $project, $amount)

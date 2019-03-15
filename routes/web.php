@@ -36,6 +36,7 @@ Route::get('/project/{project}/delete', 'ProjectController@destroy')->name('user
 Route::put('/project/{project}', 'ProjectController@update')->name('userProjects.update');
 Route::get('/projects/{user}', 'ProjectController@filterBy')->name('userProjects.view');
 Route::get('/projects/{project}/hit', 'ProjectController@increaseProjectHit');
+Route::get('/projectshistory', 'ProjectController@ProjectsHistory')->name('projects.history');
 
 
 //Sponsorship routes
