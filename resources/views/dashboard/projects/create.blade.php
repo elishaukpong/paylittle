@@ -41,7 +41,7 @@
                                            name="location" value="{{ old('location') }}" placeholder="Project Location">
                                     <div class="input-group-append">
                                         <div class="input-group-text" data-toggle="tooltip" data-placement="top"
-                                             title="This is location of the project you're embarking on">
+                                             title="This is the location of the project you're embarking on">
                                             <i class="fa fa-question-circle-o" aria-hidden="true"></i>
                                         </div>
                                     </div>
@@ -85,7 +85,7 @@
                                     </select>
                                     <div class="input-group-append">
                                         <div class="input-group-text" data-toggle="tooltip" data-placement="top"
-                                             title="how long it will take you to complete this project">
+                                             title="How long it will take you to complete this project">
                                             <i class="fa fa-question-circle-o" aria-hidden="true"></i>
                                         </div>
                                     </div>
@@ -119,6 +119,28 @@
                                 </span>
                                     @endif
 
+                                </div>
+                            </div>
+
+                            <div class="form-group py-2 px-5">
+                                <div class="input-group">
+
+                                    <select class="form-control {{ $errors->has('guarantor_id') ? ' is-invalid' : '' }}" id="guarantor" name="guarantor_id">
+                                                                    <option>Select Guarantor</option>
+                                                                    @foreach($guarantors as $guarantor)
+                                                                        <option value="{{$guarantor->id}}">{{$guarantor->name}}</option>
+                                                                    @endforeach
+                                                                </select>
+                                    <div class="input-group-append">
+                                        <div class="input-group-text" data-toggle="tooltip" data-placement="top" title="Project Guarantor">
+                                            <i class="fa fa-question-circle-o" aria-hidden="true"></i>
+                                        </div>
+                                    </div>
+
+                                    @if ($errors->has('guarantor_id'))
+                                    <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $errors->first('guarantor_id') }}</strong>
+                                                            </span> @endif
                                 </div>
                             </div>
 
