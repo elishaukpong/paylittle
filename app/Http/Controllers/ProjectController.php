@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Guarantor;
 use Auth;
 use App\User;
+use Session;
 use App\Models\Hits;
 use App\Models\Photo;
 use Ramsey\Uuid\Uuid;
 use App\Models\Project;
 use App\Models\Duration;
+use App\Models\Guarantor;
 use App\Models\RepaymentPlan;
 use App\Models\sponsorshipAmount;
 use App\Models\ProjectSubscription;
@@ -47,7 +48,8 @@ class ProjectController extends Controller
         $data['guarantors'] = Guarantor::all();
 
         if($data['guarantors']->count() == 0){
-            return redirect()->back()->with('info', 'Create at least one Guarantor first!');
+            Session::flash('info', 'Create at least one Guarantor first!');
+            return redirect()->back();
         }
 
         return view('dashboard.projects.create', $data);
@@ -119,19 +121,21 @@ class ProjectController extends Controller
 
     public function destroy( Project $project )
     {
-        if (!$project->delete())
-        {
-            session()->flash('error', 'Could not Delete Project');
-            return redirect()->route('userProjects.view', Auth::user()->id);
-        }
-        session()->flash('success', 'Project Deleted Successfully');
-        return redirect()->route('userProjects.view', Auth::user()->id);
+
+        // session()->flash('success', 'Project Deleted Successfully');
+        // return redirect()->route('userProjects.view', Auth::user()->id);
     }
 
     public function filterBy( User $user )
     {
         $data['projects'] = Project::whereUserId($user->id)->paginate(9);
-        return view('dashboard.showcreated', $data);
+
+        if($data['projects']->count() == 0){
+            Session::flash('info', 'You have not created any project yet!');
+            return redirect()->back();
+        }
+
+        return view('dashboard.projects.showcreated', $data);
     }
 
     // Don't mess around here

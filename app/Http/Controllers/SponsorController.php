@@ -25,14 +25,19 @@ class SponsorController extends Controller
     public function sponsorProject(Request $request, Project $project)
     {
         $request['amount'] = filter_var($request['amount'], FILTER_SANITIZE_NUMBER_INT);
+
         $rules = [
             'amount' => 'required|integer',
             'returns' => 'required|integer',
         ];
+
         $this->validate($request, $rules);
+
         $sponsorshipAmountRemaining = $this->checkSponsorshipAmountRemaining($project);
+
         if($request['amount'] > $sponsorshipAmountRemaining){
-            return redirect()->back()->with('error', "Can only take sponsorship upto NGN " . number_format($sponsorshipAmountRemaining) . " at this time!");
+            Session::flash('error', "Can only take sponsorship upto NGN " . number_format($sponsorshipAmountRemaining) . " at this time!");
+            return redirect()->back();
         }
 
         $projectDuration =  $project->duration->timeline + 1; //add one month for the money raising phase
@@ -40,9 +45,12 @@ class SponsorController extends Controller
         $request['user_id'] = Auth::user()->id;
         $request['project_id'] = $project->id;
         $request['due_date'] = Carbon::now()->addMonth($projectDuration);
+
         if(!ProjectSubscription::create($request->except(['_token']))){
-            return redirect()->route('view.sponsor', Auth::user()->id)->with('error', 'Project Not Sponsored');
+            Session::flash('error', 'Project Not Sponsored');
+            return redirect()->route('view.sponsor', Auth::user()->id);
         };
+
         $data['amount'] = $request->amount;
         return view('bankdetails', $data);
     }
@@ -51,7 +59,10 @@ class SponsorController extends Controller
     {
         $data['user'] = $user;
         $data['projectsubscriptions'] =  ProjectSubscription::whereUserId($user->id)->paginate(10);
-
+        if($data['projectsubscriptions']->count() == 0){
+            Session::flash('info', 'You have not sponsored a project yet!');
+            return redirect()->back();
+        }
         return view('dashboard.showsponsored', $data);
     }
 
@@ -71,6 +82,7 @@ class SponsorController extends Controller
             ]);
             return "Project status updated";
         }
+
         return "Project status already updated with that value";
     }
 
@@ -83,6 +95,7 @@ class SponsorController extends Controller
     {
         $projectAmountSubscribed = ProjectSubscription::whereProjectId($project->id)->pluck('amount')->all();
         $projectAmountSubscribed = array_sum($projectAmountSubscribed);
+
         return $project->amount - $projectAmountSubscribed;
     }
 }

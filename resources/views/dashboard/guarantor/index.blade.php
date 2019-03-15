@@ -21,8 +21,7 @@
                 <div class="col-md-3 col-12 mt-3">
                     <div class="card">
                         <div class="card-body mt-3">
-                            <p class="card-title font-weight-bold text-secondary">{{$guarantor->name}}</p>
-                            <p class="card-text">{{$guarantor->email}}</p>
+                            <h2 class="card-title font-weight-bold text-secondary">{{$guarantor->name}}</h2>
                             <p class="font-weight-bold">Projects Guarantored</p>
                             <a href="{{route('guarantor.edit', $guarantor->id)}}" class="btn btn-success btn-sm">Edit</a>
                         </div>

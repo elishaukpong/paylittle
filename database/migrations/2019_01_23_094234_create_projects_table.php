@@ -25,6 +25,7 @@ class CreateProjectsTable extends Migration
             $table->integer('repayment_amount')->unsigned();
             $table->text('details');
             $table->string('location');
+            $table->softDeletes();
             $table->timestamps();
 
             $table->primary('id');

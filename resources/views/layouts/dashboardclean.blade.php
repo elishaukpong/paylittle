@@ -21,6 +21,7 @@
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
           crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
 </head>
 <body>
@@ -117,39 +118,13 @@
 
         <main class="">
             <div class="container-fluid my-4">
-                @auth
+
                 {{-- Flash Notifications --}}
-                <div class="row">
-                    <div class="col-12">
-                        <div class="container my-4">
-                            <div class="row justify-content-center">
-                                <div class="col-md-8 mx-auto text-center">
-                                    {{--@if ($user->email_verified_at !== null)--}}
-                                        {{--<script>--}}
-                                             {{--swal("Your account is not verified!","", "info",{--}}
-                                                {{--buttons: ["Verify", "Cancel"],--}}
-                                             {{--});--}}
-                                        {{--</script>--}}
-                                    {{--@endif--}}
-
-                                    @if (\Session::has('success'))
-                                        <script>
-                                            swal("{{ \Session::get('success') }}","", "success");
-                                        </script>
-                                    @endif
-                                    @if (\Session::has('error'))
-                                        <script>
-                                            swal("{{ \Session::get('error') }}","", "error");
-
-                                        </script>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
+            <div class="row">
+                <div class="col-12">
+                @include('inc.alerts')
                 </div>
-                @endauth
+            </div>
 
                 {{-- App Layout --}}
                 <div class="row">

@@ -1,6 +1,6 @@
 @extends('layouts.dashboardclean')
-   
-    
+
+
     @section('content')
         <div class="container">
             <div class="row justify-content-center">
@@ -24,7 +24,6 @@
                             <th scope="col">Amount</th>
                             <th scope="col">Repayment Amount</th>
                             <th scope="col">Repayment Plan</th>
-                            <th scope="col">Date Due</th>
                             <th scope="col"></th>
                         </tr>
                         </thead>
@@ -39,7 +38,10 @@
                                 <td>{{$project->repaymentplan->timeline}}</td>
                                 <td>{{ $project->returns}}</td>
                                 <td>
-                                    <a href="{{route('userProjects.show', $project->id)}}" class="btn btn-primary">View Project</a>
+                                    <a href="{{route('userProjects.show', $project->id)}}" class="btn btn-sm btn-primary">View Project</a>
+                                </td>
+                                <td>
+                                    <a href="{{route('userProjects.delete', $project->id)}}" class="btn btn-sm btn-danger">Trash Project</a>
                                 </td>
 
                             </tr>

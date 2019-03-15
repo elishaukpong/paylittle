@@ -12,7 +12,7 @@
 
             @if (session('success'))
                 <script>
-                    swal("{{ session('success') }}","", "success");
+                   toastr.success(" {{session('success')}} ")
                 </script>
             @endif
             @if (session('error'))
@@ -23,7 +23,7 @@
             @endif
             @if (session('info'))
             <script>
-                swal("{{ session('info') }}","", "info");
+               toastr.info(" {{session('info')}} ")
             </script>
             @endif
         </div>

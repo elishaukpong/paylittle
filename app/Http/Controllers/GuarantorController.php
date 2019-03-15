@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Guarantor;
+use Session;
 use Illuminate\Http\Request;
 
 class GuarantorController extends Controller
@@ -32,8 +33,7 @@ class GuarantorController extends Controller
      */
     public function create()
     {
-        $data['guarantors'] = Guarantor::all();
-        return view('dashboard.guarantor.create', $data);
+        return view('dashboard.guarantor.create');
     }
 
     /**
@@ -51,7 +51,9 @@ class GuarantorController extends Controller
         $this->validate($request, $rules);
 
         Guarantor::create($request->except('_token'));
-        return redirect()->route('guarantor.index')->with('success', 'Guarantor Created Successfully');
+
+        Session::flash('success', 'Guarantor Created Successfully');
+        return redirect()->route('guarantor.index');
     }
 
     /**
