@@ -27,7 +27,7 @@
                 </ul>
             </div>
 
-            <div class="col-md-5 col-12">
+            <div class="col-md-5 col-12 pb-3 pb-0">
                 <p class="text-uppercase font-weight-light pb-2 ml-md-4"> Get updates from us</p>
                 <div class="ml-md-4">
                     <form action="{{route('email.subscribe')}}" method="POST">

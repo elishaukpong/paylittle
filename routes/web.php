@@ -24,6 +24,7 @@ Route::put('/account/{user}', 'UserController@update')->name('user.update');
 
 //Guarantor Route
 Route::resource('/guarantor', 'GuarantorController');
+// Route::get('/guarantor/delete/{guarantor}', 'GuarantorController@destroy')->name('guarantor.delete');
 
 
 Route::get('/project', 'ProjectController@index')->name('userProjects.all');

@@ -45,6 +45,11 @@ class Project extends Model
     {
         return $this->belongsOne('App\Models\Hits');
     }
+
+    public function guarantor(){
+        return $this->belongsTo('App\Models\Guarantor');
+    }
+
     public function getamountSponsoredAttribute()
     {
         $sponsorships = $this->subscription()->get()->pluck('amount')->all();

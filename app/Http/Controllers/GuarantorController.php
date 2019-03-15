@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Guarantor;
 use Session;
+use App\Models\Guarantor;
 use Illuminate\Http\Request;
 
 class GuarantorController extends Controller
@@ -105,6 +105,16 @@ class GuarantorController extends Controller
      */
     public function destroy(Guarantor $guarantor)
     {
-        //
+        $guranteedProjects = $guarantor->projects;
+
+        foreach($guranteedProjects as $guranteedProject){
+            if($guranteedProject->status == 2 ){
+                Session::flash('error', 'You cannot delete a gurantor when the projects he is guranteeing is not completed.');
+                return redirect()->back();
+            }
+        }
+        $guarantor->delete();
+        Session::flash('success', 'Guarantor Deleted');
+        return redirect()->back();
     }
 }

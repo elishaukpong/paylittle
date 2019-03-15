@@ -196,3 +196,17 @@ $(document).ready(function() {
 
 
 });
+
+$('.g-delete').click(function(e) {
+    e.preventDefault();
+    guarantorId = $(this).attr('data-id');
+    swal({
+        title: "Are you sure you want to delete this gurantor?",
+        icon: "info",
+        buttons: ["Cancel", "Proceed"],
+    }).then((deleteGuarantor) => {
+        if (deleteGuarantor) {
+            $(this).parent().submit();
+        }
+    });
+})

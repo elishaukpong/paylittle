@@ -24,13 +24,13 @@ class DatabaseSeeder extends Seeder
         }
 
 
-        // $this->call(DurationSeeder::class);
-        // $this->call(RepaymentPlanSeeder::class);
-        // $this->call(StatusSeeder::class);
-        // $this->call(EmailSubscriptionSeeder::class);
-        // $this->call(SubscriptionAmountSeeder::class);
-        // $this->call(StateSeeder::class);
-        // $this->call(LocalGovernmentAreaSeeder::class);
+        $this->call(DurationSeeder::class);
+        $this->call(RepaymentPlanSeeder::class);
+        $this->call(StatusSeeder::class);
+        $this->call(EmailSubscriptionSeeder::class);
+        $this->call(SubscriptionAmountSeeder::class);
+        $this->call(StateSeeder::class);
+        $this->call(LocalGovernmentAreaSeeder::class);
         $this->call(UserSeeder::class);
 
         $this->command->info("Database seeded.");

@@ -11,7 +11,7 @@ class StatusSeeder extends Seeder
      */
     public function run()
     {
-         $Status = collect(['pending','accepted','rejected']);
+         $Status = collect(['pending','accepted','rejected', 'completed', 'failed']);
     	$Status->each(function ($status) {
     		factory(App\Models\Status::class)->create(['name' => $status]);
 	    });
