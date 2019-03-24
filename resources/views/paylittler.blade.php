@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.app')
 
 @section('content')
 <section class="bene-header">
@@ -18,7 +18,7 @@
          <div class="row">
              <div class="col-10 mx-auto text-center">
                  <p class="p-c">
-                    As a Pay Littler, you are provided access to funds to finance your projects ranging through house rents, school fees, building projects etc and the payment is spread over a period of time, monthly, quarterly or outright payment. We want to make life more comfortable and convinient for you even with your meager income. 
+                    As a Pay Littler, you are provided access to funds to finance your projects ranging through house rents, school fees, building projects etc and the payment is spread over a period of time, monthly, quarterly or outright payment. We want to make life more comfortable and convinient for you even with your meager income.
                  </p>
              </div>
          </div>
@@ -49,7 +49,7 @@
                             <option>6 Months - 1 Year</option>
                         </select>
                     </div>
-                 
+
                     <button type="submit" class="btn btn-success form-control">Submit</button>
                 </form>
              </div>

@@ -366,3 +366,25 @@ ol.carousel-indicators {
 .sponsor-project-image {
     transform: rotate(-1deg);
 }
+
+.jumbotron.project-jumbotron {
+    background-image: url('../img/project-jumbotron.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.project-image-size {
+    width: 400px;
+    height: 350px;
+    /* position: relative; */
+}
+
+.text-content-block {
+    position: relative;
+}
+
+.text-content {
+    position: absolute;
+    bottom: 0;
+    background: rgba(16, 88, 160, 0.415);
+}

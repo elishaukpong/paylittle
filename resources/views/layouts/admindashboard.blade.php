@@ -100,12 +100,12 @@
                             <div class="card-body">
                                 <ul class="list-group">
                                     <li class="list-group-item">
-                                        <a href="#">
+                                        <a href="{{route('admin.showallusers')}}">
                                             Users
                                         </a>
                                     </li>
                                     <li class="list-group-item">
-                                        <a href="#">
+                                        <a href="{{route('admin.showallprojects')}}">
                                             Projects
                                         </a>
                                     </li>
@@ -132,6 +132,11 @@
                                     <li class="list-group-item">
                                         <a href="#">
                                             Organization
+                                        </a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href="#">
+                                            BVN
                                         </a>
                                     </li>
                                 </ul>

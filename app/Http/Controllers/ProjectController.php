@@ -33,7 +33,6 @@ class ProjectController extends Controller
 
     public function index()
     {
-        $data['user']     = Auth::user();
         $data['projects'] = Project::whereStatusId(2)->paginate(12);
         $data['count']    = Project::whereStatusId(2)->count();
 
@@ -42,7 +41,7 @@ class ProjectController extends Controller
             return redirect()->back();
         }
 
-        return view('dashboard.projects.index', $data);
+        return view('projects.index', $data);
     }
 
 

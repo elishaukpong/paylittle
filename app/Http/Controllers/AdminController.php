@@ -36,7 +36,7 @@ class AdminController extends Controller
         $data['projects'] = Project::whereUserId($user->id)
             ->orderBy('created_at', 'desc')
             ->paginate(3);
-        return view('admin.userprojects', $data);
+        return view('admin.viewuser', $data);
     }
 
     public function filterByUserProjects(User $user)

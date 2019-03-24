@@ -17,9 +17,9 @@
     <div class="row">
         @forelse ($allprojects as $project)
             <div class="col-md-4 col-12 mt-3">
-                <img class="card-img-top" src="{{asset($project->photo->projectavatar)}}" alt="Card image cap">
-                <div class="card border border-primary">
-                    <div class="card-body">                    
+                <div class="card">
+                    <img class="card-img-top" src="{{asset($project->photo->projectavatar)}}" alt="Card image cap">
+                    <div class="card-body">
                         <p class="card-title font-weight-bold p-c">{{$project->name}}</p>
                         <p class="card-text">{{$project->shortDetails}}</p>
                         <hr class="dahsboard-border">

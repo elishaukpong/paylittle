@@ -9,7 +9,7 @@
                         <h1 class="text-uppercase mt-5 pt-md-5 text-light display-4 font-weight-bold">We make life <br> better and cozy</h1>
                         <p class="text-light mb-5 font-weight-light">Pay Little helps you afford whatever you want while paying at your convinience.</p>
                         <br>
-                        <a href="{{route('userProjects.all')}}" class="btn btn-primary btn-lg mr-4 px-5 py-3 my-2">Get Started</a>
+                        <a href="{{route('projects.index')}}" class="btn btn-primary btn-lg mr-4 px-5 py-3 my-2">Get Started</a>
                         <a href="#learnhow" class="btn btn-outline-light btn-lg mx-md-4 px-5 py-3 my-2">Learn How</a>
                     </div>
                 </div>
@@ -19,14 +19,7 @@
                 <div class="row">
                     <div class="col-12">
                         <ul class="list-inline">
-                            {{--<li class="list-inline-item text-white mr-md-5">--}}
-                                {{--<p class="font-weight-bold">--}}
-                                    {{--Raised:--}}
 
-                                {{--</p>--}}
-                                {{--<hr class="home-divider">--}}
-                                {{--<p class="font-weight-bold">NGN {{$totalRaisedAmount}}</p>--}}
-                            {{--</li>--}}
                             <li class="list-inline-item text-white mr-md-5">
                                 <p class="font-weight-bold">
                                     Projects:
@@ -124,7 +117,7 @@
                                     <div class="row my-5">
                                         <div class="col-12 text-center">
                                             <div class="col-12 text-center text-md-right">
-                                                <a href="{{route('userProjects.all')}}" class="btn btn-outline-primary btn-lg pl-md-5 pr-md-4 boo">
+                                                <a href="{{route('projects.index')}}" class="btn btn-outline-primary btn-lg pl-md-5 pr-md-4 boo">
                                                     See More <i class="fa fa-long-arrow-right pl-3" aria-hidden="true"></i>
                                                 </a>
                                             </div>
@@ -170,7 +163,7 @@
                                     <div class="row my-5">
                                         <div class="col-12 text-center">
                                             <div class="col-12 text-center text-md-right">
-                                                <a href="{{route('userProjects.all')}}" class="btn btn-outline-primary btn-lg pl-md-5 pr-md-4 boo">
+                                                <a href="{{route('projects.index')}}" class="btn btn-outline-primary btn-lg pl-md-5 pr-md-4 boo">
                                                     See More <i class="fa fa-long-arrow-right pl-3" aria-hidden="true"></i>
                                                 </a>
                                             </div>
@@ -216,7 +209,7 @@
                                     <div class="row my-5">
                                         <div class="col-12 text-center">
                                             <div class="col-12 text-center text-md-right">
-                                                <a href="{{route('userProjects.all')}}" class="btn btn-outline-primary btn-lg pl-md-5 pr-md-4 boo">
+                                                <a href="{{route('projects.index')}}" class="btn btn-outline-primary btn-lg pl-md-5 pr-md-4 boo">
                                                     See More <i class="fa fa-long-arrow-right pl-3" aria-hidden="true"></i>
                                                 </a>
                                             </div>
@@ -267,7 +260,7 @@
                                     <div class="row my-5">
                                         <div class="col-12 text-center">
                                             <div class="col-12 text-center text-md-right">
-                                                <a href="{{route('userProjects.all')}}" class="btn btn-outline-primary btn-lg pl-md-5 pr-md-4 boo">
+                                                <a href="{{route('projects.index')}}" class="btn btn-outline-primary btn-lg pl-md-5 pr-md-4 boo">
                                                     See More <i class="fa fa-long-arrow-right pl-3" aria-hidden="true"></i>
                                                 </a>
                                             </div>
@@ -324,8 +317,8 @@
 
     </section>
 
-    <section>
-        <div class="container">
+    <section id="learnhow">
+        <div class="container" >
             <div class="row">
                 <div class="col-12 text-center pb-3">
                     <h1 class="p-c">How It Works</h1>
@@ -367,7 +360,7 @@
 
                 </div>
             </div>
-<br><br>
+            <br><br>
             <div class="row mt-5 pt-5">
 
                 <div class="col-12 col-md-5">
@@ -401,6 +394,17 @@
         </div>
     </section>
 
+    <section>
+        <div class="container">
+            <div class="row" id="slider">
+                @foreach($projects as $project)
+                <div class="col-md-4 col-12">
+                    hyy
+                </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
 {{--
     <section class="second-header" id="learnhow">
         <div class="bg2-shadow">

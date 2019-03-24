@@ -18,8 +18,8 @@ class UserRole
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
-            if (Auth::user()->is_admin != 'admin') {
-                return redirect()->route('clientarea');
+            if (!Auth::user()->is_admin) {
+                return redirect()->route('projects.index');
             }
         }
 

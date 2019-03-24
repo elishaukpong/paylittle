@@ -1,4 +1,4 @@
-@extends('layouts.auth')
+@extends('layouts.auth.app')
 
 @section('content')
 <div class="container">
@@ -19,16 +19,16 @@
                 <div class="form-group row">
                     <div class="col-md-6 col-12 mx-auto mt-5 mb-4">
                         <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }} auth-input" name="email"
-                            value="{{ old('email') }}" required placeholder="Email"> 
+                            value="{{ old('email') }}" required placeholder="Email">
                             @if ($errors->has('email'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('email') }}</strong>
-                                </span> 
+                                </span>
                             @endif
                     </div>
                 </div>
 
-               
+
                 <div class="form-group row mb-0">
                     <div class="col-md-6 col-12 mx-auto">
                         <button type="submit" class="btn btn-primary form-control rounded auth-button">

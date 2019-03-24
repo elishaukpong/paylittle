@@ -77,7 +77,7 @@
                                 <a class="dropdown-item" href="{{route('userProjects.view', $user->id)}}">
                                     My Projects
                                 </a>
-                                <a class="dropdown-item" href="{{route('userProjects.all')}}">
+                                <a class="dropdown-item" href="{{route('projects.index')}}">
                                     All Projects
                                 </a>
 

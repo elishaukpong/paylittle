@@ -7,9 +7,9 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
-                <h1 class="p-c font-weight-light"> Welcome, {{$user->first_name}}</h1>
+                <h1 class="p-c font-weight-light"> Welcome, {{Auth::user()->first_name}}</h1>
                 <hr>
-                @if(!$user->hasVerifiedEmail())
+                @if(!Auth::user()->hasVerifiedEmail())
                     <div class="alert alert-danger py-3">
                         <p style="margin:0"> Your account is not verified!
                             <a href="{{route('verification.resend')}}"
@@ -29,7 +29,7 @@
                 <div class="card">
                     <div class="card-body">
                         <a href="{{route('userProjects.view')}}" class="project-link">
-                            <h5 class="card-title display-1 font-weight-bold p-c">{{$user->projects->count() ?? 0}}</h5>
+                            <h5 class="card-title display-1 font-weight-bold p-c">{{Auth::user()->projects->count() ?? 0}}</h5>
                             <p class="card-text h5 p-c">Created Projects</p>
                         </a>
                     </div>
@@ -38,9 +38,9 @@
 
             <div class="col-md-4 col-12 mt-3">
                 <div class="card">
-                    <a href="{{route('view.sponsor', $user->id)}}" class="project-link">
+                    <a href="{{route('view.sponsor', Auth::user()->id)}}" class="project-link">
                         <div class="card-body">
-                            <h5 class="card-title display-1 font-weight-bold  p-c">{{$user->sponsoredProjects->count() ?? 0}}</h5>
+                            <h5 class="card-title display-1 font-weight-bold  p-c">{{Auth::user()->sponsoredProjects->count() ?? 0}}</h5>
                             <p class="card-text h5 p-c">Sponsored Projects</p>
                             {{--<hr class="dahsboard-border">--}}
                             {{--<a class="btn btn-primary text-white form-control"--}}
@@ -54,7 +54,7 @@
                 <div class="card">
                 <a href="{{route('projects.history')}}" class="project-link">
                         <div class="card-body">
-                            <h5 class="card-title display-1 font-weight-bold  p-c">{{$user->totalcount ?? 0}}</h5>
+                            <h5 class="card-title display-1 font-weight-bold  p-c">{{Auth::user()->totalcount ?? 0}}</h5>
                             <p class="card-text h5 p-c">Project History</p>
                         </div>
                     </a>
@@ -65,7 +65,7 @@
                 <div class="card">
                     <div class="card-body">
                         <br>
-                        <a href="{{route('guarantor.index', $user->id)}}" class="project-link">
+                        <a href="{{route('guarantor.index', Auth::id())}}" class="project-link">
                             <h5 class="card-title display-1 font-weight-bold p-c text-center">
                                 <i class="fa fa-user" aria-hidden="true"></i>
                             </h5>
@@ -82,12 +82,12 @@
                 <div class="card">
                     <div class="card-body">
                         <br>
-                        <a href="{{route('userProjects.all')}}" class="project-link">
+                        <a href="{{route('projects.index')}}" class="project-link">
                             <h5 class="card-title display-1 font-weight-bold p-c text-center">
                                 <i class="fa fa-credit-card-alt" aria-hidden="true"></i>
                             </h5>
                             <hr class="dahsboard-border">
-                            <a href="{{route('userProjects.all')}}" class="btn btn-primary text-white form-control">Sponsor
+                            <a href="{{route('projects.index')}}" class="btn btn-primary text-white form-control">Sponsor
                                 Projects</a>
                         </a>
                     </div>

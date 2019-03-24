@@ -6,22 +6,13 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <title>{{ config('app.name', 'Paylittle') }}</title>
 
     {{--Scripts--}}
-   @include('inc.scripts')
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,700,800" rel="stylesheet">
+    @include('inc.scripts')
 
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
-          crossorigin="anonymous">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+   {{-- Styles and Fonts --}}
+    @include('inc.styles')
 
 </head>
 <body>
@@ -38,77 +29,82 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
+                    <ul class="navbar-nav mr-auto"> </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto my-2 dashboard">
                         <!-- Authentication Links -->
                         @guest
+                            <li class="nav-item mx-2">
+                                <a class="nav-link text-light" href="{{route('about')}}">About Us</a>
+                            </li>
+                            <li class="nav-item mx-2">
+                                <a class="nav-link text-light" href="{{route('blog')}}">Blog</a>
+                            </li>
+                            <li class="nav-item mx-2">
+                                <a class="nav-link text-light" href="{{route('contact')}}">Contact Us</a>
+                            </li>
+
                             <li class="nav-item mx-3">
-                                <a class="nav-link text-light" href="/">Home</a>
+                                <a class="nav-link text-light" href="{{route('login')}}">Login</a>
                             </li>
                             <li class="nav-item mx-3">
-                                <a class="nav-link text-light" href="/about">About</a>
-                            </li>
-                            <li class="nav-item mx-3">
-                                <a class="nav-link text-light" href="/contact">Contact</a>
-                            </li>
-                            <li class="nav-item mx-3">
-                                <a class="nav-link text-light" href="/login">Login</a>
-                            </li>
-                            <li class="nav-item mx-3">
-                                <a class="nav-link text-primary btn btn-warning px-4" href="/register">Sign Up</a>
+                                <a class="nav-link text-primary btn btn-warning px-4" href="{{route('register')}}">Sign Up</a>
                             </li>
 
                         @else
 
-                            <li class="nav-item mx-1 note">
-                                <a class="nav-link text-light" href="{{route('clientarea')}}">
-                                    Dashboard
-                                </a>
+                            <li class="nav-item mx-2">
+                                <a class="nav-link text-light" href="{{route('about')}}">About Us</a>
+                            </li>
+                            <li class="nav-item mx-2">
+                                <a class="nav-link text-light" href="{{route('blog')}}">Blog</a>
+                            </li>
+                            <li class="nav-item mx-2">
+                                <a class="nav-link text-light" href="{{route('contact')}}">Contact Us</a>
                             </li>
 
-                            <li class="nav-item mx-1 note">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle text-light"
-                                   role="button"
-                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    Projects
-                                    <span class="caret"></span>
+                            <li class="nav-item mx-2 dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false" v-pre>
+                                Projects <span class="caret"></span>
                                 </a>
+
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{route('userProjects.view', $user->id)}}">
+                                <a class="dropdown-item" href="{{route('project.create')}}">
+                                        New Project
+                                    </a>
+                                <a class="dropdown-item" href="{{route('userProjects.view', $user->id)}}">
                                         My Projects
                                     </a>
-                                    <a class="dropdown-item" href="{{route('userProjects.all')}}">
+                                    <a class="dropdown-item" href="{{route('projects.index')}}">
                                         All Projects
                                     </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                          style="display: none;">
-                                        @csrf
-                                    </form>
                                 </div>
                             </li>
 
-
-                            <li class="nav-item mx-1 note">
-                                <a class="nav-link text-light" href="{{route('user.show', Auth::user()->id)}}">
-                                  Account
+                            <li class="nav-item mx-2 dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle text-light" href="#" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->first_name }} <span class="caret"></span>
                                 </a>
-                            </li>
 
-                            <li class="nav-item mx-1 note">
-                                <a class="nav-link text-light" href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="#">
+                                        {{ __('My Profile') }}
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
                                                         document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a>
+                                        {{ __('Logout') }}
+                                    </a>
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        style="display: none;">
+                                        @csrf
+                                    </form>
+                                </div>
                             </li>
                         @endguest
                     </ul>
@@ -117,24 +113,17 @@
         </nav>
 
         <main class="">
+            @include('inc.alerts')
             <div class="container-fluid my-4">
-
-                {{-- Flash Notifications --}}
-            <div class="row">
-                <div class="col-12">
-                @include('inc.alerts')
-                </div>
-            </div>
-
                 {{-- App Layout --}}
                 <div class="row">
-
                     <div class="col-12">
                         @yield('content')
                     </div>
                 </div>
             </div>
         </main>
+
        @include('inc.footer')
 
     </div>

@@ -10,13 +10,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+// Basic Navigation Routes
 Route::get('/', 'NavigationController@index')->name('/');
 Route::get('/about', 'NavigationController@about')->name('about');
 Route::get('/contact', 'NavigationController@contact')->name('contact');
-Route::get('/blog', 'NavigationController@blog')->name('blog');
-
-Route::get('/verify', 'SponsorController@verify')->name('verify');
+Route::get('/blog', 'NavigationController@blog')->name('blog'); //wordpress will be used here
+Route::get('/clientarea', 'NavigationController@clientarea')->name('clientarea');
 
 Route::get('/account/{user}', 'UserController@show')->name('user.show');
 Route::get('/account/{user}/edit', 'UserController@edit')->name('user.edit');
@@ -24,10 +23,11 @@ Route::put('/account/{user}', 'UserController@update')->name('user.update');
 
 //Guarantor Route
 Route::resource('/guarantor', 'GuarantorController');
-// Route::get('/guarantor/delete/{guarantor}', 'GuarantorController@destroy')->name('guarantor.delete');
 
+// Projects
+Route::get('/projects', 'ProjectController@index')->name('projects.index');
 
-Route::get('/project', 'ProjectController@index')->name('userProjects.all');
+// not touched yet
 Route::get('/project/create', 'ProjectController@create')->name('project.create');
 Route::post('/project', 'ProjectController@store')->name('project.store');
 Route::get('/project/{project}/show', 'ProjectController@show')->name('userProjects.show')->middleware('checkprojectstatus');
@@ -39,7 +39,7 @@ Route::get('/thrashedprojects', 'ProjectController@trashedProjects')->name('proj
 Route::get('/projects/{project}/restore', 'ProjectController@restoreProject')->name('project.restore');
 
 Route::put('/project/{project}', 'ProjectController@update')->name('userProjects.update');
-Route::get('/projects', 'ProjectController@filterByUser')->name('userProjects.view');
+Route::get('/projectss', 'ProjectController@filterByUser')->name('userProjects.view');
 Route::get('/projects/{project}/hit', 'ProjectController@increaseProjectHit');
 Route::get('/projectshistory', 'ProjectController@ProjectsHistory')->name('projects.history');
 
@@ -60,20 +60,25 @@ Route::get('/registerphase', 'UserController@continuereg')->name('reg.phase2');
 Route::post('/registerphase', 'UserController@continueregSave')->name('save.regphase');
 Route::get('/register/{state}/lgas', 'UserController@getLgaByState');
 
+
 Route::get('/adminarea', 'AdminController@index')->name('admin.home');
 Route::get('/admin/edit', 'AdminController@edit')->name('admin.edit');
 Route::get('/admin/allusers', 'AdminController@showUsers')->name('admin.showallusers');
-Route::get('/admin/allusers/{user}', 'AdminController@filterByUser')->name('admin.showuser');
+Route::get('/admin/users/{user}', 'AdminController@filterByUser')->name('admin.showuser');
 Route::get('/admin/{user}/projects', 'AdminController@filterByUserProjects')->name('admin.showuserprojects');
-Route::get('/admin/allprojects', 'AdminController@showProjects')->name('admin.showallprojects');
+Route::get('/admin/projects', 'AdminController@showProjects')->name('admin.showallprojects');
 Route::get('/admin/projects/{project}', 'AdminController@filterByProject')->name('admin.showproject');
 Route::get('/admin/subscriptions', 'AdminController@subscriptions')->name('admin.projectsubscriptions');
 
 
 
-Route::get('/clientarea', 'HomeController@index')->name('clientarea');
 
 //Ajax Routes
 Route::get('/admin/updatestatus/{project}/{status}', 'AdminController@updateStatus')->name('admin.updatestatus');
 Route::get('/sponsorreturns/{project}/{amount}', 'SponsorController@sponsorReturns');
 Route::get('/subscriptionstatus/{subscription}/{status}', 'SponsorController@subscriptionStatus');
+
+
+
+// unknown
+// Route::get('/verify', 'SponsorController@verify')->name('verify');

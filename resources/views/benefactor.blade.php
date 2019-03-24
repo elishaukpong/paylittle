@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.app')
 
 @section('content')
 <section class="bene-header">
@@ -34,7 +34,7 @@
                     @csrf
                     <div class="form-group">
                         <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" placeholder="Enter Name"
-                            required autofocus> 
+                            required autofocus>
                         @if ($errors->has('name'))
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first('name') }}</strong>
@@ -43,29 +43,29 @@
                     </div>
                     <div class="form-group">
                         <input id="email" type="text" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}"
-                            placeholder="Enter Email" required> 
+                            placeholder="Enter Email" required>
                         @if ($errors->has('email'))
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first('email') }}</strong>
-                            </span> 
+                            </span>
                         @endif
                     </div>
                     <div class="form-group">
                         <input id="phone" type="text" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" value="{{ old('phone') }}"
-                            placeholder="Enter Phone Number" required> 
+                            placeholder="Enter Phone Number" required>
                         @if ($errors->has('phone'))
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first('phone') }}</strong>
-                            </span> 
+                            </span>
                         @endif
                     </div>
                     <div class="form-group">
                         <input id="amount" type="number" class="form-control{{ $errors->has('amount') ? ' is-invalid' : '' }}" name="amount" value="{{ old('amount') }}"
-                            placeholder="Enter Amount" required autofocus> 
+                            placeholder="Enter Amount" required autofocus>
                         @if ($errors->has('amount'))
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first('amount') }}</strong>
-                            </span> 
+                            </span>
                         @endif
                     </div>
                     <div class="form-group pb-4">
@@ -76,7 +76,7 @@
                             <option value="1">6 Months - 1 Year</option>
                         </select>
                     </div>
-                 
+
                     <button type="submit" class="btn btn-success form-control">Submit</button>
                 </form>
              </div>

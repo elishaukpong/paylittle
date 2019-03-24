@@ -1,4 +1,4 @@
-@extends('layouts.auth')
+@extends('layouts.auth.app')
 
 @section('content')
 <div class="container">
@@ -37,7 +37,7 @@
                             </div>
                         </div>
 
-                       
+
                         <div class="form-group row ">
                             <div class="col-md-6 col-12 mx-auto text-center">
                                 <button type="submit" class="btn btn-primary form-control rounded auth-button">
@@ -59,13 +59,13 @@
                         </div>
                         <div class="form-group row  my-4 py-1">
                             <div class="col-md-6 col-12  mx-auto">
-                               
+
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link rounded border btn-hover text-white px-4 py-2 form-control" href="{{ route('password.request') }} ">
                                         {{ __('Forgot Your Password?') }}
                                     </a>
                                     @endif
-                                   
+
                             </div>
                         </div>
                     </form>
