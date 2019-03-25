@@ -1,7 +1,7 @@
 @extends('layouts.dashboardclean')
 
 @section('content')
-<div class="jumbotron text-center project-jumbotron ">
+<div class="jumbotron text-center payment-details-jumbotron ">
     <div class="jumbotron-cover py-4">
         <h1 class="font-weight-bold text-white ">Bank Payment</h1>
     </div>
@@ -16,13 +16,12 @@
                     <img src="{{asset('svg/bank.svg')}}" alt="" class="img-fluid" style="width:100px;">
                     <br><br>
                     <p class="bank-text">
-                        Pay the sum of NGN {{number_format($amount)}} to<br><br>
+                        Pay the sum of NGN {{number_format($amount)}} to <br><br>
                         Globetrot Farm Sponsors <br>
                         2033547424 <br>
                         First Bank PLC
                     </p>
-                    <a href="#" class="btn btn-success "> Proceed</a>
-                    {{-- <a href="{{route('view.sponsor', Auth::user())}}" class="btn btn-success "> Proceed</a> --}}
+                    <a href="{{route('sponsored.project', Auth::user())}}" class="btn btn-success "> Proceed</a>
                 </div>
             </div>
         </div>

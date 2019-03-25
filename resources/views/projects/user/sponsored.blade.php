@@ -2,23 +2,20 @@
 
 
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-12">
-                <h1 class="p-c font-weight-light"> Sponsored Projects</h1>
-                <br>
-            </div>
+    <div class="jumbotron text-center payment-details-jumbotron ">
+        <div class="jumbotron-cover py-4">
+            <h1 class="font-weight-bold text-white ">Sponsored Projects</h1>
         </div>
     </div>
 
     <div class="container">
+
         <div class="row">
             <div class="col-12">
                 <div class="table-responsive">
                     <table class="table table-hover">
                         <thead>
                         <tr>
-                            <th scope="col">S/N</th>
                             <th scope="col"> Project Name</th>
                             <th scope="col">Status</th>
                             <th scope="col">Amount</th>
@@ -29,9 +26,8 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($projectsubscriptions as $key => $projectsubscription)
+                        @foreach($projectsubscriptions as  $projectsubscription)
                             <tr>
-                                <th scope="row">{{ $key+1 }}</th>
                                 <td>{{ $projectsubscription->project->name }}</td>
                                 <td>{{ $projectsubscription->status->name}}</td>
                                 <td>{{ $projectsubscription->formattedamount}}</td>

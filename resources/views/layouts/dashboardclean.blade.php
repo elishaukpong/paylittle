@@ -71,15 +71,35 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{route('project.create')}}">
-                                        New Project
-                                    </a>
-                                <a class="dropdown-item" href="{{route('user.projects.show', $user->id)}}">
-                                        My Projects
-                                    </a>
+                                    <a class="dropdown-item" href="{{route('project.create')}}">
+                                                                        New Project
+                                                                </a>
                                     <a class="dropdown-item" href="{{route('projects.index')}}">
-                                        All Projects
+                                                                    All Projects
+                                                                </a>
+                                    <a class="dropdown-item" href="{{route('user.projects.show', $user->id)}}">
+                                                                    My Projects
+                                                                </a>
+                                    <a class="dropdown-item" href="{{route('sponsored.project')}}">
+                                                                    Sponsored Projects
+                                                                </a>
+
+                                </div>
+                            </li>
+                            <li class="nav-item mx-2 dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false" v-pre>
+                                Guarantors <span class="caret"></span>
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{route('guarantor.create')}}">
+                                        New Guarantor
                                     </a>
+                                    <a class="dropdown-item" href="{{route('guarantor.index')}}">
+                                        My Gurantors
+                                    </a>
+
 
                                 </div>
                             </li>

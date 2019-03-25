@@ -13,7 +13,7 @@ class GuarantorController extends Controller
      * GuarantorController constructor.
      */
     public function __construct() {
-        $this->middleware('auth');
+        $this->middleware(['auth','verified']);
     }
 
     /**
@@ -24,7 +24,7 @@ class GuarantorController extends Controller
     public function index()
     {
         $data['guarantors'] = Guarantor::whereUserId(Auth::id())->paginate(9);
-        return view('dashboard.guarantor.index', $data);
+        return view('projects.guarantor.index', $data);
     }
 
     /**
@@ -34,7 +34,7 @@ class GuarantorController extends Controller
      */
     public function create()
     {
-        return view('dashboard.guarantor.create');
+        return view('projects.guarantor.create');
     }
 
     /**
@@ -51,22 +51,17 @@ class GuarantorController extends Controller
         ];
         $this->validate($request, $rules);
 
-        Guarantor::create($request->except('_token'));
+
+        $newGuarantor = new Guarantor;
+        $newGuarantor->name = $request->name;
+        $newGuarantor->email = $request->email;
+
+        Auth::user()->guarantors()->save($newGuarantor);
 
         Session::flash('success', 'Guarantor Created Successfully');
         return redirect()->route('guarantor.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Guarantor  $guarantor
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Guarantor $guarantor)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -77,7 +72,7 @@ class GuarantorController extends Controller
     public function edit(Guarantor $guarantor)
     {
         $data['guarantor'] = $guarantor;
-        return view('dashboard.guarantor.edit', $data);
+        return view('projects.guarantor.edit', $data);
     }
 
     /**

@@ -4,18 +4,15 @@
 
 
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-12">
-                <h1 class="p-c font-weight-light"> Edit Guarantor </h1>
-                <hr>
-            </div>
+   <div class="jumbotron text-center guarantor-jumbotron ">
+        <div class="jumbotron-cover py-4">
+            <h1 class="font-weight-bold text-white "> Edit Guarantor</h1>
         </div>
     </div>
 
     <div class="container my-4">
         <div class="row">
-            <div class="col-md-6 col-12 mx-auto">
+            <div class="col-md-8 col-12 mx-auto">
 
                 <div class="card">
                     <div class="card-body text-left">

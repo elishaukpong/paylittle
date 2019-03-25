@@ -1,9 +1,9 @@
 <?php
 
 // use App\User;
-Route::get('test', function(){
-    return view('projects.sponsorship_payment');
-});
+// Route::get('test', function(){
+//     return view('projects.sponsorship_payment');
+// });
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,6 +21,13 @@ Route::get('/contact', 'NavigationController@contact')->name('contact');
 Route::get('/blog', 'NavigationController@blog')->name('blog'); //wordpress will be used here
 Route::get('/clientarea', 'NavigationController@clientarea')->name('clientarea');
 
+// Auth Routes
+Auth::routes([ 'verify' => true]);
+Route::get('/registerphase', 'UserController@continuereg')->name('reg.phase2');
+Route::post('/registerphase', 'UserController@continueregSave')->name('save.regphase');
+Route::get('/register/{state}/lgas', 'UserController@getLgaByState');
+
+// User Account Route
 Route::get('/account/{user}', 'UserController@show')->name('user.show');
 Route::get('/account/{user}/edit', 'UserController@edit')->name('user.edit');
 Route::put('/account/{user}', 'UserController@update')->name('user.update');
@@ -45,24 +52,18 @@ Route::get('/projectshistory', 'ProjectController@ProjectsHistory')->name('proje
 //Sponsorship routes
 Route::post('/projects/{project}/sponsor', 'SponsorController@sponsorProject')->name('sponsor.project');
 Route::get('/sponsorreturns/{project}/{amount}', 'SponsorController@sponsorReturns'); //AJAX Route
-
-// Defunct route
-// Route::get('/userprojects/thrashed', 'ProjectController@trashedProjects')->name('projects.trashed'); Not used again, just keeping
-
-// not touched yet
-
-Route::get('/projects/{user}/sponsored', 'SponsorController@sponsoredProjects')->name('view.sponsor');
-Route::get('/sponsor/payment', 'SponsorController@payment')->name('payment');
-
+Route::get('/userprojects/sponsored', 'SponsorController@sponsoredProjects')->name('sponsored.project');
 
 //Email Route
 Route::post('/email', 'EmailSubscriptionController@subscribe')->name('email.subscribe');
 
-Auth::routes([ 'verify' => true]);
+// Defunct route
 
-Route::get('/registerphase', 'UserController@continuereg')->name('reg.phase2');
-Route::post('/registerphase', 'UserController@continueregSave')->name('save.regphase');
-Route::get('/register/{state}/lgas', 'UserController@getLgaByState');
+// not touched yet
+
+
+
+
 
 
 Route::get('/adminarea', 'AdminController@index')->name('admin.home');

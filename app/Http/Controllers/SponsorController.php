@@ -62,11 +62,13 @@ class SponsorController extends Controller
 
     public function sponsoredProjects(User $user)
     {
-        $data['projectsubscriptions'] =  ProjectSubscription::whereUserId(Auth::id())->paginate(10);
-        if($data['projectsubscriptions']->count() == 0){
+        $projectsubscriptions =  ProjectSubscription::whereUserId(Auth::id())->paginate(10);
+
+        if($projectsubscriptions->count() == 0){
             Session::flash('info', 'You have not sponsored any project yet!');
             return redirect()->back();
         }
+        $data['projectsubscriptions'] = $projectsubscriptions;
         return view('projects.user.sponsored', $data);
     }
 

@@ -40,6 +40,21 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne('App\Models\bvn');
     }
 
+    public function sponsoredProjects()
+    {
+        return $this->hasMany('App\Models\ProjectSubscription', 'user_id');
+    }
+
+    public function projects()
+    {
+        return $this->hasMany('App\Models\Project');
+    }
+
+    public function guarantors()
+    {
+        return $this->hasMany('App\Models\Guarantor');
+    }
+
     public function IsAdmin()
     {
         if ($this->is_admin != 'admin')
@@ -87,16 +102,6 @@ class User extends Authenticatable implements MustVerifyEmail
     public function getTotalCountAttribute()
     {
         return $this->sponsoredProjects()->count() + $this->projects()->count();
-    }
-
-    public function sponsoredProjects()
-    {
-        return $this->hasMany('App\Models\ProjectSubscription', 'user_id');
-    }
-
-    public function projects()
-    {
-        return $this->hasMany('App\Models\Project');
     }
 
     public function getFullnameAttribute()

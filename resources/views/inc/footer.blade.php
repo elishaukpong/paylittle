@@ -32,7 +32,12 @@
                 <div class="ml-md-4">
                     <form action="{{route('email.subscribe')}}" method="POST">
                         @csrf
-                        <input type="text" class="form-control mb-2" placeholder="Type Email Address" name="emails">
+                        <input type="email" class="form-control mb-2 {{ $errors->has('emails') ? ' is-invalid' : '' }}" placeholder="Type Email Address" name="emails">
+                         @if ($errors->has('emails'))
+                                    <span class="invalid-feedback text-center" role="alert">
+                                        <strong>{{ $errors->first('emails') }}</strong>
+                                    </span>
+                                @endif
                         <input type="submit" value="Submit" class="btn btn-warning form-control" id="email">
                     </form>
 

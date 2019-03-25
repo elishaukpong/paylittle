@@ -10,12 +10,16 @@ class EmailSubscriptionController extends Controller
 
     public function subscribe(Request $request)
     {
-//        $this->validate($request, [
-//            'emails' => 'required | email'
-//        ]);
+
+       $this->validate($request, [
+           'emails' => 'required | email'
+       ]);
+
         if (!EmailSubscription::create($request->except('token'))) {
             return redirect()->back()->with('error', 'Can\'t Subscribe at the moment');
         };
-        return redirect()->back()->with('success', 'Email Subscribed Successfully');;
+
+        return redirect()->back()->with('success', 'Email Subscribed Successfully');
+
     }
 }

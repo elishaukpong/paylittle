@@ -1,4 +1,4 @@
-@extends('layouts.dashboard')
+@extends('layouts.dashboardclean')
 @section('notifications')
     @include('inc.alerts')
 @endsection
@@ -38,13 +38,13 @@
 
             <div class="col-md-4 col-12 mt-3">
                 <div class="card">
-                    <a href="{{route('view.sponsor', Auth::user()->id)}}" class="project-link">
+                    <a href="{{route('sponsored.project', Auth::user()->id)}}" class="project-link">
                         <div class="card-body">
                             <h5 class="card-title display-1 font-weight-bold  p-c">{{Auth::user()->sponsoredProjects->count() ?? 0}}</h5>
                             <p class="card-text h5 p-c">Sponsored Projects</p>
                             {{--<hr class="dahsboard-border">--}}
                             {{--<a class="btn btn-primary text-white form-control"--}}
-                            {{--                                   href="{{route('view.sponsor', $user->id)}}">View Details</a>--}}
+                            {{--                                   href="{{route('sponsored.project', $user->id)}}">View Details</a>--}}
 
                         </div>
                     </a>
