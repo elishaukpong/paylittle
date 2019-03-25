@@ -2,12 +2,33 @@
 
 
     @section('content')
+        <div class="jumbotron text-center project-jumbotron ">
+            <div class="jumbotron-cover py-4">
+                <h1 class="font-weight-bold text-white ">My Projects</h1>
+            </div>
+        </div>
+
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-md-12">
-                    <h1 class="p-c font-weight-light"> Created Projects</h1>
-                    <a href="{{route('projects.trashed')}}" class="btn btn-sm btn-danger my-3">Thrashed Projects</a>
-                    <br>
+                <div class="col-12  py-2 rounded">
+                    <ul class=" text-center list-inline mb-3">
+                        <li class="list-inline-item">
+                            <a href="" class="btn btn-sm my-2 btn-primary px-5 mx-2" data-toggle="pill" id="pills-all-tab" role="tab" aria-controls="pills-all" aria-selected="true">All Projects</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="{{route('projects.trashed')}}" class="btn btn-sm my-2 btn-danger px-5 mx-2" data-toggle="pill" id="pills-thrashed-tab" role="tab" aria-controls="pills-thrashed" aria-selected="true">Thrashed Projects</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="" class="btn btn-sm my-2 btn-primary px-5 mx-2" data-toggle="pill" id="pills-pending-tab" role="tab" aria-controls="pills-pending" aria-selected="true">Pending Projects</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="" class="btn btn-sm my-2 btn-success px-5 mx-2" data-toggle="pill" id="pills-approved-tab" role="tab" aria-controls="pills-approved" aria-selected="true">Approved Projects</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="" class="btn btn-sm my-2 btn-danger px-5 mx-2" data-toggle="pill" id="pills-rejected-tab" role="tab" aria-controls="pills-rejected" aria-selected="true">Rejected Projects</a>
+                        </li>
+                    </ul>
+
                 </div>
             </div>
         </div>
@@ -39,7 +60,7 @@
                                 <td>{{$project->formattedrepaymentamount}}</td>
                                 <td>{{$project->repaymentplan->timeline}}</td>
                                 <td>
-                                    <a href="{{route('userProjects.show', $project->id)}}" class="btn btn-sm btn-primary">View Project</a>
+                                    <a href="{{route('project.show', $project->id)}}" class="btn btn-sm btn-primary">View Project</a>
                                 </td>
                                 <td>
                                     <form action="{{route('userProjects.delete', $project->id)}}" method="post">

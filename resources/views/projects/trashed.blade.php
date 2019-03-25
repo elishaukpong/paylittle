@@ -6,7 +6,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-12">
                     <h1 class="p-c font-weight-light"> Thrashed Projects</h1>
-                    <a href="{{route('userProjects.view', $user->id)}}" class="btn btn-sm btn-success my-3">All Projects</a>
+                    <a href="{{route('user.projects.show', $user->id)}}" class="btn btn-sm btn-success my-3">All Projects</a>
                     <br>
                 </div>
             </div>

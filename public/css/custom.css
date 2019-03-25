@@ -368,7 +368,7 @@ ol.carousel-indicators {
 }
 
 .jumbotron.project-jumbotron {
-    background-image: url('../img/project-jumbotron.jpg');
+    background-image: linear-gradient(to right, #328cf234, #328cf234), url('../img/project-jumbotron.jpg');
     background-size: cover;
     background-position: center;
 }
@@ -389,30 +389,42 @@ ol.carousel-indicators {
 }
 
 .jumbotron.create-project-jumbotron {
-    background-image: url('../img/create.jpg');
+    background-image: linear-gradient(to right, #328cf234, #328cf234), url('../img/create.jpg');
     background-size: cover;
     background-position: center;
 }
 
 .create-project-left {
-    background-image: url('../img/create.jpg');
+    background-image: linear-gradient(to right, #328cf234, #328cf234), url('../img/create.jpg');
     background-size: cover;
     background-position: center;
-}
-
-.create-project-left-cover {
-    background: red;
-    height: 100%;
-    width: 100%;
+    border-radius: .5em 0 0 .5em;
 }
 
 .add-book {
     border-radius: 50%;
-    width: 40em;
-    height: 13em;
+    width: 400px;
+    height: 130px;
     border-width: 2px !important;
+    position: relative;
 }
 
-#book_avatar {
+#project_avatar {
     display: none;
+}
+
+.links>a {
+    padding: 0 25px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .1rem;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.links>a>.fa {
+    position: absolute;
+    top: 0;
+    right: 2.5em;
+    border-radius: 50%;
 }

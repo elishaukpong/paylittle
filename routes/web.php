@@ -1,5 +1,11 @@
 <?php
 
+// use App\Models\Project;
+Route::get('test', function(){
+    // $project = Project::whereUserId(Auth::id())->has('photo')->with('photo')->first();
+    // return dd(file_exists($previousImage = public_path() . $project->photo->projectavatar));
+    return Auth::user()->projects()->paginate(9);
+});
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,20 +32,20 @@ Route::resource('/guarantor', 'GuarantorController');
 
 // Projects
 Route::get('/projects', 'ProjectController@index')->name('projects.index');
+Route::get('/project/create', 'ProjectController@create')->name('project.create');
+Route::post('/projects', 'ProjectController@store')->name('project.store');
+Route::get('/projects/{project}/show', 'ProjectController@show')->name('project.show')->middleware('checkprojectstatus');
+Route::get('/projects/{project}/edit', 'ProjectController@edit')->name('project.edit');
+Route::put('/projects/{project}', 'ProjectController@update')->name('project.update');
+Route::get('/userprojects', 'ProjectController@filterByUser')->name('user.projects.show');
 
 // not touched yet
-Route::get('/project/create', 'ProjectController@create')->name('project.create');
-Route::post('/project', 'ProjectController@store')->name('project.store');
-Route::get('/project/{project}/show', 'ProjectController@show')->name('userProjects.show')->middleware('checkprojectstatus');
-Route::get('/project/{project}/edit', 'ProjectController@edit')->name('userProjects.edit');
 
 Route::delete('/project/{project}/delete', 'ProjectController@delete')->name('userProjects.delete');
 Route::delete('/project/{project}/destroy', 'ProjectController@destroy')->name('project.destroy');
 Route::get('/thrashedprojects', 'ProjectController@trashedProjects')->name('projects.trashed');
 Route::get('/projects/{project}/restore', 'ProjectController@restoreProject')->name('project.restore');
 
-Route::put('/project/{project}', 'ProjectController@update')->name('userProjects.update');
-Route::get('/projectss', 'ProjectController@filterByUser')->name('userProjects.view');
 Route::get('/projects/{project}/hit', 'ProjectController@increaseProjectHit');
 Route::get('/projectshistory', 'ProjectController@ProjectsHistory')->name('projects.history');
 

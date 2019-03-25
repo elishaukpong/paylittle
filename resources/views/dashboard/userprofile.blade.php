@@ -75,7 +75,7 @@
                         <p class="card-title font-weight-bold p-c">{{$project->name}}</p>
                         <p class="card-text">{{$project->shortDetails}}</p>
                         <hr class="dahsboard-border">
-                        {{--<a href="{{route('userProjects.edit', $project->id)}}" class="btn btn-danger text-white">Edit Project</a>--}}
+                        {{--<a href="{{route('project.edit', $project->id)}}" class="btn btn-danger text-white">Edit Project</a>--}}
                         <a href="{{route('admin.showproject', $project->id)}}" class="btn btn-primary text-white form-control">View Project</a>
                     </div>
                 </div>
@@ -100,7 +100,7 @@
     @if($projects->count() > 0)
         <div class="row my-5">
             <div class="col-12 text-right">
-                <a href="{{route('userProjects.view', $user->id)}}" class="btn btn-outline-primary btn-lg pl-md-5 pr-md-4 boo">
+                <a href="{{route('user.projects.show', $user->id)}}" class="btn btn-outline-primary btn-lg pl-md-5 pr-md-4 boo">
                     See More <i class="fa fa-long-arrow-right pl-3" aria-hidden="true"></i>
                 </a>
             </div>

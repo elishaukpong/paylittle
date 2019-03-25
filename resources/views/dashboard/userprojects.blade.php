@@ -49,7 +49,7 @@
                         <p class="card-text">{{$project->shortDetails}}</p>
 
                         <hr class="dahsboard-border">
-                        <a href="{{route('userProjects.show', $project->id)}}" class="btn btn-primary text-white form-control">View Project</a>
+                        <a href="{{route('project.show', $project->id)}}" class="btn btn-primary text-white form-control">View Project</a>
                     </div>
                 </div>
             </div>

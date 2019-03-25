@@ -85,7 +85,7 @@
                                         @forelse ($projects as $project)
                                             <div class="col-md-4 col-12 mt-3">
                                                 <div class="card">
-                                                    <a href="{{route('userProjects.show',$project->id)}}"><img class="card-img-top img-fluid" src="{{asset($project->photo->projectavatar)}}" alt="Card image cap"></a>
+                                                    <a href="{{route('project.show',$project->id)}}"><img class="card-img-top img-fluid" src="{{asset($project->photo->projectavatar)}}" alt="Card image cap"></a>
                                                     <div class="card-body mt-3">
                                                         <p class="card-title font-weight-bold text-secondary">{{$project->name}}</p>
                                                         <p class="card-text">{{$project->shortDetails}}</p>
@@ -100,7 +100,7 @@
                                                         <p class="float-left text-secondary"> {{$project->formattedamountsponsored}} <small>Raised</small></p>
                                                         <p class="float-right text-secondary"><small>Total</small> {{$project->formattedamount}}</p>
                                                         <br><br>
-                                                        <a href="{{route('userProjects.show', $project->id)}}" class="btn btn-primary form-control text-white">View Project Details</a>
+                                                        <a href="{{route('project.show', $project->id)}}" class="btn btn-primary form-control text-white">View Project Details</a>
 
                                                     </div>
                                                 </div>
@@ -149,7 +149,7 @@
                                                         <p class="float-left text-secondary">{{$trendingproject->formattedamountsponsored}} <small>Raised</small></p>
                                                         <p class="float-right text-secondary"><small>Total</small> {{$trendingproject->formattedamount}}</p>
                                                         <br><br>
-                                                        <a href="{{route('userProjects.show', $trendingproject->id)}}" class="btn btn-primary form-control text-white">View Project Details</a>
+                                                        <a href="{{route('project.show', $trendingproject->id)}}" class="btn btn-primary form-control text-white">View Project Details</a>
 
                                                     </div>
                                                 </div>
@@ -195,7 +195,7 @@
                                                         <p class="float-left text-secondary">{{$project->formattedamountsponsored}} <small>Raised</small></p>
                                                         <p class="float-right text-secondary"><small>Total</small> {{$project->formattedamount}}</p>
                                                         <br><br>
-                                                        <a href="{{route('userProjects.show', $project->id)}}" class="btn btn-primary form-control text-white">View Project Details</a>
+                                                        <a href="{{route('project.show', $project->id)}}" class="btn btn-primary form-control text-white">View Project Details</a>
 
                                                     </div>
                                                 </div>
@@ -242,7 +242,7 @@
                                                         <p class="float-left text-secondary">{{$project->formattedamountsponsored}} <small>Raised</small></p>
                                                         <p class="float-right text-secondary"><small>Total</small> {{$project->formattedamount}}</p>
                                                         <br><br>
-                                                        <a href="{{route('userProjects.show', $project->id)}}" class="btn btn-primary form-control text-white">View Project Details</a>
+                                                        <a href="{{route('project.show', $project->id)}}" class="btn btn-primary form-control text-white">View Project Details</a>
 
                                                     </div>
                                                 </div>

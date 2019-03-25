@@ -35,7 +35,7 @@
                                 <td>{{ $project->formattedamount}}</td>
                                 <td>{{$project->created_at}}</td>
                                 <td>
-                                    <a href="{{route('userProjects.show', $project->id)}}"
+                                    <a href="{{route('project.show', $project->id)}}"
                                        class="btn btn-primary btn-sm">View Project</a>
                                 </td>
 

@@ -1,18 +1,3 @@
-// function readURL(input) {
-//     if (input.files && input.files[0]) {
-//         var reader = new FileReader();
-//
-//         reader.onload = function (e) {
-//             $('#blah')
-//                 .attr('src', e.target.result)
-//                 .width(150)
-//                 .height(200);
-//         };
-//
-//         reader.readAsDataURL(input.files[0]);
-//     }
-// }
-
 $(document).ready(function() {
 
     //Setting up functions
@@ -194,44 +179,65 @@ $(document).ready(function() {
         });
     }
 
+    $('.g-delete').click(function(e) {
+        e.preventDefault();
+        swal({
+            title: "Are you sure you want to delete this gurantor?",
+            icon: "info",
+            buttons: ["Cancel", "Proceed"],
+        }).then((deleteGuarantor) => {
+            if (deleteGuarantor) {
+                $(this).parent().submit();
+            }
+        });
+    })
+
+    $('.cp-delete').click(function(e) {
+        e.preventDefault();
+        swal({
+            title: "Are you sure you want to move this project to trash?",
+            icon: "info",
+            buttons: ["Cancel", "Yes"],
+        }).then((trashProject) => {
+            if (trashProject) {
+                $(this).parent().submit();
+            }
+        });
+    })
+
+    $('.tp-delete').click(function(e) {
+        e.preventDefault();
+        swal({
+            title: "Are you sure you want to delete this project permanently?",
+            icon: "info",
+            buttons: ["Cancel", "Yes"],
+        }).then((trashProject) => {
+            if (trashProject) {
+                $(this).parent().submit();
+            }
+        });
+    })
+
+    // image preview for create project
+
+    $('#img-select').click(function(e) {
+        e.preventDefault();
+        $('#project_avatar').trigger('click');
+        showImage(src, target);
+    });
+
+    var src = document.getElementById("project_avatar");
+    var target = document.getElementById("target");
+
+    function showImage(src, target) {
+        var fr = new FileReader();
+        // when image is loaded, set the src of the image where you want to display it
+        fr.onload = function(e) { target.src = this.result; };
+        src.addEventListener("change", function() {
+            // fill fr with image data
+            fr.readAsDataURL(src.files[0]);
+        });
+    }
+
 
 });
-
-$('.g-delete').click(function(e) {
-    e.preventDefault();
-    swal({
-        title: "Are you sure you want to delete this gurantor?",
-        icon: "info",
-        buttons: ["Cancel", "Proceed"],
-    }).then((deleteGuarantor) => {
-        if (deleteGuarantor) {
-            $(this).parent().submit();
-        }
-    });
-})
-
-
-$('.cp-delete').click(function(e) {
-    e.preventDefault();
-    swal({
-        title: "Are you sure you want to move this project to trash?",
-        icon: "info",
-        buttons: ["Cancel", "Yes"],
-    }).then((trashProject) => {
-        if (trashProject) {
-            $(this).parent().submit();
-        }
-    });
-})
-$('.tp-delete').click(function(e) {
-    e.preventDefault();
-    swal({
-        title: "Are you sure you want to delete this project permanently?",
-        icon: "info",
-        buttons: ["Cancel", "Yes"],
-    }).then((trashProject) => {
-        if (trashProject) {
-            $(this).parent().submit();
-        }
-    });
-})

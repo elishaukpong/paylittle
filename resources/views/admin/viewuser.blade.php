@@ -59,11 +59,11 @@
             <div class="col-md-4 col-12 mt-3">
                 <img class="card-img-top" src="{{asset($project->photo->projectavatar)}}" alt="Card image cap">
                 <div class="card border border-primary">
-                    <div class="card-body">                    
+                    <div class="card-body">
                         <p class="card-title font-weight-bold p-c">{{$project->name}}</p>
                         <p class="card-text">{{$project->shortDetails}}</p>
                         <hr class="dahsboard-border">
-                        {{--<a href="{{route('userProjects.edit', $project->id)}}" class="btn btn-danger text-white">Edit Project</a>--}}
+                        {{--<a href="{{route('project.edit', $project->id)}}" class="btn btn-danger text-white">Edit Project</a>--}}
                         <a href="{{route('admin.showproject', $project->id)}}" class="btn btn-primary text-white form-control">View Project</a>
                     </div>
                 </div>

@@ -74,7 +74,7 @@
                                 <span class="caret"></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{route('userProjects.view', $user->id)}}">
+                                <a class="dropdown-item" href="{{route('user.projects.show', $user->id)}}">
                                     My Projects
                                 </a>
                                 <a class="dropdown-item" href="{{route('projects.index')}}">

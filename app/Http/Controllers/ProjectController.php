@@ -21,7 +21,6 @@ use App\Http\Requests\UpdateProjectRequest;
 
 class ProjectController extends Controller
 {
-    protected $newImageName;
     protected $previousImageName;
     protected $amountSubscribed;
 
@@ -33,8 +32,8 @@ class ProjectController extends Controller
 
     public function index()
     {
-        $projects = Project::whereStatusId(2)->paginate(12);
         $count    = Project::whereStatusId(2)->count();
+        $projects = Project::whereStatusId(2)->paginate(12);
 
         if(Auth::user() && $count == 0){
             Session::flash('info', 'No sponsorable project yet!');
@@ -52,8 +51,8 @@ class ProjectController extends Controller
     public function create()
     {
         $durations = Duration::all();
-        $repaymentPlans = RepaymentPlan::all();
         $guarantors = Guarantor::whereUserId(Auth::id())->get();
+        $repaymentPlans = RepaymentPlan::all();
 
         if($guarantors->count() == 0){
             Session::flash('info', 'Create at least one Guarantor first!');
@@ -62,24 +61,43 @@ class ProjectController extends Controller
 
         // preparing data for passing into view
         $data['durations'] = $durations;
-        $data['repaymentPlans'] = $repaymentPlans;
         $data['guarantors'] = $guarantors;
+        $data['repaymentPlans'] = $repaymentPlans;
 
         return view('projects.create', $data);
     }
 
     public function store( CreateProjectRequest $request )
     {
-        $request['id']               = Uuid::uuid1();
-        $request['user_id']          = Auth::user()->id;
-        $request['repayment_amount'] = $request->amount + ($request->amount * 0.35);
-        $project                     = Project::create($request->except([ '_token' ]));
-        $this->storeOrReplaceImage($request, $project);
-        if (!$project)
+        // Create New Project
+        $newProject = new Project;
+        $newProject->id = Uuid::uuid1();
+        $newProject->name = $request->name;
+        $newProject->amount = $request->amount;
+        $newProject->details = $request->details;
+        $newProject->location = $request->location;
+        $newProject->duration_id = $request->duration_id;
+        $newProject->repayment_id = $request->repayment_id;
+        $newProject->guarantor_id = $request->guarantor_id;
+
+        if (!Auth::user()->projects()->save($newProject))
         {
             Session::flash('error', 'Could not create project');
-            return redirect()->route('project.create');
+            return redirect()->back()->withInput();
         }
+
+        // Image Upload
+        $image = $request->file('avatarobject');
+        $imageName = str_slug($request->name) . '.' . time() . '.' . $image->getClientOriginalExtension();
+
+        $newProjectImage = new Photo;
+        $newProjectImage->avatar = $imageName;
+        $newProjectImage->imageable_id = $newProject->id;
+        $newProjectImage->imageable_type = $newProject->model;
+
+        $request->avatarobject->storeAs('public/avatars/projects', $imageName);
+        $newProjectImage->save();
+
         Session::flash('success', 'Project Created Successfully');
         return redirect()->route('clientarea');
     }
@@ -87,34 +105,25 @@ class ProjectController extends Controller
 
     public function show( Project $project )
     {
-        $data['project']            = $project;
-        $data['user']               = Auth::user();
-        $data['durations']          = Duration::all();
-        $data['repaymentPlans']     = RepaymentPlan::all();
+        $data['project'] = $project;
+        $data['durations'] = Duration::all();
+        $data['repaymentPlans'] = RepaymentPlan::all();
+        $data['amountremaining']  = $this->checkSponsorshipAmountRemaining($project);
         $data['sponsorshipAmounts'] = sponsorshipAmount::all();
-        $data['amountremaining']    = $this->checkSponsorshipAmountRemaining($project->id);
-        //        return $data;
-        return view('dashboard.viewProject', $data);
+
+        return view('projects.show', $data);
     }
 
-    public function checkSponsorshipAmountRemaining( $project )
-    {
-        $project                   = Project::findOrfail($project);
-        $projectSubscriptionAmount = ProjectSubscription::whereProjectId($project->id)->pluck('amount');
-        $projectSubscriptionAmount->each(function ( $amount ) {
-            $this->amountSubscribed += $amount;
-        });
-        return $project->amount - $this->amountSubscribed;
-    }
+
 
 
     public function edit( Project $project )
     {
-        $data['user']           = Auth::user();
+        $data['project']        = $project;
         $data['durations']      = Duration::all();
         $data['repaymentPlans'] = RepaymentPlan::all();
-        $data['project']        = $project;
-        return view('dashboard.projects.edit', $data);
+
+        return view('projects.edit', $data);
     }
 
     public function update( UpdateProjectRequest $request, $id )
@@ -122,18 +131,32 @@ class ProjectController extends Controller
         $project = Project::findOrFail($id);
         $project->update($request->except([ '_token' ]));
 
-        if ($request->hasFile('avatarobject'))
-        {
-            $this->storeOrReplaceImage($request, $project, "replace");
+        //Image Upload
+        if($request->hasFile('avatarobject')){
+
+            $previousImage = public_path() . $project->photo->projectavatar;
+
+            $image = $request->file('avatarobject');
+            $imageName = str_slug($request->name) . '.' . time() . '.' . $image->getClientOriginalExtension();
+            $request->avatarobject->storeAs('public/avatars/projects', $imageName);
+
+            if(file_exists($previousImage)){
+                unlink($previousImage);
+            }
+
+            $project->photo()->update([
+                'avatar' => $imageName
+            ]);
+
         }
 
         if (!$project){
-            Session::flash('error', 'Could not Update project');
-            return redirect()->route('userProjects.show', $project->id);
+            Session::flash('error', 'Could not update project');
+            return redirect()->route('project.show', $project->id);
         }
 
         Session::flash('success', 'Project Updated');
-        return redirect()->route('userProjects.show', $project->id);
+        return redirect()->route('project.show', $project->id);
     }
 
     public function delete( Project $project )
@@ -154,7 +177,7 @@ class ProjectController extends Controller
 
     public function trashedProjects(){
         $data['projects'] = Project::onlyTrashed()->whereUserId(Auth::id())->paginate(9);
-        return view('dashboard.projects.trashed',$data);
+        return view('projects.trashed',$data);
     }
 
     public function restoreProject($project){
@@ -164,61 +187,17 @@ class ProjectController extends Controller
         return redirect()->route('projects.trashed');
     }
 
-    public function filterByUser( )
+    public function filterByUser()
     {
-        $data['projects'] = Project::whereUserId(Auth::id())->paginate(9);
+        $userProjects = Auth::user()->projects()->paginate(9);
 
-        if($data['projects']->count() == 0){
+        if($userProjects->count() == 0){
             Session::flash('info', 'You have not created any project yet!');
             return redirect()->back();
         }
 
-        return view('dashboard.projects.showcreated', $data);
-    }
-
-    // Don't mess around here
-    public function storeOrReplaceImage( $request, $project, $storeOrReplace = "store" )
-    {
-        if ($storeOrReplace != "store")
-        {
-            return $this->replaceImage($request, $project);
-        }
-        return $this->storeImage($request, $project);
-    }
-
-    public function replaceImage( $request, $project )
-    {
-        $this->previousImageName = $project->photo->avatar ?? 'nothing';
-        if (Storage::disk('public')->exists("avatars/projects/" . $this->previousImageName) && !Storage::disk('public')->delete('avatars/projects/' . $this->previousImageName))
-        {
-            Session::flash('error', 'Can\'t Process the file at the moment');
-            return redirect()->back();
-        }
-        $this->newImageName = Auth::user()->id . "_" . Auth::user()->first_name . "_" . time() . "." . $request->avatarobject->getClientOriginalExtension();
-        if (!$request->avatarobject->storeAs('public/avatars/projects', $this->newImageName))
-        {
-            Session::flash('error', 'Can\'t save image');
-            return redirect()->back();
-        }
-        $request['avatar'] = $this->newImageName;
-        $project->photo()->update([
-            'avatar' => $request['avatar'],
-        ]);
-    }
-
-    public function storeImage( $request, $project )
-    {
-        $this->newImageName        = Auth::user()->id . "_" . Auth::user()->first_name . "_" . time() . "." . $request->avatarobject->getClientOriginalExtension();
-        $request['avatar']         = $this->newImageName;
-        $request['imageable_type'] = $project->model;
-        $request['imageable_id']   = $project->id;
-
-        if (!$request->avatarobject->storeAs('public/avatars/projects', $this->newImageName)){
-            Session::flash('error', 'Can\'t save image');
-            return redirect()->back();
-        }
-
-        $photo = Photo::create($request->except([ '_token' ]));
+        $data['projects'] = $userProjects;
+        return view('projects.user.created', $data);
     }
 
     public function increaseProjectHit( Project $project )
@@ -240,6 +219,17 @@ class ProjectController extends Controller
         ]);
         return;
 
+    }
+
+    public function checkSponsorshipAmountRemaining( $project )
+    {
+        // $project   = Project::findOrfail($project);
+        $projectSubscriptionAmount = ProjectSubscription::whereProjectId($project)->pluck('amount');
+        $projectSubscriptionAmount->each(function ( $amount ) {
+            $this->amountSubscribed += $amount;
+        });
+
+        return $project->amount - $this->amountSubscribed;
     }
 
     public function ProjectsHistory( ){

@@ -39,7 +39,7 @@
                                 <td>{{$projectsubscription->due_date->format('l\, jS F Y')}}</td>
                                 <td>{{ $projectsubscription->formattedreturns}}</td>
                                 <td>
-                                    <a href="{{route('userProjects.show', $projectsubscription->project->id)}}"
+                                    <a href="{{route('project.show', $projectsubscription->project->id)}}"
                                        class="btn btn-primary">View Project</a>
                                 </td>
 

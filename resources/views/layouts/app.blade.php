@@ -75,7 +75,7 @@
                                 <a class="dropdown-item" href="{{route('project.create')}}">
                                         New Project
                                     </a>
-                                <a class="dropdown-item" href="{{route('userProjects.view', $user->id)}}">
+                                <a class="dropdown-item" href="{{route('user.projects.show', $user->id)}}">
                                         My Projects
                                     </a>
                                     <a class="dropdown-item" href="{{route('projects.index')}}">
