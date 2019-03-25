@@ -168,11 +168,41 @@ class ProjectController extends Controller
         return redirect()->back();
     }
 
+    public function filterByUser()
+    {
+
+        $allUserProjects = Auth::user()->projects()->paginate(9);
+        $thrashedUserProjects =  Project::onlyTrashed()->whereUserId(Auth::id())->paginate(9);
+        $pendingUserProjects = Auth::user()->projects()->whereStatusId(1)->paginate(9);
+        $approvedUserProjects = Auth::user()->projects()->whereStatusId(2)->paginate(9);
+        $rejectedUserProjects = Auth::user()->projects()->whereStatusId(3)->paginate(9);
+
+        if($allUserProjects->count() == 0){
+            Session::flash('info', 'You have not created any project yet!');
+            return redirect()->back();
+        }
+
+        $data['allUserProjects'] = $allUserProjects;
+        $data['thrashedUserProjects'] = $thrashedUserProjects;
+        $data['pendingUserProjects'] = $pendingUserProjects;
+        $data['approvedUserProjects'] = $approvedUserProjects;
+        $data['rejectedUserProjects'] = $rejectedUserProjects;
+
+        return view('projects.user.created', $data);
+    }
+
+    public function restoreProject($project){
+        Project::onlyTrashed()->find($project)->restore();
+
+        Session::flash('success', 'Project Restored Successfully');
+        return redirect()->back();
+    }
+
     public function destroy( $project ){
         Project::onlyTrashed()->find($project)->forceDelete();
 
         Session::flash('success', 'Project Deleted Permanently');
-        return redirect()->route('projects.trashed');
+        return redirect()->back();
     }
 
     public function trashedProjects(){
@@ -180,25 +210,7 @@ class ProjectController extends Controller
         return view('projects.trashed',$data);
     }
 
-    public function restoreProject($project){
-        Project::onlyTrashed()->find($project)->restore();
 
-        Session::flash('success', 'Project Restored Successfully');
-        return redirect()->route('projects.trashed');
-    }
-
-    public function filterByUser()
-    {
-        $userProjects = Auth::user()->projects()->paginate(9);
-
-        if($userProjects->count() == 0){
-            Session::flash('info', 'You have not created any project yet!');
-            return redirect()->back();
-        }
-
-        $data['projects'] = $userProjects;
-        return view('projects.user.created', $data);
-    }
 
     public function increaseProjectHit( Project $project )
     {
@@ -242,7 +254,7 @@ class ProjectController extends Controller
         }
 
         $data['allProjects'] = $projects->merge($subscriptions)->sortByDesc('created_at');
-        return view('dashboard.projects.history', $data);
+        return view('projects.history', $data);
     }
 
 

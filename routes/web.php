@@ -1,11 +1,9 @@
 <?php
 
-// use App\Models\Project;
-Route::get('test', function(){
-    // $project = Project::whereUserId(Auth::id())->has('photo')->with('photo')->first();
-    // return dd(file_exists($previousImage = public_path() . $project->photo->projectavatar));
-    return Auth::user()->projects()->paginate(9);
-});
+// use App\User;
+// Route::get('test', function(){
+
+// });
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,18 +36,17 @@ Route::get('/projects/{project}/show', 'ProjectController@show')->name('project.
 Route::get('/projects/{project}/edit', 'ProjectController@edit')->name('project.edit');
 Route::put('/projects/{project}', 'ProjectController@update')->name('project.update');
 Route::get('/userprojects', 'ProjectController@filterByUser')->name('user.projects.show');
+Route::delete('/projects/{project}/delete', 'ProjectController@delete')->name('project.delete');
+Route::get('/projects/{project}/restore', 'ProjectController@restoreProject')->name('project.restore');
+Route::get('/projects/{project}/hit', 'ProjectController@increaseProjectHit');
+Route::delete('/projects/{project}/destroy', 'ProjectController@destroy')->name('project.destroy');
+Route::get('/projectshistory', 'ProjectController@ProjectsHistory')->name('projects.history'); // work on the ui of this route
+
+
+// Defunct route
+// Route::get('/userprojects/thrashed', 'ProjectController@trashedProjects')->name('projects.trashed'); Not used again, just keeping
 
 // not touched yet
-
-Route::delete('/project/{project}/delete', 'ProjectController@delete')->name('userProjects.delete');
-Route::delete('/project/{project}/destroy', 'ProjectController@destroy')->name('project.destroy');
-Route::get('/thrashedprojects', 'ProjectController@trashedProjects')->name('projects.trashed');
-Route::get('/projects/{project}/restore', 'ProjectController@restoreProject')->name('project.restore');
-
-Route::get('/projects/{project}/hit', 'ProjectController@increaseProjectHit');
-Route::get('/projectshistory', 'ProjectController@ProjectsHistory')->name('projects.history');
-
-
 
 //Sponsorship routes
 Route::post('/projects/{project}/sponsor', 'SponsorController@sponsorProject')->name('sponsor.project');

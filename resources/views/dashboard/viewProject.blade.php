@@ -310,7 +310,7 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <a href="{{route('userProjects.delete', $project->id)}}" class="btn btn-primary">Delete Project</a>
+                    <a href="{{route('project.delete', $project->id)}}" class="btn btn-primary">Delete Project</a>
                 </div>
 
             </div>
