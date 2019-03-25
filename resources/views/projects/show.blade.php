@@ -127,32 +127,33 @@
                                        name="others"  placeholder="Choose Other Above" disabled>
 
                             </div>
-                            <div class="text-center">
 
-                                <small class="text-danger">Don't Sponsor above NGN{{number_format($amountremaining)}}</small>
-                            </div>
                         </div>
 
                         <div class="form-group">
                             <div class="input-group">
                                 <div class="input-group-prepend">
-                                    <div class="input-group-text">
+                                    <div class="input-group-text py-0">
                                         Proposed Return NGN
                                     </div>
                                 </div>
-                                {{-- <input  type="text"
-                                       class="form-control {{ $errors->has('others') ? ' is-invalid' : '' }}"
-                                      placeholder="Proposed Returns" disabled> --}}
+                                <div class="input-group-append">
+                                    <div class="input-group-text py-0">
+                                        <p id="proposedamount" class="mt-3" aria="{{$project->id}}">NGN 0,000 </p>
+                                    </div>
 
-                                      <div>
-                                          <p id="proposedamount" aria="{{$project->id}}">NGN 0,000 </p>
-                                          <input type="hidden" name="returns" id="returns">
-                                      </div>
+                                </div>
                             </div>
 
                         </div>
+                        <div class="">
+
+                            <small class="text-danger">Don't Sponsor above NGN{{number_format($amountremaining)}}</small>
+                        </div>
 
                     </div>
+
+
 
 
                     <div class="modal-footer">

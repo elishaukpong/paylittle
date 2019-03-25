@@ -26,6 +26,7 @@ class SponsorController extends Controller
     public function sponsorProject(Request $request, Project $project)
     {
         $request['amount'] = filter_var($request['amount'], FILTER_SANITIZE_NUMBER_INT);
+        $request['returns'] = ($request['amount'] * $project->returnsPercentage) + $request['amount'];
 
         $rules = [
             'amount' => 'required|integer',
@@ -42,29 +43,31 @@ class SponsorController extends Controller
         }
 
         $projectDuration =  $project->duration->timeline + 1; //add one month for the money raising phase
-        $request['id'] = Uuid::uuid1();
-        $request['user_id'] = Auth::user()->id;
-        $request['project_id'] = $project->id;
-        $request['due_date'] = Carbon::now()->addMonth($projectDuration);
 
-        if(!ProjectSubscription::create($request->except(['_token']))){
+        $projectSponsorship = new ProjectSubscription;
+        $projectSponsorship->id = Uuid::uuid1();
+        $projectSponsorship->amount = $request['amount'];
+        $projectSponsorship->returns =  $request['returns'];
+        $projectSponsorship->project_id = $project->id;
+        $projectSponsorship->due_date = Carbon::now()->addMonth($projectDuration);
+
+        if(!Auth::user()->sponsoredProjects()->save( $projectSponsorship)){
             Session::flash('error', 'Project Not Sponsored');
-            return redirect()->route('view.sponsor', Auth::user()->id);
+            return redirect()->back();
         };
 
         $data['amount'] = $request->amount;
-        return view('bankdetails', $data);
+        return view('projects.sponsorship_payment', $data);
     }
 
     public function sponsoredProjects(User $user)
     {
-        $data['user'] = $user;
-        $data['projectsubscriptions'] =  ProjectSubscription::whereUserId($user->id)->paginate(10);
+        $data['projectsubscriptions'] =  ProjectSubscription::whereUserId(Auth::id())->paginate(10);
         if($data['projectsubscriptions']->count() == 0){
             Session::flash('info', 'You have not sponsored any project yet!');
             return redirect()->back();
         }
-        return view('dashboard.projects.showsponsored', $data);
+        return view('projects.user.sponsored', $data);
     }
 
     public function sponsorReturns(Project $project, $amount)

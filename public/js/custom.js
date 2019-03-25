@@ -111,11 +111,9 @@ $(document).ready(function() {
             success: function(data) {
                 formattedData = formatter.format(data);
                 $('#proposedamount').text(formattedData);
-                $('#returns').attr('value', data);
             },
             error: function(data) {
                 $('#proposedamount').text("Couldn't retrieve percentage");
-
             }
         });
     }

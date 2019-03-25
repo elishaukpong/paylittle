@@ -1,9 +1,9 @@
 <?php
 
 // use App\User;
-// Route::get('test', function(){
-
-// });
+Route::get('test', function(){
+    return view('projects.sponsorship_payment');
+});
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -42,14 +42,15 @@ Route::get('/projects/{project}/hit', 'ProjectController@increaseProjectHit');
 Route::delete('/projects/{project}/destroy', 'ProjectController@destroy')->name('project.destroy');
 Route::get('/projectshistory', 'ProjectController@ProjectsHistory')->name('projects.history'); // work on the ui of this route
 
+//Sponsorship routes
+Route::post('/projects/{project}/sponsor', 'SponsorController@sponsorProject')->name('sponsor.project');
+Route::get('/sponsorreturns/{project}/{amount}', 'SponsorController@sponsorReturns'); //AJAX Route
 
 // Defunct route
 // Route::get('/userprojects/thrashed', 'ProjectController@trashedProjects')->name('projects.trashed'); Not used again, just keeping
 
 // not touched yet
 
-//Sponsorship routes
-Route::post('/projects/{project}/sponsor', 'SponsorController@sponsorProject')->name('sponsor.project');
 Route::get('/projects/{user}/sponsored', 'SponsorController@sponsoredProjects')->name('view.sponsor');
 Route::get('/sponsor/payment', 'SponsorController@payment')->name('payment');
 
@@ -78,7 +79,6 @@ Route::get('/admin/subscriptions', 'AdminController@subscriptions')->name('admin
 
 //Ajax Routes
 Route::get('/admin/updatestatus/{project}/{status}', 'AdminController@updateStatus')->name('admin.updatestatus');
-Route::get('/sponsorreturns/{project}/{amount}', 'SponsorController@sponsorReturns');
 Route::get('/subscriptionstatus/{subscription}/{status}', 'SponsorController@subscriptionStatus');
 
 
