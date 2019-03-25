@@ -27,12 +27,12 @@
                                      aria-valuemin="0" aria-valuemax="100"></div>
                             </div>
                             <br>
-                            <p class="float-left text-primary">{{$project->formattedamountsponsored}}
+                            <p class="float-lg-left text-primary">{{$project->formattedamountsponsored}}
                                 <small class="font-weight-bold ">Raised</small>
                             </p>
-                            <p class="float-right text-primary">
+                            <p class="float-lg-right text-primary">
                                 <small class="font-weight-bold text-primary">Total</small> {{$project->formattedamount}}</p>
-                            <br><br>
+                           
                             <a href="{{route('userProjects.show', $project->id)}}"
                                class="btn btn-primary form-control text-white">View Project</a>
 

@@ -33,13 +33,17 @@ class ProjectController extends Controller
 
     public function index()
     {
-        $data['projects'] = Project::whereStatusId(2)->paginate(12);
-        $data['count']    = Project::whereStatusId(2)->count();
+        $projects = Project::whereStatusId(2)->paginate(12);
+        $count    = Project::whereStatusId(2)->count();
 
-        if($data['count'] == 0){
+        if(Auth::user() && $count == 0){
             Session::flash('info', 'No sponsorable project yet!');
             return redirect()->back();
         }
+
+        // preparing data for passing into view
+        $data['projects'] = $projects;
+        $data['count'] = $count;
 
         return view('projects.index', $data);
     }
@@ -47,17 +51,21 @@ class ProjectController extends Controller
 
     public function create()
     {
-        $data['user']           = Auth::user();
-        $data['durations']      = Duration::all();
-        $data['repaymentPlans'] = RepaymentPlan::all();
-        $data['guarantors'] = Guarantor::all();
+        $durations = Duration::all();
+        $repaymentPlans = RepaymentPlan::all();
+        $guarantors = Guarantor::whereUserId(Auth::id())->get();
 
-        if($data['guarantors']->count() == 0){
+        if($guarantors->count() == 0){
             Session::flash('info', 'Create at least one Guarantor first!');
             return redirect()->back();
         }
 
-        return view('dashboard.projects.create', $data);
+        // preparing data for passing into view
+        $data['durations'] = $durations;
+        $data['repaymentPlans'] = $repaymentPlans;
+        $data['guarantors'] = $guarantors;
+
+        return view('projects.create', $data);
     }
 
     public function store( CreateProjectRequest $request )

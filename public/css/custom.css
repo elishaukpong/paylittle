@@ -376,7 +376,6 @@ ol.carousel-indicators {
 .project-image-size {
     width: 400px;
     height: 350px;
-    /* position: relative; */
 }
 
 .text-content-block {
@@ -387,4 +386,33 @@ ol.carousel-indicators {
     position: absolute;
     bottom: 0;
     background: rgba(16, 88, 160, 0.415);
+}
+
+.jumbotron.create-project-jumbotron {
+    background-image: url('../img/create.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.create-project-left {
+    background-image: url('../img/create.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.create-project-left-cover {
+    background: red;
+    height: 100%;
+    width: 100%;
+}
+
+.add-book {
+    border-radius: 50%;
+    width: 40em;
+    height: 13em;
+    border-width: 2px !important;
+}
+
+#book_avatar {
+    display: none;
 }
