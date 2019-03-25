@@ -36,9 +36,7 @@
                         </li>
                     </ul>
                     <div class="tab-content" id="pills-tabContent">
-                        {{-- $data['projects'] = $userProjects; $data['thrashedUserProjects'] = $thrashedUserProjects; $data['pendingUserProjects'] =
-                        $pendingUserProjects; $data['approvedUserProjects'] = $approvedUserProjects; $data['rejectedUserProjects'] = $rejectedUserProjects; --}}
-                        {{-- All Projects --}}
+
                         <div class="tab-pane fade show active" id="pills-all" role="tabpanel" aria-labelledby="pills-all-tab">
 
                             <div class="table-responsive">
@@ -120,7 +118,7 @@
                                                     @csrf @method('DELETE')
 
                                                     <button type="submit" class="btn btn-sm btn-danger tp-delete" data-id="{{$project->id}}">
-                                                                                                                        <i class="fa fa-trash" aria-hidden="true"></i> Delete Project</button>
+                                                        <i class="fa fa-trash" aria-hidden="true"></i> Delete Project</button>
                                                 </form>
                                             </td>
 
