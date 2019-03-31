@@ -16,7 +16,7 @@ class Photo extends Model
     public function getProjectAvatarAttribute(){
         return '/storage/avatars/projects/' . $this->avatar;
     }
-    public function getUseravatarAttribute()
+    public function getUserAvatarAttribute()
     {
         return '/storage/avatars/users/' . $this->avatar;
     }

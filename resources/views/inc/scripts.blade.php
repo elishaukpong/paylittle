@@ -16,3 +16,16 @@
         var scroll = new SmoothScroll('a[href*="#"]');
     })
 </script>
+@if(Request::segment(1) == "account")
+    <script>
+        $(function () {
+            $imageToUse = $('.user-profile-image').attr('src');
+            $image = "linear-gradient(to right, #328cf284, #328cf292), url('" + $imageToUse + "')";
+
+            $('#user').css('background', $image);
+            $('#user').css('background-size', 'cover');
+            $('#user').css('background-position', 'center');
+        })
+    </script>
+@endif
+

@@ -21,11 +21,10 @@ class UserController extends Controller
         $this->middleware([ 'auth', 'verified' ]);
     }
 
-    public function show( User $user )
+    public function show()
     {
-        $data['user']     = $user;
-        $data['projects'] = Project::whereUserId($user->id)->orderBy('created_at', 'desc')->take(3)->get();
-        return view('dashboard.userprofile', $data);
+        $data['projects'] = Project::whereUserId(Auth::id())->orderBy('created_at', 'desc')->take(3)->get();
+        return view('user.show', $data);
     }
 
 

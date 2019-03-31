@@ -223,7 +223,7 @@ auth-inputs,
 
 .profile-img {
     border-radius: 50%;
-    border: .2em solid #328af1;
+    /* border: .2em solid #328af1; */
 }
 
 .admin-profile-img {
@@ -451,4 +451,15 @@ ol.carousel-indicators {
     border-radius: 50%;
     text-align: center;
     margin: 0 auto;
+}
+
+.user-profile-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    position: absolute;
+    top: -9em;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid white;
 }

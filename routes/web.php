@@ -28,9 +28,9 @@ Route::post('/registerphase', 'UserController@continueregSave')->name('save.regp
 Route::get('/register/{state}/lgas', 'UserController@getLgaByState');
 
 // User Account Route
-Route::get('/account/{user}', 'UserController@show')->name('user.show');
-Route::get('/account/{user}/edit', 'UserController@edit')->name('user.edit');
-Route::put('/account/{user}', 'UserController@update')->name('user.update');
+Route::get('/account', 'UserController@show')->name('user.show');
+Route::put('/account', 'UserController@update')->name('user.update');
+Route::get('/account/edit', 'UserController@edit')->name('user.edit');
 
 //Guarantor Route
 Route::resource('/guarantor', 'GuarantorController');
