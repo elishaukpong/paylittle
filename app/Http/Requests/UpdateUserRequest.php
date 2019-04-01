@@ -28,11 +28,7 @@ class UpdateUserRequest extends FormRequest
             'last_name' => 'required|string|max:255',
             'phone' => 'required|string|max:15|min:11',
             'details' => 'required|string|max:250',
-            'gender' => 'required|string',
-            'dob' => 'required|date',
             'address' => 'required|string|min:5|max:250',
-            'occupation' => 'required|string|min:5|max:250',
-            'bvn' => 'required|string',
             'avatarobject' => 'image|mimes:jpeg,jpg,png|max:600',
         ];
     }

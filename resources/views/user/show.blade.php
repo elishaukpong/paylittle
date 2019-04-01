@@ -28,13 +28,14 @@
                 <p class="btn btn-sm btn-outline-{{$user->email_verified_at  == null ? 'danger' :'success'}}">
                     {{$user->email_verified_at == null ? 'Not Verified' :'Verified'}}
                 </p>
+                <p class="btn btn-sm"><a class="btn btn-sm border border-primary" href="{{route('user.edit')}}">Edit Profile</a></p>
             </div>
         </div>
 
         <div class="col-md-8 col-12 my-md-3 mx-auto">
 
             <h5 class="mt-4 font-weight-bold p-c">About: </h5>
-            <p class="mr-5 pr-5 text-justify text-secondary"> {{$user->details}}</p>
+            <p class="mr-md-5 pr-md-5 text-justify text-secondary"> {{$user->details}}</p>
 
 
             <div class="row text-secondary">

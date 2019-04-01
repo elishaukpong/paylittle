@@ -453,7 +453,8 @@ ol.carousel-indicators {
     margin: 0 auto;
 }
 
-.user-profile-image {
+.user-profile-image,
+.content {
     width: 200px;
     height: 200px;
     border-radius: 50%;
@@ -462,4 +463,10 @@ ol.carousel-indicators {
     left: 50%;
     transform: translateX(-50%);
     border: 5px solid white;
+}
+
+.content i {
+    position: absolute;
+    border-radius: 50%;
+    right: 1.5em;
 }

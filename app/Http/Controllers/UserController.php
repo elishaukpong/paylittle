@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UpdateUserRequest;
-use App\Models\Photo;
-use App\Models\Project;
-use App\Models\States;
+use Session;
 use App\User;
+use App\Models\Photo;
+use App\Models\States;
+use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\UpdateUserRequest;
 
 class UserController extends Controller
 {
@@ -28,10 +29,9 @@ class UserController extends Controller
     }
 
 
-    public function edit( User $user )
+    public function edit( )
     {
-        $data['user'] = $user;
-        return view('dashboard.edituser', $data);
+        return view('user.edit');
     }
 
     /**
@@ -42,47 +42,38 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update( UpdateUserRequest $request, User $user )
+    public function update( UpdateUserRequest $request)
     {
+        $user = Auth::user();
+         //Image Upload
+        if($request->hasFile('avatarobject')){
 
-        if ($request->hasFile('avatarobject'))
-        {
-            $this->replaceImage($request, $user);
+            $previousImage = public_path() . $user->photo->useravatar;
+
+            $image = $request->file('avatarobject');
+            $imageName = str_slug($request->name) . '.' . time() . '.' . $image->getClientOriginalExtension();
+            $request->avatarobject->storeAs('public/avatars/users', $imageName);
+
+            if(file_exists($previousImage)){
+                unlink($previousImage);
+            }
+
+            $user->photo()->update([
+                'avatar' => $imageName
+            ]);
+
         }
+
 
         if (!$user->update($request->except([ '_token', '_method' ])))
         {
+            Session::flash('error', 'Could not Update User!');
             return redirect()->back()->with('error', 'couldn\'t update user');
         };
-        return redirect()->route('user.show', $user->id)->with('success', 'Updated User Successfully');
+
+        Session::flash('success', 'Updated User Successfully!');
+        return redirect()->route('user.show');
     }
-
-    public function replaceImage( $request, $user )
-    {
-        $this->previousImageName = $user->avatar !== null ? $user->avatar : 'nothing';
-
-        if (Storage::disk('image')->exists($this->previousImageName) && !Storage::delete($this->previousImageName))
-        {
-            return redirect()->back()->with('error', 'Can\'t Process the file at the moment');
-        }
-
-        $this->newImageName = $user->id . "_" . $user->first_name . "_" . time() . "." . $request->avatarobject->getClientOriginalExtension();
-
-        if (!$request->avatarobject->storeAs('public/avatars/users', $this->newImageName))
-        {
-            return redirect()->back()->with('error', 'Can\'t save image');
-        }
-        if (!$this->previousImageName)
-        {
-            $request['avatar']         = $this->newImageName;
-            $request['imageable_type'] = $user->model;
-            $request['imageable_id']   = $user->id;
-            $photo                     = Photo::create($request->except([ '_token' ]));
-        }
-        $request['avatar'] = $this->newImageName;
-        $user->photo()->update([ 'avatar' => $request['avatar'] ]);
-    }
-
 
     public function destroy( $id )
     {
