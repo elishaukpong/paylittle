@@ -83,7 +83,6 @@ class UserController extends Controller
     public function continuereg()
     {
         $data['states'] = States::all();
-        $data['user']   = Auth::user();
         return view('auth.register-second', $data);
     }
 
@@ -95,9 +94,10 @@ class UserController extends Controller
             'city' => 'required | string | min:5',
             'address' => 'required | string'
         ]);
+
         $user = Auth::user();
         $user->update($request->except('token'));
-        return redirect()->route('clientarea');
+        return redirect()->route('projects.index');
     }
 
     public function getLgaByState( States $state )

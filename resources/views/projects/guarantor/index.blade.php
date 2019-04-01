@@ -23,7 +23,7 @@
                                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a>
 
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6 py-4 py-md-0">
                                     <form action="{{route('guarantor.destroy', $guarantor->id)}}" method="post">
                                         @csrf
                                         @method('DELETE')

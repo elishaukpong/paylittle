@@ -16,7 +16,7 @@
                               enctype="multipart/form-data">
                             @csrf
                             <br>
-                            <div class="form-group py-2 px-5">
+                            <div class="form-group py-md-2 px-md-5">
                                 <label for="name">Name</label>
                                 <div class="input-group">
                                     <input id="name" type="text"
@@ -32,7 +32,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group py-2 px-5">
+                            <div class="form-group py-md-2 px-md-5">
                                 <label for="email">Email</label>
                                 <div class="input-group">
                                     <input id="email" type="email"

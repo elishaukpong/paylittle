@@ -16,7 +16,7 @@
                         @csrf
 
                         <div class="row">
-                            <div class="col-4 col-lg-3 mx-auto links">
+                            <div class="col-6 col-lg-3 mx-auto links">
                                 <img src="{{asset('img/book.jpg')}}" alt="selected Image" id="target" class="img-fluid add-book border border-secondary {{ $errors->has('book_avatar') ? ' is-invalid' : '' }}">
                                 @if ($errors->has('book_avatar'))
                                     <span class="invalid-feedback text-center" role="alert">
@@ -125,7 +125,7 @@
                                 </div>
                             </div>
 
-                            <div class="form-group col-6 py-2 px-5">
+                            <div class="form-group col-md-6 py-2 px-5">
                                 {{-- <label for="project_details">Select Guarantor</label> --}}
                                 <div class="input-group" data-toggle="tooltip" data-placement="top" title="Guarantor for the project!">
                                     <select class="form-control {{ $errors->has('guarantor_id') ? ' is-invalid' : '' }}" id="guarantor" name="guarantor_id">

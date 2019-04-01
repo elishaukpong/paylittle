@@ -22,7 +22,7 @@ Route::get('/blog', 'NavigationController@blog')->name('blog'); //wordpress will
 Route::get('/clientarea', 'NavigationController@clientarea')->name('clientarea');
 
 // Auth Routes
-Auth::routes([ 'verify' => true]);
+Auth::routes(['verify' => true]);
 Route::get('/registerphase', 'UserController@continuereg')->name('reg.phase2');
 Route::post('/registerphase', 'UserController@continueregSave')->name('save.regphase');
 Route::get('/register/{state}/lgas', 'UserController@getLgaByState');

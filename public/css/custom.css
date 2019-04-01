@@ -470,3 +470,8 @@ ol.carousel-indicators {
     border-radius: 50%;
     right: 1.5em;
 }
+
+.fa.fa-navicon {
+    color: white;
+    zoom: 1.5;
+}

@@ -37,8 +37,11 @@
                     <ul class="navbar-nav ml-auto my-2">
                         <!-- Authentication Links -->
                         @guest
-                          <li class="nav-item mx-2">
+                        <li class="nav-item mx-2">
                             <a class="nav-link text-light" href="{{route('about')}}">About Us</a>
+                        </li>
+                        <li class="nav-item mx-2">
+                            <a class="nav-link text-light" href="{{route('projects.index')}}">Projects</a>
                         </li>
                         <li class="nav-item mx-2">
                             <a class="nav-link text-light" href="{{route('blog')}}">Blog</a>
