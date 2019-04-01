@@ -9,7 +9,8 @@
 <div class="profile-img">
     <div class="row mb-5">
         <div class="col-12 text-center pb-5">
-            <img src="{{asset($user->photo->useravatar)}}" alt="selected Image" class="img-fluid user-profile-image">
+
+            <img src="{{asset($users->photo->useravatar)}}" alt="selected Image" class="img-fluid user-profile-image">
 
         </div>
     </div>
@@ -19,34 +20,54 @@
     <div class="row">
         <div class="col-12 text-center">
             <h1 class="font-weight-bold p-c">
-                {{$user->first_name}} {{$user->last_name}}
+                {{$users->first_name}} {{$users->last_name}}
             </h1>
             <div class="text-secondary">
 
-                <p>{{$user->email}}</p>
-                <p>{{$user->phone}}</p>
-                <p class="btn btn-sm btn-outline-{{$user->email_verified_at  == null ? 'danger' :'success'}}">
-                    {{$user->email_verified_at == null ? 'Not Verified' :'Verified'}}
+                <p>{{$users->email}}</p>
+                <p>{{$users->phone}}</p>
+                <p class="btn btn-sm btn-outline-{{$users->email_verified_at  == null ? 'danger' :'success'}}">
+                    {{$users->email_verified_at == null ? 'Not Verified' :'Verified'}}
                 </p>
-                <p class="btn btn-sm"><a class="btn btn-sm border border-primary" href="{{route('user.edit')}}">Edit Profile</a></p>
+                @if(Auth::user()->id == $users->id)
+                    <p class="btn btn-sm"><a class="btn btn-sm border border-primary" href="{{route('user.edit', $users->slug)}}">Edit Profile</a></p>
+                @endif
             </div>
         </div>
 
         <div class="col-md-8 col-12 my-md-3 mx-auto">
 
             <h5 class="mt-4 font-weight-bold p-c">About: </h5>
-            <p class="mr-md-5 pr-md-5 text-justify text-secondary"> {{$user->details}}</p>
+            <p class="mr-md-5 pr-md-5 text-justify text-secondary"> {{$users->details}}</p>
 
 
             <div class="row text-secondary">
                 <div class="col-6">
                     <h5 class="mt-4 font-weight-bold p-c">Gender: </h5>
-                    <p> {{$user->gender}}</p>
+                    <p> {{$users->gender}}</p>
                 </div>
                 <div class="col-6">
-                    @if(Auth::user()->id == $user->id)
+                    <h5 class="mt-4 font-weight-bold p-c">Date of Birth: </h5>
+                    <p> {{$users->dob}}</p>
+                </div>
+
+            </div>
+            <div class="row text-secondary">
+
+                <div class="col-6">
+                    <h5 class="mt-4 font-weight-bold p-c">Address: </h5>
+                    <p> {{$users->address}}</p>
+                </div>
+
+                <div class="col-6">
+                    @if(Auth::user()->id == $users->id || Auth::user()->is_admin)
                     <h5 class="mt-4 font-weight-bold p-c">BVN: </h5>
-                    <p> {{$user->bvn->number}}</p>
+                    <p> {{$users->bvn->number}}
+                        @if($users->bvn->status->id == 2)
+                            <i class="fa fa-check-circle text-success" aria-hidden="true"></i></p>
+                        @elseif($users->bvn->status->id == 3)
+                            <i class="fa fa-close text-danger" aria-hidden="true"></i></p>
+                        @endif
                     @endif
                 </div>
             </div>
@@ -116,9 +137,15 @@
     @if($projects->count() > 0)
         <div class="row my-5">
             <div class="col-12 text-center">
+                @if($users->id == Auth::id())
                 <a href="{{route('user.projects.show')}}" class="btn btn-outline-primary btn-lg pl-md-5 pr-md-4 boo">
                     See More <i class="fa fa-long-arrow-right pl-3" aria-hidden="true"></i>
                 </a>
+                @else
+                <a href="{{route('admin.show.userprojects', $users->slug)}}" class="btn btn-outline-primary btn-lg pl-md-5 pr-md-4 boo">
+                    See More <i class="fa fa-long-arrow-right pl-3" aria-hidden="true"></i>
+                </a>
+                @endif
             </div>
         </div>
 

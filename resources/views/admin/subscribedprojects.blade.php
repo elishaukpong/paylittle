@@ -1,4 +1,4 @@
-@extends('layouts.admindashboard')
+@extends('layouts.dashboardclean')
     @section('notifications')
         {{--<div class="container my-4">--}}
             {{--<div class="row justify-content-center">--}}
@@ -27,8 +27,8 @@
         {{--</div>--}}
     @endsection
 
-   
-    
+
+
     @section('content')
         <div class="container">
             <div class="row justify-content-center">

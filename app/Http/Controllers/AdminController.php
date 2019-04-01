@@ -18,35 +18,38 @@ class AdminController extends Controller
     public function index()
     {
         $data['usercount'] = User::all()->count();
-        $data['user'] = Auth::user();
         $data['projectcount'] = Project::all()->count();
         $data['subscriptioncount'] = ProjectSubscription::all()->count();
-        return view('admin.adminhome', $data);
+        return view('admin.index', $data);
     }
 
     public function showUsers()
     {
-        $data['users'] = User::paginate(9);
-        return view('admin.showusers', $data);
+        $data['users'] = User::where('id', '!=', Auth::id())->paginate(9);
+        return view('admin.users', $data);
     }
 
-    public function filterByUser(User $user)
+    public function filterByUser($userSlug)
     {
-        $data['user'] = $user;
+        $user = User::whereSlug($userSlug)->get()->first();
         $data['projects'] = Project::whereUserId($user->id)
             ->orderBy('created_at', 'desc')
             ->paginate(3);
-        return view('admin.viewuser', $data);
+
+        $data['users'] = $user;
+        return view('user.show', $data);
     }
 
-    public function filterByUserProjects(User $user)
+    public function filterByUserProjects($userSlug)
     {
-        $data['user'] = $user;
+        $user = User::whereSlug($userSlug)->get()->first();
         $data['projects'] = Project::whereUserId($user->id)
             ->orderBy('created_at', 'desc')
             ->paginate(9);
 
-        return view('admin.viewuserprojects', $data);
+        $data['users'] = $user;
+
+        return view('admin.userprojects', $data);
     }
 
     public function filterByProject(Project $project)
@@ -73,9 +76,27 @@ class AdminController extends Controller
 
     public function showProjects()
     {
-        $data['allprojects'] = Project::paginate(9);
-        $data['allprojectscount'] = Project::all()->count();
-        return view('admin.allprojects', $data);
+        $allUserProjects = Project::paginate(9);
+        $thrashedUserProjects =  Project::onlyTrashed()->paginate(9);
+        $pendingUserProjects = Project::whereStatusId(1)->paginate(9);
+        $approvedUserProjects = Project::whereStatusId(2)->paginate(9);
+        $completedUserProjects = Project::whereStatusId(4)->paginate(9);
+
+        $rAndFUserProjects  = Project::whereStatusId(3)->orWhere('status_id','5')->paginate(9);
+
+        if($allUserProjects->count() == 0){
+            Session::flash('info', 'No user created project yet!');
+            return redirect()->back();
+        }
+
+        $data['allUserProjects'] = $allUserProjects;
+        $data['thrashedUserProjects'] = $thrashedUserProjects;
+        $data['pendingUserProjects'] = $pendingUserProjects;
+        $data['approvedUserProjects'] = $approvedUserProjects;
+        $data['completedUserProjects'] = $completedUserProjects;
+        $data['rAndFUserProjects'] =  $rAndFUserProjects;
+
+        return view('admin.created', $data);
     }
 
     public function subscriptions()

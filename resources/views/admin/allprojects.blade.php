@@ -1,4 +1,4 @@
-@extends('layouts.admindashboard')
+@extends('layouts.dashboardclean')
 @section('notifications')
 @endsection
 

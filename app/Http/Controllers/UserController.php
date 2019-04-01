@@ -14,22 +14,21 @@ use App\Http\Requests\UpdateUserRequest;
 
 class UserController extends Controller
 {
-    protected $newImageName;
-    protected $previousImageName;
 
     public function __construct()
     {
         $this->middleware([ 'auth', 'verified' ]);
     }
 
-    public function show()
+    public function show($userId = null)
     {
+        $data['users'] = Auth::user();
         $data['projects'] = Project::whereUserId(Auth::id())->orderBy('created_at', 'desc')->take(3)->get();
         return view('user.show', $data);
     }
 
 
-    public function edit( )
+    public function edit($userSlug)
     {
         return view('user.edit');
     }

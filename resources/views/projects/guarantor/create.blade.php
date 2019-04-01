@@ -1,7 +1,7 @@
 @extends('layouts.dashboardclean')
 
 @section('content')
-   <div class="jumbotron text-center guarantor-jumbotron ">
+<div class="jumbotron text-center guarantor-jumbotron ">
     <div class="jumbotron-cover py-4">
         <h1 class="font-weight-bold text-white "> Create Guarantor</h1>
     </div>

@@ -9,7 +9,6 @@ $factory->define(Project::class, function (Faker $faker) {
         'id' => $faker->uuid,
         'name' => $faker->name,
         'amount' => $amount,
-        'repayment_amount' => $returns,
         'location' => $faker->address,
         'details' => $faker->text(200),
     ];

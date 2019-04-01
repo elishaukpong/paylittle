@@ -27,6 +27,7 @@ $factory->define(App\User::class, function (Faker $faker) {
         'id' => $faker->uuid,
         'first_name' => $faker->firstName,
         'last_name' => $faker->lastName,
+        'slug' => str_slug($faker->firstName .' '. $faker->lastName .' '. rand(4,4)),
         'email' => $faker->unique()->safeEmail,
         'phone' => $faker->phoneNumber,
         'dob' =>   Carbon::now()->subMonth(rand(19,40)),

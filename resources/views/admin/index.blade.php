@@ -1,34 +1,5 @@
-@extends('layouts.admindashboard')
-    @section('notifications')
-        <div class="container my-4">
-            <div class="row justify-content-center">
-                <div class="col-md-8 mx-auto text-center">
-                    @if ($user->email_verified_at == null)
-                        <script>
-                            swal("Your account is not verified!","", "info",{
-                                buttons: ["Verify", "Cancel"],
-                            });
-                        </script>
-                    @endif
+@extends('layouts.dashboardclean')
 
-                    @if (\Session::has('success'))
-                        <script>
-                            swal("{{ \Session::get('success') }}","", "success");
-                        </script>
-                    @endif
-                    @if (\Session::has('error'))
-                        <script>
-                            swal("{{ \Session::get('error') }}","", "error");
-
-                        </script>
-                    @endif
-                </div>
-            </div>
-        </div>
-    @endsection
-
-   
-    
     @section('content')
         <div class="container">
             <div class="row justify-content-center">
@@ -47,7 +18,7 @@
                             <h5 class="card-title display-1 font-weight-bold p-c">{{$usercount}}</h5>
                             <p class="card-text h5 p-c">Users</p>
                             <hr class="dahsboard-border">
-                            <a href="{{route('admin.showallusers')}}" class="btn btn-primary text-white form-control">View Details</a>
+                            <a href="{{route('admin.show.users')}}" class="btn btn-primary text-white form-control">View Details</a>
                         </div>
                     </div>
                 </div>

@@ -16,7 +16,7 @@
         var scroll = new SmoothScroll('a[href*="#"]');
     })
 </script>
-@if(Request::segment(1) == "account")
+@if(Request::segment(1) == "account" || Request::segment(1) == "users")
     <script>
         $(function () {
             $imageToUse = $('.user-profile-image').attr('src');

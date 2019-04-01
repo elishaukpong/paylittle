@@ -1,4 +1,4 @@
-@extends('layouts.admindashboard')
+@extends('layouts.dashboardclean')
 
 @section('content')
 <div class="container">
@@ -48,7 +48,7 @@
 
 
 
-   
+
 </div>
 
 @endsection

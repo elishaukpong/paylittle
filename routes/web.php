@@ -2,7 +2,9 @@
 
 // use App\User;
 // Route::get('test', function(){
-//     return view('projects.sponsorship_payment');
+//     $collection = collect([1,2,3,4,5,6,7,8,9,0]);
+//     $items = $collection->forPage($_GET[], 1); //Filter the page var
+//     dd($items);
 // });
 /*
 |--------------------------------------------------------------------------
@@ -28,9 +30,9 @@ Route::post('/registerphase', 'UserController@continueregSave')->name('save.regp
 Route::get('/register/{state}/lgas', 'UserController@getLgaByState');
 
 // User Account Route
-Route::get('/account', 'UserController@show')->name('user.show');
+Route::get('/account/{userid?}', 'UserController@show')->name('user.show');
 Route::put('/account', 'UserController@update')->name('user.update');
-Route::get('/account/edit', 'UserController@edit')->name('user.edit');
+Route::get('/account/{userid}/edit', 'UserController@edit')->name('user.edit');
 
 //Guarantor Route
 Route::resource('/guarantor', 'GuarantorController');
@@ -57,20 +59,18 @@ Route::get('/userprojects/sponsored', 'SponsorController@sponsoredProjects')->na
 //Email Route
 Route::post('/email', 'EmailSubscriptionController@subscribe')->name('email.subscribe');
 
-// Defunct route
+// Admin Route
+Route::get('/adminarea', 'AdminController@index')->name('admin.home');
+Route::get('/users', 'AdminController@showUsers')->name('admin.show.users');
+Route::get('/users/{user}', 'AdminController@filterByUser')->name('admin.showuser');
+Route::get('/users/{user}/projects', 'AdminController@filterByUserProjects')->name('admin.show.userprojects');
+
+
+
+
+
 
 // not touched yet
-
-
-
-
-
-
-Route::get('/adminarea', 'AdminController@index')->name('admin.home');
-Route::get('/admin/edit', 'AdminController@edit')->name('admin.edit');
-Route::get('/admin/allusers', 'AdminController@showUsers')->name('admin.showallusers');
-Route::get('/admin/users/{user}', 'AdminController@filterByUser')->name('admin.showuser');
-Route::get('/admin/{user}/projects', 'AdminController@filterByUserProjects')->name('admin.showuserprojects');
 Route::get('/admin/projects', 'AdminController@showProjects')->name('admin.showallprojects');
 Route::get('/admin/projects/{project}', 'AdminController@filterByProject')->name('admin.showproject');
 Route::get('/admin/subscriptions', 'AdminController@subscriptions')->name('admin.projectsubscriptions');

@@ -482,3 +482,8 @@ ol.carousel-indicators {
     transform: translateX(-50%);
     top: 6em;
 }
+
+.show-user-image {
+    width: 400px;
+    height: 150px;
+}

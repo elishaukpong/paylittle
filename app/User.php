@@ -55,14 +55,7 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany('App\Models\Guarantor');
     }
 
-    public function IsAdmin()
-    {
-        if ($this->is_admin != 'admin')
-        {
-            return false;
-        }
-        return true;
-    }
+
 
     public function setPasswordAttribute( $value )
     {
@@ -81,7 +74,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function getDobAttribute( $value )
     {
-        return Carbon::Parse($value)->format('Y-m-d');
+        return Carbon::Parse($value)->toFormattedDateString();
     }
 
     public function getdefaultAvatarAttribute()
