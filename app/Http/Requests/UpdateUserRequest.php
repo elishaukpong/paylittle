@@ -29,7 +29,7 @@ class UpdateUserRequest extends FormRequest
             'phone' => 'required|string|max:15|min:11',
             'details' => 'required|string|max:250',
             'address' => 'required|string|min:5|max:250',
-            'avatarobject' => 'image|mimes:jpeg,jpg,png|max:600',
+            'avatarobject' => 'image|mimes:jpeg,jpg,png|max:1024',
         ];
     }
 }

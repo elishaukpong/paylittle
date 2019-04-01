@@ -5,15 +5,24 @@
         <div class="jumbotron-cover py-5">
         </div>
     </div>
-
     <div class="profile-img">
         <div class="row mb-5">
             <div class="col-12 text-center pb-5">
                 <img src="{{asset($user->photo->useravatar)}}" id="target" alt="selected Image" class="img-fluid user-profile-image {{ $errors->has('avatarobject') ? ' is-invalid' : '' }}">
+
+                <div class="error-text {{ $errors->has('avatarobject') ? ' collapse' : '' }}">
+                    <p class="text-primary">Image size must not exceed 1Mb</p>
+                </div>
+
                 @if ($errors->has('avatarobject'))
-                <span class="invalid-feedback text-center" role="alert">
-                    <strong>{{ $errors->first('avatarobject') }}</strong>
-                </span> @endif
+                    <div class="error-text text-center">
+                        {{-- <span class="invalid-feedback text-center" role="alert">
+                            <strong>{{ $errors->first('avatarobject') }}</strong>
+                        </span> --}}
+                        <p class="text-danger"> {{$errors->first('avatarobject') }}</p>
+                    </div>
+                @endif
+
                 <div class="content">
                     <a href="" class="img-select text-white" id="img-select">
                         <i class="fa fa-camera bg-primary p-2"></i>

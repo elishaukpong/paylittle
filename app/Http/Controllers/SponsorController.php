@@ -20,7 +20,7 @@ class SponsorController extends Controller
 
     public function __construct()
     {
-        $this->middleware(['auth'])->except(['sponsorReturns']);
+        $this->middleware(['auth','verified'])->except(['sponsorReturns']);
     }
 
     public function sponsorProject(Request $request, Project $project)

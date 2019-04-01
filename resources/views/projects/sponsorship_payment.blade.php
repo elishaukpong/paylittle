@@ -21,7 +21,7 @@
                         2033547424 <br>
                         First Bank PLC
                     </p>
-                    <a href="{{route('sponsored.project', Auth::user())}}" class="btn btn-success "> Proceed</a>
+                    <a href="{{route('sponsored.project')}}" class="btn btn-success "> Proceed</a>
                 </div>
             </div>
         </div>
