@@ -104,4 +104,11 @@ class SponsorController extends Controller
 
         return $project->amount - $projectAmountSubscribed;
     }
+
+    public function filterByProjectSubscribers($project){
+        $data['projectSponsors'] = ProjectSubscription::whereProjectId($project)->paginate(9);
+        // return $data;
+        return view('admin.projects.sponsors', $data);
+
+    }
 }

@@ -78,17 +78,26 @@
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{route('project.create')}}">
-                                                                            New Project
-                                                                    </a>
+                                        New Project
+                                </a>
                                 <a class="dropdown-item" href="{{route('projects.index')}}">
-                                                                        All Projects
-                                                                    </a>
-                                <a class="dropdown-item" href="{{route('user.projects.show')}}">
-                                                                        My Projects
-                                                                    </a>
-                                <a class="dropdown-item" href="{{route('sponsored.project')}}">
-                                                                        Sponsored Projects
-                                                                    </a>
+                                    All Projects
+                                </a>
+                                @if($user->is_admin)
+                                    <a class="dropdown-item" href="{{route('admin.showallprojects')}}">
+                                        Manage Projects
+                                    </a>
+                                    <a class="dropdown-item" href="{{route('admin.projects.sponsored')}}">
+                                        Sponsored Projects
+                                    </a>
+                                @else
+                                    <a class="dropdown-item" href="{{route('user.projects.show')}}">
+                                        My Projects
+                                    </a>
+                                    <a class="dropdown-item" href="{{route('sponsored.project')}}">
+                                        Sponsored Projects
+                                    </a>
+                                @endif
 
                             </div>
                         </li>

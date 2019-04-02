@@ -66,6 +66,8 @@ Route::get('/users/{user}', 'AdminController@filterByUser')->name('admin.showuse
 Route::get('/users/{user}/projects', 'AdminController@filterByUserProjects')->name('admin.show.userprojects');
 Route::get('/admin/projects', 'AdminController@showProjects')->name('admin.showallprojects');
 Route::get('/admin/projects/{project}', 'AdminController@filterByProject')->name('admin.showproject');
+Route::get('/admin/projects/{project}/subscriptions', 'SponsorController@filterByProjectSubscribers')->name('admin.show.subscribers')->middleware('admin');
+Route::get('/admin/subscriptions', 'AdminController@subscriptions')->name('admin.projects.sponsored');
 
 
 
@@ -73,7 +75,6 @@ Route::get('/admin/projects/{project}', 'AdminController@filterByProject')->name
 
 
 // not touched yet
-Route::get('/admin/subscriptions', 'AdminController@subscriptions')->name('admin.projectsubscriptions');
 
 
 

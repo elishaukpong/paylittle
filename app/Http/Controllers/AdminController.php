@@ -101,8 +101,9 @@ class AdminController extends Controller
 
     public function subscriptions()
     {
-        $data['projectsubscriptions'] = ProjectSubscription::paginate(9);
+        $data['projects'] = Project::has('subscription')->withCount('subscription')->paginate(8);
         $data['statuses'] = Status::all();
-        return view('admin.subscribedprojects', $data);
+        // return $data;
+        return view('admin.projects.sponsored', $data);
     }
 }
