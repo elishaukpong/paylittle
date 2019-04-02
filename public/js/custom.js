@@ -30,18 +30,16 @@ $(document).ready(function() {
             if (willApprove) {
                 id = $(this).attr('use');
                 status = $(this).attr('id');
-                updateProjectStatus(id, status, action);
-                // if(action == "Approve"){
-                //     $('.status').removeClass('btn-outline-danger');
-                //     $('.status').addClass('btn-outline-success');
-                //     $('.status').text('Project Accepted')
-                // }else{
-                //     $('.status').removeClass('btn-outline-success');
-                //     $('.status').addClass('btn-outline-danger');
-                //     $('.status').text('Project Rejected');
-                //
-                // }
-
+                status = updateProjectStatus(id, status, action);
+                if (status && action == "Approve") {
+                    $('.status').removeClass('btn-outline-danger');
+                    $('.status').addClass('btn-outline-success');
+                    $('.status').text('Project Accepted')
+                } else {
+                    $('.status').removeClass('btn-outline-success');
+                    $('.status').addClass('btn-outline-danger');
+                    $('.status').text('Project Rejected');
+                }
             }
         });
 

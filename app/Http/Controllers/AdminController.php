@@ -12,7 +12,7 @@ class AdminController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth', 'admin']);
+        $this->middleware(['auth', 'admin','verified']);
     }
 
     public function index()
@@ -55,7 +55,7 @@ class AdminController extends Controller
     public function filterByProject(Project $project)
     {
         $data['project'] = $project;
-        return view('admin.viewproject', $data);
+        return view('admin.projects.show', $data);
     }
 
     public function updateStatus(Project $project, $status)
@@ -71,7 +71,7 @@ class AdminController extends Controller
             'status_id' => 2,
         ]);
 
-        return 'Project was accepted Successfully!';
+        return 'Project was accepted successfully!';
     }
 
     public function showProjects()
@@ -96,7 +96,7 @@ class AdminController extends Controller
         $data['completedUserProjects'] = $completedUserProjects;
         $data['rAndFUserProjects'] =  $rAndFUserProjects;
 
-        return view('admin.created', $data);
+        return view('admin.projects.index', $data);
     }
 
     public function subscriptions()

@@ -64,6 +64,8 @@ Route::get('/adminarea', 'AdminController@index')->name('admin.home');
 Route::get('/users', 'AdminController@showUsers')->name('admin.show.users');
 Route::get('/users/{user}', 'AdminController@filterByUser')->name('admin.showuser');
 Route::get('/users/{user}/projects', 'AdminController@filterByUserProjects')->name('admin.show.userprojects');
+Route::get('/admin/projects', 'AdminController@showProjects')->name('admin.showallprojects');
+Route::get('/admin/projects/{project}', 'AdminController@filterByProject')->name('admin.showproject');
 
 
 
@@ -71,8 +73,6 @@ Route::get('/users/{user}/projects', 'AdminController@filterByUserProjects')->na
 
 
 // not touched yet
-Route::get('/admin/projects', 'AdminController@showProjects')->name('admin.showallprojects');
-Route::get('/admin/projects/{project}', 'AdminController@filterByProject')->name('admin.showproject');
 Route::get('/admin/subscriptions', 'AdminController@subscriptions')->name('admin.projectsubscriptions');
 
 

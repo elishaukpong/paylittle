@@ -63,7 +63,7 @@
                                             <td>{{$project->formattedrepaymentamount}}</td>
                                             <td>{{$project->repaymentplan->timeline}}</td>
                                             <td>
-                                                <a href="{{route('project.show', $project->id)}}" class="btn btn-sm btn-primary">View Project</a>
+                                                <a href="{{route('admin.showproject', $project->id)}}" class="btn btn-sm btn-primary">View Project</a>
                                             </td>
                                             <td>
                                                 <form action="{{route('project.delete', $project->id)}}" method="post">
@@ -112,7 +112,7 @@
                                             <td>{{$project->formattedrepaymentamount}}</td>
                                             <td>{{$project->repaymentplan->timeline}}</td>
                                             <td>
-                                                <a href="{{route('project.show', $project->id)}}" class="btn btn-sm btn-success">View Project</a>
+                                                <a href="{{route('admin.showproject', $project->id)}}" class="btn btn-sm btn-success">View Project</a>
                                             </td>
 
                                         </tr>
@@ -206,7 +206,7 @@
                                             <td>{{$project->formattedrepaymentamount}}</td>
                                             <td>{{$project->repaymentplan->timeline}}</td>
                                             <td>
-                                                <a href="{{route('project.show', $project->id)}}" class="btn btn-sm btn-primary">View Project</a>
+                                                <a href="{{route('admin.showproject', $project->id)}}" class="btn btn-sm btn-primary">View Project</a>
                                             </td>
                                             <td>
                                                 <form action="{{route('project.delete', $project->id)}}" method="post">
@@ -255,14 +255,14 @@
                                             <td>{{$project->formattedrepaymentamount}}</td>
                                             <td>{{$project->repaymentplan->timeline}}</td>
                                             <td>
-                                                <a href="{{route('project.show', $project->id)}}" class="btn btn-sm btn-primary">View Project</a>
+                                                <a href="{{route('admin.showproject', $project->id)}}" class="btn btn-sm btn-primary">View Project</a>
                                             </td>
                                             <td>
                                                 <form action="{{route('project.delete', $project->id)}}" method="post">
                                                     @csrf @method('DELETE')
 
                                                     <button type="submit" class="btn btn-sm btn-danger cp-delete" data-id="{{$project->id}}">
-                                                                                                                                            <i class="fa fa-trash" aria-hidden="true"></i> Thrash Project</button>
+                                                        <i class="fa fa-trash" aria-hidden="true"></i> Thrash Project</button>
                                                 </form>
                                             </td>
 
@@ -272,7 +272,7 @@
                                 </table>
 
                             </div>
- {{-- Pagination --}}
+                        {{-- Pagination --}}
                             <div class="row my-4 text-center">
                                 <div class="col-md-3 col-12 mx-auto ">
                                     {{$rAndFUserProjects->links()}}
@@ -287,5 +287,3 @@
         </div>
 
     @endsection
-{{-- Created by: <a href="{{route('admin.showuser', $project->user->id)}}" class="">{{$project->user->first_name}}</a></p>
-<a href="{{route('admin.showproject', $project->id)}}" class="btn btn-primary text-white form-control">View Project</a> --}}
