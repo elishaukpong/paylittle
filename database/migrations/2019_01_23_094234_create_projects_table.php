@@ -22,6 +22,7 @@ class CreateProjectsTable extends Migration
             $table->string('status_id')->default(1);
 
             $table->string('name');
+            $table->string('slug')->nullable();
             $table->integer('amount')->unsigned();
             $table->text('details');
             $table->string('location');

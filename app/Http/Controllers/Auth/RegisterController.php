@@ -67,6 +67,7 @@ class RegisterController extends Controller
             'id' => $data['id'],
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
+            'slug' => $this->generateSlug($data),
             'email' => $data['email'],
             'phone' => $data['phone'],
             'password' => $data['password'],
@@ -85,6 +86,16 @@ class RegisterController extends Controller
 
         return $user;
 
+    }
+
+     public function generateSlug(array $data){
+        do {
+            //generate a random slug using Laravel's str_random helper
+            $slug = $data['first_name'] . '_' . $data['last_name'] . '_' . str_random(4);
+        } //check if the slug already exists and if it does, try again
+        while (User::where('slug', $slug)->first());
+
+        return $slug;
     }
 
 

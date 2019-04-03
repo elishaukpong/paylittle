@@ -41,7 +41,7 @@ Route::resource('/guarantor', 'GuarantorController');
 Route::get('/projects', 'ProjectController@index')->name('projects.index');
 Route::get('/project/create', 'ProjectController@create')->name('project.create');
 Route::post('/projects', 'ProjectController@store')->name('project.store');
-Route::get('/projects/{project}/show', 'ProjectController@show')->name('project.show')->middleware('checkprojectstatus');
+Route::get('/projects/{projectSlug}', 'ProjectController@show')->name('project.show')->middleware('checkprojectstatus');
 Route::get('/projects/{project}/edit', 'ProjectController@edit')->name('project.edit');
 Route::put('/projects/{project}', 'ProjectController@update')->name('project.update');
 Route::get('/userprojects', 'ProjectController@filterByUser')->name('user.projects.show');

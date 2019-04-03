@@ -11,7 +11,7 @@ class Project extends Model
 
     public $incrementing = false;
 
-    protected $fillable = [ 'id', 'user_id', 'duration_id', 'repayment_id', 'guarantor_id', 'status_id', 'name', 'amount', 'details', 'location' ];
+    protected $fillable = [ 'id', 'user_id', 'duration_id', 'repayment_id', 'guarantor_id', 'status_id', 'name', 'amount', 'details', 'location', 'slug' ];
 
     public function user()
     {

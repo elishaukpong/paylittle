@@ -19,16 +19,15 @@ class UserSeeder extends Seeder
                 'user_id' => $user->id,
             ]);
 
-            $projects = factory(App\Models\Project::class, rand(9, 14))->create([
+            factory(App\Models\Project::class, rand(9, 14))->create([
                 'user_id' => $user->id,
                 'status_id' => App\Models\Status::all()->random()->id,
                 'duration_id' => App\Models\Duration::all()->random()->id,
                 'repayment_id' => App\Models\RepaymentPlan::all()->random()->id,
-                // 'guarantor_id' => 3
                 'guarantor_id' => App\Models\Guarantor::whereUserId($user->id)->get()->random()->id,
-            ]);
-
-            $projects->each(function ( $project ) {
+            ])->each(function($project){
+                $project->slug = $this->generateSlug($project->name);
+                $project->save();
                 factory(App\Models\Photo::class)->create([
                     'imageable_id' => $project->id,
                     'imageable_type' => "App\Models\Project",
@@ -50,6 +49,16 @@ class UserSeeder extends Seeder
 
         });
 
+    }
+
+        public function generateSlug($projectName){
+        do {
+            //generate a random slug using Laravel's str_slug and str_random helper
+            $slug = str_slug($projectName) . '_' . rand(1000,9000);
+        } //check if the slug already exists and if it does, try again
+        while (App\Models\Project::where('slug', $slug)->first());
+
+        return $slug;
     }
 
 }

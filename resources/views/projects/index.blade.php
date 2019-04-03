@@ -33,7 +33,7 @@
                             <p class="float-lg-right text-primary">
                                 <small class="font-weight-bold text-primary">Total</small> {{$project->formattedamount}}</p>
 
-                            <a href="{{route('project.show', $project->id)}}"
+                            <a href="{{route('project.show', $project->slug)}}"
                                class="btn btn-primary form-control text-white">View Project</a>
 
                         </div>

@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Project;
 
 
 class ProjectStatusMiddleware
@@ -18,8 +19,9 @@ class ProjectStatusMiddleware
      */
     public function handle( $request, Closure $next, $guard = null )
     {
-        $projectStatus  = $request->route('project')->status->name;
-        $projectOwnerID = $request->route('project')->user->id;
+        $project = Project::whereSlug($request->route('projectSlug'))->first();
+        $projectStatus  = $project->status->name;
+        $projectOwnerID = $project->user->id;
         if (Auth::id() != $projectOwnerID && $projectStatus != 'Accepted')
         {
             return redirect()->back()->with('error', "Can not view project");

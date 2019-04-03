@@ -3,7 +3,7 @@
     @section('content')
      <div class="jumbotron text-center bg-primary">
         <div class="jumbotron-cover py-4">
-            <h1 class="font-weight-bold text-white ">Subscribed Projects </h1>
+            <h1 class="font-weight-bold text-white ">{{$projectSponsors->first()->project->name}}'s Project Sponsors </h1>
         </div>
     </div>
 

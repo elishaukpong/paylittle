@@ -73,6 +73,7 @@ class ProjectController extends Controller
         $newProject = new Project;
         $newProject->id = Uuid::uuid1();
         $newProject->name = $request->name;
+        $newProject->slug = $this->generateSlug($request->name);
         $newProject->amount = $request->amount;
         $newProject->details = $request->details;
         $newProject->location = $request->location;
@@ -102,13 +103,22 @@ class ProjectController extends Controller
         return redirect()->route('clientarea');
     }
 
+    public function generateSlug($projectName){
+        do {
+            //generate a random slug using Laravel's str_slug and str_random helper
+            $slug = str_slug($projectName) . '_' . str_random(4);
+        } //check if the slug already exists and if it does, try again
+        while (Project::where('slug', $slug)->first());
 
-    public function show( Project $project )
+        return $slug;
+    }
+
+    public function show( $projectSlug )
     {
-        $data['project'] = $project;
+        $data['project'] = Project::whereSlug($projectSlug)->first();
         $data['durations'] = Duration::all();
         $data['repaymentPlans'] = RepaymentPlan::all();
-        $data['amountremaining']  = $this->checkSponsorshipAmountRemaining($project);
+        $data['amountremaining']  = $this->checkSponsorshipAmountRemaining($data['project']);
         $data['sponsorshipAmounts'] = sponsorshipAmount::all();
 
         return view('projects.show', $data);
