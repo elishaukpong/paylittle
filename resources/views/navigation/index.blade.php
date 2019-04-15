@@ -324,7 +324,7 @@
                     <h1 class="p-c">How It Works</h1>
                     <br>
                     <div class="row">
-                        <div class="col-md-6 col-12 mx-auto">
+                        <div class="col-md-6 col-12 mx-auto p-c">
                             <p>We make it possible to afford quick funding to take care of pressing issues and repay over a period of time.
                                 Its a fast and simple process to secure this loan</p>
 
@@ -339,23 +339,22 @@
                 <div class="col-12 col-md-7">
                     <img src="{{asset('img/create.jpg')}}" class="img-fluid rounded create-project-image">
                 </div>
-                <div class="col-12 col-md-5 text-center">
+                <div class="col-12 col-md-5 flex-box">
 
-                    <h1 class="p-c">Create Project</h1>
-                    <br><br>
-                    <ul>
+                    <h1 class="p-c mx-4">Create Project</h1>
+                    <ul class="text-left p-c" >
                         <li class="my-4">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo quae mollitia nihil iste, placeat accusamus temporibus labore maxime officiis ex suscipit autem ut eum dignissimos sunt amet nemo dolor corrupti. Beatae voluptate ex perferendis.
+                           Create an account.
                         </li>
                         <li class="my-4">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo quae mollitia nihil iste, placeat accusamus temporibus labore
-                            maxime officiis ex suscipit autem ut eum dignissimos sunt amet nemo dolor corrupti. Beatae voluptate ex perferendis.
+                           Go to dashboard, select new project.
                         </li>
                         <li class="my-4">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo quae mollitia nihil iste, placeat accusamus temporibus labore
-                            maxime officiis ex suscipit autem ut eum dignissimos sunt amet nemo dolor corrupti. Beatae voluptate ex perferendis.
+                           Provide project details and create
                         </li>
-
+                        <li class="my-4">
+                          and wait for feedback on project sonsorship.
+                        </li>
                     </ul>
 
                 </div>
@@ -363,23 +362,22 @@
             <br><br>
             <div class="row mt-5 pt-5">
 
-                <div class="col-12 col-md-5">
+                <div class="col-12 col-md-5 flex-box">
 
-                    <h1 class="p-c">Sponsor Project</h1>
+                    <h1 class="p-c mx-4">Sponsor Project</h1>
 
-                   <br><br>
-                    <ul>
+                    <ul class="p-c">
                         <li class="my-4">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo quae mollitia nihil iste, placeat accusamus temporibus labore
-                            maxime officiis ex suscipit autem ut eum dignissimos sunt amet nemo dolor corrupti. Beatae voluptate ex perferendis.
+                            Open projects list from navigation bar.
                         </li>
                         <li class="my-4">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo quae mollitia nihil iste, placeat accusamus temporibus labore
-                            maxime officiis ex suscipit autem ut eum dignissimos sunt amet nemo dolor corrupti. Beatae voluptate ex perferendis.
+                            Scan through projects and choose anyone of choice
                         </li>
                         <li class="my-4">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo quae mollitia nihil iste, placeat accusamus temporibus labore
-                            maxime officiis ex suscipit autem ut eum dignissimos sunt amet nemo dolor corrupti. Beatae voluptate ex perferendis.
+                           Click on sponsorship, and select sponsorship amount
+                        </li>
+                        <li class="my-4">
+                          Make payment for sponsorship and send details to sponsorship@paylittle.ng
                         </li>
 
                     </ul>
@@ -405,59 +403,6 @@
             </div>
         </div>
     </section>
-{{--
-    <section class="second-header" id="learnhow">
-        <div class="bg2-shadow">
-            <div class="container">
-                <div class="row py-5 text-white">
-                    <div class="col-12">
-                        <h3 class="display-5 text-white font-weight-bold">How it works</h3>
-                        <p class="text-white"> We recommend you follow this process</p>
-                    </div>
-                </div>
-
-                <div class="row text-center how-we-work pb-4">
-                    <div class="col-12 col-md-3">
-                        <i class="fa fa-user" aria-hidden="true"></i>
-                        <br><br>
-                        <h5 class="font-weight-bold mt-3 text-white">1. Create An Account</h5>
-                        <p class=" text-white pt-3 font-weight-light">
-                            Click on Get Started, fill in your details and submit.
-                            Head to your mail box to confirm you email and then login
-                        </p>
-                    </div>
-
-                    <div class="col-12 col-md-3">
-                        <i class="fa fa-plus" aria-hidden="true"></i>
-                        <br><br>
-                        <h5 class="font-weight-bold mt-3 text-white">2. Sponsor A Project</h5>
-                        <p class=" text-white pt-3 font-weight-light">
-                            Check our project listings and select a project you wish to sponsor, read the details, and sponsor
-                        </p>
-                    </div>
-
-                    <div class="col-12 col-md-3">
-                        <i class="fa fa-plus" aria-hidden="true"></i>
-                        <br><br>
-                        <h5 class="font-weight-bold mt-3 text-white">3. Create A Project</h5>
-                        <p class=" text-white pt-3 font-weight-light">
-                            On your dashboard, click the create a project button, follow the instructions and submit
-                        </p>
-                    </div>
-
-                    <div class="col-12 col-md-3">
-                        <i class="fa fa-money" aria-hidden="true"></i>
-                        <br><br>
-                        <h5 class="font-weight-bold mt-3 text-white">4. Project Validation</h5>
-                        <p class=" text-white pt-3 font-weight-light">
-                           We will validate your project and then open for sponsorship, if it meets the criteria.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> --}}
-
 
 <br>
 <br>
@@ -571,17 +516,3 @@
 
     </section>
 @endsection
-
-{{--
-<p class="p-c">
-    You can help us alleviate the stress people incur on their finances when making major steps and changes in their lifes by
-    being a sponsor on the Pay Little platform. Pay Little Sponsorship falls into three categories which comes with different
-    ROI percentages based on initial investment. We believe in you to help us make people's dreams come through while ensuring
-    your dreams come true too.
-</p> --}}
-
-{{-- <p class="p-c">
-    As a Pay Littler, you are provided access to funds to finance your projects ranging through house rents, school fees, building
-    projects etc and the payment is spread over a period of time, monthly, quarterly or outright payment. We want to make
-    life more comfortable and convinient for you even with your meager income.
-</p> --}}

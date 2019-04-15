@@ -498,3 +498,18 @@ ol.carousel-indicators {
     width: 400px;
     height: 150px;
 }
+
+.flex-box {
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    flex-direction: column;
+}
+
+ul.text-left li {
+    font-size: 1.2em;
+}
+
+footer li a:hover {
+    color: #fff;
+}
