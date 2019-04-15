@@ -15,7 +15,7 @@ use App\Models\States;
 |
 */
 $factory->define(App\User::class, function (Faker $faker) {
-    $status = ['admin','null'];
+    $status = [1,0];
     $gender = ['male','female', 'others'];
     $index = array_rand($status);
     $indexx = array_rand($gender);

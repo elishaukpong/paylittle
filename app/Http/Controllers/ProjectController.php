@@ -33,7 +33,7 @@ class ProjectController extends Controller
     public function index()
     {
         $count    = Project::whereStatusId(2)->count();
-        $projects = Project::whereStatusId(2)->paginate(12);
+        $projects = Project::where('user_id', '!=', Auth::id())->whereStatusId(2)->paginate(12);
 
         if(Auth::user() && $count == 0){
             Session::flash('info', 'No sponsorable project yet!');

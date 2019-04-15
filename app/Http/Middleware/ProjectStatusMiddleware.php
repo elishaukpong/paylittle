@@ -23,9 +23,11 @@ class ProjectStatusMiddleware
         $projectStatus  = $project->status->name;
         $projectOwnerID = $project->user->id;
 
-        if (!Auth::user()->is_admin && Auth::id() != $projectOwnerID && $projectStatus != 'Accepted')
-        {
-            return redirect()->back()->with('error', "Can not view project");
+        if(Auth::user()){
+            if (!Auth::user()->is_admin && Auth::id() != $projectOwnerID && $projectStatus != 'Accepted')
+            {
+                return redirect()->back()->with('error', "Can not view project");
+            }
         }
         return $next($request);
     }

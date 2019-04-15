@@ -1,36 +1,3 @@
-{{-- <footer class="text-white font-weight-light">
-    <div class="container pt-5 border-bottom">
-
-
-
-            <div class="col-md-5 col-12 pb-3 pb-0">
-                <p class="text-uppercase font-weight-light pb-2 ml-md-4"> Get updates from us</p>
-                <div class="ml-md-4">
-                    <form action="{{route('email.subscribe')}}" method="POST">
-                        @csrf
-                        <input type="email" class="form-control mb-2 {{ $errors->has('emails') ? ' is-invalid' : '' }}" placeholder="Type Email Address" name="emails">
-                         @if ($errors->has('emails'))
-                                    <span class="invalid-feedback text-center" role="alert">
-                                        <strong>{{ $errors->first('emails') }}</strong>
-                                    </span>
-                                @endif
-                        <input type="submit" value="Submit" class="btn btn-warning form-control" id="email">
-                    </form>
-
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row pt-3">
-
-
-        </div>
-    </div>
-</footer> --}}
-
-
 <footer>
     <div class="container py-5">
         <div class="row">
@@ -117,7 +84,7 @@
                     <div class="col-12 text-center">
                         <ul class="list-inline m-0">
                             <li class="list-inline-item">
-                                <a href="#">
+                                <a href="https://www.instagram.com/paylittleng">
                                     <i class="fa fa-instagram" aria-hidden="true"></i>
                                 </a>
                             </li>

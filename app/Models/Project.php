@@ -42,9 +42,9 @@ class Project extends Model
         return $this->hasMany('App\Models\ProjectSubscription');
     }
 
-    public function hits(  )
+    public function hits()
     {
-        return $this->belongsOne('App\Models\Hits');
+        return $this->hasOne('App\Models\Hits');
     }
 
     public function guarantor(){
