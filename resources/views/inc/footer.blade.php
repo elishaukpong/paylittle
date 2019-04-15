@@ -6,6 +6,7 @@
                     <div class="col-md-6 col-12 text-white">
 
                         <h4 class="text-uppercase font-weight-bold mb-3">Contact</h4>
+
                         <ul class="list-inline  pb-4 pb-md-0">
                             <li class="list-inline-item py-1">
                                 <div class="row">
@@ -48,7 +49,7 @@
                         </ul>
 
                     </div>
-                    <div class="col-4 offset-1">
+                    <div class="col-4 offset-md-1">
                         <div class="row">
                             <div class="col-12">
                                 <h4 class="text-uppercase font-weight-bold mb-3 text-white">Links</h4>

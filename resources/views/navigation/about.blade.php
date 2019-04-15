@@ -14,7 +14,7 @@
 
 </section>
 
-<section class="my-5 py-3 about">
+<section class="my-md-5 py-md-3 about">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-7 offset-md-1 col-12">
@@ -37,12 +37,14 @@
 
 
 
-            <div class="col-md-4 col-12 about-image">
-                <img src="https://placeimg.com/400/500" class="img-fluid border border-secondary p-1" alt="">
+            <div class="col-md-4 col-12 about-image d-none d-md-block">
+                <img src="{{asset('img/about1.jpg')}}" class="img-fluid border border-secondary p-1" alt="">
             </div>
 
-            <div class="img-top">
-                <img src="https://placeimg.com/250/250" class="rounded shadow">
+            <div class="col-md-4 col-12 img-top d-none d-lg-block">
+                <img src="{{asset('img/about2.jpg')}}" class="img-fluid rounded shadow"
+                {{-- width="400px" height="400px" --}}
+                >
             </div>
         </div>
     </div>
@@ -51,7 +53,7 @@
 <br>
 <hr class="mx-5 px-5">
 
-<section class="my-5 py-5">
+<section class="my-md-5 py-2 py-md-5">
     <div class="container">
         <div class="row">
             <div class="col-md-3 col-12">

@@ -17,29 +17,6 @@
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto my-2 dashboard">
                 <!-- Authentication Links -->
-                @guest
-                <li class="nav-item mx-2">
-                    <a class="nav-link text-light" href="{{route('about')}}">About Us</a>
-                </li>
-                <li class="nav-item mx-2">
-                    <a class="nav-link text-light" href="{{route('projects.index')}}">Projects</a>
-                </li>
-                <li class="nav-item mx-2">
-                    <a class="nav-link text-light" href="{{route('blog')}}">Blog</a>
-                </li>
-                <li class="nav-item mx-2">
-                    <a class="nav-link text-light" href="{{route('contact')}}">Contact Us</a>
-                </li>
-
-                <li class="nav-item mx-3">
-                    <a class="nav-link text-light" href="{{route('login')}}">Login</a>
-                </li>
-                <li class="nav-item mx-3">
-                    <a class="nav-link text-primary btn btn-warning px-4" href="{{route('register')}}">Sign Up</a>
-                </li>
-
-                @else
-
                 <li class="nav-item mx-2">
                     <a class="nav-link text-light" href="{{route('about')}}">About Us</a>
                 </li>
@@ -72,7 +49,6 @@
 
                     </div>
                 </li>
-                @if(!$user->is_admin)
                 <li class="nav-item mx-2 dropdown">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false" v-pre>
@@ -90,11 +66,6 @@
 
                     </div>
                 </li>
-                @else
-                <li class="nav-item mx-2">
-                    <a class="nav-link text-light" href="{{route('admin.show.users')}}">Users</a>
-                </li>
-                @endif
 
                 <li class="nav-item mx-2 dropdown">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -116,7 +87,6 @@
                         </form>
                     </div>
                 </li>
-                @endguest
             </ul>
         </div>
     </div>

@@ -16,8 +16,6 @@
 
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto my-2 dashboard">
-                <!-- Authentication Links -->
-                @guest
                 <li class="nav-item mx-2">
                     <a class="nav-link text-light" href="{{route('about')}}">About Us</a>
                 </li>
@@ -37,86 +35,6 @@
                 <li class="nav-item mx-3">
                     <a class="nav-link text-primary btn btn-warning px-4" href="{{route('register')}}">Sign Up</a>
                 </li>
-
-                @else
-
-                <li class="nav-item mx-2">
-                    <a class="nav-link text-light" href="{{route('about')}}">About Us</a>
-                </li>
-                <li class="nav-item mx-2">
-                    <a class="nav-link text-light" href="{{route('blog')}}">Blog</a>
-                </li>
-                <li class="nav-item mx-2">
-                    <a class="nav-link text-light" href="{{route('contact')}}">Contact Us</a>
-                </li>
-
-                <li class="nav-item mx-2 dropdown">
-                    <a id="navbarDropdown" class="nav-link dropdown-toggle text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false" v-pre>
-                                            Projects <span class="caret"></span>
-                                            </a>
-
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{route('project.create')}}">
-                                                                                    New Project
-                                                                            </a>
-                        <a class="dropdown-item" href="{{route('projects.index')}}">
-                                                                                All Projects
-                                                                            </a>
-                        <a class="dropdown-item" href="{{route('user.projects.show')}}">
-                                                                                My Projects
-                                                                            </a>
-                        <a class="dropdown-item" href="{{route('sponsored.project')}}">
-                                                                                Sponsored Projects
-                                                                            </a>
-
-                    </div>
-                </li>
-                @if(!$user->is_admin)
-                <li class="nav-item mx-2 dropdown">
-                    <a id="navbarDropdown" class="nav-link dropdown-toggle text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false" v-pre>
-                                                Guarantors <span class="caret"></span>
-                                                </a>
-
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{route('guarantor.create')}}">
-                                                        New Guarantor
-                                                    </a>
-                        <a class="dropdown-item" href="{{route('guarantor.index')}}">
-                                                        My Gurantors
-                                                    </a>
-
-
-                    </div>
-                </li>
-                @else
-                <li class="nav-item mx-2">
-                    <a class="nav-link text-light" href="{{route('admin.show.users')}}">Users</a>
-                </li>
-                @endif
-
-                <li class="nav-item mx-2 dropdown">
-                    <a id="navbarDropdown" class="nav-link dropdown-toggle text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false" v-pre>
-                                                {{ Auth::user()->first_name }} <span class="caret"></span>
-                                            </a>
-
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{route('user.show')}}">
-                                                    {{ __('My Profile') }}
-                                                </a>
-                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                                    document.getElementById('logout-form').submit();">
-                                                    {{ __('Logout') }}
-                                                </a>
-
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-                    </div>
-                </li>
-                @endguest
             </ul>
         </div>
     </div>
