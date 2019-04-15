@@ -8,6 +8,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'PayLITTLE') }}</title>
 
+    <link rel="shortcut icon" href="{{asset('img/logo.png')}}" type="image/x-icon">
+
     {{--Scripts--}}
     @include('inc.scripts')
 
@@ -21,7 +23,7 @@
        <nav class="navbar navbar-expand-md navbar-dark ">
             <div class="container">
                 <a class="navbar-brand text-light" href="{{ url('/') }}">
-                        Paylittle
+                       <img src="{{asset('img/logo.png')}}" alt="Logo" class="img-fluid" width="150px" height="150px"> 
                         </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">

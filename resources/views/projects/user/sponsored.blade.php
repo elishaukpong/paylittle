@@ -21,7 +21,7 @@
                                         <img src="{{asset($project->project->photo->projectavatar)}}" class="img-fluid show-user-image img-thumbnail" alt="">
                                     </div>
                                     <div class="col-md-8 col-12 text-dark">
-                                        <h3 class="mb-3">{{$project->project->name}}</h3>
+                                        <h3 class="mb-3 mt-3 mt-md-0">{{$project->project->name}}</h3>
                                         <p class="mb-0"><span class="font-weight-bold">Amount:</span> {{$project->formattedamount}}</p>
                                         <p class="mb-0"><span class="font-weight-bold">Returns: </span> {{$project->formattedreturns}}</p>
                                         <p class="mb-0"><span class="font-weight-bold">Payout Day: </span> {{$project->due_date->toFormattedDateString()}}</p>

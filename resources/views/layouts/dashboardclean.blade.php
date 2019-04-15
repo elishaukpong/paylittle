@@ -120,9 +120,38 @@
                             </div>
                         </li>
                         @else
-                        <li class="nav-item mx-2">
-                            <a class="nav-link text-light" href="{{route('admin.show.users')}}">Users</a>
-                        </li>
+                            <li class="nav-item mx-2">
+                                <a class="nav-link text-light" href="{{route('admin.show.users')}}">Users</a>
+                            </li>
+
+                            <li class="nav-item mx-2 dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false" v-pre>
+                                        Misc <span class="caret"></span>
+                                        </a>
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{route('duration.index')}}">
+                                        Duration
+                                    </a>
+                                    <a class="dropdown-item" href="{{route('projects.index')}}">
+                                                                All Projects
+                                                            </a> @if($user->is_admin)
+                                    <a class="dropdown-item" href="{{route('admin.showallprojects')}}">
+                                                                    Manage Projects
+                                                                </a>
+                                    <a class="dropdown-item" href="{{route('admin.projects.sponsored')}}">
+                                                                    Sponsored Projects
+                                                                </a> @else
+                                    <a class="dropdown-item" href="{{route('user.projects.show')}}">
+                                                                    My Projects
+                                                                </a>
+                                    <a class="dropdown-item" href="{{route('sponsored.project')}}">
+                                                                    Sponsored Projects
+                                                                </a> @endif
+
+                                </div>
+                            </li>
                         @endif
 
                         <li class="nav-item mx-2 dropdown">

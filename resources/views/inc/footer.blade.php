@@ -5,7 +5,14 @@
                 <p class="text-uppercase font-weight-light">Contact</p>
                 <ul class="list-inline  pb-4 pb-md-0">
                     <li class="list-inline-item py-1 pr-5">
-                        <i class="fa fa-map-marker mr-3" aria-hidden="true"></i> 16 Abua Street, PH
+                        <div class="row">
+                            <div class="col-2">
+                                <i class="fa fa-map-marker mr-3" aria-hidden="true"></i>
+                            </div>
+                            <div class="col-10">
+                                16 Abua Street, Rumuibekwe, Port Harcourt, Rivers State
+                            </div>
+                        </div>
                     </li><br>
                     <li class="list-inline-item py-1">
                         <i class="fa fa-envelope mr-3" aria-hidden="true"></i> info@paylittle.ng

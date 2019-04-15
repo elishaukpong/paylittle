@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Duration;
+use App\Models\Duration;
+use Ramsey\Uuid\Uuid;
+use Session;
 use Illuminate\Http\Request;
 
 class DurationController extends Controller
@@ -14,17 +16,8 @@ class DurationController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $data['durations'] = Duration::all();
+        return view('admin.duration', $data);
     }
 
     /**
@@ -35,7 +28,15 @@ class DurationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = [
+            'timeline' => 'integer'
+        ];
+        $this->validate($request, $rules);
+        $request['id'] = Uuid::uuid1();
+
+        Duration::create($request->except('_token'));
+        Session::flash('success', 'Duration Created!');
+        return redirect()->back();
     }
 
     /**

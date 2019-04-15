@@ -16,7 +16,7 @@
 
                 <br><br>
 
-                <div class="row">
+                {{-- <div class="row">
                     <div class="col-12">
                         <ul class="list-inline">
 
@@ -38,7 +38,7 @@
                             </li>
                         </ul>
                     </div>
-                </div>
+                </div> --}}
 
             </div>
         </div>
@@ -325,7 +325,7 @@
                     <br>
                     <div class="row">
                         <div class="col-md-6 col-12 mx-auto">
-                            <p>We make it possible to afford quick loans to take care of pressing issues and repay over a period of time.
+                            <p>We make it possible to afford quick funding to take care of pressing issues and repay over a period of time.
                                 Its a fast and simple process to secure this loan</p>
 
                         </div>
@@ -571,3 +571,17 @@
 
     </section>
 @endsection
+
+{{--
+<p class="p-c">
+    You can help us alleviate the stress people incur on their finances when making major steps and changes in their lifes by
+    being a sponsor on the Pay Little platform. Pay Little Sponsorship falls into three categories which comes with different
+    ROI percentages based on initial investment. We believe in you to help us make people's dreams come through while ensuring
+    your dreams come true too.
+</p> --}}
+
+{{-- <p class="p-c">
+    As a Pay Littler, you are provided access to funds to finance your projects ranging through house rents, school fees, building
+    projects etc and the payment is spread over a period of time, monthly, quarterly or outright payment. We want to make
+    life more comfortable and convinient for you even with your meager income.
+</p> --}}

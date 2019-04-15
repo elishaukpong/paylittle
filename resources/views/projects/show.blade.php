@@ -51,7 +51,7 @@
                         Sponsor Project
                     </button>
                 @else
-                    @if(Auth::user()->id != $project->user->id)
+                    @if(Auth::user()->id != $project->user->id && !Auth::user()->is_admin)
                     <!-- Button trigger modal -->
                         <button type="button" class="btn btn-primary form-control" data-toggle="modal"
                                 data-target="#exampleModal">

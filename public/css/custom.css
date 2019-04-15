@@ -443,6 +443,17 @@ ol.carousel-indicators {
     border-radius: .5em 0 0 .5em;
 }
 
+.jumbotron.duration-jumbotron-cover {
+    background-image: linear-gradient(to right, #328cf284, #328cf292), url('../img/time.jpg');
+    background-size: cover;
+    background-position: center;
+    border-radius: .5em 0 0 .5em;
+}
+
+.duration {
+    font-size: 1.3em;
+}
+
 .lib-head {
     height: 3em;
     width: 3em;

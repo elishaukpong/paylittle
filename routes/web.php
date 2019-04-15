@@ -36,6 +36,11 @@ Route::get('/account/{userid}/edit', 'UserController@edit')->name('user.edit');
 
 //Guarantor Route
 Route::resource('/guarantor', 'GuarantorController');
+Route::resource('/duration', 'DurationController');
+Route::resource('/repaymentplans', 'RepaymentPlanController');
+
+// Work on this tomorrow
+Route::resource('/organization', 'DurationController');
 
 // Projects
 Route::get('/projects', 'ProjectController@index')->name('projects.index');
@@ -69,12 +74,6 @@ Route::get('/admin/projects/{project}', 'AdminController@filterByProject')->name
 Route::get('/admin/projects/{project}/subscriptions', 'SponsorController@filterByProjectSubscribers')->name('admin.show.subscribers')->middleware('admin');
 Route::get('/admin/subscriptions', 'AdminController@subscriptions')->name('admin.projects.sponsored');
 
-
-
-
-
-
-// not touched yet
 
 
 
