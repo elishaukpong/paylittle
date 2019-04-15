@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-dark ">
     <div class="container">
         <a class="navbar-brand text-light" href="{{ url('/') }}">
-                       <img src="{{asset('img/logo.png')}}" alt="Logo" class="img-fluid" width="150px" height="150px">
+                       <img src="{{asset('img/logo.png')}}" alt="Logo" class="img-fluid" width="50px" height="50px">
                         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
             aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
