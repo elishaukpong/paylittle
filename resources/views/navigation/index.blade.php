@@ -26,6 +26,7 @@
         <div class="container" >
             <div class="row">
                 <div class="col-12 text-center pb-3">
+                    <div class="mt-3 pt-3 mt-lg-5 pt-lg-5"></div>
                     <h1 class="p-c">How It Works</h1>
                     <br>
                     <div class="row">
@@ -40,13 +41,13 @@
             <br>
             <br>
 
-            <div class="row mt-5">
+            <div class="row mt-md-5">
                 <div class="col-12 col-md-7">
                     <img src="{{asset('img/create.jpg')}}" class="img-fluid rounded create-project-image">
                 </div>
                 <div class="col-12 col-md-5 flex-box">
 
-                    <h1 class="p-c mx-4">Create Project</h1>
+                    <h1 class="p-c mx-md-4 my-4">Create Project</h1>
                     <ul class="text-left p-c" >
                         <li class="my-4">
                            Create an account.
@@ -65,11 +66,11 @@
                 </div>
             </div>
             <br><br>
-            <div class="row mt-5 pt-5">
+            <div class="row mt-md-5 pt-md-5">
 
                 <div class="col-12 col-md-5 flex-box">
 
-                    <h1 class="p-c mx-4">Sponsor Project</h1>
+                    <h1 class="p-c mx-4 my-4">Sponsor Project</h1>
 
                     <ul class="p-c">
                         <li class="my-4">
@@ -88,7 +89,7 @@
                     </ul>
 
                 </div>
-                <div class="col-12 col-md-7">
+                <div class="col-12 col-md-7 order-first order-md-last">
                     <img src="{{asset('img/sponsor.jpg')}}" class="img-fluid rounded sponsor-project-image">
                 </div>
             </div>
@@ -101,11 +102,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center">
+                    <div class="mt-md-2 pt-md-1 mt-lg-3 pt-lg-3"></div>
                     <h1 class="p-c">Trending Projects</h1>
+                    <div class="mt-md-2 pt-md-1 mt-lg-3 pt-lg-3"></div>
                 </div>
             </div>
         </div>
-         <div class="center slider mt-0">
+         <div class="center slider">
              @foreach($projects as $project)
                 <div class="card">
                     <div class="text-content-block">
@@ -134,11 +137,6 @@
          </div>
 
     </section>
-<br>
-<br>
-<br>
-<br>
-
 
     <section class="banner">
 

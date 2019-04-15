@@ -1,9 +1,9 @@
 <footer>
     <div class="container py-5">
         <div class="row">
-            <div class="col-6">
+            <div class="col-md-6 col-12">
                 <div class="row">
-                    <div class="col-6 text-white">
+                    <div class="col-md-6 col-12 text-white">
 
                         <h4 class="text-uppercase font-weight-bold mb-3">Contact</h4>
                         <ul class="list-inline  pb-4 pb-md-0">
@@ -65,7 +65,7 @@
                 </div>
 
             </div>
-            <div class="col-6">
+            <div class="col-md-6 col-12">
                 <div class="row">
                     <div class="col-12 text-center mt-5 mb-2">
                         <h1 class="display-5 text-white">PAYLITTLE</h1>
